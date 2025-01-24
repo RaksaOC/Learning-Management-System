@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/LMS/LMS.iml" filepath="$PROJECT_DIR$/LMS/LMS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LMS-Admin/LMS-Admin.iml" filepath="$PROJECT_DIR$/LMS-Admin/LMS-Admin.iml" />
+    </modules>
+  </component>
+</project>

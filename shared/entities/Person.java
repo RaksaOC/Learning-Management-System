@@ -1,4 +1,4 @@
-package utils.entities;
+package entities;
 
 
 public class Person {

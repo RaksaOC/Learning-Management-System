@@ -1,4 +1,4 @@
-package utils.entities;
+package entities;
 
 public class Teacher extends Person {
     public Teacher(String name, String surname, int age, String gender, String phone, String email, String password) {

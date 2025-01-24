@@ -1,5 +1,4 @@
-package utils.entities;
-import utils.entities.Person;
+package entities;
 
 
 public class Student extends Person {

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LMS/LMS.iml" filepath="$PROJECT_DIR$/LMS/LMS.iml" />
       <module fileurl="file://$PROJECT_DIR$/LMS-Admin/LMS-Admin.iml" filepath="$PROJECT_DIR$/LMS-Admin/LMS-Admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Learning-Management-System.iml" filepath="$PROJECT_DIR$/.idea/Learning-Management-System.iml" />
     </modules>
   </component>
 </project>

@@ -1,6 +1,6 @@
 ## LMS-Admin Log
 
-25/01/2025
+**25/01/2025**
 
 - began building the initial stage.
 - finished setting up the UI and its interation to controller and manager class.
@@ -53,4 +53,11 @@
     + View Specialization
     + Delete Specialization
 
-----------------------------------------------------
+**26/01/2025**
+
+- Finished with the "Manage admin functionalities"
+- Discovered that the "Edit admin" and Edit "[Entity]" in general contains another layer, hence the creation of Edit controllers and Edit Managers.
+- Formatted packages
+- Added superclass to ManageEntityController/Manager and EditEntityController/Manager with interfaces to enforce modularity and OOP principles.
+- Starting to work on the management of other entities
+- Proposal: treat each entity as separate json files and going to start defining their relationships.

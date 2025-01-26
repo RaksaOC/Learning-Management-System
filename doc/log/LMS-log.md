@@ -16,3 +16,5 @@
   + controller: takes in the choice as the argument and do action (call to managers if needed)
   + Manager: only handles data retrieval and writing. 
 - began implementing and testing this design.
+
+

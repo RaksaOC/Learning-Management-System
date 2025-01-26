@@ -15,3 +15,8 @@
 
 - Worked on LMS-admin. (see log).
 
+**26/01/2025**
+- Finished one part of the Manage admin functionalities.
+- Defined the design architect of the system.
+- Design Architecture: menu (presents choices and return the choice) -> controller (takes the choice, do minimal input and validation) -> manager (has methods corresponding to the cotroller methods but work with file writing, reading).
+

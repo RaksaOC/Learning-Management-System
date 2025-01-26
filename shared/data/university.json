@@ -1,0 +1,24 @@
+{
+  "universityName": "Tech University",
+  "departments": [
+    {
+      "id": "CS",
+      "name": "Computer Science",
+      "specializations": [
+        {
+          "id": "AI",
+          "name": "Artificial Intelligence",
+          "term": "Fall 2023",
+          "studyGroups": [
+            { "id": "AI-2023-A" },
+            { "id": "AI-2023-B" }
+          ],
+          "courses": [
+            { "id": "ML", "name": "Machine Learning" },
+            { "id": "NN", "name": "Neural Networks" }
+          ]
+        }
+      ]
+    }
+  ]
+}

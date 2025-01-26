@@ -1,0 +1,20 @@
+[
+    {
+        "createdAt": "2025-01-25T12:00:00Z",
+        "lastLogin": "2025-01-26 12:54:05",
+        "password": "2744ccd10c7533bd736ad890f9dd5cab2adb27b07d500b9493f29cdc420cb2e0",
+        "phoneNumber": "+1234567890",
+        "name": "Chan Raksa",
+        "id": "A001",
+        "email": "me"
+    },
+    {
+        "createdAt": "2025-01-26 12:54:38",
+        "lastLogin": "",
+        "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+        "phoneNumber": "012554049",
+        "name": "raksa chan",
+        "id": "A002",
+        "email": "me1"
+    }
+]

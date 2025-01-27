@@ -25,7 +25,7 @@ public class ManageAdminManager extends ManageEntityManager{
         newAdmin.put("id", generateNewID());
         entityData.put(newAdmin);
         saveEntity();
-        System.out.println("Added successfully");
+        System.out.println(UI.TextColor.addColor("\nAdded Successfully\n", UI.TextColor.GREEN));
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ManageAdminManager extends ManageEntityManager{
             }
         }
         saveEntity();
-        System.out.println("Deleted " + idToDelete + "successfully");
+        System.out.println(UI.TextColor.addColor("\nDeleted Successfully\n", UI.TextColor.GREEN));
     }
 
     @Override

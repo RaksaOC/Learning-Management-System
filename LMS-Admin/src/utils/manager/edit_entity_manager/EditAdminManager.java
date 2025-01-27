@@ -120,7 +120,6 @@ public class EditAdminManager extends EditEntityManager {
             }
         }
         saveEntityData();
-        System.out.println("Edited successfully");
     }
 
     @Override
@@ -131,7 +130,6 @@ public class EditAdminManager extends EditEntityManager {
             }
         }
         saveEntityData();
-        System.out.println("Edited successfully");
     }
 
     @Override
@@ -142,7 +140,6 @@ public class EditAdminManager extends EditEntityManager {
             }
         }
         saveEntityData();
-        System.out.println("Edited successfully");
     }
 
     @Override
@@ -153,6 +150,5 @@ public class EditAdminManager extends EditEntityManager {
             }
         }
         saveEntityData();
-        System.out.println("Edited successfully");
     }
 }

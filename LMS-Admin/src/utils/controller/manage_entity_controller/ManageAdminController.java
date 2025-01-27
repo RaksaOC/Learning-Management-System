@@ -23,20 +23,20 @@ public class ManageAdminController extends ManageEntityController {
 
     @Override
     public void addEntity() {
-        System.out.println("Add Admin");
+        System.out.println(UI.TextColor.addColor(UI.Banner.add, UI.TextColor.YELLOW));
         String name;
         String email;
         String phoneNumber;
         String password;
 
-        name = prompt("Enter Name");
-        email = prompt("Enter Email");
-        phoneNumber = prompt("Enter Phone Number");
-        password = prompt("Enter Password");
+        name = prompt("\nEnter Name");
+        email = prompt("\nEnter Email");
+        phoneNumber = prompt("\nEnter Phone Number");
+        password = prompt("\nEnter Password");
 
         boolean isSame = false;
         do {
-            String passwordConfirm = prompt("Enter Password Confirm");
+            String passwordConfirm = prompt("\nEnter Password Confirm");
             if (password.equals(passwordConfirm)) {
                 isSame = true;
             } else {
@@ -63,19 +63,34 @@ public class ManageAdminController extends ManageEntityController {
 
         // call to manager
         manager.manageAddEntity(newAdmin);
+
+        String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);
+        System.out.println(successBanner);
     }
 
     @Override
     public void editEntity() {
+        System.out.println(UI.TextColor.addColor(UI.Banner.edit, UI.TextColor.YELLOW));
+        EditAdminManager editAdminManager;
+        boolean isExist = false;
+
+        String adminID;
+        do{
+            adminID = prompt("Enter Admin ID");
+            editAdminManager = new EditAdminManager(adminID);
+            if(editAdminManager.isEntityIDExist(adminID)){
+                isExist = true;
+                break;
+            }
+            else{
+                System.out.println(UI.TextColor.addColor("\nInvalid ID\n", UI.TextColor.RED));
+            }
+        }while(isExist);
+
+        EditAdminController editAdminController = new EditAdminController(adminID);
         Menu menu = new Menu();
-        String adminID = prompt("Enter Admin ID");
-
-        // manage for that id, one call for validation check. will be called later within edit admin controller
-        EditAdminManager editAdminManager = new EditAdminManager(adminID);
-
-        if (editAdminManager.isEntityIDExist(adminID)) {
+        if (isExist) {
             String choice = menu.showEditAdminMenu();
-            EditAdminController editAdminController = new EditAdminController(adminID);
             switch (choice) {
                 case "1":
                     editAdminController.editName();
@@ -98,6 +113,7 @@ public class ManageAdminController extends ManageEntityController {
     }
     @Override
     public void deleteEntity() {
+        System.out.println(UI.TextColor.addColor(UI.Banner.delete, UI.TextColor.YELLOW));
         do{
             String adminID = prompt("Enter Admin ID");
 
@@ -106,6 +122,8 @@ public class ManageAdminController extends ManageEntityController {
 
             if (editAdminManager.isEntityIDExist(adminID)) {
                 manager.manageDeleteEntity(adminID);
+                String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);
+                System.out.println(successBanner);
                 return;
             }
             else{
@@ -116,6 +134,7 @@ public class ManageAdminController extends ManageEntityController {
 
     @Override
     public void viewEntity() {
+        System.out.println(UI.TextColor.addColor(UI.Banner.view, UI.TextColor.YELLOW));
         manager.manageViewEntity();
     }
 

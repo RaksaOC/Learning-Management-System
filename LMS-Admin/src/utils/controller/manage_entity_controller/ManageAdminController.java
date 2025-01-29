@@ -29,14 +29,14 @@ public class ManageAdminController extends ManageEntityController {
         String phoneNumber;
         String password;
 
-        name = prompt("\nEnter Name");
-        email = prompt("\nEnter Email");
-        phoneNumber = prompt("\nEnter Phone Number");
-        password = prompt("\nEnter Password");
+        name = prompt("Enter Name");
+        email = prompt("Enter Email");
+        phoneNumber = prompt("Enter Phone Number");
+        password = prompt("Enter Password");
 
         boolean isSame = false;
         do {
-            String passwordConfirm = prompt("\nEnter Password Confirm");
+            String passwordConfirm = prompt("Enter Password Confirm");
             if (password.equals(passwordConfirm)) {
                 isSame = true;
             } else {

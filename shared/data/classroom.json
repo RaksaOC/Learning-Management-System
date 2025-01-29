@@ -1,0 +1,9 @@
+[
+  {
+    "classroomId": "C001",
+    "courseName": "Object Oriented Programming",
+    "teacherId": "T001",
+    "students": ["S2025-001", "S2025-002", "S2025-003"],
+    "assignments": []
+  }
+]

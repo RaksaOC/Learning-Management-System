@@ -1,0 +1,57 @@
+[
+    {
+        "generation": "GEN004",
+        "courses": [],
+        "lastLogin": "",
+        "address": {
+            "province": "Phnom Penh",
+            "district": "Mean Chey"
+        },
+        "gender": "Male",
+        "createdAt": "2025-01-27 14:02:15",
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "phoneNumber": "0123456789",
+        "dob": "03-04-2006",
+        "name": {
+            "firstName": "Chanraksa",
+            "lastName": "Ory"
+        },
+        "specialization": "Software Engineering",
+        "id": "S000001",
+        "guardian": {
+            "guardianGender": "Female",
+            "guardianName": "Mom",
+            "guardianPhoneNumber": "0123456789"
+        },
+        "department": "Computer Science",
+        "email": "ocraksa@gmail.com",
+        "status": "active"
+    },
+    {
+        "generation": "GEN004",
+        "lastLogin": "",
+        "address": {
+            "province": "sht",
+            "district": "sth"
+        },
+        "gender": "male",
+        "createdAt": "2025-01-28 16:11:34",
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "phoneNumber": "01123456",
+        "dob": "2012-01-04",
+        "name": {
+            "firstName": "hi",
+            "lastName": "hello"
+        },
+        "specialization": "Software Engineering",
+        "id": "S000002",
+        "guardian": {
+            "guardianGender": "male",
+            "guardianName": "Dad",
+            "guardianPhoneNumber": "01234556665"
+        },
+        "department": "Computer Science",
+        "email": "test@gmail.com",
+        "status": "active"
+    }
+]

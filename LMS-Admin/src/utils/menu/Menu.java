@@ -69,13 +69,14 @@ public class Menu {
 
         do {
             menu = """
-                    [1] Manage Generation
-                    [2] Manage Department & Specialization
+                    [1] Add Generation
+                    [2] Manage Department
+                    [3] Manage Specialization
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "2", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "2", choice));
+            if(!(isChoiceValid("1", "3", choice)))System.out.println(invalidChoice);
+        }while(!isChoiceValid("1", "3", choice));
         return choice;
     }
 
@@ -94,6 +95,7 @@ public class Menu {
                     [1] Add Student
                     [2] Edit Student
                     [3] Delete Student
+                    [4] View Students
                     """;
             printMenu();
             this.choice = sc.nextLine();
@@ -112,8 +114,10 @@ public class Menu {
         do {
             menu = """
                     [1] Add Teacher
-                    [2] Edit Teacher
-                    [3] Delete Teacher
+                    [2] Assign Teacher to Course
+                    [3] Edit Teacher
+                    [4] Delete Teacher
+                    [5] View Teachers
                     """;
             printMenu();
             this.choice = sc.nextLine();
@@ -134,6 +138,7 @@ public class Menu {
                     [1] Add Generation
                     [2] Edit Generation
                     [3] Delete Generation
+                    [4] View Generations
                     """;
             printMenu();
             this.choice = sc.nextLine();
@@ -175,13 +180,14 @@ public class Menu {
         do {
             menu = """
                     [1] Add Specialization
-                    [2] View Specialization
+                    [2] Edit Specialization
                     [3] Delete Specialization
+                    [4] View Specialization
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "3", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "3", choice));
+            if(!(isChoiceValid("1", "4", choice)))System.out.println(invalidChoice);
+        }while(!isChoiceValid("1", "4", choice));
         return choice;
     }
 
@@ -211,9 +217,6 @@ public class Menu {
     public String showEditAdminMenu(){
         UI.showLoadingBar(10);
 
-        banner = UI.TextColor.addColor("Edit Admin", UI.TextColor.YELLOW);
-        System.out.println(banner);
-
         do{
             menu = """
                     [1] Edit Name
@@ -225,6 +228,44 @@ public class Menu {
             this.choice = sc.nextLine();
             if(!(isChoiceValid("1", "4", choice)))System.out.println(invalidChoice);
         }while(!isChoiceValid("1", "4", choice));
+        return choice;
+    }
+
+    public String showEditStudentMenu(){
+        UI.showLoadingBar(10);
+
+        do{
+            menu = """
+                    [1] Edit Name
+                    [2] Edit Phone Number
+                    [3] Edit Email
+                    [4] Edit Password
+                    [5] Edit Address
+                    [6] Edit Gender
+                    [7] Edit Date of Birth
+                    [8] Edit Department
+                    [9] Edit Specialization
+                    [10] Edit Guardian
+                    """;
+            printMenu();
+            this.choice = sc.nextLine();
+            if(!(isChoiceValid("1", "10", choice)))System.out.println(invalidChoice);
+        }while(!isChoiceValid("1", "10", choice));
+        return choice;
+    }
+
+    public String showEditDepartmentMenu(){
+        UI.showLoadingBar(10);
+
+        do{
+            menu = """
+                    [1] Edit Name
+                    [2] Edit ID
+                    """;
+            printMenu();
+            this.choice = sc.nextLine();
+            if(!(isChoiceValid("1", "2", choice)))System.out.println(invalidChoice);
+        }while(!isChoiceValid("1", "2", choice));
         return choice;
     }
 

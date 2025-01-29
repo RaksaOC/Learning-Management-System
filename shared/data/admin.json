@@ -1,12 +1,13 @@
 [
     {
         "createdAt": "2025-01-25T12:00:00Z",
-        "lastLogin": "2025-01-26 15:38:42",
+        "lastLogin": "2025-01-29 19:33:42",
         "password": "2744ccd10c7533bd736ad890f9dd5cab2adb27b07d500b9493f29cdc420cb2e0",
         "phoneNumber": "+1234567890",
         "name": "Chan Raksa",
         "id": "A001",
-        "email": "me"
+        "email": "me",
+        "status": "active"
     },
     {
         "createdAt": "2025-01-26 12:54:38",
@@ -15,7 +16,8 @@
         "phoneNumber": "012554049",
         "name": "kiki",
         "id": "A002",
-        "email": "me1"
+        "email": "me1",
+        "status": "active"
     },
     {
         "createdAt": "2025-01-26 14:44:13",
@@ -24,6 +26,27 @@
         "phoneNumber": "23849023849023",
         "name": "me chan",
         "id": "A003",
-        "email": "jsoifjsiofjdsf"
+        "email": "jsoifjsiofjdsf",
+        "status": "active"
+    },
+    {
+        "createdAt": "2025-01-28 13:10:18",
+        "lastLogin": "",
+        "password": "bc60f849e288e68808fa595f57815a915a2ade59254ebb233add8f3ba23cab0b",
+        "phoneNumber": "a;lksdjf",
+        "name": "lol",
+        "id": "A004",
+        "email": "a;klsdfj",
+        "status": "inactive"
+    },
+    {
+        "createdAt": "2025-01-28 14:32:18",
+        "lastLogin": "",
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "phoneNumber": "als;dfj;lajsf",
+        "name": "sdjfl;kajsf",
+        "id": "A005",
+        "email": "sldfjl;kasfjd",
+        "status": "active"
     }
 ]

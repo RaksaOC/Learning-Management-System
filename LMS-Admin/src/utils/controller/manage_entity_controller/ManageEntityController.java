@@ -20,7 +20,7 @@ public abstract class ManageEntityController implements ManageEntityControllerIn
 
     protected String prompt(String prompt) {
         prompt = UI.TextColor.addColor(prompt, UI.TextColor.GREEN);
-        System.out.println(prompt);
+        System.out.println("\n" + prompt);
         System.out.print(UI.TextColor.addColor("\n> ", UI.TextColor.GREEN));
         String input = sc.nextLine();
         return input;

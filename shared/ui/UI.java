@@ -218,8 +218,10 @@ public class UI {
             // Add completed part
             int progress = (i * width) / totalTicks;
             bar.setLength(0); // Reset the bar for each iteration
+            String temp = "#";
+            temp = UI.TextColor.addColor(temp, UI.TextColor.GREEN);
             for (int j = 0; j < progress; j++) {
-                bar.append("🏫");
+                bar.append(temp);
             }
 
             // Add the remaining part

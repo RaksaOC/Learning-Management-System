@@ -4,55 +4,52 @@ import ui.UI;
 import utils.manager.edit_entity_manager.EditAdminManager;
 
 public class EditAdminController extends EditEntityController {
-    private EditAdminManager manager;
+    EditAdminManager editAdminManager;
     public EditAdminController(String entityID) {
         super(entityID);
-        manager = new EditAdminManager(entityID);
-        setEntityID(entityID);
-    }
-
-    @Override
-    public void setEntityID(String entityID) {
-        this.entityID = entityID;
+        editAdminManager = new EditAdminManager(entityID);
     }
 
     @Override
     public void editName(){
         System.out.println(UI.TextColor.addColor(UI.Banner.editName, UI.TextColor.YELLOW));
-        System.out.println(UI.TextColor.addColor("Old name: ", UI.TextColor.GREEN) + UI.TextColor.addColor(manager.getOldName(), UI.TextColor.WHITE));
+        System.out.println(UI.TextColor.addColor("Old name: ", UI.TextColor.GREEN) + UI.TextColor.addColor(editAdminManager.getOldName(), UI.TextColor.WHITE));
         String newName = prompt("\nEnter new name");
-        manager.setNewName(newName);
+        editAdminManager.setNewName(newName);
 
         String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);
         System.out.println(successBanner);
-    }
+    };
+
     @Override
     public void editPhone(){
         System.out.println(UI.TextColor.addColor(UI.Banner.editPhone, UI.TextColor.YELLOW));
-        System.out.println(UI.TextColor.addColor("Old Phone Number: ", UI.TextColor.GREEN) + UI.TextColor.addColor(manager.getOldPhone(), UI.TextColor.WHITE));
+        System.out.println(UI.TextColor.addColor("Old Phone Number: ", UI.TextColor.GREEN) + UI.TextColor.addColor(editAdminManager.getOldPhone(), UI.TextColor.WHITE));
         String newPhone = prompt("\nEnter new Phone Number");
-        manager.setNewPhone(newPhone);
+        editAdminManager.setNewPhone(newPhone);
 
         String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);
         System.out.println(successBanner);
-    }
+    };
+
     @Override
     public void editEmail(){
         System.out.println(UI.TextColor.addColor(UI.Banner.editEmail, UI.TextColor.YELLOW));
-        System.out.println(UI.TextColor.addColor("Old Email : ", UI.TextColor.GREEN) + UI.TextColor.addColor(manager.getOldEmail(), UI.TextColor.WHITE));
+        System.out.println(UI.TextColor.addColor("Old Email : ", UI.TextColor.GREEN) + UI.TextColor.addColor(editAdminManager.getOldEmail(), UI.TextColor.WHITE));
         String newEmail = prompt("\nEnter new Email");
-        manager.setNewEmail(newEmail);
+        editAdminManager.setNewEmail(newEmail);
 
         String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);
         System.out.println(successBanner);
-    }
+    };
+
     @Override
     public void editPassword(){
         System.out.println(UI.TextColor.addColor(UI.Banner.editPassword, UI.TextColor.YELLOW));
-        System.out.println(UI.TextColor.addColor("Old Password : ", UI.TextColor.GREEN) + UI.TextColor.addColor(manager.getOldPassword(), UI.TextColor.WHITE));
+        System.out.println(UI.TextColor.addColor("Old Password : ", UI.TextColor.GREEN) + UI.TextColor.addColor(editAdminManager.getOldPassword(), UI.TextColor.WHITE));
         do{
             String oldPass = prompt("\nEnter old password");
-            if(Hasher.hash(oldPass).equals(manager.getOldPassword())){
+            if(Hasher.hash(oldPass).equals(editAdminManager.getOldPassword())){
                 break;
             }
             else{
@@ -60,9 +57,12 @@ public class EditAdminController extends EditEntityController {
             }
         }while(true);
         String newPassword = prompt("\nEnter new Password");
-        manager.setNewPassword(newPassword);
+        editAdminManager.setNewPassword(newPassword);
 
         String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);
         System.out.println(successBanner);
-    }
+    };
+
+    // no other unique functionalities for admin
+
 }

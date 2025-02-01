@@ -10,59 +10,66 @@
             "id": "L0002"
         }
     ],
-    "departments": [
-        {
-            "specializations": [{
-                "generations": [{
-                    "createdAt": "",
-                    "groups": [
-                        {
-                            "students": [
-                                "S000001",
-                                "S000002",
-                                "S000003"
-                            ],
-                            "id": "GEN8-SE-G1"
-                        },
-                        {
-                            "students": [
-                                "S000004",
-                                "S000005"
-                            ],
-                            "id": "GEN8-SE-G2"
-                        }
-                    ],
-                    "id": "GEN8"
-                }],
+    "departments": [{
+        "specializations": [
+            {
+                "dep_id": "CS",
+                "generations": [
+                    {
+                        "groups": [
+                            {
+                                "students": [
+                                    "S000001",
+                                    "S000002",
+                                    "S000003",
+                                    "S000010",
+                                    "S000011",
+                                    "S000012"
+                                ],
+                                "id": "GEN8-SE-G1",
+                                "classrooms": ["GEN8-SE-G1-ITE"]
+                            },
+                            {
+                                "students": [
+                                    "S000004",
+                                    "S000005"
+                                ],
+                                "id": "GEN8-SE-G2",
+                                "classrooms": []
+                            },
+                            {
+                                "students": [],
+                                "id": "GEN8-CS-SE-G3",
+                                "status": "inactive"
+                            }
+                        ],
+                        "id": "GEN8",
+                        "status": "active"
+                    },
+                    {
+                        "groups": [],
+                        "id": "GEN10",
+                        "status": "inactive"
+                    }
+                ],
                 "name": "Software Engineering",
                 "id": "CS-SE",
-                "classrooms": [
-                    "CSE101-GEN8-G1",
-                    "CSE101-GEN8-G2"
-                ]
-            }],
-            "name": "Computer Science",
-            "id": "CS",
-            "status": "active"
-        },
-        {
-            "specializations": [
-                {
-                    "dep_id": "ARC",
-                    "name": "Urban Planning",
-                    "id": "ARC-UP",
-                    "status": "active"
-                },
-                {
-                    "dep_id": "ARC",
-                    "name": "System Architechture",
-                    "id": "ARC-SA",
+                "status": "active"
+            },
+            {
+                "dep_id": "CS",
+                "generations": [{
+                    "groups": [],
+                    "id": "GEN10",
                     "status": "inactive"
-                }
-            ],
-            "name": "Architecture",
-            "id": "ARC",
-            "status": "active"
-        }
-    ]
+                }],
+                "name": "Robotics",
+                "id": "CS-AI",
+                "status": "active"
+            }
+        ],
+        "name": "Computer Science",
+        "id": "CS",
+        "status": "active"
+    }]
 }

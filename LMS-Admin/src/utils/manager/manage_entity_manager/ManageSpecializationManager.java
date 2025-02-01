@@ -22,6 +22,7 @@ public class ManageSpecializationManager extends ManageEntityManager{
         getSpecializations(dep_id);
         newSpecialization.put("dep_id", dep_id);
         newSpecialization.put("status", "active");
+        newSpecialization.put("generations", new JSONArray());
         specializations.put(newSpecialization);
         saveEntity();
     }
@@ -71,5 +72,18 @@ public class ManageSpecializationManager extends ManageEntityManager{
                 break;
             }
         }
+    }
+
+    public boolean isSpecializationExist(String spec_id){
+        JSONArray departments = entityData_Obj.getJSONArray("departments");
+        for(int i = 0; i<departments.length(); i++) {
+            JSONArray specializations = departments.getJSONObject(i).getJSONArray("specializations");
+            for(int j = 0; j<specializations.length(); j++) {
+                if(specializations.getJSONObject(j).getString("id").equals(spec_id)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

@@ -2,6 +2,8 @@ package utils.controller.edit_entity_controller;
 
 import ui.UI;
 import utils.manager.edit_entity_manager.EditDepartmentManager;
+import utils.manager.edit_entity_manager.EditSpecializationManager;
+
 
 public class EditSpecializationController extends EditEntityController{
     EditSpecializationManager editSpecializationManager;
@@ -10,15 +12,19 @@ public class EditSpecializationController extends EditEntityController{
         editSpecializationManager = new EditSpecializationManager(idToEdit);
     }
 
+    public EditSpecializationController(String dep_id, String spec_id) {
+        super(dep_id);
+        editSpecializationManager = new EditSpecializationManager(dep_id, spec_id);
+    }
+
     @Override
     public void editName() {
         // Show old name
         System.out.println(UI.TextColor.addColor(UI.Banner.editName, UI.TextColor.YELLOW));
         System.out.println(UI.TextColor.addColor("Old name: ", UI.TextColor.GREEN) + UI.TextColor.addColor(editSpecializationManager.getOldName(), UI.TextColor.WHITE));
 
-        String name = prompt("Enter new Department Name");
-        EditDepartmentManager editDepartmentManager = new EditDepartmentManager(entityID);
-        editDepartmentManager.setNewName(name);
+        String name = prompt("Enter new Specialization Name");
+        editSpecializationManager.setNewName(name);
 
         String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);
         System.out.println(successBanner);
@@ -30,9 +36,8 @@ public class EditSpecializationController extends EditEntityController{
         System.out.println(UI.TextColor.addColor(UI.Banner.editName, UI.TextColor.YELLOW));
         System.out.println(UI.TextColor.addColor("Old Phone Number: ", UI.TextColor.GREEN) + UI.TextColor.addColor(editSpecializationManager.getOldID(), UI.TextColor.WHITE));
 
-        String id = prompt("Enter new ID");
-        EditDepartmentManager editDepartmentManager = new EditDepartmentManager(entityID);
-        editDepartmentManager.setNewID(id);
+        String id = prompt("Enter new Specialization ID");
+        editSpecializationManager.setNewID(id);
 
         String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);
         System.out.println(successBanner);

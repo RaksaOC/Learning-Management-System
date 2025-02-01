@@ -1,0 +1,149 @@
+package utils.manager.manage_entity_manager;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+
+public class ManageGroupManager extends ManageEntityManager {
+
+    public ManageGroupManager() {
+        super();
+        setEntityFilePath("shared/data/university.json");
+        loadEntity();
+    }
+
+    public void manageAddEntity(String specID, String genID, JSONObject newObj) {
+        JSONArray departments = entityData_Obj.getJSONArray("departments");
+        newObj.put("students", new JSONArray());
+        newObj.put("status", "active");
+        beginLoop:
+        for (int i = 0; i < departments.length(); i++) {
+            for (int j = 0; i < departments.getJSONObject(i).getJSONArray("specializations").length(); i++) {
+                if (specID.equals(departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getString("id"))) {
+                    System.out.println("Found the specialization");
+                    for (int k = 0; k < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
+                        if (departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getString("id").equals(genID)) {
+                            departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").put(newObj);
+                            break beginLoop;
+                        }
+                    }
+                }
+            }
+        }
+        entityData_Obj.put("departments", departments);
+        saveEntity();
+    }
+
+    public void manageDeleteEntity(String groupID) {
+        JSONArray departments = entityData_Obj.getJSONArray("departments");
+        beginLoop:
+        for (int i = 0; i < departments.length(); i++) {
+            for (int j = 0; i < departments.getJSONObject(i).getJSONArray("specializations").length(); i++) {
+                for (int k = 0; k < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
+                    for(int l = 0; l < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").length(); l++) {
+                        if(departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).getString("id").equals(groupID)) {
+                            departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).put("status", "inactive");
+                            break beginLoop;
+                        }
+                    }
+                }
+            }
+        }
+        entityData_Obj.put("departments", departments);
+        saveEntity();
+    }
+
+    public void manageViewEntity() {
+        JSONArray departments = entityData_Obj.getJSONArray("departments");
+//        for (int i = 0; i < departments.length(); i++) {
+//            for (int j = 0; i < departments.getJSONObject(i).getJSONArray("specializations").length(); i++) {
+//                for (int k = 0; k < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
+//                    for(int l = 0; l < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").length(); l++) {
+//                        if(departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).getString("id").equals(groupID)) {
+//                            System.out.println(departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).toString(4));
+//                        }
+//                    }
+//                }
+//            }
+//        }
+        for (int i = 0; i < departments.length(); i++) {
+            for (int j = 0; j < departments.getJSONObject(i).getJSONArray("specializations").length(); j++) {
+                for(int k = 0; k < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
+                    for(int l = 0; l < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").length(); l++) {
+                        System.out.println(departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").toString(4));
+                    }
+                }
+            }
+        }
+    }
+
+    public void manageAddStudentToGroup(String groupID, ArrayList<String> studentIDs) {
+        JSONArray departments = entityData_Obj.getJSONArray("departments");
+        beginLoop:
+        for (int i = 0; i < departments.length(); i++) {
+            for (int j = 0; j < departments.getJSONObject(i).getJSONArray("specializations").length(); j++) {
+                for(int k = 0; k < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
+                    for(int l = 0; l < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").length(); l++) {
+                        if (departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).getString("id").equals(groupID)) {
+                            for(int m = 0; m < studentIDs.size(); m++) {
+                                departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).getJSONArray("students").put(studentIDs.get(m));
+                            }
+                            break beginLoop;
+                        }
+                    }
+                }
+            }
+        }
+        entityData_Obj.put("departments", departments);
+        saveEntity();
+    }
+
+    @Override
+    public void loadEntity() {
+        // override for the loading of entity because university is object not array
+        try {
+            content = new String(Files.readAllBytes(Paths.get(filePath)));
+            entityData_Obj = new JSONObject(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void saveEntity() {
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(entityData_Obj.toString(4)); // Pretty-print with 4 spaces
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+//    public void getGroups(String specID){
+//        JSONArray departments = entityData_Obj.getJSONArray("departments");
+//        for(int i = 0; i<departments.length(); i++) {
+//            for(int j = 0; j<departments.getJSONObject(i).getJSONArray("specializations").length(); j++) {
+//                if(departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getString("id").equals(specID)) {
+//                    groups = departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("groups");
+//                }
+//            }
+//        }
+//    }
+
+//    public boolean isGroupIDExist(String specID, String groupID){
+//        getGroups(specID);
+//        for(int i = 0; i<groups.length(); i++) {
+//            if(groups.getJSONObject(i).getString("id").equals(groupID)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+
+
+}

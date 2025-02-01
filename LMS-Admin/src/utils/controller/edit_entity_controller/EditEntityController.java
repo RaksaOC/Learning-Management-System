@@ -17,6 +17,8 @@ public abstract class EditEntityController implements EditInterface {
 
     protected String entityID;
 
+    public EditEntityController() {};
+
     public EditEntityController(String entityID) {
         this.entityID = entityID;
     };

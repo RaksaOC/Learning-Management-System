@@ -93,9 +93,6 @@ public class ManageDepartmentController extends ManageEntityController {
                 case "4":
                     manageSpecilizationController.viewEntity();
                     break;
-                case "5":
-                    manageSpecilizationController.addClassroom();
-                    break;
                 case "-b":
                     return;
                 default:

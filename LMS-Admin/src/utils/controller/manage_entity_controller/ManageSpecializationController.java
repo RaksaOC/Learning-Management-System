@@ -33,9 +33,10 @@ public class ManageSpecializationController extends ManageEntityController {
         Menu menu = new Menu();
         // this menu is the same as the edit department menu (name and id)
         String id_dep = inputID();
+        String specialization_id = prompt("Enter Specialization ID");
         String choice = menu.showEditDepartmentMenu();
 
-        EditSpecializationController editSpecializationController = new EditSpecializationController(id_dep); // the contrutor to be overloaded with another argument
+        EditSpecializationController editSpecializationController = new EditSpecializationController(id_dep, specialization_id); // the contrutor to be overloaded with another argument
 
         while (true) {
             switch (choice){
@@ -59,11 +60,6 @@ public class ManageSpecializationController extends ManageEntityController {
         String dep_id = inputID();
         ManageSpecializationManager manageSpecializationManager = new ManageSpecializationManager();
         manageSpecializationManager.manageViewEntity(dep_id);
-    }
-
-
-    public void addClassroom() {
-
     }
 
     private String inputID() {

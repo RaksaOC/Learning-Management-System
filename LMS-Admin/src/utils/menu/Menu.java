@@ -69,17 +69,18 @@ public class Menu {
 
         do {
             menu = """
-                    [1] Add Generation
+                    [1] Manage Generation
                     [2] Manage Department
                     [3] Manage Specialization
+                    [4] Manage Group
+                    [5] Manage Classroom
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "3", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "3", choice));
+            if(!(isChoiceValid("1", "5", choice)))System.out.println(invalidChoice);
+        }while(!isChoiceValid("1", "5", choice));
         return choice;
     }
-
 
     // step 3
 
@@ -142,8 +143,8 @@ public class Menu {
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "3", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "3", choice));
+            if(!(isChoiceValid("1", "4", choice)))System.out.println(invalidChoice);
+        }while(!isChoiceValid("1", "4", choice));
         return choice;
     }
 
@@ -190,6 +191,50 @@ public class Menu {
         }while(!isChoiceValid("1", "4", choice));
         return choice;
     }
+
+    public String showManageGroupMenu(){
+        UI.showLoadingBar(10);
+
+        // banner to change to manage group
+        banner = UI.TextColor.addColor(UI.Banner.manageSpecialization, UI.TextColor.YELLOW);
+        System.out.println(banner);
+
+        do {
+            menu = """
+                    [1] Add Group
+                    [2] Edit Group
+                    [3] Delete Group
+                    [4] View Group
+                    [5] Add Student to Group
+                    """;
+            printMenu();
+            this.choice = sc.nextLine();
+            if(!(isChoiceValid("1", "5", choice)))System.out.println(invalidChoice);
+        }while(!isChoiceValid("1", "5", choice));
+        return choice;
+    }
+
+    public String showManageClassroomsMenu(){
+        UI.showLoadingBar(10);
+        banner = UI.TextColor.addColor(UI.Banner.manageSpecialization, UI.TextColor.YELLOW);
+        System.out.println(banner);
+
+        do {
+            menu = """
+                    [1] Add Classroom
+                    [2] Edit Classroom
+                    [3] Delete Classroom
+                    [4] View Classrooms
+                    [5] Assign Teacher to Classroom
+                    [6] Assign Course to Classroom
+                    """;
+            printMenu();
+            this.choice = sc.nextLine();
+            if(!(isChoiceValid("1", "6", choice)))System.out.println(invalidChoice);
+        }while(!isChoiceValid("1", "6", choice));
+        return choice;
+    };
+
 
     // manage admins
     public String showManageAdminsMenu(){
@@ -255,6 +300,21 @@ public class Menu {
     }
 
     public String showEditDepartmentMenu(){
+        UI.showLoadingBar(10);
+
+        do{
+            menu = """
+                    [1] Edit Name
+                    [2] Edit ID
+                    """;
+            printMenu();
+            this.choice = sc.nextLine();
+            if(!(isChoiceValid("1", "2", choice)))System.out.println(invalidChoice);
+        }while(!isChoiceValid("1", "2", choice));
+        return choice;
+    }
+
+    public String showEditSpecializationMenu(){
         UI.showLoadingBar(10);
 
         do{

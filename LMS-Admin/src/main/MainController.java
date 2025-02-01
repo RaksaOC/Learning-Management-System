@@ -74,6 +74,11 @@ public class MainController {
                 case "3":
                     handleManageSpecialization();
                     break;
+                case "4":
+                    handleManageGroup();
+                    break;
+                case "5":
+                    handleManageClassroom();
                 case "-b":
                     return;
                 default:
@@ -101,6 +106,7 @@ public class MainController {
                     break;
                 case "3":
                     manageStudentController.deleteEntity();
+                    break;
                 case "4":
                     manageStudentController.viewEntity();
                     break;
@@ -154,6 +160,9 @@ public class MainController {
                     manageGenerationController.editEntity();
                     break;
                 case "3":
+                    manageGenerationController.deleteEntity();
+                    break;
+                case "4":
                     manageGenerationController.viewEntity();
                     break;
                 case "-b":
@@ -161,6 +170,7 @@ public class MainController {
                 default:
                     break;
             }
+            choice = menu.showManageGenerationMenu();
         }
     }
 
@@ -197,24 +207,24 @@ public class MainController {
         // for department id validation
         ManageDepartmentManager manageDepartmentManager = new ManageDepartmentManager();
         choice = menu.showManageSpecializationsMenu();
-            switch (choice) {
-                case "1":
-                    manageSpecializationController.addEntity();
-                    break;
-                case "2":
-                    manageSpecializationController.editEntity();
-                    break;
-                case "3":
-                    manageSpecializationController.deleteEntity();
-                    break;
-                case "4":
-                    manageSpecializationController.viewEntity();
-                    break;
-                case "-b":
-                    return;
-                default:
-                    break;
-            }
+        switch (choice) {
+            case "1":
+                manageSpecializationController.addEntity();
+                break;
+            case "2":
+                manageSpecializationController.editEntity();
+                break;
+            case "3":
+                manageSpecializationController.deleteEntity();
+                break;
+            case "4":
+                manageSpecializationController.viewEntity();
+                break;
+            case "-b":
+                return;
+            default:
+                break;
+        }
     }
 
     private void handleManageAdmin() {
@@ -241,6 +251,68 @@ public class MainController {
                     break;
             }
             choice = menu.showManageAdminsMenu();
+        }
+
+    }
+
+    private void handleManageGroup() {
+        choice = menu.showManageGroupMenu();
+        ManageGroupController manageGroupController = new ManageGroupController();
+        while (true) {
+            switch (choice) {
+                case "1":
+                    manageGroupController.addEntity();
+                    break;
+                case "2":
+                    manageGroupController.editEntity();
+                    break;
+                case "3":
+                    manageGroupController.deleteEntity();
+                    break;
+                case "4":
+                    manageGroupController.viewEntity();
+                    break;
+                case "5":
+                    manageGroupController.addStudentsToGroup();
+                    break;
+                case "-b":
+                    return;
+                default:
+                    break;
+            }
+            choice = menu.showManageGroupMenu();
+        }
+    }
+
+    private void handleManageClassroom() {
+        choice = menu.showManageClassroomsMenu();
+        ManageClassroomController manageClassroomController = new ManageClassroomController();
+        while (true) {
+            switch (choice) {
+                case "1":
+                    manageClassroomController.addEntity();
+                    break;
+                case "2":
+                    manageClassroomController.editEntity();
+                    break;
+                case "3":
+                    manageClassroomController.deleteEntity();
+                    break;
+                case "4":
+                    manageClassroomController.viewEntity();
+                    break;
+                case "5":
+                    manageClassroomController.assignTeacherToClassroom();
+                    break;
+                case "6":
+                    manageClassroomController.assignCourseToClassroom();
+                    break;
+                case "-b":
+                    return;
+                default:
+                    break;
+            }
+            choice = menu.showManageClassroomsMenu();
         }
     }
 }

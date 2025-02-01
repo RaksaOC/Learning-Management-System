@@ -6,29 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="816c4d4f-796b-4ab7-98a7-72a49b87cc0e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/edit_entity_controller/EditAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/edit_entity_controller/EditAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/edit_entity_controller/EditClassroomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/edit_entity_controller/EditClassroomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/edit_entity_controller/EditDepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/edit_entity_controller/EditDepartmentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/edit_entity_controller/EditGenerationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/edit_entity_controller/EditGenerationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/edit_entity_controller/EditGroupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/edit_entity_controller/EditGroupController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/edit_entity_controller/EditSpecializationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/edit_entity_controller/EditSpecializationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/edit_entity_controller/EditStudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/edit_entity_controller/EditStudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/edit_entity_controller/EditTeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/edit_entity_controller/EditTeacherController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/manage_entity_controller/ManageClassroomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/manage_entity_controller/ManageClassroomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/manage_entity_controller/ManageDepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/manage_entity_controller/ManageDepartmentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/manage_entity_controller/ManageGenerationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/manage_entity_controller/ManageGenerationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/manage_entity_controller/ManageGroupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/manage_entity_controller/ManageGroupController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/manage_entity_controller/ManageSpecializationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/manage_entity_controller/ManageSpecializationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/manage_entity_controller/ManageStudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/manage_entity_controller/ManageStudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/manage_entity_controller/ManageTeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/manage_entity_controller/ManageTeacherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/edit_entity_manager/EditDepartmentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/edit_entity_manager/EditDepartmentManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/edit_entity_manager/EditEntityManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/edit_entity_manager/EditEntityManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/menu/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/admin.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/admin.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/student.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/student.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/university.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/university.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/ui/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageClassroomManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageClassroomManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageDepartmentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageDepartmentManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageGenerationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageGenerationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageGroupManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageGroupManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageTeacherManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageTeacherManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +113,7 @@
       <workItem from="1737720837492" duration="903000" />
       <workItem from="1737721776451" duration="107783000" />
       <workItem from="1738071161699" duration="44334000" />
-      <workItem from="1738220702256" duration="49327000" />
+      <workItem from="1738220702256" duration="53234000" />
     </task>
     <servers />
   </component>

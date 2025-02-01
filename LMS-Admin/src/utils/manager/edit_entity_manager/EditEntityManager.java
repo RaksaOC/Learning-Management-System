@@ -98,21 +98,13 @@ public class EditEntityManager implements EditInterface {
         saveEntityData();
     }
 
-    ;
-
-
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
 
-    ;
-
-
     public void setEntityID(String entityID) {
         this.entityID = entityID;
     }
-
-    ;
 
     public void getEntityData() {
         try {
@@ -128,8 +120,6 @@ public class EditEntityManager implements EditInterface {
         }
     }
 
-    ;
-
     public void saveEntityData() {
         try (FileWriter writer = new FileWriter(filePath)) {
             for (int i = 0; i < entityData.length(); i++) {
@@ -144,16 +134,10 @@ public class EditEntityManager implements EditInterface {
         }
     }
 
-    ;
-
     public boolean isEntityIDExist(String id) {
         int length = entityData.length();
         int idNumber = Integer.parseInt(id.substring(1, id.length()));
         if ((idNumber <= length) && id.charAt(0) == baseId.charAt(0) && baseId.length() == id.length()) return true;
         else return false;
     }
-
-    ;
-
-
 }

@@ -14,7 +14,8 @@ public class ManageGenerationController extends ManageEntityController {
     @Override
     public void addEntity() {
         System.out.println(UI.TextColor.addColor(UI.Banner.add, UI.TextColor.YELLOW));
-        String genID = prompt("Enter Generation ID");
+
+        String genID = prompt("Enter New Generation ID");
         JSONObject newGen = new JSONObject();
         newGen.put("id", genID);
         ManageGenerationManager genManager = new ManageGenerationManager();

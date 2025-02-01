@@ -3,6 +3,7 @@ package utils.controller.manage_entity_controller;
 import org.json.JSONObject;
 import ui.UI;
 import utils.controller.edit_entity_controller.EditSpecializationController;
+import utils.manager.edit_entity_manager.EditSpecializationManager;
 import utils.manager.manage_entity_manager.ManageDepartmentManager;
 import utils.manager.manage_entity_manager.ManageSpecializationManager;
 import utils.menu.Menu;
@@ -29,7 +30,7 @@ public class ManageSpecializationController extends ManageEntityController {
         System.out.println(UI.TextColor.addColor(UI.Banner.edit, UI.TextColor.YELLOW));
         Menu menu = new Menu();
         // this menu is the same as the edit department menu (name and id)
-        String id_dep = inputID();
+        String id_dep = inputID(); // this already valdiates the department id
         String specialization_id = prompt("Enter Specialization ID");
         String choice = menu.showEditDepartmentMenu();
 
@@ -57,8 +58,14 @@ public class ManageSpecializationController extends ManageEntityController {
         System.out.println(UI.TextColor.addColor(UI.Banner.delete, UI.TextColor.YELLOW));
         String id_dep = inputID();
         // need to add specialzation validation
-        String specialization_id = prompt("Enter Specialization ID");
         ManageSpecializationManager manageSpecializationManager = new ManageSpecializationManager();
+        String specialization_id = prompt("Enter Specialization ID");
+        do{
+            specialization_id = prompt("Enter Specialization ID");
+            if(manageSpecializationManager.isSpecializationExist(specialization_id)) break;
+            else System.out.println(UI.TextColor.addColor("\nInvalid Generation ID\n", UI.TextColor.RED));
+        }while (true);
+
         manageSpecializationManager.manageDeleteEntity(id_dep, specialization_id);
 
         String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);

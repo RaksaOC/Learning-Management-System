@@ -124,26 +124,24 @@ public class ManageGroupManager extends ManageEntityManager {
         }
     }
 
-//    public void getGroups(String specID){
-//        JSONArray departments = entityData_Obj.getJSONArray("departments");
-//        for(int i = 0; i<departments.length(); i++) {
-//            for(int j = 0; j<departments.getJSONObject(i).getJSONArray("specializations").length(); j++) {
-//                if(departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getString("id").equals(specID)) {
-//                    groups = departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("groups");
-//                }
-//            }
-//        }
-//    }
-
-//    public boolean isGroupIDExist(String specID, String groupID){
-//        getGroups(specID);
-//        for(int i = 0; i<groups.length(); i++) {
-//            if(groups.getJSONObject(i).getString("id").equals(groupID)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    public boolean isGroupIDExist(String groupID) {
+        JSONArray departments = entityData_Obj.getJSONArray("departments");
+        for(int i = 0; i < departments.length(); i++) {
+            JSONArray specializations = departments.getJSONObject(i).getJSONArray("specializations");
+            for(int j = 0; j < specializations.length(); j++) {
+                JSONArray generations = specializations.getJSONObject(j).getJSONArray("generations");
+                for(int k = 0; k < generations.length(); k++) {
+                    JSONArray groups = generations.getJSONObject(k).getJSONArray("groups");
+                    for(int l = 0; l < groups.length(); l++) {
+                        if(groups.getJSONObject(l).getString("id").equals(groupID)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
 
 
 }

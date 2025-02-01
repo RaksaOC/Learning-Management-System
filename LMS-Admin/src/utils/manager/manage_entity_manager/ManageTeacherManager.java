@@ -7,7 +7,14 @@ public class ManageTeacherManager extends ManageEntityManager{
         this.baseID = "T0000";
     }
 
-    public void manageAssignToClassroom(String id, String classId){
-        // to be implemented
+    public boolean isTeacherIdExist(String teacherId) {
+        for(int i = 0; i < entityData.length(); i++){
+            if(entityData.getJSONObject(i).getString("id").equals(teacherId)){
+                return true;
+            }
+        }
+        return false;
     }
+
+
 }

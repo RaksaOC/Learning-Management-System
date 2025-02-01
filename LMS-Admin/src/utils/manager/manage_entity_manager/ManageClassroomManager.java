@@ -154,4 +154,13 @@ public class ManageClassroomManager extends ManageEntityManager {
             e.printStackTrace();
         }
     }
+
+    public boolean isClassroomIDExist(String classroomID) {
+        for (int i = 0; i < entityData.length(); i++) {
+            if (entityData.getJSONObject(i).getString("id").equals(classroomID)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

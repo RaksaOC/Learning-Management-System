@@ -78,6 +78,16 @@ public class ManageDepartmentManager extends ManageEntityManager {
         return false;
     }
 
+    public boolean isCourseIdExist(String id){
+        JSONArray courses = entityData_Obj.getJSONArray("courses");
+        for(int i = 0; i<courses.length(); i++){
+            if(courses.getJSONObject(i).getString("id").equals(id)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 
 }

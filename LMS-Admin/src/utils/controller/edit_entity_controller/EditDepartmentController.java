@@ -27,8 +27,8 @@ public class EditDepartmentController extends EditEntityController {
     // unique method
     public void editID() {
         // Show old id
-        System.out.println(UI.TextColor.addColor(UI.Banner.editName, UI.TextColor.YELLOW));
-        System.out.println(UI.TextColor.addColor("Old Phone Number: ", UI.TextColor.GREEN) + UI.TextColor.addColor(editDepartmentManager.getOldID(), UI.TextColor.WHITE));
+        System.out.println(UI.TextColor.addColor(UI.Banner.editId, UI.TextColor.YELLOW));
+        System.out.println(UI.TextColor.addColor("Old Id: ", UI.TextColor.GREEN) + UI.TextColor.addColor(editDepartmentManager.getOldID(), UI.TextColor.WHITE));
 
         String id = prompt("Enter new ID");
         EditDepartmentManager editDepartmentManager = new EditDepartmentManager(entityID);

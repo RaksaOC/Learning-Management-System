@@ -115,15 +115,14 @@ public class Menu {
         do {
             menu = """
                     [1] Add Teacher
-                    [2] Assign Teacher to Course
-                    [3] Edit Teacher
-                    [4] Delete Teacher
-                    [5] View Teachers
+                    [2] Edit Teacher
+                    [3] Delete Teacher
+                    [4] View Teachers
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "3", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "3", choice));
+            if(!(isChoiceValid("1", "4", choice)))System.out.println(invalidChoice);
+        }while(!isChoiceValid("1", "4", choice));
         return choice;
     }
 
@@ -161,12 +160,11 @@ public class Menu {
                     [2] Edit Department
                     [3] Delete Department
                     [4] View Department
-                    [5] Manage Specialization
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "5", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "5", choice));
+            if(!(isChoiceValid("1", "4", choice)))System.out.println(invalidChoice);
+        }while(!isChoiceValid("1", "4", choice));
         return choice;
     }
 
@@ -196,7 +194,7 @@ public class Menu {
         UI.showLoadingBar(10);
 
         // banner to change to manage group
-        banner = UI.TextColor.addColor(UI.Banner.manageSpecialization, UI.TextColor.YELLOW);
+        banner = UI.TextColor.addColor(UI.Banner.manageGroup, UI.TextColor.YELLOW);
         System.out.println(banner);
 
         do {
@@ -216,7 +214,7 @@ public class Menu {
 
     public String showManageClassroomsMenu(){
         UI.showLoadingBar(10);
-        banner = UI.TextColor.addColor(UI.Banner.manageSpecialization, UI.TextColor.YELLOW);
+        banner = UI.TextColor.addColor(UI.Banner.manageClassroom, UI.TextColor.YELLOW);
         System.out.println(banner);
 
         do {

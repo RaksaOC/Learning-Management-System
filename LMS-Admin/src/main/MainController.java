@@ -129,15 +129,12 @@ public class MainController {
                     manageTeacherController.addEntity();
                     break;
                 case "2":
-                    manageTeacherController.assignTeacherToCourse();
-                    break;
-                case "3":
                     manageTeacherController.editEntity();
                     break;
-                case "4":
+                case "3":
                     manageTeacherController.deleteEntity();
                     break;
-                case "5":
+                case "4":
                     manageTeacherController.viewEntity();
                 case "-b":
                     return;

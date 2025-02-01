@@ -8,26 +8,35 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-interface EditInterface{
+interface EditInterface {
     void setFilePath(String filePath);
 
     void getEntityData();
+
     void saveEntityData();
 
     void setEntityID(String entityID);
+
     String getOldName();
+
     String getOldPhone();
+
     String getOldEmail();
+
     String getOldPassword();
+
     boolean isEntityIDExist(String entityID);
 
-    void setNewName(String newName);
+    void setNewName(JSONObject newName);
+
     void setNewPhone(String newPhone);
+
     void setNewEmail(String newEmail);
+
     void setNewPassword(String newPassword);
 }
 
-public class EditEntityManager implements EditInterface{
+public class EditEntityManager implements EditInterface {
     protected String entityID;
     protected String content;
     protected JSONArray entityData;
@@ -37,68 +46,94 @@ public class EditEntityManager implements EditInterface{
     // this is for checking the validity of entered id
     protected String baseId;
 
-    public EditEntityManager(String id) {}
+    public EditEntityManager(String id) {
+    }
 
-    public String getOldName(){
-        return entityDataToEdit.getString("name");
-    };
+    public String getOldName() {
+        Object name = this.entityDataToEdit.get("name");
+        if (name instanceof JSONObject) {
+            JSONObject nameObj = (JSONObject) name;
+            return "First Name: " + nameObj.getString("firstName") + "Last Name: " + nameObj.getString("lastName");
+        } else {
+            return name.toString();
+        }
+    }
 
-    public String getOldPhone(){
+    public String getOldPhone() {
         return entityDataToEdit.getString("phoneNumber");
-    };
-    public String getOldEmail(){
+    }
+
+    public String getOldEmail() {
         return entityDataToEdit.getString("email");
-    };
-    public String getOldPassword(){
+    }
+
+
+    public String getOldPassword() {
         return entityDataToEdit.getString("password");
-    };
+    }
 
 
-    public void setNewName(String newName){
-        entityDataToEdit.put("name", newName);
+    public void setNewName(JSONObject newName) {
+        this.entityDataToEdit.put("name", newName);
         saveEntityData();
-    };
-    public void setNewPhone(String newPhone){
+    }
+
+    public void setNewName(String newName) {
+        this.entityDataToEdit.put("name", newName);
+        saveEntityData();
+    }
+
+    public void setNewPhone(String newPhone) {
         entityDataToEdit.put("phoneNumber", newPhone);
         saveEntityData();
-    };
-    public void setNewEmail(String newEmail){
+    }
+
+    public void setNewEmail(String newEmail) {
         entityDataToEdit.put("email", newEmail);
         saveEntityData();
-    };
-    public void setNewPassword(String newPassword){
+    }
+
+    public void setNewPassword(String newPassword) {
         entityDataToEdit.put("password", newPassword);
         saveEntityData();
-    };
+    }
+
+    ;
 
 
-    public void setFilePath(String filePath){
+    public void setFilePath(String filePath) {
         this.filePath = filePath;
-    };
+    }
+
+    ;
 
 
-    public void setEntityID(String entityID){
+    public void setEntityID(String entityID) {
         this.entityID = entityID;
-    };
+    }
 
-    public void getEntityData(){
+    ;
+
+    public void getEntityData() {
         try {
             this.content = new String(Files.readAllBytes(Paths.get(this.filePath)));
             this.entityData = new JSONArray(content);
-            for(int i=0;i<this.entityData.length();i++){
-                if(entityData.getJSONObject(i).getString("id").equals(this.entityID)){
+            for (int i = 0; i < this.entityData.length(); i++) {
+                if (entityData.getJSONObject(i).getString("id").equals(this.entityID)) {
                     this.entityDataToEdit = entityData.getJSONObject(i);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-    };
+    }
 
-    public void saveEntityData(){
-        try(FileWriter writer = new FileWriter(filePath)){
-            for(int i=0; i<entityData.length(); i++){
-                if(entityData.getJSONObject(i).getString("id").equals(entityID)){
+    ;
+
+    public void saveEntityData() {
+        try (FileWriter writer = new FileWriter(filePath)) {
+            for (int i = 0; i < entityData.length(); i++) {
+                if (entityData.getJSONObject(i).getString("id").equals(entityID)) {
                     entityData.put(i, entityDataToEdit);
                     break;
                 }
@@ -107,14 +142,18 @@ public class EditEntityManager implements EditInterface{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    };
+    }
 
-    public boolean isEntityIDExist(String id){
+    ;
+
+    public boolean isEntityIDExist(String id) {
         int length = entityData.length();
         int idNumber = Integer.parseInt(id.substring(1, id.length()));
         if ((idNumber <= length) && id.charAt(0) == baseId.charAt(0) && baseId.length() == id.length()) return true;
         else return false;
-    };
+    }
+
+    ;
 
 
 }

@@ -20,7 +20,11 @@ public class EditStudentController extends EditEntityController {
     public void editName() {
         System.out.println(UI.TextColor.addColor(UI.Banner.editName, UI.TextColor.YELLOW));
         System.out.println(UI.TextColor.addColor("Old name: ", UI.TextColor.GREEN) + UI.TextColor.addColor(editStudentManager.getOldName(), UI.TextColor.WHITE));
-        String newName = prompt("Enter new name");
+        String newFirstName = prompt("Enter new first name");
+        String newLastName = prompt("Enter new last name");
+        JSONObject newName = new JSONObject();
+        newName.put("firstName", newFirstName);
+        newName.put("lastName", newLastName);
         editStudentManager.setNewName(newName);
 
         String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);

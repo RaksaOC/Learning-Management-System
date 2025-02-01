@@ -10,7 +10,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import utils.controller.edit_entity_controller.EditStudentController;
-import utils.manager.edit_entity_manager.EditAdminManager;
 import utils.manager.edit_entity_manager.EditStudentManager;
 import utils.manager.manage_entity_manager.ManageStudentManager;
 import utils.menu.Menu;
@@ -52,49 +51,48 @@ public class ManageStudentController extends ManageEntityController {
         EditStudentController editStudentController = new EditStudentController(studentID);
         Menu menu = new Menu();
         if (isExist) {
-            String choice = getString(menu);
-            switch (choice) {
-                case "1":
-                    editStudentController.editName();
-                    break;
-                case "2":
-                    editStudentController.editPhone();
-                    break;
-                case "3":
-                    editStudentController.editEmail();
-                    break;
-                case "4":
-                    editStudentController.editPassword();
-                    break;
-                case "5":
-                    editStudentController.editAddress();
-                    break;
-                case "6":
-                    editStudentController.editGender();
-                    break;
-                case "7":
-                    editStudentController.editDoB();
-                    break;
-                case "8":
-                    editStudentController.editDepartment();
-                    break;
-                case "9":
-                    editStudentController.editSpecialization();
-                    break;
-                case "10":
-                    editStudentController.editGuardian();
-                    break;
-                case "-b":
-                    return;
-                default:
-                    break;
+            String choice = menu.showEditStudentMenu();
+            while (true) {
+                switch (choice) {
+                    case "1":
+                        editStudentController.editName();
+                        break;
+                    case "2":
+                        editStudentController.editPhone();
+                        break;
+                    case "3":
+                        editStudentController.editEmail();
+                        break;
+                    case "4":
+                        editStudentController.editPassword();
+                        break;
+                    case "5":
+                        editStudentController.editAddress();
+                        break;
+                    case "6":
+                        editStudentController.editGender();
+                        break;
+                    case "7":
+                        editStudentController.editDoB();
+                        break;
+                    case "8":
+                        editStudentController.editDepartment();
+                        break;
+                    case "9":
+                        editStudentController.editSpecialization();
+                        break;
+                    case "10":
+                        editStudentController.editGuardian();
+                        break;
+                    case "-b":
+                        return;
+                    default:
+                        break;
+                }
+                choice = menu.showEditStudentMenu();
             }
-        }
-    }
 
-    private static String getString(Menu menu) {
-        String choice = menu.showEditStudentMenu();
-        return choice;
+        }
     }
 
     @Override

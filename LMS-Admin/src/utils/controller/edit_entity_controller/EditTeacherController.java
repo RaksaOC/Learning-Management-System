@@ -1,6 +1,7 @@
 package utils.controller.edit_entity_controller;
 
 import lib.Hasher;
+import org.json.JSONObject;
 import ui.UI;
 import utils.manager.edit_entity_manager.EditTeacherManager;
 
@@ -16,8 +17,13 @@ public class EditTeacherController extends EditEntityController {
     public void editName() {
         System.out.println(UI.TextColor.addColor(UI.Banner.editName, UI.TextColor.YELLOW));
         System.out.println(UI.TextColor.addColor("Old name: ", UI.TextColor.GREEN) + UI.TextColor.addColor(editTeacherManager.getOldName(), UI.TextColor.WHITE));
-        String newName = prompt("Enter new name");
-        editTeacherManager.setNewName(newName);
+        String newFirstName = prompt("Enter new Old name");
+        String newLastName = prompt("Enter new Last name");
+        JSONObject obj = new JSONObject();
+        obj.put("newFirstName", newFirstName);
+        obj.put("newLastName", newLastName);
+
+        editTeacherManager.setNewName(obj);
 
         String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);
         System.out.println(successBanner);

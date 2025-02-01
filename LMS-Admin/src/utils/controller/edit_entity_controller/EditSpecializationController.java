@@ -33,8 +33,8 @@ public class EditSpecializationController extends EditEntityController{
     // unique method
     public void editID() {
         // Show old id
-        System.out.println(UI.TextColor.addColor(UI.Banner.editName, UI.TextColor.YELLOW));
-        System.out.println(UI.TextColor.addColor("Old Phone Number: ", UI.TextColor.GREEN) + UI.TextColor.addColor(editSpecializationManager.getOldID(), UI.TextColor.WHITE));
+        System.out.println(UI.TextColor.addColor(UI.Banner.editId, UI.TextColor.YELLOW));
+        System.out.println(UI.TextColor.addColor("Old ID: ", UI.TextColor.GREEN) + UI.TextColor.addColor(editSpecializationManager.getOldID(), UI.TextColor.WHITE));
 
         String id = prompt("Enter new Specialization ID");
         editSpecializationManager.setNewID(id);

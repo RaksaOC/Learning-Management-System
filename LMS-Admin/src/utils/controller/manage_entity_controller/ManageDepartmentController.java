@@ -1,6 +1,7 @@
 package utils.controller.manage_entity_controller;
 
 import org.json.JSONObject;
+import ui.UI;
 import utils.manager.manage_entity_manager.ManageDepartmentManager;
 import utils.menu.Menu;
 
@@ -16,16 +17,21 @@ public class ManageDepartmentController extends ManageEntityController {
 
     @Override
     public void addEntity() {
+        System.out.println(UI.TextColor.addColor(UI.Banner.add, UI.TextColor.YELLOW));
         String name = prompt("Enter Department Name:");
         String id = prompt("Enter Department ID:");
         JSONObject dep = new JSONObject();
         dep.put("name", name);
         dep.put("id", id);
         manager.manageAddEntity(dep);
+
+        String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);
+        System.out.println(successBanner);
     }
 
     @Override
     public void editEntity() {
+        System.out.println(UI.TextColor.addColor(UI.Banner.edit, UI.TextColor.YELLOW));
         String id;
         boolean isExist = false;
         do {
@@ -57,6 +63,7 @@ public class ManageDepartmentController extends ManageEntityController {
 
     @Override
     public void deleteEntity() {
+        System.out.println(UI.TextColor.addColor(UI.Banner.delete, UI.TextColor.YELLOW));
         String id;
         while (true) {
             id = prompt("Enter Department ID:");
@@ -65,42 +72,16 @@ public class ManageDepartmentController extends ManageEntityController {
             }
         }
         manager.manageDeleteEntity(id);
+
+        String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);
+        System.out.println(successBanner);
     }
 
     @Override
     public void viewEntity() {
+        System.out.println(UI.TextColor.addColor(UI.Banner.view, UI.TextColor.YELLOW));
         System.out.println("got to view entity of controller");
         manager.manageViewEntity();
     }
 
-    ;
-
-    public void manageSpecialization() {
-        Menu menu = new Menu();
-        ManageSpecializationController manageSpecilizationController = new ManageSpecializationController();
-        while (true) {
-            String choice = menu.showManageSpecializationsMenu();
-            switch (choice) {
-                case "1":
-                    manageSpecilizationController.addEntity();
-                    break;
-                case "2":
-                    manageSpecilizationController.editEntity();
-                    break;
-                case "3":
-                    manageSpecilizationController.deleteEntity();
-                    break;
-                case "4":
-                    manageSpecilizationController.viewEntity();
-                    break;
-                case "-b":
-                    return;
-                default:
-                    break;
-            }
-        }
-
-    }
-
-    ;
 }

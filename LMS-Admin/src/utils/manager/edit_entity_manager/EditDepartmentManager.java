@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 public class EditDepartmentManager extends EditEntityManager {
 
     JSONArray departments;
+
     public EditDepartmentManager(String idToEdit) {
         super(idToEdit);
         setFilePath("shared/data/university.json");
@@ -18,8 +19,6 @@ public class EditDepartmentManager extends EditEntityManager {
         getEntityData();
 
     }
-
-
 
     public void setNewID(String newID) {
         this.entityDataToEdit.put("id", newID);
@@ -31,13 +30,13 @@ public class EditDepartmentManager extends EditEntityManager {
     }
 
     @Override
-    public void getEntityData(){
+    public void getEntityData() {
         try {
             this.content = new String(Files.readAllBytes(Paths.get(this.filePath)));
             this.entityData_Obj = new JSONObject(content);
             this.departments = this.entityData_Obj.getJSONArray("departments");
             for (int i = 0; i < departments.length(); i++) {
-                if(departments.getJSONObject(i).getString("id").equals(entityID)){
+                if (departments.getJSONObject(i).getString("id").equals(entityID)) {
                     this.entityDataToEdit = departments.getJSONObject(i);
                 }
             }
@@ -47,10 +46,10 @@ public class EditDepartmentManager extends EditEntityManager {
     }
 
     @Override
-    public void saveEntityData(){
-        try(FileWriter writer = new FileWriter(filePath)){
-            for(int i=0; i<departments.length(); i++){
-                if(departments.getJSONObject(i).getString("id").equals(entityID)){
+    public void saveEntityData() {
+        try (FileWriter writer = new FileWriter(filePath)) {
+            for (int i = 0; i < departments.length(); i++) {
+                if (departments.getJSONObject(i).getString("id").equals(entityID)) {
                     departments.put(i, entityDataToEdit);
                     break;
                 }
@@ -60,20 +59,22 @@ public class EditDepartmentManager extends EditEntityManager {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    };
+    }
 
     // No Uses
 
     @Override
-    public String getOldPhone(){
+    public String getOldPhone() {
         return null;
-    };
-    public String getOldEmail(){
-        return null;
-    };
-    public String getOldPassword(){
-        return null;
-    };
+    }
 
 
+    public String getOldEmail() {
+        return null;
+    }
+
+
+    public String getOldPassword() {
+        return null;
+    }
 }

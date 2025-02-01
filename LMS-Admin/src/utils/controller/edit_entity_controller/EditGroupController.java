@@ -1,5 +1,6 @@
 package utils.controller.edit_entity_controller;
 
+import ui.UI;
 import utils.manager.edit_entity_manager.EditGroupManager;
 
 public class EditGroupController extends EditEntityController{
@@ -8,10 +9,16 @@ public class EditGroupController extends EditEntityController{
     }
 
     public void editID(){
+
+        System.out.println(UI.TextColor.addColor(UI.Banner.editId, UI.TextColor.YELLOW));
+
         String oldGroupID = prompt("Enter old Group ID");
         String newGroupID = prompt("Enter new Group ID");
         EditGroupManager editGroupManager = new EditGroupManager(oldGroupID);
         editGroupManager.setNewID(newGroupID);
+
+        String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);
+        System.out.println(successBanner);
     }
 
     @Override

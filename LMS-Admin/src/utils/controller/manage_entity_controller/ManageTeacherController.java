@@ -4,9 +4,6 @@ import lib.Hasher;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import ui.UI;
-import utils.controller.edit_entity_controller.EditStudentController;
-import utils.manager.edit_entity_manager.EditStudentManager;
-import utils.manager.manage_entity_manager.ManageStudentManager;
 import utils.menu.Menu;
 
 import java.time.LocalDateTime;
@@ -31,25 +28,6 @@ public class ManageTeacherController extends ManageEntityController {
 
         JSONObject newTeacher = createNewTeacherObject();
         manager.manageAddEntity(newTeacher);
-    }
-
-    public void assignTeacherToCourse(){
-        do {
-            String teacherID = prompt("Enter Teacher ID");
-
-            // manage for that id, one call for validation check. will be called later within edit controller
-            EditTeacherManager editTeacherManager = new EditTeacherManager(teacherID);
-
-            if (editTeacherManager.isEntityIDExist(teacherID)) {
-                String classroom = "";
-                manager.manageAssignToClassroom(teacherID, classroom);
-                String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);
-                System.out.println(successBanner);
-                return;
-            } else {
-                System.out.println(UI.TextColor.addColor("\nInvalid Teacher ID\n", UI.TextColor.RED));
-            }
-        } while (true);
     }
 
     @Override
@@ -97,26 +75,30 @@ public class ManageTeacherController extends ManageEntityController {
 
         if (isExist) {
             String choice = menu.showManageTeachersMenu();
-            switch (choice) {
-                case "1":
-                    editTeacherController.editName();
-                    break;
-                case "2":
-                    editTeacherController.editPhone();
-                    break;
-                case "3":
-                    editTeacherController.editEmail();
-                    break;
-                case "4":
-                    editTeacherController.editPassword();
-                    break;
-                case "5":
-                    editTeacherController.editGender();
-                    break;
-                case "6":
-                    editTeacherController.editDoB();
-                    break;
+            while(true){
+                switch (choice) {
+                    case "1":
+                        editTeacherController.editName();
+                        break;
+                    case "2":
+                        editTeacherController.editPhone();
+                        break;
+                    case "3":
+                        editTeacherController.editEmail();
+                        break;
+                    case "4":
+                        editTeacherController.editPassword();
+                        break;
+                    case "5":
+                        editTeacherController.editGender();
+                        break;
+                    case "6":
+                        editTeacherController.editDoB();
+                        break;
+                }
+                choice = menu.showManageTeachersMenu();
             }
+
         }
     }
 

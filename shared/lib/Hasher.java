@@ -25,11 +25,4 @@ public class Hasher {
             throw new RuntimeException("Error: SHA-256 algorithm not found.", e);
         }
     }
-
-    public static void main(String[] args) {
-        String input = "mySecurePassword123";
-        String hashed = hash(input);
-        System.out.println("Original: " + input);
-        System.out.println("Hashed: " + hashed);
-    }
 }

@@ -5,6 +5,7 @@ import utils.manager.edit_entity_manager.EditDepartmentManager;
 
 public class EditDepartmentController extends EditEntityController {
     EditDepartmentManager editDepartmentManager;
+
     public EditDepartmentController(String idToEdit) {
         super(idToEdit);
         editDepartmentManager = new EditDepartmentManager(idToEdit);

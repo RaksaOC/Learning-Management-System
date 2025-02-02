@@ -5,8 +5,9 @@ import utils.manager.edit_entity_manager.EditDepartmentManager;
 import utils.manager.edit_entity_manager.EditSpecializationManager;
 
 
-public class EditSpecializationController extends EditEntityController{
+public class EditSpecializationController extends EditEntityController {
     EditSpecializationManager editSpecializationManager;
+
     public EditSpecializationController(String idToEdit) {
         super(idToEdit);
         editSpecializationManager = new EditSpecializationManager(idToEdit);

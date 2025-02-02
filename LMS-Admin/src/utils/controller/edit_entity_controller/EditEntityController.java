@@ -8,8 +8,11 @@ import java.util.Scanner;
 
 interface EditInterface {
     void editName();
+
     void editPhone();
+
     void editEmail();
+
     void editPassword();
 }
 
@@ -17,11 +20,12 @@ public abstract class EditEntityController implements EditInterface {
 
     protected String entityID;
 
-    public EditEntityController() {};
+    public EditEntityController() {
+    }
 
     public EditEntityController(String entityID) {
         this.entityID = entityID;
-    };
+    }
 
     protected static String prompt(String prompt) {
         Scanner sc = new Scanner(System.in);
@@ -32,22 +36,16 @@ public abstract class EditEntityController implements EditInterface {
         return input;
     }
 
-    public void setEntityID(String entityID){
+    public void setEntityID(String entityID) {
         this.entityID = entityID;
-    };
+    }
 
-    public abstract void  editName();
-    public abstract void  editPhone();
-    public abstract void  editEmail();
-    public abstract void  editPassword();
+    public abstract void editName();
 
+    public abstract void editPhone();
 
+    public abstract void editEmail();
 
-
-
-
-
-
-
+    public abstract void editPassword();
 
 }

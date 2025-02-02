@@ -9,20 +9,20 @@ public class EditTeacherManager extends EditEntityManager {
         getEntityData();
     }
 
-    public String getOldGender(){
+    public String getOldGender() {
         return this.entityDataToEdit.getString("gender");
     }
 
-    public String getOldDoB(){
+    public String getOldDoB() {
         return this.entityDataToEdit.getString("dob");
     }
 
-    public void setNewGender(String newGender){
+    public void setNewGender(String newGender) {
         this.entityDataToEdit.put("gender", newGender);
         saveEntityData();
     }
 
-    public void setNewDoB(String newDoB){
+    public void setNewDoB(String newDoB) {
         this.entityDataToEdit.put("dob", newDoB);
         saveEntityData();
     }

@@ -1,6 +1,7 @@
 package utils.menu;
 
 import java.util.Scanner;
+
 import ui.UI;
 
 public class Menu {
@@ -12,10 +13,11 @@ public class Menu {
     private final String input = UI.TextColor.addColor("> ", UI.TextColor.GREEN);
     private final String invalidChoice = UI.TextColor.addColor("\nInvalid Choice\n", UI.TextColor.RED);
 
-    public Menu(){}
+    public Menu() {
+    }
 
     // step 1
-    public String showMainMenu(){
+    public String showMainMenu() {
 
         String bannerApp = UI.TextColor.addColor(UI.Banner.cadtLms_Admin, UI.TextColor.YELLOW);
         banner = UI.TextColor.addColor(UI.Banner.mainMenu, UI.TextColor.YELLOW);
@@ -25,23 +27,23 @@ public class Menu {
 
         do {
             menu = """
-                [1] Manage Users
-                [2] Manage University
-                [3] Manage Admin
-                [4] Exit
-                """;
+                    [1] Manage Users
+                    [2] Manage University
+                    [3] Manage Admin
+                    [4] Exit
+                    """;
 
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "4", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "4", choice));
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "4", choice));
         return choice;
     }
 
     // step 2
 
     // manage users
-    public String showManageUsersMenu(){
+    public String showManageUsersMenu() {
         UI.showLoadingBar(10);
 
         banner = UI.TextColor.addColor(UI.Banner.manageUser, UI.TextColor.YELLOW);
@@ -49,19 +51,19 @@ public class Menu {
 
         do {
             menu = """
-                [1] Manage Student
-                [2] Manage Teacher
-                """;
+                    [1] Manage Student
+                    [2] Manage Teacher
+                    """;
 
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "2", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "2", choice));
+            if (!(isChoiceValid("1", "2", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "2", choice));
         return choice;
     }
 
     // manage university
-    public String showManageUniversityMenu(){
+    public String showManageUniversityMenu() {
         UI.showLoadingBar(10);
 
         banner = UI.TextColor.addColor(UI.Banner.manageUniversity, UI.TextColor.YELLOW);
@@ -77,15 +79,15 @@ public class Menu {
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "5", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "5", choice));
+            if (!(isChoiceValid("1", "5", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "5", choice));
         return choice;
     }
 
     // step 3
 
     //manage student
-    public String showManageStudentsMenu(){
+    public String showManageStudentsMenu() {
         UI.showLoadingBar(10);
 
         banner = UI.TextColor.addColor(UI.Banner.manageStudent, UI.TextColor.YELLOW);
@@ -100,13 +102,13 @@ public class Menu {
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "3", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "3", choice));
+            if (!(isChoiceValid("1", "3", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "3", choice));
         return choice;
     }
 
     // manage teacher
-    public String showManageTeachersMenu(){
+    public String showManageTeachersMenu() {
         UI.showLoadingBar(10);
 
         banner = UI.TextColor.addColor(UI.Banner.manageTeacher, UI.TextColor.YELLOW);
@@ -121,13 +123,13 @@ public class Menu {
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "4", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "4", choice));
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "4", choice));
         return choice;
     }
 
     // manage generation
-    public String showManageGenerationMenu(){
+    public String showManageGenerationMenu() {
         UI.showLoadingBar(10);
 
         banner = UI.TextColor.addColor(UI.Banner.manageGeneration, UI.TextColor.YELLOW);
@@ -142,13 +144,13 @@ public class Menu {
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "4", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "4", choice));
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "4", choice));
         return choice;
     }
 
     // manage Department
-    public String showManageDepartmentsMenu(){
+    public String showManageDepartmentsMenu() {
         UI.showLoadingBar(10);
 
         banner = UI.TextColor.addColor(UI.Banner.manageDepartment, UI.TextColor.YELLOW);
@@ -163,13 +165,13 @@ public class Menu {
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "4", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "4", choice));
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "4", choice));
         return choice;
     }
 
     // manage specialization
-    public String showManageSpecializationsMenu(){
+    public String showManageSpecializationsMenu() {
         // enter the department id first to manage (done by controller)
         UI.showLoadingBar(10);
 
@@ -185,12 +187,12 @@ public class Menu {
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "4", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "4", choice));
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "4", choice));
         return choice;
     }
 
-    public String showManageGroupMenu(){
+    public String showManageGroupMenu() {
         UI.showLoadingBar(10);
 
         // banner to change to manage group
@@ -207,12 +209,12 @@ public class Menu {
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "5", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "5", choice));
+            if (!(isChoiceValid("1", "5", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "5", choice));
         return choice;
     }
 
-    public String showManageClassroomsMenu(){
+    public String showManageClassroomsMenu() {
         UI.showLoadingBar(10);
         banner = UI.TextColor.addColor(UI.Banner.manageClassroom, UI.TextColor.YELLOW);
         System.out.println(banner);
@@ -228,14 +230,16 @@ public class Menu {
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "6", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "6", choice));
+            if (!(isChoiceValid("1", "6", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "6", choice));
         return choice;
-    };
+    }
+
+    ;
 
 
     // manage admins
-    public String showManageAdminsMenu(){
+    public String showManageAdminsMenu() {
         UI.showLoadingBar(10);
 
         banner = UI.TextColor.addColor(UI.Banner.manageAdmin, UI.TextColor.YELLOW);
@@ -250,17 +254,17 @@ public class Menu {
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "4", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "4", choice));
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "4", choice));
         return choice;
     }
 
 // deeper steps
 
-    public String showEditAdminMenu(){
+    public String showEditAdminMenu() {
         UI.showLoadingBar(10);
 
-        do{
+        do {
             menu = """
                     [1] Edit Name
                     [2] Edit Phone Number
@@ -269,15 +273,15 @@ public class Menu {
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "4", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "4", choice));
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "4", choice));
         return choice;
     }
 
-    public String showEditStudentMenu(){
+    public String showEditStudentMenu() {
         UI.showLoadingBar(10);
 
-        do{
+        do {
             menu = """
                     [1] Edit Name
                     [2] Edit Phone Number
@@ -292,38 +296,38 @@ public class Menu {
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "10", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "10", choice));
+            if (!(isChoiceValid("1", "10", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "10", choice));
         return choice;
     }
 
-    public String showEditDepartmentMenu(){
+    public String showEditDepartmentMenu() {
         UI.showLoadingBar(10);
 
-        do{
+        do {
             menu = """
                     [1] Edit Name
                     [2] Edit ID
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "2", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "2", choice));
+            if (!(isChoiceValid("1", "2", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "2", choice));
         return choice;
     }
 
-    public String showEditSpecializationMenu(){
+    public String showEditSpecializationMenu() {
         UI.showLoadingBar(10);
 
-        do{
+        do {
             menu = """
                     [1] Edit Name
                     [2] Edit ID
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if(!(isChoiceValid("1", "2", choice)))System.out.println(invalidChoice);
-        }while(!isChoiceValid("1", "2", choice));
+            if (!(isChoiceValid("1", "2", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "2", choice));
         return choice;
     }
 
@@ -334,7 +338,7 @@ public class Menu {
     }
 
     private static boolean isChoiceValid(String from, String to, String choice) {
-        if(choice.equals("-b")) return true;
+        if (choice.equals("-b")) return true;
         try {
             int int_from = Integer.parseInt(from);
             int int_to = Integer.parseInt(to);

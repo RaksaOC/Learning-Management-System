@@ -35,7 +35,7 @@ public class EditSpecializationManager extends EditEntityManager {
         saveEntityData(depID);
     }
 
-    public void setNewName( String newName) {
+    public void setNewName(String newName) {
         this.entityDataToEdit.put("name", newName);
         saveEntityData(depID);
     }
@@ -44,7 +44,7 @@ public class EditSpecializationManager extends EditEntityManager {
         return entityDataToEdit.getString("id");
     }
 
-    public void getEntityData(String dep_id){
+    public void getEntityData(String dep_id) {
         this.depID = dep_id;
         try {
             this.content = new String(Files.readAllBytes(Paths.get(this.filePath)));
@@ -52,13 +52,13 @@ public class EditSpecializationManager extends EditEntityManager {
             departments = this.entityData_Obj.getJSONArray("departments");
 
             for (int i = 0; i < departments.length(); i++) {
-                if(departments.getJSONObject(i).getString("id").equals(this.depID)) {
+                if (departments.getJSONObject(i).getString("id").equals(this.depID)) {
                     specializations = departments.getJSONObject(i).getJSONArray("specializations");
                 }
             }
             for (int i = 0; i < specializations.length(); i++) {
                 // means traversing until we find the specific specialization (entityID)
-                if(specializations.getJSONObject(i).getString("id").equals(entityID)){
+                if (specializations.getJSONObject(i).getString("id").equals(entityID)) {
                     entityDataToEdit = specializations.getJSONObject(i);
                 }
             }
@@ -67,18 +67,18 @@ public class EditSpecializationManager extends EditEntityManager {
         }
     }
 
-    public void saveEntityData(String dep_id){
-        try(FileWriter writer = new FileWriter(filePath)){
+    public void saveEntityData(String dep_id) {
+        try (FileWriter writer = new FileWriter(filePath)) {
             // put the specific spec to the correct place
-            for(int i=0; i<specializations.length(); i++){
-                if(specializations.getJSONObject(i).getString("id").equals(entityID)){
+            for (int i = 0; i < specializations.length(); i++) {
+                if (specializations.getJSONObject(i).getString("id").equals(entityID)) {
                     specializations.put(i, entityDataToEdit);
                     break;
                 }
             }
             // put the hole spec to the correct department
-            for(int i=0; i<departments.length(); i++){
-                if(departments.getJSONObject(i).getString("id").equals(dep_id)){
+            for (int i = 0; i < departments.length(); i++) {
+                if (departments.getJSONObject(i).getString("id").equals(dep_id)) {
                     departments.getJSONObject(i).put("specializations", specializations);
                 }
             }
@@ -87,18 +87,28 @@ public class EditSpecializationManager extends EditEntityManager {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    };
+    }
+
+    ;
 
     // No Uses
 
     @Override
-    public String getOldPhone(){
+    public String getOldPhone() {
         return null;
-    };
-    public String getOldEmail(){
+    }
+
+    ;
+
+    public String getOldEmail() {
         return null;
-    };
-    public String getOldPassword(){
+    }
+
+    ;
+
+    public String getOldPassword() {
         return null;
-    };
+    }
+
+    ;
 }

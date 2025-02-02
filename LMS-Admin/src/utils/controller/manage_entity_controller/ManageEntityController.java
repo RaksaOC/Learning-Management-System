@@ -16,7 +16,11 @@ interface ManageEntityControllerInterface {
 
 public abstract class ManageEntityController implements ManageEntityControllerInterface {
     Scanner sc = new Scanner(System.in);
-    public ManageEntityController() {};
+
+    public ManageEntityController() {
+    }
+
+    ;
 
     protected String prompt(String prompt) {
         prompt = UI.TextColor.addColor(prompt, UI.TextColor.GREEN);
@@ -27,11 +31,12 @@ public abstract class ManageEntityController implements ManageEntityControllerIn
     }
 
     public abstract void addEntity();
+
     public abstract void editEntity();
+
     public abstract void deleteEntity();
+
     public abstract void viewEntity();
-
-
 
 
 }

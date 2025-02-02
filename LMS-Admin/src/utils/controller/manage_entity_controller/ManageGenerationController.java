@@ -9,7 +9,10 @@ import utils.manager.edit_entity_manager.EditGenerationManager;
 import utils.manager.manage_entity_manager.ManageGenerationManager;
 
 public class ManageGenerationController extends ManageEntityController {
-    public ManageGenerationController() {};
+    public ManageGenerationController() {
+    }
+
+    ;
 
     @Override
     public void addEntity() {
@@ -54,7 +57,6 @@ public class ManageGenerationController extends ManageEntityController {
         // go to every specialization and print the generations array of each
         genManager.manageViewEntity();
     }
-
 
 
 }

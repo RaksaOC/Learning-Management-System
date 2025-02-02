@@ -37,7 +37,7 @@ public class AuthManager {
         return false;
     }
 
-    private void logLastLogIn(JSONArray allAdmin, JSONObject loggedAdmin){
+    private void logLastLogIn(JSONArray allAdmin, JSONObject loggedAdmin) {
         LocalDateTime now = LocalDateTime.now();
 
         // Format the date and time

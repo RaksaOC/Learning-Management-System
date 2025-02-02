@@ -4,26 +4,25 @@ import ui.UI;
 import utils.manager.edit_entity_manager.EditGroupManager;
 import utils.manager.manage_entity_manager.ManageGroupManager;
 
-public class EditGroupController extends EditEntityController{
+public class EditGroupController extends EditEntityController {
     public EditGroupController() {
         super();
     }
 
-    public void editID(){
+    public void editID() {
 
         System.out.println(UI.TextColor.addColor(UI.Banner.editId, UI.TextColor.YELLOW));
         boolean isExitst = false;
         String oldGroupID;
-        do{
+        do {
             oldGroupID = prompt("Enter old Group ID");
             ManageGroupManager gm = new ManageGroupManager();
-            if(gm.isGroupIDExist(oldGroupID)){
+            if (gm.isGroupIDExist(oldGroupID)) {
                 isExitst = true;
-            }
-            else{
+            } else {
                 System.out.println(UI.TextColor.addColor("\nInvalid Group ID\n", UI.TextColor.RED));
             }
-        }while (isExitst);
+        } while (isExitst);
 
         String newGroupID = prompt("Enter new Group ID");
         EditGroupManager editGroupManager = new EditGroupManager(oldGroupID);
@@ -34,7 +33,7 @@ public class EditGroupController extends EditEntityController{
     }
 
     @Override
-    public void editName(){
+    public void editName() {
 
     }
 

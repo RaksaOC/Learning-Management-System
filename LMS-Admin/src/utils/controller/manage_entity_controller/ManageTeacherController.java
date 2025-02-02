@@ -75,7 +75,7 @@ public class ManageTeacherController extends ManageEntityController {
 
         if (isExist) {
             String choice = menu.showManageTeachersMenu();
-            while(true){
+            while (true) {
                 switch (choice) {
                     case "1":
                         editTeacherController.editName();

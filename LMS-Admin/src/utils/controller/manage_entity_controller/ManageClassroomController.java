@@ -39,11 +39,11 @@ public class ManageClassroomController extends ManageEntityController {
         System.out.println(UI.TextColor.addColor(UI.Banner.delete, UI.TextColor.YELLOW));
         ManageClassroomManager manageClassroomManager = new ManageClassroomManager();
         String classroomId;
-        do{
+        do {
             classroomId = prompt("Enter Classroom ID");
-            if(manageClassroomManager.isClassroomIDExist(classroomId)) break;
+            if (manageClassroomManager.isClassroomIDExist(classroomId)) break;
             else System.out.println(UI.TextColor.addColor("\nInvalid Classroom ID\n", UI.TextColor.RED));
-        }while(!manageClassroomManager.isClassroomIDExist(classroomId));
+        } while (!manageClassroomManager.isClassroomIDExist(classroomId));
         manageClassroomManager.manageDeleteEntity(classroomId);
 
         String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);
@@ -76,18 +76,18 @@ public class ManageClassroomController extends ManageEntityController {
 
         String classroomId;
         ManageClassroomManager manageClassroomManager = new ManageClassroomManager();
-        do{
+        do {
             classroomId = prompt("Enter Classroom ID");
-            if(manageClassroomManager.isClassroomIDExist(classroomId)) break;
+            if (manageClassroomManager.isClassroomIDExist(classroomId)) break;
             else System.out.println(UI.TextColor.addColor("\nInvalid Classroom ID\n", UI.TextColor.RED));
-        }while(!manageClassroomManager.isClassroomIDExist(classroomId));
+        } while (!manageClassroomManager.isClassroomIDExist(classroomId));
         String teacherID;
         ManageTeacherManager manageTeacherManager = new ManageTeacherManager();
-        do{
+        do {
             teacherID = prompt("Enter Teacher ID");
-            if(manageTeacherManager.isTeacherIdExist(teacherID)) break;
+            if (manageTeacherManager.isTeacherIdExist(teacherID)) break;
             else System.out.println(UI.TextColor.addColor("\nInvalid Generation ID\n", UI.TextColor.RED));
-        }while(!manageTeacherManager.isTeacherIdExist(teacherID));
+        } while (!manageTeacherManager.isTeacherIdExist(teacherID));
 
         manageClassroomManager.manageAssignTeacherToClassroom(classroomId, teacherID);
 
@@ -102,18 +102,18 @@ public class ManageClassroomController extends ManageEntityController {
         ManageClassroomManager manageClassroomManager = new ManageClassroomManager();
         do {
             classroomId = prompt("Enter Classroom ID");
-            if(manageClassroomManager.isClassroomIDExist(classroomId)) break;
+            if (manageClassroomManager.isClassroomIDExist(classroomId)) break;
             else System.out.println(UI.TextColor.addColor("\nInvalid Generation ID\n", UI.TextColor.RED));
-        }while(!manageClassroomManager.isClassroomIDExist(classroomId));
+        } while (!manageClassroomManager.isClassroomIDExist(classroomId));
 
         String courseID;
         // course id validation lives in department manager
         ManageDepartmentManager manageDepartmentManager = new ManageDepartmentManager();
-        do{
+        do {
             courseID = prompt("Enter course ID");
-            if(manageDepartmentManager.isCourseIdExist(courseID)) break;
+            if (manageDepartmentManager.isCourseIdExist(courseID)) break;
             else System.out.println(UI.TextColor.addColor("\nInvalid Generation ID\n", UI.TextColor.RED));
-        }while(!manageDepartmentManager.isCourseIdExist(courseID));
+        } while (!manageDepartmentManager.isCourseIdExist(courseID));
         manageClassroomManager.manageAssignCourseToClassroom(classroomId, courseID);
 
         String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);

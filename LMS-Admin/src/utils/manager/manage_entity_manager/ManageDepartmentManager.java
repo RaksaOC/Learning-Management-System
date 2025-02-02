@@ -22,7 +22,7 @@ public class ManageDepartmentManager extends ManageEntityManager {
     }
 
     @Override
-    public void manageAddEntity(JSONObject newDepartment){
+    public void manageAddEntity(JSONObject newDepartment) {
         newDepartment.put("specializations", new JSONArray());
         newDepartment.put("status", "active");
         departments.put(newDepartment);
@@ -31,9 +31,9 @@ public class ManageDepartmentManager extends ManageEntityManager {
     }
 
     @Override
-    public void manageDeleteEntity(String id){
-        for(int i=0; i<departments.length(); i++){
-            if(departments.getJSONObject(i).getString("id").equals(id)){
+    public void manageDeleteEntity(String id) {
+        for (int i = 0; i < departments.length(); i++) {
+            if (departments.getJSONObject(i).getString("id").equals(id)) {
                 departments.getJSONObject(i).put("status", "inactive");
                 break;
             }
@@ -42,24 +42,24 @@ public class ManageDepartmentManager extends ManageEntityManager {
     }
 
     @Override
-    public void manageViewEntity(){
+    public void manageViewEntity() {
         System.out.println("Printed departments");
         System.out.println(UI.TextColor.addColor(departments.toString(4), UI.TextColor.BLUE));
     }
 
     @Override
-    public void loadEntity(){
+    public void loadEntity() {
         // override for the loading of entity because university is object not array
-        try{
+        try {
             content = new String(Files.readAllBytes(Paths.get(filePath)));
             entityData_Obj = new JSONObject(content);
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public void saveEntity(){
+    public void saveEntity() {
         try (FileWriter file = new FileWriter(filePath)) {
             file.write(entityData_Obj.toString(4)); // Pretty-print with 4 spaces
             file.flush();
@@ -69,25 +69,24 @@ public class ManageDepartmentManager extends ManageEntityManager {
     }
 
     // helper unique to department
-    public boolean isDepartmentExist(String id){
-        for(int i = 0; i<departments.length(); i++){
-            if(departments.getJSONObject(i).getString("id").equals(id)){
+    public boolean isDepartmentExist(String id) {
+        for (int i = 0; i < departments.length(); i++) {
+            if (departments.getJSONObject(i).getString("id").equals(id)) {
                 return true;
             }
         }
         return false;
     }
 
-    public boolean isCourseIdExist(String id){
+    public boolean isCourseIdExist(String id) {
         JSONArray courses = entityData_Obj.getJSONArray("courses");
-        for(int i = 0; i<courses.length(); i++){
-            if(courses.getJSONObject(i).getString("id").equals(id)){
+        for (int i = 0; i < courses.length(); i++) {
+            if (courses.getJSONObject(i).getString("id").equals(id)) {
                 return true;
             }
         }
         return false;
     }
-
 
 
 }

@@ -75,17 +75,16 @@ public class ManageAdminController extends ManageEntityController {
         boolean isExist = false;
 
         String adminID;
-        do{
+        do {
             adminID = prompt("Enter Admin ID");
             editAdminManager = new EditAdminManager(adminID);
-            if(editAdminManager.isEntityIDExist(adminID)){
+            if (editAdminManager.isEntityIDExist(adminID)) {
                 isExist = true;
                 break;
-            }
-            else{
+            } else {
                 System.out.println(UI.TextColor.addColor("\nInvalid ID\n", UI.TextColor.RED));
             }
-        }while(isExist);
+        } while (isExist);
 
         EditAdminController editAdminController = new EditAdminController(adminID);
         Menu menu = new Menu();
@@ -111,10 +110,11 @@ public class ManageAdminController extends ManageEntityController {
             }
         }
     }
+
     @Override
     public void deleteEntity() {
         System.out.println(UI.TextColor.addColor(UI.Banner.delete, UI.TextColor.YELLOW));
-        do{
+        do {
             String adminID = prompt("Enter Admin ID");
 
             // manage for that id, one call for validation check. will be called later within edit admin controller
@@ -125,11 +125,10 @@ public class ManageAdminController extends ManageEntityController {
                 String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);
                 System.out.println(successBanner);
                 return;
-            }
-            else{
+            } else {
                 System.out.println(UI.TextColor.addColor("\nInvalid admin ID\n", UI.TextColor.RED));
             }
-        }while(true);
+        } while (true);
     }
 
     @Override

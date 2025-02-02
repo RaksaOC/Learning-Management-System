@@ -14,10 +14,15 @@ import java.nio.file.Paths;
 
 interface ManageEntityManagerInterface {
     void manageAddEntity(JSONObject obj);
+
     void manageDeleteEntity(String id);
+
     void manageViewEntity();
+
     void loadEntity();
+
     void saveEntity();
+
     void setEntityFilePath(String filePath);
 }
 
@@ -28,7 +33,8 @@ public abstract class ManageEntityManager implements ManageEntityManagerInterfac
     protected String filePath;
     protected String baseID;
 
-    public ManageEntityManager() {}
+    public ManageEntityManager() {
+    }
 
     public void manageAddEntity(JSONObject newObj) {
         newObj.put("id", generateNewID());
@@ -45,33 +51,39 @@ public abstract class ManageEntityManager implements ManageEntityManagerInterfac
         saveEntity();
     }
 
-    public void manageViewEntity(){
+    public void manageViewEntity() {
         entityData.toString(4);
     }
 
-    public void setEntityFilePath(String filePath){
+    public void setEntityFilePath(String filePath) {
         this.filePath = filePath;
-    };
+    }
 
-    public void loadEntity(){
-        try{
+    ;
+
+    public void loadEntity() {
+        try {
             this.content = new String(Files.readAllBytes(Paths.get(filePath)));
             entityData = new JSONArray(content);
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
-    };
+    }
 
-    public void saveEntity(){
+    ;
+
+    public void saveEntity() {
         try (FileWriter file = new FileWriter(filePath)) {
             file.write(entityData.toString(4)); // Pretty-print with 4 spaces
             file.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    };
+    }
 
-    protected String generateNewID(){
+    ;
+
+    protected String generateNewID() {
         try {
             String content = new String(Files.readAllBytes(Paths.get(filePath)));
             JSONArray entityData = new JSONArray(content);
@@ -89,7 +101,7 @@ public abstract class ManageEntityManager implements ManageEntityManagerInterfac
             }
             baseID = baseIDBuilder.toString(); // Convert back to string
             return baseID;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;

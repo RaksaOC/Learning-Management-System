@@ -21,9 +21,9 @@ public class EditGenerationManager extends EditEntityManager {
     public void setNewID(String newId) {
         JSONArray department = entityData_Obj.getJSONArray("departments");
         for (int i = 0; i < department.length(); i++) {
-            for(int j = 0; j < department.getJSONObject(i).getJSONArray("specializations").length(); j++) {
-                for(int k = 0; k < department.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
-                    if(department.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getString("id").equals(entityID)) {
+            for (int j = 0; j < department.getJSONObject(i).getJSONArray("specializations").length(); j++) {
+                for (int k = 0; k < department.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
+                    if (department.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getString("id").equals(entityID)) {
                         department.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).put("id", newId);
                     }
                 }
@@ -33,7 +33,7 @@ public class EditGenerationManager extends EditEntityManager {
         saveEntityData();
     }
 
-    public void getEntityData(){
+    public void getEntityData() {
         try {
             this.content = new String(Files.readAllBytes(Paths.get(this.filePath)));
             this.entityData_Obj = new JSONObject(content);
@@ -42,11 +42,13 @@ public class EditGenerationManager extends EditEntityManager {
         }
     }
 
-    public void saveEntityData(){
-        try(FileWriter writer = new FileWriter(filePath)){
+    public void saveEntityData() {
+        try (FileWriter writer = new FileWriter(filePath)) {
             writer.write(entityData_Obj.toString(4));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    };
+    }
+
+    ;
 }

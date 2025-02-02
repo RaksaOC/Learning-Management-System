@@ -6,9 +6,10 @@ import utils.manager.authentication_manager.AuthManager;
 import java.util.Scanner;
 
 public class AuthenticationController {
-    public AuthenticationController() {};
+    public AuthenticationController() {
+    }
 
-    public boolean authenticateUser(){
+    public boolean authenticateUser() {
         AuthManager authManager = new AuthManager();
         String email;
         String password;
@@ -17,17 +18,18 @@ public class AuthenticationController {
         UI.showLoadingBar(10);
         String banner = UI.TextColor.addColor(UI.Banner.authenticate, UI.TextColor.YELLOW);
         System.out.println(banner);
-        do{
+        do {
             email = getEmail();
             password = getPassword();
             UI.showLoadingBar(10);
-            if(!authManager.checkCredentials(email, password)) System.out.println(UI.TextColor.addColor("\nInvalid email or password\n", UI.TextColor.RED));
-        }while(!authManager.checkCredentials(email, password));
-        success= true;
+            if (!authManager.checkCredentials(email, password))
+                System.out.println(UI.TextColor.addColor("\nInvalid email or password\n", UI.TextColor.RED));
+        } while (!authManager.checkCredentials(email, password));
+        success = true;
         return success;
     }
 
-    private String getEmail(){
+    private String getEmail() {
         Scanner sc = new Scanner(System.in);
         String emailPrompt = UI.TextColor.addColor("\nEnter Email", UI.TextColor.GREEN);
         System.out.println(emailPrompt);
@@ -38,7 +40,7 @@ public class AuthenticationController {
         return email;
     }
 
-    private String getPassword(){
+    private String getPassword() {
 
         Scanner sc = new Scanner(System.in);
         String passwordPrompt = UI.TextColor.addColor("\nEnter Password", UI.TextColor.GREEN);

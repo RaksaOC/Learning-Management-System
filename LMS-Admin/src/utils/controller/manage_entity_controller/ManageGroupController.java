@@ -92,21 +92,4 @@ public class ManageGroupController extends ManageEntityController {
         } while (!isExist);
         return id;
     }
-
-//    private String inputGroupID(String specID) {
-//        boolean isExist = false;
-//        String groupID;
-//        ManageGroupManager manageGroupManager;
-//        do{
-//            groupID = prompt("Enter Group ID");
-//            manageGroupManager = new ManageGroupManager();
-//            if(manageGroupManager.isGroupIDExist(specID, groupID)){
-//                isExist = true;
-//            }
-//            else{
-//                System.out.println("Group ID does not exist");
-//            }
-//        } while (!isExist);
-//        return groupID;
-//    }
 }

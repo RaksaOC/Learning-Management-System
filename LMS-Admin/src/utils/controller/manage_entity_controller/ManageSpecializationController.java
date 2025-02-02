@@ -37,7 +37,7 @@ public class ManageSpecializationController extends ManageEntityController {
         EditSpecializationController editSpecializationController = new EditSpecializationController(id_dep, specialization_id); // the contrutor to be overloaded with another argument
 
         while (true) {
-            switch (choice){
+            switch (choice) {
                 case "1":
                     editSpecializationController.editName();
                     break;
@@ -60,11 +60,11 @@ public class ManageSpecializationController extends ManageEntityController {
         // need to add specialzation validation
         ManageSpecializationManager manageSpecializationManager = new ManageSpecializationManager();
         String specialization_id = prompt("Enter Specialization ID");
-        do{
+        do {
             specialization_id = prompt("Enter Specialization ID");
-            if(manageSpecializationManager.isSpecializationExist(specialization_id)) break;
+            if (manageSpecializationManager.isSpecializationExist(specialization_id)) break;
             else System.out.println(UI.TextColor.addColor("\nInvalid Generation ID\n", UI.TextColor.RED));
-        }while (true);
+        } while (true);
 
         manageSpecializationManager.manageDeleteEntity(id_dep, specialization_id);
 

@@ -45,8 +45,8 @@ public class ManageGroupManager extends ManageEntityManager {
         for (int i = 0; i < departments.length(); i++) {
             for (int j = 0; i < departments.getJSONObject(i).getJSONArray("specializations").length(); i++) {
                 for (int k = 0; k < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
-                    for(int l = 0; l < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").length(); l++) {
-                        if(departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).getString("id").equals(groupID)) {
+                    for (int l = 0; l < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").length(); l++) {
+                        if (departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).getString("id").equals(groupID)) {
                             departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).put("status", "inactive");
                             break beginLoop;
                         }
@@ -73,8 +73,8 @@ public class ManageGroupManager extends ManageEntityManager {
 //        }
         for (int i = 0; i < departments.length(); i++) {
             for (int j = 0; j < departments.getJSONObject(i).getJSONArray("specializations").length(); j++) {
-                for(int k = 0; k < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
-                    for(int l = 0; l < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").length(); l++) {
+                for (int k = 0; k < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
+                    for (int l = 0; l < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").length(); l++) {
                         System.out.println(departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").toString(4));
                     }
                 }
@@ -87,10 +87,10 @@ public class ManageGroupManager extends ManageEntityManager {
         beginLoop:
         for (int i = 0; i < departments.length(); i++) {
             for (int j = 0; j < departments.getJSONObject(i).getJSONArray("specializations").length(); j++) {
-                for(int k = 0; k < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
-                    for(int l = 0; l < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").length(); l++) {
+                for (int k = 0; k < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
+                    for (int l = 0; l < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").length(); l++) {
                         if (departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).getString("id").equals(groupID)) {
-                            for(int m = 0; m < studentIDs.size(); m++) {
+                            for (int m = 0; m < studentIDs.size(); m++) {
                                 departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).getJSONArray("students").put(studentIDs.get(m));
                             }
                             break beginLoop;
@@ -126,14 +126,14 @@ public class ManageGroupManager extends ManageEntityManager {
 
     public boolean isGroupIDExist(String groupID) {
         JSONArray departments = entityData_Obj.getJSONArray("departments");
-        for(int i = 0; i < departments.length(); i++) {
+        for (int i = 0; i < departments.length(); i++) {
             JSONArray specializations = departments.getJSONObject(i).getJSONArray("specializations");
-            for(int j = 0; j < specializations.length(); j++) {
+            for (int j = 0; j < specializations.length(); j++) {
                 JSONArray generations = specializations.getJSONObject(j).getJSONArray("generations");
-                for(int k = 0; k < generations.length(); k++) {
+                for (int k = 0; k < generations.length(); k++) {
                     JSONArray groups = generations.getJSONObject(k).getJSONArray("groups");
-                    for(int l = 0; l < groups.length(); l++) {
-                        if(groups.getJSONObject(l).getString("id").equals(groupID)) {
+                    for (int l = 0; l < groups.length(); l++) {
+                        if (groups.getJSONObject(l).getString("id").equals(groupID)) {
                             return true;
                         }
                     }

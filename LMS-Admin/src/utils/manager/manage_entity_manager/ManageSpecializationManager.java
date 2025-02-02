@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class ManageSpecializationManager extends ManageEntityManager{
+public class ManageSpecializationManager extends ManageEntityManager {
 
     private JSONArray specializations;
 
@@ -29,8 +29,8 @@ public class ManageSpecializationManager extends ManageEntityManager{
 
     public void manageDeleteEntity(String dep_id, String spec_id) {
         getSpecializations(dep_id);
-        for(int i = 0; i<specializations.length(); i++) {
-            if(specializations.getJSONObject(i).getString("id").equals(spec_id)) {
+        for (int i = 0; i < specializations.length(); i++) {
+            if (specializations.getJSONObject(i).getString("id").equals(spec_id)) {
                 specializations.getJSONObject(i).put("status", "inactive");
                 break;
             }
@@ -44,18 +44,18 @@ public class ManageSpecializationManager extends ManageEntityManager{
     }
 
     @Override
-    public void loadEntity(){
+    public void loadEntity() {
         // override for the loading of entity because university is object not array
-        try{
+        try {
             content = new String(Files.readAllBytes(Paths.get(filePath)));
             entityData_Obj = new JSONObject(content);
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public void saveEntity(){
+    public void saveEntity() {
         try (FileWriter file = new FileWriter(filePath)) {
             file.write(entityData_Obj.toString(4)); // Pretty-print with 4 spaces
             file.flush();
@@ -64,22 +64,22 @@ public class ManageSpecializationManager extends ManageEntityManager{
         }
     }
 
-    private void getSpecializations(String dep_id){
+    private void getSpecializations(String dep_id) {
         JSONArray departments = entityData_Obj.getJSONArray("departments");
-        for(int i = 0; i<departments.length(); i++) {
-            if(departments.getJSONObject(i).getString("id").equals(dep_id)) {
+        for (int i = 0; i < departments.length(); i++) {
+            if (departments.getJSONObject(i).getString("id").equals(dep_id)) {
                 specializations = departments.getJSONObject(i).getJSONArray("specializations");
                 break;
             }
         }
     }
 
-    public boolean isSpecializationExist(String spec_id){
+    public boolean isSpecializationExist(String spec_id) {
         JSONArray departments = entityData_Obj.getJSONArray("departments");
-        for(int i = 0; i<departments.length(); i++) {
+        for (int i = 0; i < departments.length(); i++) {
             JSONArray specializations = departments.getJSONObject(i).getJSONArray("specializations");
-            for(int j = 0; j<specializations.length(); j++) {
-                if(specializations.getJSONObject(j).getString("id").equals(spec_id)) {
+            for (int j = 0; j < specializations.length(); j++) {
+                if (specializations.getJSONObject(j).getString("id").equals(spec_id)) {
                     return true;
                 }
             }

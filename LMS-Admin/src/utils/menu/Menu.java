@@ -37,6 +37,7 @@ public class Menu {
             this.choice = sc.nextLine();
             if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
         } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
         return choice;
     }
 
@@ -59,6 +60,7 @@ public class Menu {
             this.choice = sc.nextLine();
             if (!(isChoiceValid("1", "2", choice))) System.out.println(invalidChoice);
         } while (!isChoiceValid("1", "2", choice));
+        this.clearScreen();
         return choice;
     }
 
@@ -81,6 +83,7 @@ public class Menu {
             this.choice = sc.nextLine();
             if (!(isChoiceValid("1", "5", choice))) System.out.println(invalidChoice);
         } while (!isChoiceValid("1", "5", choice));
+        this.clearScreen();
         return choice;
     }
 
@@ -104,6 +107,7 @@ public class Menu {
             this.choice = sc.nextLine();
             if (!(isChoiceValid("1", "3", choice))) System.out.println(invalidChoice);
         } while (!isChoiceValid("1", "3", choice));
+        this.clearScreen();
         return choice;
     }
 
@@ -125,6 +129,7 @@ public class Menu {
             this.choice = sc.nextLine();
             if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
         } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
         return choice;
     }
 
@@ -146,6 +151,7 @@ public class Menu {
             this.choice = sc.nextLine();
             if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
         } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
         return choice;
     }
 
@@ -167,6 +173,7 @@ public class Menu {
             this.choice = sc.nextLine();
             if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
         } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
         return choice;
     }
 
@@ -189,6 +196,7 @@ public class Menu {
             this.choice = sc.nextLine();
             if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
         } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
         return choice;
     }
 
@@ -211,6 +219,7 @@ public class Menu {
             this.choice = sc.nextLine();
             if (!(isChoiceValid("1", "5", choice))) System.out.println(invalidChoice);
         } while (!isChoiceValid("1", "5", choice));
+        this.clearScreen();
         return choice;
     }
 
@@ -232,6 +241,7 @@ public class Menu {
             this.choice = sc.nextLine();
             if (!(isChoiceValid("1", "6", choice))) System.out.println(invalidChoice);
         } while (!isChoiceValid("1", "6", choice));
+        this.clearScreen();
         return choice;
     }
 
@@ -256,6 +266,7 @@ public class Menu {
             this.choice = sc.nextLine();
             if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
         } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
         return choice;
     }
 
@@ -275,6 +286,7 @@ public class Menu {
             this.choice = sc.nextLine();
             if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
         } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
         return choice;
     }
 
@@ -298,6 +310,7 @@ public class Menu {
             this.choice = sc.nextLine();
             if (!(isChoiceValid("1", "10", choice))) System.out.println(invalidChoice);
         } while (!isChoiceValid("1", "10", choice));
+        this.clearScreen();
         return choice;
     }
 
@@ -313,6 +326,7 @@ public class Menu {
             this.choice = sc.nextLine();
             if (!(isChoiceValid("1", "2", choice))) System.out.println(invalidChoice);
         } while (!isChoiceValid("1", "2", choice));
+        this.clearScreen();
         return choice;
     }
 
@@ -328,6 +342,7 @@ public class Menu {
             this.choice = sc.nextLine();
             if (!(isChoiceValid("1", "2", choice))) System.out.println(invalidChoice);
         } while (!isChoiceValid("1", "2", choice));
+        this.clearScreen();
         return choice;
     }
 
@@ -338,15 +353,24 @@ public class Menu {
     }
 
     private static boolean isChoiceValid(String from, String to, String choice) {
-        if (choice.equals("-b")) return true;
+        if (choice.equals("-b"))
+            return true;
         try {
             int int_from = Integer.parseInt(from);
             int int_to = Integer.parseInt(to);
             int int_choice = Integer.parseInt(choice);
-            if (int_choice < int_from || int_choice > int_to) return false;
+            if (int_choice < int_from || int_choice > int_to)
+                return false;
         } catch (NumberFormatException e) {
+
             return false; // Return false if input is not a number
         }
+
         return true;
+    }
+
+    private void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }

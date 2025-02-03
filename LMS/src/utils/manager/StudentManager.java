@@ -1,0 +1,28 @@
+package utils.manager;
+
+import entities.Student;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+public class StudentManager {
+    Student studentToEdit;
+    public StudentManager(Student student) {
+        //                  ^
+        //      the constructor takes in the student object to get the changed data in its fields to write back to file
+        studentToEdit = student;
+    }
+
+    public JSONArray manageViewAssignment() {
+        // this function would take the student object, go search for that student's assignments and return the array
+
+        // [To Change]
+        return null;
+    }
+
+    public JSONObject manageViewProfile() {
+        // go to the student file and return the student's name, age, DoB, ............
+
+        // [To Change]
+        return null;
+    }
+}

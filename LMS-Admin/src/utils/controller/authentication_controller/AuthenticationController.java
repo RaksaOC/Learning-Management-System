@@ -6,6 +6,7 @@ import utils.manager.authentication_manager.AuthManager;
 import java.util.Scanner;
 
 public class AuthenticationController {
+
     public AuthenticationController() {
     }
 

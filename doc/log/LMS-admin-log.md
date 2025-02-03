@@ -61,3 +61,9 @@
 - Added superclass to ManageEntityController/Manager and EditEntityController/Manager with interfaces to enforce modularity and OOP principles.
 - Starting to work on the management of other entities
 - Proposal: treat each entity as separate json files and going to start defining their relationships.
+
+**01/02/2025
+
+- Finsihed with all the LMS-Admin app funtionaloties.
+- Added manage classroom and manage group into manage university.
+- Added validations to all id inputs speciffically old ids to change bur havent tested. 

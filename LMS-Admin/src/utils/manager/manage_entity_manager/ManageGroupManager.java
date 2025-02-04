@@ -21,11 +21,12 @@ public class ManageGroupManager extends ManageEntityManager {
         JSONArray departments = entityData_Obj.getJSONArray("departments");
         newObj.put("students", new JSONArray());
         newObj.put("status", "active");
+        newObj.put("classrooms", new JSONArray());
+
         beginLoop:
         for (int i = 0; i < departments.length(); i++) {
             for (int j = 0; i < departments.getJSONObject(i).getJSONArray("specializations").length(); i++) {
                 if (specID.equals(departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getString("id"))) {
-                    System.out.println("Found the specialization");
                     for (int k = 0; k < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
                         if (departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getString("id").equals(genID)) {
                             departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").put(newObj);

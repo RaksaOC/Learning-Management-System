@@ -20,7 +20,6 @@ public class ManageSpecializationManager extends ManageEntityManager {
 
     public void manageAddEntity(String dep_id, JSONObject newSpecialization) {
         getSpecializations(dep_id);
-        newSpecialization.put("dep_id", dep_id);
         newSpecialization.put("status", "active");
         newSpecialization.put("generations", new JSONArray());
         specializations.put(newSpecialization);

@@ -27,6 +27,7 @@ public class ManageGenerationManager extends ManageEntityManager {
                 departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").put(newGeneration);
             }
         }
+
         entityData_Obj.put("departments", departments);
         saveEntity();
     }

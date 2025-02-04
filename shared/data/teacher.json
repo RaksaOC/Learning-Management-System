@@ -1,50 +1,16 @@
-[
-    {
-        "createdAt": "2025-01-28 23:40:23",
-        "lastLogin": "",
-        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-        "phoneNumber": "012554049",
-        "gender": "Male",
-        "dob": "03-06-2006",
-        "name": {
-            "firstName": "Chanraksa",
-            "lastName": "Ory"
-        },
-        "id": "T0001",
-        "classrooms": [],
-        "email": "OCraksa@gmail.com",
-        "status": "active"
+[{
+    "createdAt": "2025-02-04 22:42:52",
+    "lastLogin": "",
+    "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "phoneNumber": "011554049",
+    "gender": "Male",
+    "dob": "23/09/2000",
+    "name": {
+        "firstName": "Chan",
+        "lastName": "Raksa"
     },
-    {
-        "createdAt": "2025-01-28 23:44:53",
-        "lastLogin": "",
-        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-        "phoneNumber": "089394501",
-        "gender": "Male",
-        "dob": "06-05-2000",
-        "name": {
-            "firstName": "Lorsniron",
-            "lastName": "Ory"
-        },
-        "id": "T0002",
-        "classrooms": [],
-        "email": "lorsnironory@gmail.com",
-        "status": "active"
-    },
-    {
-        "createdAt": "2025-02-03 10:35:30",
-        "lastLogin": "",
-        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-        "phoneNumber": "lkajsdklasjd",
-        "gender": "alksdjklasjd",
-        "dob": "aldjklasjd",
-        "name": {
-            "firstName": "askdjkasjd",
-            "lastName": "alksdjklasjd"
-        },
-        "id": "T0003",
-        "classrooms": [],
-        "email": "laksjdklasjd",
-        "status": "active"
-    }
-]
+    "id": "T0001",
+    "classrooms": [],
+    "email": "raksaoc@gmail.com",
+    "status": "active"
+}]

@@ -27,7 +27,7 @@ public class AuthenticationController
         if(userType.equals("students")){
             Student student;
             // logic to put the info into the student object
-            student = new Student(user.getString("name")); // wont be error when we get all the info into the constructor
+            student = new Student(user.getString("name"), user.getString("age")); // wont be error when we get all the info into the constructor
             return student;
         }
         else{

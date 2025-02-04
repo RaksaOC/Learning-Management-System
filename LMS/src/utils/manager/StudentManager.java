@@ -25,4 +25,15 @@ public class StudentManager {
         // [To Change]
         return null;
     }
+
+    public void addAssingment(){
+        // student,assignmetn.add(newAssignment)
+        // convert to json
+        // write to file
+    }
+
+    public void changeName(String newName){
+
+
+    }
 }

@@ -1,81 +1,89 @@
 {
-  "universityName": "CADT",
-  "courses": [
-    {
-      "name": "IT Essentials",
-      "id": "L0001"
-    },
-    {
-      "name": "Visual Art",
-      "id": "L0002"
-    }
-  ],
-  "departments": [
-    {
-      "specializations": [
+    "universityName": "CADT",
+    "courses": [
         {
-          "dep_id": "CS",
-          "generations": [
-            {
-              "groups": [
-                {
-                  "students": [
-                    "S000001",
-                    "S000002",
-                    "S000003",
-                    "S000010",
-                    "S000011",
-                    "S000012"
-                  ],
-                  "id": "GEN8-SE-G1",
-                  "classrooms": [
-                    "GEN8-SE-G1-ITE"
-                  ]
-                },
-                {
-                  "students": [
-                    "S000004",
-                    "S000005"
-                  ],
-                  "id": "GEN8-SE-G2",
-                  "classrooms": []
-                },
-                {
-                  "students": [],
-                  "id": "GEN8-CS-SE-G3",
-                  "status": "inactive"
-                }
-              ],
-              "id": "GEN8",
-              "status": "active"
-            },
-            {
-              "groups": [],
-              "id": "GEN10",
-              "status": "inactive"
-            }
-          ],
-          "name": "Software Engineering",
-          "id": "CS-SE",
-          "status": "active"
+            "name": "IT Essentials",
+            "id": "L0001"
         },
         {
-          "dep_id": "CS",
-          "generations": [
-            {
-              "groups": [],
-              "id": "GEN10",
-              "status": "inactive"
-            }
-          ],
-          "name": "Robotics",
-          "id": "CS-AI",
-          "status": "active"
+            "name": "Visual Art",
+            "id": "L0002"
         }
-      ],
-      "name": "Computer Engineering",
-      "id": "CS",
-      "status": "active"
-    }
-  ]
+    ],
+    "departments": [
+        {
+            "specializations": [
+                {
+                    "generations": [{
+                        "groups": [{
+                            "students": ["S000001"],
+                            "id": "GEN10-CS-SE-G1",
+                            "classrooms": ["GEN10-CS-SE-G1-OOP"],
+                            "status": "active"
+                        }],
+                        "id": "GEN10",
+                        "status": "active"
+                    }],
+                    "name": "Software Engineering",
+                    "id": "CS-SE",
+                    "status": "active"
+                },
+                {
+                    "generations": [{
+                        "groups": [],
+                        "id": "GEN10",
+                        "status": "active"
+                    }],
+                    "name": "Data Science",
+                    "id": "CS-DS",
+                    "status": "active"
+                }
+            ],
+            "name": "Computer Science",
+            "id": "CS",
+            "status": "active"
+        },
+        {
+            "specializations": [
+                {
+                    "generations": [{
+                        "groups": [],
+                        "id": "GEN10",
+                        "status": "active"
+                    }],
+                    "name": "Cybersecurity",
+                    "id": "TN-CBS",
+                    "status": "active"
+                },
+                {
+                    "generations": [{
+                        "groups": [],
+                        "id": "GEN10",
+                        "status": "active"
+                    }],
+                    "name": "Telecommunication & Networking",
+                    "id": "TN-TN",
+                    "status": "active"
+                }
+            ],
+            "name": "Telecommunication & Networking",
+            "id": "TN",
+            "status": "active"
+        },
+        {
+            "specializations": [{
+                "generations": [{
+                    "groups": [],
+                    "id": "GEN10",
+                    "status": "active"
+                }],
+                "name": "E-Commerce",
+                "id": "DB-EC",
+                "status": "active"
+            }],
+            "name": "Digital Business",
+            "id": "DB",
+            "status": "active"
+        }
+    ]
 }

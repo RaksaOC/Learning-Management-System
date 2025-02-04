@@ -27,6 +27,9 @@ public class ManageStudentController extends ManageEntityController {
 
         JSONObject newStudent = createNewStudentObject();
         manager.manageAddEntity(newStudent);
+
+        String successBanner = UI.TextColor.addColor(UI.Banner.success, UI.TextColor.GREEN);
+        System.out.println(successBanner);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package utils.controller;
 
 import entities.Student;
+import utils.manager.StudentManager;
 
 import java.util.Scanner;
 
@@ -16,6 +17,16 @@ public class StudentController {
     public void submitAssignment(){
         // handles the actions of submitting an assignment
         // getting input like link to the finished work of the student
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("link ");
+
+        // submitted
+        assignment  = student.getAssingment();
+        assingment.add(newAssignment);
+
+        StudentManager studentManager = new StudentManager(student);
+        studentManager.manageViewAssignment();
 
         // call to manager to manage the submission of the assignment (write to file (to where....))
 

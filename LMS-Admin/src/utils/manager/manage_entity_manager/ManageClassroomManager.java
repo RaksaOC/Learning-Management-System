@@ -23,7 +23,10 @@ public class ManageClassroomManager extends ManageEntityManager {
         newClassroom.put("status", "active");
         newClassroom.put("students", getStudentsFromGroup(groupID));
         newClassroom.put("assignments", new JSONArray());
+        newClassroom.put("resources", new JSONArray());
+        newClassroom.put("quizzes", new JSONArray());
         entityData.put(newClassroom);
+        createProgress(newClassroom.getString("id"), newClassroom.getJSONArray("students")); // handles saving to student.json and progress.json
         addToClassroomInUni(groupID, newClassroomID); // handles the saving in the function
         saveEntity(); // this only saves to the classroom.json file
     }
@@ -64,12 +67,63 @@ public class ManageClassroomManager extends ManageEntityManager {
                         if (dep.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(m).getString("id").equals(groupID)) {
                             return dep.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(m).getJSONArray("students");
                         }
-
                     }
                 }
             }
         }
         return null;
+    }
+
+    private void createProgress(String classroomID, JSONArray studentsFromGroup) {
+        // create a progress in student
+        // create progress in progress.json
+        try {
+            this.content = new String(Files.readAllBytes(Paths.get("shared/data/classroom.json")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JSONArray progress = new JSONArray(content);
+
+        JSONObject newProgress = new JSONObject();
+        newProgress.put("classroomId", classroomID);
+        newProgress.put("assignments", new JSONArray());
+        newProgress.put("resources", new JSONArray());
+        newProgress.put("quizzes", new JSONArray());
+
+        for (int i = 0; i < studentsFromGroup.length(); i++) {
+            newProgress.put("studentId", studentsFromGroup.getString(i));
+            newProgress.put("id", generateNewProgressId(progress.length() + i));
+            progress.put(newProgress);
+        }
+
+        try{
+            this.content = new String(Files.readAllBytes(Paths.get("shared/data/student.json")));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+        JSONArray allStudents = new JSONArray(content);
+
+        for (int i = 0; i < allStudents.length(); i++) {
+            for(int j = 0; j < studentsFromGroup.length(); j++){
+                if(allStudents.getJSONObject(i).getString("id").equals(studentsFromGroup.getString(j))){
+                    allStudents.getJSONObject(i).getJSONObject("progress").put(classroomID, newProgress.getString("id"));
+                }
+            }
+        }
+
+        try (FileWriter file = new FileWriter("shared/data/progress.json")) {
+            file.write(progress.toString(4)); // Pretty-print with 4 spaces
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }try (FileWriter file = new FileWriter("shared/data/student.json")) {
+            file.write(allStudents.toString(4)); // Pretty-print with 4 spaces
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void manageAssignCourseToClassroom(String classroomID, String courseID) {
@@ -162,5 +216,21 @@ public class ManageClassroomManager extends ManageEntityManager {
             }
         }
         return false;
+    }
+
+    private String generateNewProgressId(int lastId){
+        String baseId = "P000001";
+        String string_lastId = String.valueOf(lastId);
+        int start = baseId.length() - string_lastId.length();
+        int end = baseId.length();
+        int j = 0;
+        StringBuilder base = new StringBuilder(baseId);
+        StringBuilder last = new StringBuilder(string_lastId);
+        for(int i = start; i <= end; i++){
+            base.setCharAt(i, last.charAt(j));
+            j++;
+        }
+        baseId = base.toString();
+        return baseId;
     }
 }

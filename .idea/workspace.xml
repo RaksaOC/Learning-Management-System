@@ -6,7 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="816c4d4f-796b-4ab7-98a7-72a49b87cc0e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/entities/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/entities/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/manage_entity_controller/ManageTeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/controller/manage_entity_controller/ManageTeacherController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageClassroomManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageClassroomManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageGenerationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageGenerationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageGroupManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageGroupManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageSpecializationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageSpecializationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageStudentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/utils/manager/manage_entity_manager/ManageStudentManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/src/utils/controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/controller/AuthenticationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/src/utils/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/controller/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/src/utils/manager/StudentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/manager/StudentManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/admin.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/admin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/classroom.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/classroom.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/progress.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/progress.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/student.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/student.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/teacher.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/teacher.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/university.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/university.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +78,7 @@
       <recent name="$PROJECT_DIR$/shared" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Run LMS">
+  <component name="RunManager" selected="Application.Run LMS-Admin">
     <configuration name="Run LMS-Admin" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="LMS-Admin" />
@@ -103,7 +117,7 @@
       <workItem from="1737720837492" duration="903000" />
       <workItem from="1737721776451" duration="107783000" />
       <workItem from="1738071161699" duration="44334000" />
-      <workItem from="1738220702256" duration="74229000" />
+      <workItem from="1738220702256" duration="90321000" />
     </task>
     <servers />
   </component>

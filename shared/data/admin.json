@@ -1,52 +1,10 @@
-[
-    {
-        "createdAt": "2025-01-25T12:00:00Z",
-        "lastLogin": "2025-02-03 13:11:32",
-        "password": "2744ccd10c7533bd736ad890f9dd5cab2adb27b07d500b9493f29cdc420cb2e0",
-        "phoneNumber": "+1234567890",
-        "name": "Chan Raksa",
-        "id": "A001",
-        "email": "me",
-        "status": "active"
-    },
-    {
-        "createdAt": "2025-01-26 12:54:38",
-        "lastLogin": "",
-        "password": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
-        "phoneNumber": "012554049",
-        "name": "kiki",
-        "id": "A002",
-        "email": "me1",
-        "status": "active"
-    },
-    {
-        "createdAt": "2025-01-26 14:44:13",
-        "lastLogin": "",
-        "password": "16d431c44d1c41a15f8eda2eb1518ae51b042d43299a6149d41cb384fd07002e",
-        "phoneNumber": "23849023849023",
-        "name": "me chan",
-        "id": "A003",
-        "email": "jsoifjsiofjdsf",
-        "status": "active"
-    },
-    {
-        "createdAt": "2025-01-28 13:10:18",
-        "lastLogin": "",
-        "password": "bc60f849e288e68808fa595f57815a915a2ade59254ebb233add8f3ba23cab0b",
-        "phoneNumber": "a;lksdjf",
-        "name": "lol",
-        "id": "A004",
-        "email": "a;klsdfj",
-        "status": "inactive"
-    },
-    {
-        "createdAt": "2025-01-28 14:32:18",
-        "lastLogin": "",
-        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-        "phoneNumber": "als;dfj;lajsf",
-        "name": "sdjfl;kajsf",
-        "id": "A005",
-        "email": "sldfjl;kasfjd",
-        "status": "active"
-    }
-]
+[{
+    "createdAt": "2025-01-25T12:00:00Z",
+    "lastLogin": "2025-02-04 22:47:54",
+    "password": "2744ccd10c7533bd736ad890f9dd5cab2adb27b07d500b9493f29cdc420cb2e0",
+    "phoneNumber": "+1234567890",
+    "name": "Chan Raksa",
+    "id": "A001",
+    "email": "me",
+    "status": "active"
+}]

@@ -9,10 +9,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class EditSpecializationManager extends EditEntityManager {
-    JSONArray departments;
-    JSONArray specializations;
-    String depID;
-    String specID;
+    private JSONArray departments;
+    private JSONArray specializations;
+    private String depID;
 
     public EditSpecializationManager(String idToEdit) {
         super(idToEdit);

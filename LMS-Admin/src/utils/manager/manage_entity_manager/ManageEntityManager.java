@@ -81,8 +81,6 @@ public abstract class ManageEntityManager implements ManageEntityManagerInterfac
         }
     }
 
-    ;
-
     protected String generateNewID() {
         try {
             String content = new String(Files.readAllBytes(Paths.get(filePath)));

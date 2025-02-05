@@ -1,8 +1,6 @@
 package utils.controller.edit_entity_controller;
 
-import lib.Hasher;
 import ui.UI;
-import utils.manager.edit_entity_manager.EditEntityManager;
 
 import java.util.Scanner;
 

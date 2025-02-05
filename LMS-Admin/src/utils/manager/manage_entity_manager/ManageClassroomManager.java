@@ -28,6 +28,7 @@ public class ManageClassroomManager extends ManageEntityManager {
         entityData.put(newClassroom);
         createProgress(newClassroom.getString("id"), newClassroom.getJSONArray("students")); // handles saving to student.json and progress.json
         addToClassroomInUni(groupID, newClassroomID); // handles the saving in the function
+        setClassroomToTeacher(newClassroomID, newClassroom.getString("teacherId"));
         saveEntity(); // this only saves to the classroom.json file
     }
 
@@ -57,7 +58,22 @@ public class ManageClassroomManager extends ManageEntityManager {
         saveEntity();
     }
 
-    public JSONArray getStudentsFromGroup(String groupID) {
+    private void setClassroomToTeacher(String classroomID, String teacherID) {
+        try{
+            String content = new String(Files.readAllBytes(Paths.get("shared/data/teacher.json")));
+            JSONArray teachers = new JSONArray(content);
+            for (int i = 0; i < teachers.length(); i++) {
+                if (teachers.getJSONObject(i).getString("id").equals(teacherID)) {
+                    teachers.getJSONObject(i).getJSONArray("classrooms").put(classroomID);
+                    break;
+                }
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private JSONArray getStudentsFromGroup(String groupID) {
         JSONArray dep = loadDepartment();
 
         for (int i = 0; i < dep.length(); i++) {
@@ -186,7 +202,7 @@ public class ManageClassroomManager extends ManageEntityManager {
         return null;
     }
 
-    public void saveEntityToUni(JSONArray departments) {
+    private void saveEntityToUni(JSONArray departments) {
         // load uni
         String uniFilePath = "shared/data/university.json";
         JSONObject uni = new JSONObject();

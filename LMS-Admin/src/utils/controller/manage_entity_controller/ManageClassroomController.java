@@ -86,7 +86,7 @@ public class ManageClassroomController extends ManageEntityController {
         do {
             teacherID = prompt("Enter Teacher ID");
             if (manageTeacherManager.isTeacherIdExist(teacherID)) break;
-            else System.out.println(UI.TextColor.addColor("\nInvalid Generation ID\n", UI.TextColor.RED));
+            else System.out.println(UI.TextColor.addColor("\nInvalid Teacher ID\n", UI.TextColor.RED));
         } while (!manageTeacherManager.isTeacherIdExist(teacherID));
 
         manageClassroomManager.manageAssignTeacherToClassroom(classroomId, teacherID);

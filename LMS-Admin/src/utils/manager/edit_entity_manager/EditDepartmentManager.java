@@ -60,21 +60,4 @@ public class EditDepartmentManager extends EditEntityManager {
             throw new RuntimeException(e);
         }
     }
-
-    // No Uses
-
-    @Override
-    public String getOldPhone() {
-        return null;
-    }
-
-
-    public String getOldEmail() {
-        return null;
-    }
-
-
-    public String getOldPassword() {
-        return null;
-    }
 }

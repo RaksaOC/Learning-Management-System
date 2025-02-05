@@ -1,14 +1,10 @@
-[
-  {
-    "teacherId": "",
+[{
+    "teacherId": "T0001",
     "assignments": [],
-    "students": [
-      "S000001"
-    ],
+    "students": ["S000001"],
     "resources": [],
     "id": "GEN10-CS-SE-G1-OOP",
     "quizzes": [],
     "courseId": "",
     "status": "active"
-  }
-]
+}]

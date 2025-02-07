@@ -345,7 +345,6 @@ public class ManageStudentController extends ManageEntityController {
         newStudent.put("address", addressObj);
         newStudent.put("guardian", guardianObj);
         newStudent.put("createdAt", formattedDate);
-        newStudent.put("courses", new JSONArray());
         newStudent.put("generation", generation);
         newStudent.put("specialization", specialization);
         newStudent.put("department", department);

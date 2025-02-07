@@ -1,11 +1,56 @@
 package entities;
 
-public class Teacher extends Person {
-    public Teacher(String name, String surname, int age, String gender, String phone, String email, String password) {
-        super(name, surname, age, gender, phone, email, password);
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class Teacher extends User {
+    private final String id;
+    private final String gender;
+    private final String phoneNumber;
+    private final String DoB;
+    private final JSONArray classrooms;
+
+    public Teacher(JSONObject teacher) throws JSONException {
+        super(teacher.getJSONObject("name").getString("firstName"),
+                teacher.getJSONObject("name").getString("firstName"),
+                teacher.getString("email"),
+                teacher.getString("password"));
+        this.id = teacher.getString("id");
+        this.gender = teacher.getString("gender");
+        this.phoneNumber = teacher.getString("phoneNumber");
+        this.DoB = teacher.getString("dob");
+        this.classrooms = teacher.getJSONArray("classrooms");
     }
 
-    public void addAssignment() {
-
+    public String getId() {
+        return id;
     }
+    public String getGender() {
+        return gender;
+    }
+    public String getPhone() {
+        return phoneNumber;
+    }
+    public String getDoB() {
+        return DoB;
+    }
+    public JSONArray getClassrooms() {
+        return classrooms;
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id='" + id + '\'' +
+                ", firstName='" + getFirstName() + '\'' +
+                ", lastName='" + getLastName() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", gender='" + gender + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", DoB='" + DoB + '\'' +
+                ", classrooms=" + classrooms.toString() +
+                '}';
+    }
+
 }

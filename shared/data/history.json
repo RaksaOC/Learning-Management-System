@@ -1,0 +1,16 @@
+{
+  "teacher": [
+    {
+      "lastAction": "logIn",
+      "id": "T0001",
+      "time": "2025-01-03 10:35:30"
+    }
+  ],
+  "student": [
+    {
+      "lastAction": "logIn",
+      "id": "S000001",
+      "time": "2025-02-03 10:35:30"
+    }
+  ]
+}

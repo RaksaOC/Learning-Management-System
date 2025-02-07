@@ -25,9 +25,17 @@ public class TeacherManager {
         // this is to edit info like the description of the assignment....
     }
 
+    public String manageViewProfile(){
+        String profile = """
+                
+                """;
+        return profile;
+    }
+
     private void commentOnAssignment(){
         // used with the manageGradeAssignment to add comment...
     }
+
 
     // more methods/functionalities to come
 }

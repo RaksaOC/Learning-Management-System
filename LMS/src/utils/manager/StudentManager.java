@@ -19,11 +19,12 @@ public class StudentManager {
         return null;
     }
 
-    public JSONObject manageViewProfile() {
-        // go to the student file and return the student's name, age, DoB, ............
-
-        // [To Change]
-        return null;
+    public String manageViewProfile() {
+        // print the student's info in a nice and formatted table/ interface
+        String profile = """
+                
+                """;
+        return profile;
     }
 
     public void addAssingment(){

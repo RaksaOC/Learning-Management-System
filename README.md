@@ -13,20 +13,11 @@ The system boasts over **60 functionalities**, meticulously designed to enhance 
 
 ## 🚀 Key Features
 - ✅ **CLI-based UI with enhanced visuals** (ASCII banners, color-coded text).
-- ✅ **50+ core functionalities** for efficient academic management.
+- ✅ **60+ core functionalities** for efficient academic management.
 - ✅ **Persistent storage using JSON files** for structured data.
 - ✅ **Scalable OOP design** for future feature integration.
 - ✅ **Automated session handling** for faster access.
 - ✅ **Seamless classroom interactions** with role-specific capabilities.
-
----
-
-## 🎯 Design Principles
-- **Object-Oriented Programming (OOP)** – Efficient class structures, inheritance, and encapsulation.
-- **MVC-Inspired Layering** – Controllers handle logic, managers perform data operations, and entities represent real-world objects.
-- **Persistent Data Storage** – JSON-based data management for offline accessibility.
-- **Modular and Scalable** – Each module is independently designed to ensure future enhancements.
-- **Enhanced CLI Experience** – ASCII banners, color-coded text, and intuitive navigation.
 
 ---
 
@@ -75,6 +66,13 @@ The system boasts over **60 functionalities**, meticulously designed to enhance 
 ---
 
 ## 🛠 Technical Aspects
+
+### 🎯 Design Principles
+- **Object-Oriented Programming (OOP)** – Efficient class structures, inheritance, encapsulation, polymorphism and abstraction.
+- **MVC-Inspired Layering** – Controllers handle logic, managers perform data operations, and entities represent real-world objects.
+- **Persistent Data Storage** – JSON-based data management for offline accessibility.
+- **Modular and Scalable** – Each module is independently designed to ensure future enhancements.
+- **Enhanced CLI Experience** – ASCII banners, color-coded text, and intuitive navigation.
 
 ### 📌 UML Class Diagram
 - *(To be added: UML class relationships and system design representation)*

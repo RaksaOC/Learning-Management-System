@@ -181,6 +181,9 @@ public class UI {
                                                                              `._`.| \\/ | \\_| \\_| _|`._`.`._`. 
                                                                              |___/ \\__/ \\__/\\__/___|___/|___/  
                 """;
+
+        // LMS APP BANNERS
+
     }
 
     public static class TextColor {

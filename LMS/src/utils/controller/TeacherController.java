@@ -1,11 +1,20 @@
 package utils.controller;
 
 import entities.Teacher;
+import ui.UI;
+import utils.manager.TeacherManager;
 
 public class TeacherController {
+    Teacher teacher;
     public TeacherController(Teacher teacher) {
 //                                ^
 //                       takes in a teacher object from the authentication
+        this.teacher = teacher;
+    }
+    public void viewProfile() {
+        TeacherManager teacherManager = new TeacherManager(teacher);
+        String profileDetails = teacherManager.manageViewProfile();
+        System.out.println(UI.TextColor.addColor(profileDetails, UI.TextColor.BLUE));
     }
 
     public void gradeAssignment(){

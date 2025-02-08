@@ -79,8 +79,114 @@ The system boasts over **60 functionalities**, meticulously designed to enhance 
 
 ### 📂 Database Design / ERD Schema
 
+![ER Diagram](https://github.com/RaksaOC/Learning-Management-System/blob/6bb113f21b0d55f6e15d8bf1ec0138a1254612be/doc/images/ERD.png)
+
 ### 🏗 Project Structure
-- *(To be added: Folder structure and modular breakdown)*
+As of 08/02/2025
+
+```
+  .
+├── LMS
+│   ├── assets
+│   └── src
+│       ├── main
+│       │   ├── Main.java
+│       │   └── MainController.java
+│       └── utils
+│           ├── controller
+│           │   ├── AuthenticationController.java
+│           │   ├── StudentController.java
+│           │   └── TeacherController.java
+│           ├── manager
+│           │   ├── AuthenticationManager.java
+│           │   ├── StudentManager.java
+│           │   └── TeacherManager.java
+│           └── menu
+│               └── Menu.java
+├── LMS-Admin
+│   ├── assets
+│   └── src
+│       ├── main
+│       │   ├── Main.java
+│       │   └── MainController.java
+│       └── utils
+│           ├── controller
+│           │   ├── authentication_controller
+│           │   │   └── AuthenticationController.java
+│           │   ├── edit_entity_controller
+│           │   │   ├── EditAdminController.java
+│           │   │   ├── EditClassroomController.java
+│           │   │   ├── EditDepartmentController.java
+│           │   │   ├── EditEntityController.java
+│           │   │   ├── EditGenerationController.java
+│           │   │   ├── EditGroupController.java
+│           │   │   ├── EditSpecializationController.java
+│           │   │   ├── EditStudentController.java
+│           │   │   └── EditTeacherController.java
+│           │   └── manage_entity_controller
+│           │       ├── ManageAdminController.java
+│           │       ├── ManageClassroomController.java
+│           │       ├── ManageDepartmentController.java
+│           │       ├── ManageEntityController.java
+│           │       ├── ManageGenerationController.java
+│           │       ├── ManageGroupController.java
+│           │       ├── ManageSpecializationController.java
+│           │       ├── ManageStudentController.java
+│           │       └── ManageTeacherController.java
+│           ├── manager
+│           │   ├── authentication_manager
+│           │   │   └── AuthManager.java
+│           │   ├── edit_entity_manager
+│           │   │   ├── EditAdminManager.java
+│           │   │   ├── EditClassroomManager.java
+│           │   │   ├── EditDepartmentManager.java
+│           │   │   ├── EditEntityManager.java
+│           │   │   ├── EditGenerationManager.java
+│           │   │   ├── EditGroupManager.java
+│           │   │   ├── EditSpecializationManager.java
+│           │   │   ├── EditStudentManager.java
+│           │   │   └── EditTeacherManager.java
+│           │   └── manage_entity_manager
+│           │       ├── ManageAdminManager.java
+│           │       ├── ManageClassroomManager.java
+│           │       ├── ManageDepartmentManager.java
+│           │       ├── ManageEntityManager.java
+│           │       ├── ManageGenerationManager.java
+│           │       ├── ManageGroupManager.java
+│           │       ├── ManageSpecializationManager.java
+│           │       ├── ManageStudentManager.java
+│           │       └── ManageTeacherManager.java
+│           └── menu
+│               ├── Menu.java
+│               └── MenuManager.java
+├── README.md
+├── doc
+│   ├── images
+│   │   └── ERD.png
+│   └── log
+│       ├── General-log.md
+│       ├── LMS-admin-log.md
+│       └── LMS-log.md
+└── shared
+    ├── data
+    │   ├── admin.json
+    │   ├── classroom.json
+    │   ├── history.json
+    │   ├── progress.json
+    │   ├── student.json
+    │   ├── teacher.json
+    │   └── university.json
+    ├── entities
+    │   ├── Student.java
+    │   ├── Teacher.java
+    │   └── User.java
+    ├── lib
+    │   ├── Hasher.java
+    │   └── json-20230227.jar
+    └── ui
+        └── UI.java
+
+```
 
 ### 📦 Dependencies
 

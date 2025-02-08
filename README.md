@@ -78,26 +78,34 @@ The system boasts over **60 functionalities**, meticulously designed to enhance 
 - *(To be added: UML class relationships and system design representation)*
 
 ### 📂 Database Design / ERD Schema
-- *(To be added: ERD diagrams and database structure overview)*
 
 ### 🏗 Project Structure
 - *(To be added: Folder structure and modular breakdown)*
 
-
 ### 📦 Dependencies
-- *(To be added: List of libraries and external dependencies)*
+
+- `org.json`: A library for working with JSON data in Java.
+- Custom SHA-256 Library: A custom implementation of the SHA-256 hashing algorithm.
 
 ### ▶️ How to Compile & Run
-- *(To be added: Step-by-step guide for setup and execution)*
+
+- *(Step-by-step guide for setup and execution will be added shortly.)*
 
 ### 👥 Contributors
-- *(To be added: List of contributors and their roles)*
+
+- **Ory Chanraksa**
+- **Hong Layeang**
+- **Kong Visal**
+- **Sao Visal**
 
 ### 🎓 Supervisor
-- *(To be added: Acknowledgment of project supervision and guidance)*
 
-### 🙏 Thank You
-- *(A note of gratitude to all involved in the project)*
+- **Mr. Lay Vathna**, Lecturer and Researcher at CADT
+- **Mr. Korat Natt**, Lecturer and Assistant Researcher at CADT
+
+### 🙏 Acknowledgements
+
+- Thank you for visiting this GitHub repository. If you encounter any issues or have questions, feel free to contact us at [ocraksa@gmail.com](mailto:ocraksa@gmail.com).
 
 ---
 

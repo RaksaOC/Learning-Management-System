@@ -1,89 +1,107 @@
 {
-    "universityName": "CADT",
-    "courses": [
+  "universityName": "CADT",
+  "courses": [
+    {
+      "name": "IT Essentials",
+      "id": "L0001"
+    },
+    {
+      "name": "Visual Art",
+      "id": "L0002"
+    }
+  ],
+  "departments": [
+    {
+      "specializations": [
         {
-            "name": "IT Essentials",
-            "id": "L0001"
-        },
-        {
-            "name": "Visual Art",
-            "id": "L0002"
-        }
-    ],
-    "departments": [
-        {
-            "specializations": [
+          "generations": [
+            {
+              "groups": [
                 {
-                    "generations": [{
-                        "groups": [{
-                            "students": ["S000001"],
-                            "id": "GEN10-CS-SE-G1",
-                            "classrooms": ["GEN10-CS-SE-G1-OOP"],
-                            "status": "active"
-                        }],
-                        "id": "GEN10",
-                        "status": "active"
-                    }],
-                    "name": "Software Engineering",
-                    "id": "CS-SE",
-                    "status": "active"
-                },
-                {
-                    "generations": [{
-                        "groups": [],
-                        "id": "GEN10",
-                        "status": "active"
-                    }],
-                    "name": "Data Science",
-                    "id": "CS-DS",
-                    "status": "active"
+                  "students": [
+                    "S000001"
+                  ],
+                  "id": "GEN10-CS-SE-G1",
+                  "classrooms": [
+                    "GEN10-CS-SE-G1-OOP"
+                  ],
+                  "status": "active"
                 }
-            ],
-            "name": "Computer Science",
-            "id": "CS",
-            "status": "active"
+              ],
+              "id": "GEN10",
+              "status": "active"
+            }
+          ],
+          "name": "Software Engineering",
+          "id": "CS-SE",
+          "status": "active"
         },
         {
-            "specializations": [
-                {
-                    "generations": [{
-                        "groups": [],
-                        "id": "GEN10",
-                        "status": "active"
-                    }],
-                    "name": "Cybersecurity",
-                    "id": "TN-CBS",
-                    "status": "active"
-                },
-                {
-                    "generations": [{
-                        "groups": [],
-                        "id": "GEN10",
-                        "status": "active"
-                    }],
-                    "name": "Telecommunication & Networking",
-                    "id": "TN-TN",
-                    "status": "active"
-                }
-            ],
-            "name": "Telecommunication & Networking",
-            "id": "TN",
-            "status": "active"
-        },
-        {
-            "specializations": [{
-                "generations": [{
-                    "groups": [],
-                    "id": "GEN10",
-                    "status": "active"
-                }],
-                "name": "E-Commerce",
-                "id": "DB-EC",
-                "status": "active"
-            }],
-            "name": "Digital Business",
-            "id": "DB",
-            "status": "active"
+          "generations": [
+            {
+              "groups": [],
+              "id": "GEN10",
+              "status": "active"
+            }
+          ],
+          "name": "Data Science",
+          "id": "CS-DS",
+          "status": "active"
         }
-    ]
+      ],
+      "name": "Computer Science",
+      "id": "CS",
+      "status": "active"
+    },
+    {
+      "specializations": [
+        {
+          "generations": [
+            {
+              "groups": [],
+              "id": "GEN10",
+              "status": "active"
+            }
+          ],
+          "name": "Cybersecurity",
+          "id": "TN-CBS",
+          "status": "active"
+        },
+        {
+          "generations": [
+            {
+              "groups": [],
+              "id": "GEN10",
+              "status": "active"
+            }
+          ],
+          "name": "Telecommunication & Networking",
+          "id": "TN-TN",
+          "status": "active"
+        }
+      ],
+      "name": "Telecommunication & Networking",
+      "id": "TN",
+      "status": "active"
+    },
+    {
+      "specializations": [
+        {
+          "generations": [
+            {
+              "groups": [],
+              "id": "GEN10",
+              "status": "active"
+            }
+          ],
+          "name": "E-Commerce",
+          "id": "DB-EC",
+          "status": "active"
+        }
+      ],
+      "name": "Digital Business",
+      "id": "DB",
+      "status": "active"
+    }
+  ]
 }

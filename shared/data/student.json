@@ -1,9 +1,10 @@
-[{
+[
+  {
     "generation": "GEN10",
     "lastLogin": "2025-02-07 15:38:21",
     "address": {
-        "province": "phnom penh",
-        "district": "Chbar ampv"
+      "province": "phnom penh",
+      "district": "Chbar ampv"
     },
     "gender": "Male",
     "createdAt": "2025-02-04 21:53:36",
@@ -11,18 +12,22 @@
     "phoneNumber": "012540494",
     "dob": "03042006",
     "name": {
-        "firstName": "Chan",
-        "lastName": "Raksa"
+      "firstName": "Chan",
+      "lastName": "Raksa"
     },
     "specialization": "Software Engineering",
-    "progress": {"GEN10-CS-SE-G1-OOP": "P000001"},
+    "progress": {
+      "GEN10-CS-SE-G1-OOP": "P000001"
+    },
     "id": "S000001",
     "guardian": {
-        "guardianGender": "female",
-        "guardianName": "mom",
-        "guardianPhoneNumber": "0123423432"
+      "guardianGender": "female",
+      "guardianName": "mom",
+      "guardianPhoneNumber": "0123423432"
     },
     "department": "Computer Science",
     "email": "ocraksa@gmail.com",
     "status": "active"
-}]
+  }
+]
+

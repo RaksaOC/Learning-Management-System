@@ -75,7 +75,14 @@ The system boasts over **60 functionalities**, meticulously designed to enhance 
 - **Enhanced CLI Experience** – ASCII banners, color-coded text, and intuitive navigation.
 
 ### 📌 UML Class Diagram
-- *(To be added: UML class relationships and system design representation)*
+
+- **LMS-Admin**
+
+![UML](https://github.com/RaksaOC/Learning-Management-System/blob/ca1d549bf0e753b104d24ecf46be0b293f0747c5/doc/images/LMS-Admin-UML.drawio.png)
+
+- **LMS**
+
+- Coming Soon...
 
 ### 📂 Database Design / ERD Schema
 

@@ -1,15 +1,13 @@
-[
-  {
+[{
     "createdAt": "2025-01-25T12:00:00Z",
-    "lastLogin": "2025-02-07 20:33:32",
+    "lastLogin": "2025-02-11 11:46:45",
     "password": "2744ccd10c7533bd736ad890f9dd5cab2adb27b07d500b9493f29cdc420cb2e0",
     "phoneNumber": "+1234567890",
     "name": {
-      "firstName": "Chanraksa",
-      "lastName": "Ory"
+        "firstName": "Chanraksa",
+        "lastName": "Ory"
     },
     "id": "A001",
     "email": "me",
     "status": "active"
-  }
-]
+}]

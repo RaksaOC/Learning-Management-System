@@ -1,7 +1,14 @@
 [
   {
     "studentId": "S000001",
-    "assignments": [],
+    "assignments": [
+      {
+        "id": "A0001",
+        "status": "unFinshed",
+        "score": 90,
+        "attachment": ""
+      }
+    ],
     "resources": [],
     "quizzes": [],
     "classroomId": "GEN10-CS-SE-G1-OOP",

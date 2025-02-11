@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="816c4d4f-796b-4ab7-98a7-72a49b87cc0e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/mariadb_java_client_3_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/lib/mariadb-java-client-3.5.1.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin/LMS-Admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/LMS-Admin.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/LMS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/LMS.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/classroom.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/classroom.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/progress.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/progress.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/shared.iml" beforeDir="false" afterPath="$PROJECT_DIR$/shared/shared.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,15 +51,15 @@
     "ToolWindow.Run.ShowToolbar": "false",
     "dart.analysis.tool.window.visible": "false",
     "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "sql-migrate",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/raksa/School/Year 2/Term 2/OOP/Project/Learning-Management-System",
+    "last_opened_file_path": "/Users/raksa/School/Year 2/Term 2/OOP/Project/Learning-Management-System/shared/lib",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel",
@@ -60,12 +67,15 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/shared/lib" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/doc/images" />
       <recent name="$PROJECT_DIR$/shared" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Run LMS">
+  <component name="RunManager" selected="Application.Run LMS-Admin">
     <configuration name="Run LMS-Admin" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="LMS-Admin" />
@@ -105,6 +115,8 @@
       <workItem from="1737721776451" duration="107783000" />
       <workItem from="1738071161699" duration="44334000" />
       <workItem from="1738220702256" duration="102711000" />
+      <workItem from="1739245640066" duration="272000" />
+      <workItem from="1739245915919" duration="2510000" />
     </task>
     <servers />
   </component>

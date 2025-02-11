@@ -1,6 +1,13 @@
 [{
     "teacherId": "T0001",
-    "assignments": [],
+    "assignments": [
+        {
+            "id": "A0001",
+            "title": "ass1",
+            "desc": "",
+            "status": "inactive",
+        }
+    ],
     "students": ["S000001"],
     "resources": [],
     "id": "GEN10-CS-SE-G1-OOP",

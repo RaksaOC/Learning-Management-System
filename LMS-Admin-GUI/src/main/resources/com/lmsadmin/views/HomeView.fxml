@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="53.0" prefWidth="232.0">
+               <children>
+                  <ImageView fitHeight="53.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/menu.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin></HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0" style="-fx-background-color: #6A84AC;">
+               <children>
+                  <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Home-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Home">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Home-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="4.0" prefWidth="232.0" style="-fx-background-color: #CECECE;" />
+            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Home-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Student">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Home-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Teacher">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="4.0" prefWidth="232.0" style="-fx-background-color: #CECECE;" />
+            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Home-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Department">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Home-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Specialization">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Home-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Generation">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Home-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Group">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Home-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Course">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Home-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Classroom">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="2.0" prefWidth="232.0" style="-fx-background-color: #CECECE;" />
+            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Home-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Admin">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ebebeb;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </padding>
+         <children>
+            <VBox alignment="CENTER" prefHeight="734.0" prefWidth="1068.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="250.0" prefWidth="1068.0" spacing="70.0">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" HBox.hgrow="NEVER">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Home-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Dashboard">
+                                 <font>
+                                    <Font name="Gill Sans" size="19.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                           <effect>
+                              <DropShadow height="44.72" radius="24.085" spread="0.22" width="53.62" />
+                           </effect></VBox>
+                        <VBox alignment="CENTER" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" HBox.hgrow="NEVER">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Home-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Manage Student">
+                                 <font>
+                                    <Font name="Gill Sans" size="19.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow height="44.72" radius="24.085" spread="0.22" width="53.62" />
+                           </effect></VBox>
+                        <VBox alignment="CENTER" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" HBox.hgrow="NEVER">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Home-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Manage Teacher">
+                                 <font>
+                                    <Font name="Gill Sans" size="19.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow height="44.72" radius="24.085" spread="0.22" width="53.62" />
+                           </effect></VBox>
+                        <VBox alignment="CENTER" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" HBox.hgrow="NEVER">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Home-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Manage Department">
+                                 <font>
+                                    <Font name="Gill Sans" size="19.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow height="44.72" radius="24.085" spread="0.22" width="53.62" />
+                           </effect></VBox>
+                     </children></HBox>
+                  <HBox alignment="CENTER" prefHeight="250.0" prefWidth="1068.0" spacing="70.0">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" HBox.hgrow="NEVER">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Home-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Manage  Specialization">
+                                 <font>
+                                    <Font name="Gill Sans" size="19.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow height="44.72" radius="24.085" spread="0.22" width="53.62" />
+                           </effect></VBox>
+                        <VBox alignment="CENTER" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" HBox.hgrow="NEVER">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Home-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Manage Generation">
+                                 <font>
+                                    <Font name="Gill Sans" size="19.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow height="44.72" radius="24.085" spread="0.22" width="53.62" />
+                           </effect></VBox>
+                        <VBox alignment="CENTER" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" HBox.hgrow="NEVER">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Home-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Manage Group">
+                                 <font>
+                                    <Font name="Gill Sans" size="19.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow height="44.72" radius="24.085" spread="0.22" width="53.62" />
+                           </effect></VBox>
+                        <VBox alignment="CENTER" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" HBox.hgrow="NEVER">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Home-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Manage Classroom">
+                                 <font>
+                                    <Font name="Gill Sans" size="19.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow height="44.72" radius="24.085" spread="0.22" width="53.62" />
+                           </effect></VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" fillHeight="false" prefHeight="250.0" prefWidth="1068.0" spacing="70.0">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <VBox alignment="CENTER" fillWidth="false" prefHeight="188.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" HBox.hgrow="NEVER">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Home-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Manage Course">
+                                 <font>
+                                    <Font name="Gill Sans" size="19.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow height="44.72" radius="24.085" spread="0.22" width="53.62" />
+                           </effect></VBox>
+                        <VBox alignment="CENTER" fillWidth="false" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" HBox.hgrow="NEVER">
+                           <children>
+                              <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Home-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Manage Admin">
+                                 <font>
+                                    <Font name="Gill Sans" size="19.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow height="44.72" radius="24.085" spread="0.22" width="53.62" />
+                           </effect></VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <AnchorPane prefHeight="115.0" prefWidth="1400.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="117.0" prefWidth="233.0" style="-fx-background-color: #2B2D30;">
+               <children>
+                  <ImageView fitHeight="119.0" fitWidth="238.0" layoutX="-1.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../images/banner.png" />
+                     </image>
+                  </ImageView>
+               </children></Pane>
+            <AnchorPane layoutX="232.0" layoutY="-1.0" prefHeight="118.0" prefWidth="1168.0" style="-fx-background-color: #ebebeb;" AnchorPane.leftAnchor="232.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="52.0" layoutX="1017.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="101.0">
+                     <image>
+                        <Image url="@../images/avatar.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="-1.0" />
+                     </effect>
+                  </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="51.0" layoutX="1090.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="38.0">
+                     <image>
+                        <Image url="@../images/logout.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="-1.0" />
+                     </effect>
+                  </ImageView>
+                  <VBox alignment="CENTER_LEFT" layoutX="1.0" layoutY="20.0" prefHeight="78.0" prefWidth="197.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="970.0" AnchorPane.topAnchor="20.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" wrappingWidth="52.02923583984375">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Gill Sans Bold" size="15.0" />
+                           </font></Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date: 25/12/2025">
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Gill Sans Bold" size="15.0" />
+                           </font></Text>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>

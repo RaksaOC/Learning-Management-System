@@ -1,0 +1,41 @@
+package main.java.com.lmsadmin.controllers;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import main.SceneController;
+import main.java.com.lmsadmin.managers.AuthManager;
+
+public class LogInController {
+    @FXML
+    private TextField email;
+    @FXML
+    private TextField password;
+    @FXML
+    private Button logInButton;
+
+    @FXML
+    private void resetTextFields() {
+        email.setText("");
+        password.setText("");
+    }
+
+    @FXML
+    private void handleLogIn(ActionEvent event) {
+        AuthManager manager = new AuthManager();
+        if (manager.checkCredentials(email.getText(), password.getText())) {
+            System.out.println("Login Successful");
+            SceneController.setScene("home");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid Credentials");
+            alert.setContentText("Invalid Email or Password");
+            alert.showAndWait();
+            resetTextFields();
+        }
+    }
+}
+

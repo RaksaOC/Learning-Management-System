@@ -22,9 +22,13 @@ public class LogInController {
         password.setText("");
     }
 
+
+
     @FXML
     private void handleLogIn(ActionEvent event) {
         AuthManager manager = new AuthManager();
+        System.out.println(email.getText());
+        System.out.println(password.getText());
         if (manager.checkCredentials(email.getText(), password.getText())) {
             System.out.println("Login Successful");
             SceneController.setScene("home");

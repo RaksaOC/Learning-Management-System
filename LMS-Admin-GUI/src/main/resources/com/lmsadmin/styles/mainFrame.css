@@ -1,0 +1,28 @@
+.menu-btn {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-background-color: #6A84AC; /* Your color */
+}
+
+/* Hover effect for .menu-btn */
+.menu-btn:hover {
+    -fx-translate-y: -5px; /* Subtle hover movement */
+    -fx-background-color: #5A7397; /* Darken the background color */
+}
+
+/* Sidebar button specific styles */
+.sidebar-menu-btn {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+/* Hover effect for sidebar button */
+.sidebar-menu-btn:hover {
+    -fx-background-color: #6A84AC; /* Slightly darkened on hover */
+    -fx-translate-x: 2px; /* Subtle horizontal hover effect */
+    -fx-translate-y: -3px; /* Subtle vertical hover effect */
+}
+
+/*.sidebar-menu-btn:focused{*/
+/*    -fx-background-color: #6A84AC; !* Slightly darkened on hover *!*/
+/*}*/

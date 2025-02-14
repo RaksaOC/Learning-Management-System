@@ -2,6 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,9 +15,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.effect.DropShadow?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.MainFrameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.MainFrameController">
     <left>
         <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
             <children>
@@ -22,7 +24,7 @@
                     <children>
                         <ImageView fitHeight="53.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/menu.png" />
+                                <Image url="@../../../images/menu.png" />
                             </image>
                             <cursor>
                                 <Cursor fx:constant="HAND" />
@@ -36,7 +38,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Home">
@@ -59,7 +61,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard">
@@ -83,7 +85,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Student">
@@ -105,11 +107,11 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </HBox>
-                <HBox fx:id="manageTeacherLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToManageTeacher" prefHeight="58.0" prefWidth="232.0" spacing="20.0" style="-fx-background-color: #6A84AC;" styleClass="sidebar-menu-btn">
+                <HBox fx:id="manageTeacherLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToManageTeacher" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn">
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Teacher">
@@ -133,7 +135,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Department">
@@ -156,7 +158,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Specialization">
@@ -176,7 +178,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Generation">
@@ -196,7 +198,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Group">
@@ -216,7 +218,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Course">
@@ -239,7 +241,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Classroom">
@@ -256,11 +258,11 @@
                     </cursor>
                 </HBox>
                 <HBox prefHeight="2.0" prefWidth="232.0" style="-fx-background-color: #CECECE;" />
-                <HBox fx:id="manageAdminLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToManageAdmin" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn">
+                <HBox fx:id="manageAdminLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToManageAdmin" prefHeight="58.0" prefWidth="232.0" spacing="20.0" style="-fx-background-color: #6A84AC;" styleClass="sidebar-menu-btn">
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Admin">
@@ -283,115 +285,72 @@
         </VBox>
     </left>
     <center>
-        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="40.0" style="-fx-background-color: #ebebeb;" BorderPane.alignment="CENTER">
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="25.0" style="-fx-background-color: #ebebeb;" BorderPane.alignment="CENTER">
             <padding>
-                <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                <Insets bottom="50.0" left="25.0" right="25.0" top="10.0" />
             </padding>
             <children>
-                <HBox alignment="CENTER_LEFT" prefHeight="140.0" prefWidth="1068.0" spacing="40.0" style="-fx-border-width: 2; -fx-background-color: #6A84AC; -fx-border-color: #000000;">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Delete Admin">
+                    <font>
+                        <Font name="Gill Sans Bold" size="26.0" />
+                    </font>
+                </Text>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1139.0" spacing="20.0">
                     <children>
-                        <ImageView fitHeight="109.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/Home-icon.png" />
-                            </image>
-                            <effect>
-                                <ColorAdjust brightness="-1.0" />
-                            </effect>
-                        </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add Teacher">
-                            <font>
-                                <Font name="Gill Sans" size="33.0" />
-                            </font>
-                        </Text>
+                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="Delete Admin">
+                                    <font>
+                                        <Font name="Gill Sans Bold" size="19.0" />
+                                    </font>
+                                </Label>
+                                <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Admin ID">
+                                    <font>
+                                        <Font size="17.0" />
+                                    </font>
+                                </TextField>
+                            </children>
+                        </VBox>
                     </children>
-                    <padding>
-                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
-                    </padding>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                    <effect>
-                        <DropShadow />
-                    </effect></HBox>
-                <HBox alignment="CENTER_LEFT" prefHeight="140.0" prefWidth="1068.0" spacing="40.0" style="-fx-border-width: 2; -fx-border-color: #000000; -fx-background-color: #6A84AC;">
-                    <children>
-                        <ImageView fitHeight="109.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/Home-icon.png" />
-                            </image>
-                            <effect>
-                                <ColorAdjust brightness="-1.0" />
-                            </effect>
-                        </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Teacher">
-                            <font>
-                                <Font name="Gill Sans" size="33.0" />
-                            </font>
-                        </Text>
-                    </children>
-                    <padding>
-                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
-                    </padding>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                    <effect>
-                        <DropShadow />
-                    </effect>
                 </HBox>
-                <HBox alignment="CENTER_LEFT" prefHeight="140.0" prefWidth="1068.0" spacing="40.0" style="-fx-border-width: 2; -fx-border-color: #000000; -fx-background-color: #6A84AC;">
-                    <children>
-                        <ImageView fitHeight="109.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/Home-icon.png" />
-                            </image>
-                            <effect>
-                                <ColorAdjust brightness="-1.0" />
-                            </effect>
+                <Button mnemonicParsing="false" text="Search">
+                    <font>
+                        <Font name="Gill Sans" size="20.0" />
+                    </font>
+                </Button>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="40.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Admin Info">
+                     <font>
+                        <Font name="Gill Sans Bold" size="19.0" />
+                     </font>
+                  </Text>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="396.0" fitWidth="359.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                           <image>
+                              <Image url="@../../../images/avatar.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust brightness="-1.0" />
+                           </effect>
                         </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Delete Teacher">
-                            <font>
-                                <Font name="Gill Sans" size="33.0" />
-                            </font>
-                        </Text>
-                    </children>
-                    <padding>
-                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
-                    </padding>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                    <effect>
-                        <DropShadow />
-                    </effect>
-                </HBox>
-                <HBox alignment="CENTER_LEFT" prefHeight="140.0" prefWidth="1068.0" spacing="40.0" style="-fx-border-width: 2; -fx-border-color: #000000; -fx-background-color: #6A84AC;">
-                    <children>
-                        <ImageView fitHeight="109.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/Home-icon.png" />
-                            </image>
-                            <effect>
-                                <ColorAdjust brightness="-1.0" />
-                            </effect>
-                        </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="View Teacher">
-                            <font>
-                                <Font name="Gill Sans" size="33.0" />
-                            </font>
-                        </Text>
-                    </children>
-                    <padding>
-                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
-                    </padding>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                    <effect>
-                        <DropShadow />
-                    </effect>
-                </HBox>
+                        <VBox prefHeight="359.0" prefWidth="666.0" style="-fx-background-color: #AEAE12;" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="100.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Delete">
+                     <font>
+                        <Font name="Gill Sans" size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
             </children>
+
         </VBox>
     </center>
     <top>
@@ -401,7 +360,7 @@
                     <children>
                         <ImageView fitHeight="119.0" fitWidth="238.0" layoutX="-1.0" pickOnBounds="true">
                             <image>
-                                <Image url="@../images/banner.png" />
+                                <Image url="@../../../images/banner.png" />
                             </image>
                         </ImageView>
                     </children></Pane>
@@ -409,7 +368,7 @@
                     <children>
                         <ImageView fitHeight="50.0" fitWidth="52.0" layoutX="1017.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="101.0">
                             <image>
-                                <Image url="@../images/avatar.png" />
+                                <Image url="@../../../images/avatar.png" />
                             </image>
                             <effect>
                                 <ColorAdjust brightness="-1.0" />
@@ -420,7 +379,7 @@
                         </ImageView>
                         <ImageView fitHeight="40.0" fitWidth="51.0" layoutX="1090.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="38.0">
                             <image>
-                                <Image url="@../images/logout.png" />
+                                <Image url="@../../../images/logout.png" />
                             </image>
                             <effect>
                                 <ColorAdjust brightness="-1.0" />
@@ -447,11 +406,6 @@
                                     </font></Text>
                             </children>
                         </VBox>
-                        <Text layoutX="502.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard" AnchorPane.leftAnchor="502.0">
-                            <font>
-                                <Font name="Gill Sans Bold" size="30.0" />
-                            </font>
-                        </Text>
                     </children>
                 </AnchorPane>
             </children>

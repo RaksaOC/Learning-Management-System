@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.MainFrameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.MainFrameController">
    <left>
       <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
          <children>
@@ -23,7 +23,7 @@
                <children>
                   <ImageView fitHeight="53.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/menu.png" />
+                        <Image url="@../../../images/menu.png" />
                      </image>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -33,11 +33,11 @@
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin></HBox>
-            <HBox fx:id="homeLink" alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn" onMouseClicked="#navigateToHome">
+            <HBox fx:id="homeLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToHome" prefHeight="58.0" prefWidth="232.0" spacing="20.0" style="-fx-background-color: #6A84AC;" styleClass="sidebar-menu-btn">
                <children>
                   <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/Home-icon.png" />
+                        <Image url="@../../../images/Home-icon.png" />
                      </image>
                   </ImageView>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Home">
@@ -56,11 +56,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </HBox>
-            <HBox fx:id="dashboardLink" alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn" onMouseClicked="#navigateToDashboard">
+            <HBox fx:id="dashboardLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToDashboard" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn">
                <children>
                   <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/Home-icon.png" />
+                        <Image url="@../../../images/Home-icon.png" />
                      </image>
                   </ImageView>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard">
@@ -80,11 +80,11 @@
                </cursor>
             </HBox>
             <HBox prefHeight="4.0" prefWidth="232.0" style="-fx-background-color: #CECECE;" />
-            <HBox fx:id="manageStudentLink" alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn" onMouseClicked="#navigateToManageStudent">
+            <HBox fx:id="manageStudentLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToManageStudent" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn">
                <children>
                   <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/Home-icon.png" />
+                        <Image url="@../../../images/Home-icon.png" />
                      </image>
                   </ImageView>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Student">
@@ -106,11 +106,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </HBox>
-            <HBox fx:id="manageTeacherLink" alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn" onMouseClicked="#navigateToManageTeacher">
+            <HBox fx:id="manageTeacherLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToManageTeacher" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn">
                <children>
                   <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/Home-icon.png" />
+                        <Image url="@../../../images/Home-icon.png" />
                      </image>
                   </ImageView>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Teacher">
@@ -130,11 +130,11 @@
                </cursor>
             </HBox>
             <HBox prefHeight="4.0" prefWidth="232.0" style="-fx-background-color: #CECECE;" />
-            <HBox fx:id="manageDepartmentLink" alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn" onMouseClicked="#navigateToManageDepartment">
+            <HBox fx:id="manageDepartmentLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToManageDepartment" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn">
                <children>
                   <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/Home-icon.png" />
+                        <Image url="@../../../images/Home-icon.png" />
                      </image>
                   </ImageView>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Department">
@@ -153,11 +153,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </HBox>
-            <HBox fx:id="manageSpecializationLink" alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn" onMouseClicked="#navigateToManageSpecialization">
+            <HBox fx:id="manageSpecializationLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToManageSpecialization" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn">
                <children>
                   <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/Home-icon.png" />
+                        <Image url="@../../../images/Home-icon.png" />
                      </image>
                   </ImageView>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Specialization">
@@ -173,11 +173,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </HBox>
-            <HBox fx:id="manageGenerationLink" alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn" onMouseClicked="#navigateToManageGeneration">
+            <HBox fx:id="manageGenerationLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToManageGeneration" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn">
                <children>
                   <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/Home-icon.png" />
+                        <Image url="@../../../images/Home-icon.png" />
                      </image>
                   </ImageView>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Generation">
@@ -193,11 +193,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </HBox>
-            <HBox fx:id="manageGroupLink" alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn" onMouseClicked="#navigateToManageGroup">
+            <HBox fx:id="manageGroupLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToManageGroup" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn">
                <children>
                   <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/Home-icon.png" />
+                        <Image url="@../../../images/Home-icon.png" />
                      </image>
                   </ImageView>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Group">
@@ -213,11 +213,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </HBox>
-            <HBox fx:id="manageCourseLink" alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn" onMouseClicked="#navigateToManageCourse">
+            <HBox fx:id="manageCourseLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToManageCourse" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn">
                <children>
                   <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/Home-icon.png" />
+                        <Image url="@../../../images/Home-icon.png" />
                      </image>
                   </ImageView>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Course">
@@ -236,11 +236,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </HBox>
-            <HBox fx:id="manageClassroomLink" alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn" onMouseClicked="#navigateToManageClassroom">
+            <HBox fx:id="manageClassroomLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToManageClassroom" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn">
                <children>
                   <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/Home-icon.png" />
+                        <Image url="@../../../images/Home-icon.png" />
                      </image>
                   </ImageView>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Classroom">
@@ -257,11 +257,11 @@
                </cursor>
             </HBox>
             <HBox prefHeight="2.0" prefWidth="232.0" style="-fx-background-color: #CECECE;" />
-            <HBox fx:id="manageAdminLink" alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn" onMouseClicked="#navigateToManageAdmin">
+            <HBox fx:id="manageAdminLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToManageAdmin" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn">
                <children>
                   <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/Home-icon.png" />
+                        <Image url="@../../../images/Home-icon.png" />
                      </image>
                   </ImageView>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Admin">
@@ -296,11 +296,11 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
                      <children>
-                        <VBox fx:id="dashboardButton" alignment="CENTER" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER" onMouseClicked="#navigateToDashboard">
+                        <VBox fx:id="dashboardButton" alignment="CENTER" onMouseClicked="#navigateToDashboard" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER">
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/Home-icon.png" />
+                                    <Image url="@../../../images/Home-icon.png" />
                                  </image>
                               </ImageView>
                               <Label text="Dashboard">
@@ -318,11 +318,11 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></VBox>
-                        <VBox fx:id="manageStudentButton" alignment="CENTER" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER" onMouseClicked="#navigateToManageStudent">
+                        <VBox fx:id="manageStudentButton" alignment="CENTER" onMouseClicked="#navigateToManageStudent" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER">
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/Home-icon.png" />
+                                    <Image url="@../../../images/Home-icon.png" />
                                  </image>
                               </ImageView>
                               <Label text="Manage Student">
@@ -337,11 +337,11 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></VBox>
-                        <VBox fx:id="manageTeacherButton" alignment="CENTER" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER" onMouseClicked="#navigateToManageTeacher">
+                        <VBox fx:id="manageTeacherButton" alignment="CENTER" onMouseClicked="#navigateToManageTeacher" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER">
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/Home-icon.png" />
+                                    <Image url="@../../../images/Home-icon.png" />
                                  </image>
                               </ImageView>
                               <Label text="Manage Teacher">
@@ -356,11 +356,11 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></VBox>
-                        <VBox fx:id="manageDepartmentButton" alignment="CENTER" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER" onMouseClicked="#navigateToManageDepartment">
+                        <VBox fx:id="manageDepartmentButton" alignment="CENTER" onMouseClicked="#navigateToManageDepartment" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER">
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/Home-icon.png" />
+                                    <Image url="@../../../images/Home-icon.png" />
                                  </image>
                               </ImageView>
                               <Label text="Manage Department">
@@ -381,11 +381,11 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
                      <children>
-                        <VBox fx:id="manageSpecializationButton" alignment="CENTER" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER" onMouseClicked="#navigateToManageSpecialization">
+                        <VBox fx:id="manageSpecializationButton" alignment="CENTER" onMouseClicked="#navigateToManageSpecialization" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER">
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/Home-icon.png" />
+                                    <Image url="@../../../images/Home-icon.png" />
                                  </image>
                               </ImageView>
                               <Label text="Manage  Specialization">
@@ -400,11 +400,11 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></VBox>
-                        <VBox fx:id="manageGenerationButton" alignment="CENTER" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER" onMouseClicked="#navigateToManageGeneration">
+                        <VBox fx:id="manageGenerationButton" alignment="CENTER" onMouseClicked="#navigateToManageGeneration" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER">
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/Home-icon.png" />
+                                    <Image url="@../../../images/Home-icon.png" />
                                  </image>
                               </ImageView>
                               <Label text="Manage Generation">
@@ -419,11 +419,11 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></VBox>
-                        <VBox fx:id="manageGroupButton" alignment="CENTER" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER" onMouseClicked="#navigateToManageGroup">
+                        <VBox fx:id="manageGroupButton" alignment="CENTER" onMouseClicked="#navigateToManageGroup" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER">
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/Home-icon.png" />
+                                    <Image url="@../../../images/Home-icon.png" />
                                  </image>
                               </ImageView>
                               <Label text="Manage Group">
@@ -438,11 +438,11 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></VBox>
-                        <VBox fx:id="manageClassroomButton" alignment="CENTER" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER" onMouseClicked="#navigateToManageClassroom">
+                        <VBox fx:id="manageClassroomButton" alignment="CENTER" onMouseClicked="#navigateToManageClassroom" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER">
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/Home-icon.png" />
+                                    <Image url="@../../../images/Home-icon.png" />
                                  </image>
                               </ImageView>
                               <Label text="Manage Classroom">
@@ -464,11 +464,11 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
                      <children>
-                        <VBox fx:id="manageCourseButton" alignment="CENTER" fillWidth="false" prefHeight="188.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER" onMouseClicked="#navigateToManageCourse">
+                        <VBox fx:id="manageCourseButton" alignment="CENTER" fillWidth="false" onMouseClicked="#navigateToManageCourse" prefHeight="188.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER">
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/Home-icon.png" />
+                                    <Image url="@../../../images/Home-icon.png" />
                                  </image>
                               </ImageView>
                               <Label text="Manage Course">
@@ -483,11 +483,11 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></VBox>
-                        <VBox fx:id="manageAdminButton" alignment="CENTER" fillWidth="false" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER" onMouseClicked="#navigateToManageAdmin">
+                        <VBox fx:id="manageAdminButton" alignment="CENTER" fillWidth="false" onMouseClicked="#navigateToManageAdmin" prefHeight="220.0" prefWidth="220.0" spacing="20.0" style="-fx-background-color: #6A84AC; -fx-border-radius: 30;" styleClass="menu-btn" HBox.hgrow="NEVER">
                            <children>
                               <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/Home-icon.png" />
+                                    <Image url="@../../../images/Home-icon.png" />
                                  </image>
                               </ImageView>
                               <Label text="Manage Admin">
@@ -516,7 +516,7 @@
                <children>
                   <ImageView fitHeight="119.0" fitWidth="238.0" layoutX="-1.0" pickOnBounds="true">
                      <image>
-                        <Image url="@../images/banner.png" />
+                        <Image url="@../../../images/banner.png" />
                      </image>
                   </ImageView>
                </children></Pane>
@@ -524,7 +524,7 @@
                <children>
                   <ImageView fitHeight="50.0" fitWidth="52.0" layoutX="1017.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="101.0">
                      <image>
-                        <Image url="@../images/avatar.png" />
+                        <Image url="@../../../images/avatar.png" />
                      </image>
                      <effect>
                         <ColorAdjust brightness="-1.0" />
@@ -535,7 +535,7 @@
                   </ImageView>
                   <ImageView fitHeight="40.0" fitWidth="51.0" layoutX="1090.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="38.0">
                      <image>
-                        <Image url="@../images/logout.png" />
+                        <Image url="@../../../images/logout.png" />
                      </image>
                      <effect>
                         <ColorAdjust brightness="-1.0" />

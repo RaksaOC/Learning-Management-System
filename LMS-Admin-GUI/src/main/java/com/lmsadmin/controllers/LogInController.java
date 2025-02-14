@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import main.SceneController;
+import main.SceneManager;
 import main.java.com.lmsadmin.managers.AuthManager;
 
 public class LogInController {
@@ -31,7 +31,7 @@ public class LogInController {
         System.out.println(password.getText());
         if (manager.checkCredentials(email.getText(), password.getText())) {
             System.out.println("Login Successful");
-            SceneController.setScene("home");
+            SceneManager.setScene("home");
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

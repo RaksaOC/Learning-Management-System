@@ -21,7 +21,7 @@
                <children>
                   <ImageView fitHeight="568.0" fitWidth="386.0" layoutY="2.0" opacity="0.57" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="493.0" AnchorPane.topAnchor="2.0">
                      <image>
-                        <Image url="@../images/banner2.jpg" />
+                        <Image url="@../../../images/banner2.jpg" />
                      </image>
                      <effect>
                         <DropShadow />

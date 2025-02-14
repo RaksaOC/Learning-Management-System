@@ -1,12 +1,9 @@
 package main.java.com.lmsadmin.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import main.SceneController;
+import main.SceneManager;
 
 public class MainFrameController {
 
@@ -62,59 +59,59 @@ public class MainFrameController {
     private void navigateToHome() {
         // [to check] why the color acting weird
 //        homeLink.setStyle("-fx-background-color: #6A84AC");
-        SceneController.setScene("home");
+        SceneManager.setScene("home");
         System.out.println("On page home");
     }
     @FXML
     private void navigateToDashboard() {
 //        dashboardLink.setStyle("-fx-background-color: #6A84AC");
-        SceneController.setScene("dashboard");
+        SceneManager.setScene("dashboard");
         System.out.println("On page dashboard");
     }
     @FXML
     private void navigateToManageStudent() {
 //        manageStudentLink.setStyle("-fx-background-color: #6A84AC");
-        SceneController.setScene("manageStudent");
+        SceneManager.setScene("manageStudent");
         System.out.println("On page manageStudent");
     }
     @FXML
     private void navigateToManageTeacher() {
-        SceneController.setScene("manageTeacher");
+        SceneManager.setScene("manageTeacher");
         System.out.println("On page manageTeacher");
     }
     @FXML
     private void navigateToManageDepartment() {
-        SceneController.setScene("manageDepartment");
+        SceneManager.setScene("manageDepartment");
         System.out.println("On page manageDepartment");
     }
     @FXML
     private void navigateToManageSpecialization() {
-        SceneController.setScene("manageSpecialization");
+        SceneManager.setScene("manageSpecialization");
         System.out.println("On page manageSpecialization");
     }
     @FXML
     private void navigateToManageGeneration() {
-        SceneController.setScene("manageGeneration");
+        SceneManager.setScene("manageGeneration");
         System.out.println("On page manageGeneration");
     }
     @FXML
     private void navigateToManageGroup() {
-        SceneController.setScene("manageGroup");
+        SceneManager.setScene("manageGroup");
         System.out.println("On page manageGroup");
     }
     @FXML
     private void navigateToManageCourse() {
-        SceneController.setScene("manageCourse");
+        SceneManager.setScene("manageCourse");
         System.out.println("On page manageCourse");
     }
     @FXML
     private void navigateToManageClassroom() {
-        SceneController.setScene("manageClassroom");
+        SceneManager.setScene("manageClassroom");
         System.out.println("On page manageClassroom");
     }
     @FXML
     private void navigateToManageAdmin() {
-        SceneController.setScene("manageAdmin");
+        SceneManager.setScene("manageAdmin");
         System.out.println("On page manageAdmin");
     }
 }

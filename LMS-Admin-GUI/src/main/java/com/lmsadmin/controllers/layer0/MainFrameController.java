@@ -1,4 +1,4 @@
-package main.java.com.lmsadmin.controllers;
+package main.java.com.lmsadmin.controllers.layer0;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
@@ -113,5 +113,24 @@ public class MainFrameController {
     private void navigateToManageAdmin() {
         SceneManager.setScene("manageAdmin");
         System.out.println("On page manageAdmin");
+    }
+
+    @FXML
+    private void test() {
+
+        VBox vbox = (VBox) root.lookup("BorderPane > top > AnchorPane > AnchorPane > VBox");
+        if (vbox != null) {
+            if (vbox.getChildren().size() > 1) {  // Ensure there's a second child
+                Node node = vbox.getChildren().get(1);  // Get the second child
+                if (node instanceof Text textNode) {  // Ensure it's a Text element
+                    textNode.setText(newDate);  // Change the date
+                    System.out.println("Updated Date: " + newDate);
+                }
+            } else {
+                System.out.println("VBox does not have a second Text node!");
+            }
+        } else {
+            System.out.println("VBox not found!");
+        }
     }
 }

@@ -36,6 +36,10 @@ public class TeacherManager {
         // used with the manageGradeAssignment to add comment...
     }
 
+    public void addQuiz(){
+
+    }
+
 
     // more methods/functionalities to come
 }

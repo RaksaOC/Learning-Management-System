@@ -78,6 +78,81 @@ public class Menu {
         return choice;
     }
 
+    public String showViewClassroomMenu(){
+        UI.showLoadingBar(10);
+        System.out.println("Teacher Manage Classroom: ");
+        do {
+            menu = """
+                    [1] Manage Assignment
+                    [2] Manage Resources
+                    [3] Manage Quizzes
+                    """;
+            printMenu();
+            this.choice = sc.nextLine();
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
+        return choice;
+    }
+
+    public String showManageAssignmentMenu(){
+        UI.showLoadingBar(10);
+        System.out.println("Teacher Manage Classroom: ");
+        do {
+            menu = """
+                    [1]. Add Assignment
+                    [2]. Edit Assignment
+                    [3]. Delete Assignment
+                    [4]. Grade Assignment
+                    [5]. Comment on Student Assignment
+                    [6]. View Student Assignment
+                    [7]. View All Student Assignment
+                    """;
+            printMenu();
+            this.choice = sc.nextLine();
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
+        return choice;
+    }
+
+    public String showManageResourcesMenu(){
+        UI.showLoadingBar(10);
+        System.out.println("Teacher Manage Classroom: ");
+        do {
+            menu = """
+                    [1]. Add Resources
+                    [2]. Edit Resources
+                    [3]. Delete Resources
+                    [4]. View Resources
+                    """;
+            printMenu();
+            this.choice = sc.nextLine();
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
+        return choice;
+    }
+
+    public String showManageQuizzesMenu(){
+        UI.showLoadingBar(10);
+        System.out.println("Teacher Manage Classroom: ");
+        do {
+            menu = """
+                    [1]. Add Quizzes
+                    [2]. Edit Quizzes
+                    [3]. Delete Quizzes
+                    [4]. Grade Quizzes
+                    [5]. View Quizzes
+                    """;
+            printMenu();
+            this.choice = sc.nextLine();
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
+        return choice;
+    }
+
     private void printMenu() {
         menu = UI.TextColor.addColor(menu, UI.TextColor.BLUE);
         System.out.println(menu);

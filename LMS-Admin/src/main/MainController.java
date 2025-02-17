@@ -136,6 +136,7 @@ public class MainController {
                     break;
                 case "4":
                     manageTeacherController.viewEntity();
+                    break;
                 case "-b":
                     return;
                 default:

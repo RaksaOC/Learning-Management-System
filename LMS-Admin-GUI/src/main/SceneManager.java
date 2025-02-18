@@ -182,6 +182,7 @@ public class SceneManager extends Application {
             primaryStage.setScene(scene);
             primaryStage.setWidth(screenBounds.getWidth());
             primaryStage.setHeight(screenBounds.getHeight());
+            System.out.println("Scene " + name + " loaded");
         } else {
             System.out.println("Scene '" + name + "' not found!");
         }

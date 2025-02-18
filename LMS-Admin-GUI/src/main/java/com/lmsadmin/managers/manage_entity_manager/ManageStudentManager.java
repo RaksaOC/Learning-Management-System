@@ -16,4 +16,13 @@ public class ManageStudentManager extends ManageEntityManager {
         entityData.put(newObj);
         saveEntity();
     }
+
+    public JSONObject getDetails(String id) {
+        for (int i = 0; i < entityData.length(); i++){
+            if(entityData.getJSONObject(i).getString("id").equals(id)){
+                return entityData.getJSONObject(i);
+            }
+        }
+        return null;
+    }
 }

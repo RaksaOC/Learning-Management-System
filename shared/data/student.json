@@ -4,6 +4,7 @@
         "lastLogin": "2025-02-07 15:38:21",
         "address": {
             "province": "phnom penh",
+            "commune": "Male",
             "district": "Chbar ampv"
         },
         "gender": "Male",
@@ -57,6 +58,6 @@
         },
         "department": "Male",
         "email": "adasdasd",
-        "status": "active"
+        "status": "inactive"
     }
 ]

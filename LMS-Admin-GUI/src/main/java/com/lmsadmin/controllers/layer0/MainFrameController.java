@@ -1,21 +1,20 @@
 package main.java.com.lmsadmin.controllers.layer0;
 
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import main.SceneManager;
 
+import java.util.Optional;
+
 public class MainFrameController {
-
-
 
     // sideBar links
     @FXML
@@ -70,106 +69,68 @@ public class MainFrameController {
         // [to check] why the color acting weird
 //        homeLink.setStyle("-fx-background-color: #6A84AC");
         SceneManager.setScene("home");
-        System.out.println("On page home");
     }
     @FXML
     private void navigateToDashboard() {
 //        dashboardLink.setStyle("-fx-background-color: #6A84AC");
         SceneManager.setScene("dashboard");
-        System.out.println("On page dashboard");
     }
     @FXML
     private void navigateToManageStudent() {
 //        manageStudentLink.setStyle("-fx-background-color: #6A84AC");
         SceneManager.setScene("manageStudent");
-        System.out.println("On page manageStudent");
     }
     @FXML
     private void navigateToManageTeacher() {
         SceneManager.setScene("manageTeacher");
-        System.out.println("On page manageTeacher");
     }
     @FXML
     private void navigateToManageDepartment() {
         SceneManager.setScene("manageDepartment");
-        System.out.println("On page manageDepartment");
     }
     @FXML
     private void navigateToManageSpecialization() {
         SceneManager.setScene("manageSpecialization");
-        System.out.println("On page manageSpecialization");
     }
     @FXML
     private void navigateToManageGeneration() {
         SceneManager.setScene("manageGeneration");
-        System.out.println("On page manageGeneration");
     }
     @FXML
     private void navigateToManageGroup() {
         SceneManager.setScene("manageGroup");
-        System.out.println("On page manageGroup");
     }
     @FXML
     private void navigateToManageCourse() {
         SceneManager.setScene("manageCourse");
-        System.out.println("On page manageCourse");
     }
     @FXML
     private void navigateToManageClassroom() {
         SceneManager.setScene("manageClassroom");
-        System.out.println("On page manageClassroom");
     }
     @FXML
     private void navigateToManageAdmin() {
         SceneManager.setScene("manageAdmin");
-        System.out.println("On page manageAdmin");
     }
 
-//    @FXML
-//    protected void resetSceneTextFields(String sceneName) {
-//        Scene scene = SceneManager.scenes.get(sceneName);
-//        if (scene != null) {
-//            BorderPane rootPane = (BorderPane) scene.getRoot();
-//            Node centerNode = rootPane.getCenter(); // Get the center part
-//
-//            if (centerNode instanceof Pane) {
-//                clearFields((Pane) centerNode);
-//            }
-//        }
-//    }
-//
-//    private void clearFields(Pane parent) {
-//        for (Node node : parent.getChildren()) {
-//            if (node instanceof TextField) {
-//                ((TextField) node).clear();
-//            } else if (node instanceof TextArea) {
-//                ((TextArea) node).clear();
-//            } else if (node instanceof ComboBox) {
-//                ((ComboBox<?>) node).setValue(null);
-//            } else if (node instanceof DatePicker) {
-//                ((DatePicker) node).setValue(null);
-//            } else if (node instanceof Pane) {
-//                clearFields((Pane) node); // Recursively clear fields in nested containers
-//            }
-//        }
-//    }
+    @FXML
+    protected boolean isConfirmed(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to make these changes?");
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.get() == ButtonType.OK;
+    }
 
-//    @FXML
-//    private void test() {
-//
-//        VBox vbox = (VBox) root.lookup("BorderPane > top > AnchorPane > AnchorPane > VBox");
-//        if (vbox != null) {
-//            if (vbox.getChildren().size() > 1) {  // Ensure there's a second child
-//                Node node = vbox.getChildren().get(1);  // Get the second child
-//                if (node instanceof Text textNode) {  // Ensure it's a Text element
-//                    textNode.setText(newDate);  // Change the date
-//                    System.out.println("Updated Date: " + newDate);
-//                }
-//            } else {
-//                System.out.println("VBox does not have a second Text node!");
-//            }
-//        } else {
-//            System.out.println("VBox not found!");
-//        }
-//    }
+    @FXML
+    protected void loadSuccess(String sceneToReturnTo){
+        SceneManager.setScene("success"); // Show success screen
+        PauseTransition delay = new PauseTransition(Duration.seconds(2)); // 2-second delay
+        delay.setOnFinished(ev -> {
+            SceneManager.setScene(sceneToReturnTo); // Return to addAdmin scene
+        });
+
+        delay.play(); // Start the delay
+    }
 }

@@ -21,9 +21,25 @@ public class StudentManager {
 
     public String manageViewProfile() {
         // print the student's info in a nice and formatted table/ interface
-        String profile = """
-                
-                """;
+        String profile = String.format("""
+                Student Table:
+                ----------------
+                ID: %s
+                Name: %s
+                Gender: %s
+                Date of Birth: %s
+                Email: %s
+                Phone number: %s
+                Address: %s
+                Specialization: %s
+                Department: %s
+                Generation: %s
+                -----------------
+                """,
+                studentToEdit.getId(), studentToEdit.getFullName(), studentToEdit.getGender(), studentToEdit.getDoB(),
+                studentToEdit.getEmail(), studentToEdit.getPhone(), studentToEdit.getProvince(),studentToEdit.getSpecialization(),
+                studentToEdit.getDepartment(), studentToEdit.getGeneration()
+        );
         return profile;
     }
 

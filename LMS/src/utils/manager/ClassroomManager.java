@@ -17,8 +17,45 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+interface classroomManagementInterface {
+    void manageAddAssignment();
 
-public class ClassroomManager {
+    void manageEditAssignment();
+
+    void manageDeleteAssignment();
+
+    void manageGradeAssignment();
+
+    void manageCommentStudentAssignment();
+
+    void manageViewStudentAssignment();
+
+    void manageViewAllStudentAssignment();
+
+    void manageAddResource();
+
+
+    void manageEditResource();
+
+
+    void manageDeleteResource();
+
+
+    void manageViewResource();
+
+    // void manageAddQuizz(String title, String createdBy, JSONArray questions);
+
+    void manageEditQuizz();
+
+//    void manageDeleteQuizz(String id);
+
+    void manageViewQuizz();
+
+
+}
+
+public class ClassroomManager implements classroomManagementInterface{
+
     private final String classIdToEdit;
 
     public ClassroomManager (String ClassIdToEdit) {
@@ -94,7 +131,34 @@ public class ClassroomManager {
     }
 
     public void manageGradeAssignment() {
+        int assignmentIndex = Integer.parseInt(selectAssignmentTitle()) - 1; // holds an Assignment's index from user input
+        JSONArray allAssignments = getAssignments();
+        // get the specific assignment ID
+        String assignmentId = "";
+        for (int i = 0; i < allAssignments.length(); i++) {
+            if (i == assignmentIndex) {
+                assignmentId = allAssignments.getJSONObject(i).getString("id");
+                break;
+            }
+        }
+        String classroomId = getclassroomId();
+        JSONArray progresses = loadProgress();
+        for (int i = 0; i < progresses.length(); i++) {
+            if (classroomId.equals(progresses.getJSONObject(i).getString("classroomId"))) {
+                boolean isAssignmentId = false;
+                for (int j = 0; j < progresses.getJSONObject(i).getJSONArray("assignments").length(); j++) {
+                    if (assignmentId.equals(progresses.getJSONObject(i).getJSONArray("assignments").getJSONObject(j).getString("id"))) {
+                        progresses.getJSONObject(i).getJSONArray("assignments").getJSONObject(j).put("Grade", "");
+                        isAssignmentId = true;
+                        break;
+                    }
+                }
+                if (!isAssignmentId) {
 
+                }
+            }
+
+        }
     }
 
     public void manageCommentStudentAssignment() {
@@ -203,6 +267,9 @@ public class ClassroomManager {
         saveProgresses(progresses);
     }
 
+
+
+
     // Resource Manager
     public void manageAddResource() {
 
@@ -270,6 +337,18 @@ public class ClassroomManager {
             String contents = new String(Files.readAllBytes(Paths.get("shared/data/classroom.json")));
             JSONArray allClass = new JSONArray(contents);
             return allClass;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // load all students
+    private JSONArray loadStudent() {
+        try {
+            String contents = new String(Files.readAllBytes(Paths.get("shared/data/student.json")));
+            JSONArray allStudents = new JSONArray(contents);
+            return allStudents;
         } catch (IOException e) {
             e.printStackTrace();
         }

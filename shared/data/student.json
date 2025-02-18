@@ -15,7 +15,11 @@
         "lastName": "Raksa"
     },
     "specialization": "Software Engineering",
-    "progress": {"GEN10-CS-SE-G1-OOP": "P000001"},
+    "progress": {
+        "GEN10-CS-SE-G1-OOP": "P000001",
+        "GEN10-CS-SE-G1-OOP": "P000001",
+        "GEN10-CS-SE-G1-OOP": "P000001"
+    },
     "id": "S000001",
     "guardian": {
         "guardianGender": "female",

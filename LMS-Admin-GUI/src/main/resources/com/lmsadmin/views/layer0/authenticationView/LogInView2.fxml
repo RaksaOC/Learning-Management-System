@@ -71,7 +71,7 @@
                               <Insets left="40.0" right="40.0" />
                            </padding>
                         </VBox>
-                        <Button fx:id="logInButton" mnemonicParsing="false" text="Log In" onAction="#handleLogIn">
+                        <Button fx:id="logInButton" mnemonicParsing="false" onAction="#handleLogIn" text="Log In">
                            <font>
                               <Font name="Gill Sans" size="21.0" />
                            </font>

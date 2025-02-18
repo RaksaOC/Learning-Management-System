@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer0.MainFrameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer2.courseActionController.AddCourseController">
     <left>
         <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
             <children>
@@ -307,7 +307,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Course Name">
+                        <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Course Name" fx:id="name">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -321,7 +321,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="48.0" prefWidth="501.0" promptText="Enter Course ID">
+                        <TextField prefHeight="48.0" prefWidth="501.0" promptText="Enter Course ID" fx:id="id">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -339,7 +339,7 @@
                                    <Font name="Gill Sans Bold" size="19.0" />
                                </font>
                            </Label>
-                           <ComboBox maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="457.0" promptText="Select a credit" visibleRowCount="3">
+                           <ComboBox maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="457.0" promptText="Select a credit" visibleRowCount="3" fx:id="credit">
                                <items>
                                    <FXCollections fx:factory="observableArrayList">
                                        <String fx:value="Male" />
@@ -357,7 +357,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <ComboBox maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="305.0" promptText="Select a Gender" visibleRowCount="3">
+                        <ComboBox maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="305.0" promptText="Select a Gender" visibleRowCount="3" fx:id="level">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Male" />
@@ -379,7 +379,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField alignment="TOP_LEFT" prefHeight="200.0" prefWidth="1118.0" promptText="Enter Course Description">
+                        <TextField alignment="TOP_LEFT" prefHeight="200.0" prefWidth="1118.0" promptText="Enter Course Description" fx:id="description">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -388,7 +388,7 @@
                   </VBox>
                </children>
             </HBox>
-            <Button mnemonicParsing="false" text="Add Course">
+            <Button mnemonicParsing="false" text="Add Course" fx:id="addButton" onMouseClicked="#handleAdd">
                <font>
                   <Font name="Gill Sans" size="20.0" />
                </font>

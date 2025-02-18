@@ -2,8 +2,10 @@ package main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -12,7 +14,7 @@ import java.util.HashMap;
 
 public class SceneManager extends Application {
     private static Stage primaryStage;
-    private static final HashMap<String, Scene> scenes = new HashMap<>();
+    public static  HashMap<String, Scene> scenes = new HashMap<>();
     private int numOfScenes;
 
     @Override
@@ -167,6 +169,8 @@ public class SceneManager extends Application {
         loadScene("editAdminPassword", "resources/com/lmsadmin/views/layer3/AdminEditView/EditAdminPassword.fxml");
         loadScene("editAdminPhoneNumber", "resources/com/lmsadmin/views/layer3/AdminEditView/EditAdminPhoneNumber.fxml");
 
+        // misc
+        loadScene("success", "resources/com/lmsadmin/views/misc/SuccessView.fxml");
 
         System.out.println("Finished loading " + numOfScenes + " scenes");
     }
@@ -174,7 +178,10 @@ public class SceneManager extends Application {
     public static void setScene(String name) {
         Scene scene = scenes.get(name);
         if (scene != null) {
+            Rectangle2D screenBounds = Screen.getPrimary().getBounds();
             primaryStage.setScene(scene);
+            primaryStage.setWidth(screenBounds.getWidth());
+            primaryStage.setHeight(screenBounds.getHeight());
         } else {
             System.out.println("Scene '" + name + "' not found!");
         }

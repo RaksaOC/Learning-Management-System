@@ -1,7 +1,15 @@
 package main.java.com.lmsadmin.controllers.layer0;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import main.SceneManager;
 
@@ -116,6 +124,35 @@ public class MainFrameController {
         SceneManager.setScene("manageAdmin");
         System.out.println("On page manageAdmin");
     }
+
+//    @FXML
+//    protected void resetSceneTextFields(String sceneName) {
+//        Scene scene = SceneManager.scenes.get(sceneName);
+//        if (scene != null) {
+//            BorderPane rootPane = (BorderPane) scene.getRoot();
+//            Node centerNode = rootPane.getCenter(); // Get the center part
+//
+//            if (centerNode instanceof Pane) {
+//                clearFields((Pane) centerNode);
+//            }
+//        }
+//    }
+//
+//    private void clearFields(Pane parent) {
+//        for (Node node : parent.getChildren()) {
+//            if (node instanceof TextField) {
+//                ((TextField) node).clear();
+//            } else if (node instanceof TextArea) {
+//                ((TextArea) node).clear();
+//            } else if (node instanceof ComboBox) {
+//                ((ComboBox<?>) node).setValue(null);
+//            } else if (node instanceof DatePicker) {
+//                ((DatePicker) node).setValue(null);
+//            } else if (node instanceof Pane) {
+//                clearFields((Pane) node); // Recursively clear fields in nested containers
+//            }
+//        }
+//    }
 
 //    @FXML
 //    private void test() {

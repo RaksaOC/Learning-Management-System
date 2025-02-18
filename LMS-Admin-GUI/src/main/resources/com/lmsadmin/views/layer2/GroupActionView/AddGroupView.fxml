@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer0.MainFrameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer2.groupActionController.AddGroupController">
     <left>
         <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
             <children>
@@ -302,12 +302,30 @@
                <children>
                   <VBox prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
                      <children>
+                        <Label text="Generation">
+                           <font>
+                              <Font name="Gill Sans Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="generation" editable="true" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Generation">
+                           <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="Male" />
+                                 <String fx:value="Female" />
+                                 <String fx:value="Other" />
+                              </FXCollections>
+                           </items>
+                        </ComboBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                     <children>
                         <Label text="Department">
                            <font>
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <ComboBox maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Department">
+                        <ComboBox fx:id="department" editable="true" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Department">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Male" />
@@ -325,25 +343,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <ComboBox maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Specialization">
-                           <items>
-                              <FXCollections fx:factory="observableArrayList">
-                                 <String fx:value="Male" />
-                                 <String fx:value="Female" />
-                                 <String fx:value="Other" />
-                              </FXCollections>
-                           </items>
-                        </ComboBox>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <Label text="Generation">
-                           <font>
-                              <Font name="Gill Sans Bold" size="19.0" />
-                           </font>
-                        </Label>
-                        <ComboBox maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Generation">
+                        <ComboBox fx:id="specialization" editable="true" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Specialization">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Male" />
@@ -368,7 +368,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Group ID">
+                        <TextField fx:id="groupId" prefHeight="48.0" prefWidth="502.0" promptText="Enter Group ID">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -377,7 +377,7 @@
                   </VBox>
                </children>
             </HBox>
-            <Button mnemonicParsing="false" text="Add Group">
+            <Button fx:id="addButton" mnemonicParsing="false" onMouseClicked="#handleAdd" text="Add Group">
                <font>
                   <Font name="Gill Sans" size="20.0" />
                </font>

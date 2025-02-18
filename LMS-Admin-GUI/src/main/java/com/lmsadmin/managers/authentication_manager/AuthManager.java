@@ -1,4 +1,4 @@
-package main.java.com.lmsadmin.managers;
+package main.java.com.lmsadmin.managers.authentication_manager;
 
 import lib.Hasher;
 import org.json.JSONArray;
@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;

@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer1.ManageTeacherController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer2.teacherActionController.DeleteTeacherController">
     <left>
         <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
             <children>
@@ -304,7 +304,7 @@
                                         <Font name="Gill Sans Bold" size="19.0" />
                                     </font>
                                 </Label>
-                                <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Teacher ID">
+                                <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Teacher ID" fx:id="idField">
                                     <font>
                                         <Font size="17.0" />
                                     </font>
@@ -313,7 +313,7 @@
                         </VBox>
                     </children>
                 </HBox>
-                <Button mnemonicParsing="false" text="Search">
+                <Button mnemonicParsing="false" text="Search" fx:id="searchButton" onMouseClicked="#handleSearch">
                     <font>
                         <Font name="Gill Sans" size="20.0" />
                     </font>
@@ -325,7 +325,7 @@
                         <Font name="Gill Sans Bold" size="19.0" />
                      </font>
                   </Text>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox prefHeight="100.0" prefWidth="200.0" alignment="CENTER" fx:id="">
                      <children>
                         <ImageView fitHeight="396.0" fitWidth="359.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                            <image>
@@ -335,14 +335,14 @@
                               <ColorAdjust brightness="-1.0" />
                            </effect>
                         </ImageView>
-                        <VBox prefHeight="359.0" prefWidth="666.0" style="-fx-background-color: #AEAE12;" HBox.hgrow="ALWAYS">
+                        <VBox prefHeight="359.0" prefWidth="666.0" fx:id="detailsVBox" >
                            <HBox.margin>
                               <Insets left="100.0" />
                            </HBox.margin>
                         </VBox>
                      </children>
                   </HBox>
-                  <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Delete">
+                  <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Delete" fx:id="deleteButton" onMouseClicked="#handleDelete">
                      <font>
                         <Font name="Gill Sans" size="20.0" />
                      </font>

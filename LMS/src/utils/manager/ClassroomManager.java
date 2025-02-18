@@ -22,7 +22,7 @@ public class ClassroomManager {
     private final String classIdToEdit;
 
     public ClassroomManager (String ClassIdToEdit) {
-        this.classIdToEdit = ClassIdToEdit;
+        this.classIdToEdit = ClassIdToEdit; // this holds only the user's input
     }
 
     public void manageAddAssignment(){
@@ -34,10 +34,13 @@ public class ClassroomManager {
         deadline.put("date", date);
         deadline.put("time", time);
         JSONObject newAssignment = new JSONObject();
+        String assignmentId = idGenerator(getAssignments(), "A000");
+        newAssignment.put("id", assignmentId);
         newAssignment.put("title", title);
         newAssignment.put("description", description);
         newAssignment.put("deadline", deadline);
         newAssignment.put("status", "active");
+        assignmentToProgress(assignmentId);
         saveAssignments(newAssignment, title);
     }
 
@@ -70,7 +73,7 @@ public class ClassroomManager {
                     assignmentDeadline.put("time", newTime);
                 }
                 allAssignments.put(i, assignmentToEdit); // ensure it saves into correct index
-                saveAssignments(assignmentToEdit, assignmentToEdit.getString("title")); // needs to pass id instead
+                saveAssignments(assignmentToEdit, assignmentToEdit.getString("id"));
                 break;
             }
         }
@@ -84,7 +87,7 @@ public class ClassroomManager {
                 JSONObject assignmentToEdit = allAssignments.getJSONObject(i);
                 assignmentToEdit.put("status", "inactive");
                 allAssignments.put(i, assignmentToEdit); // ensure it saves into correct index
-                saveAssignments(assignmentToEdit, assignmentToEdit.getString("title"));
+                saveAssignments(assignmentToEdit, assignmentToEdit.getString("id"));
                 break;
             }
         }
@@ -106,7 +109,20 @@ public class ClassroomManager {
 
     }
 
-    // get assignments JSONArray
+    // get a specific classroomId id Ex: "GEN10-CS-SE-G1-OOP"
+    private String getclassroomId() {
+        int indexOfClass = Integer.parseInt(classIdToEdit);
+        JSONArray allClass = loadClassroom();
+        for (int i = 0; i < allClass.length(); i++) {
+            if (i == indexOfClass) {
+                JSONObject classToEdit = allClass.getJSONObject(i);
+                return classToEdit.getString("id");
+            }
+        }
+        return null;
+    }
+
+    // get only assignment JSONArray
     private JSONArray getAssignments() {
         int indexOfClass = Integer.parseInt(classIdToEdit);
         JSONArray allClass = loadClassroom();
@@ -121,7 +137,7 @@ public class ClassroomManager {
     }
 
 
-    // display all title and select an input
+    // display only assignment titles and select an input
     private String selectAssignmentTitle() {
         JSONArray allAssignments = getAssignments();
         for (int i = 0; i < allAssignments.length(); i++) {
@@ -131,8 +147,8 @@ public class ClassroomManager {
         return Menu.prompt("Select an Assignment: ");
     }
 
-    // save assignment into the correct index
-    public void saveAssignments(JSONObject newAssignment, String titleToEdit) {
+    // check & save only the assignment into the correct index
+    private void saveAssignments(JSONObject newAssignment, String assignmentId) {
         int indexOfClass = Integer.parseInt(classIdToEdit);
         JSONArray allClass = loadClassroom();
         for (int i = 0; i < allClass.length(); i++) {
@@ -145,7 +161,7 @@ public class ClassroomManager {
                 boolean found = false;
                 for (int j = 0; j < assignments.length(); j++) {
                     // needs to compare id instead
-                    if (titleToEdit.equals(assignments.getJSONObject(j).getString("title"))) {
+                    if (assignmentId.equals(assignments.getJSONObject(j).getString("id"))) {
                         assignments.put(j, newAssignment); // save into the correct index
                         found = true;
                         break;
@@ -160,6 +176,31 @@ public class ClassroomManager {
                 break;
             }
         }
+    }
+
+    // assigns only the assignment to progress
+    private void  assignmentToProgress(String assignmentId) {
+        String classroomId = getclassroomId();
+        JSONArray progresses = loadProgress();
+        for (int i = 0; i < progresses.length(); i++) {
+            if (classroomId.equals(progresses.getJSONObject(i).getString("classroomId"))){
+                boolean found = false;
+                for (int j = 0; j < progresses.getJSONObject(i).getJSONArray("assignments").length(); j++) {
+                    if (assignmentId.equals(progresses.getJSONObject(i).getJSONArray("assignments").getJSONObject(j).getString("id"))){
+                        progresses.getJSONObject(i).getJSONArray("assignments").getJSONObject(j).put("pending", "Ongoing");
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    JSONObject newAssignment = new JSONObject();
+                    newAssignment.put("id", assignmentId);
+                    newAssignment.put("pending", "Ongoing");
+                    progresses.getJSONObject(i).getJSONArray("assignments").put(newAssignment);
+                }
+            }
+        }
+        saveProgresses(progresses);
     }
 
     // Resource Manager
@@ -191,6 +232,10 @@ public class ClassroomManager {
 
     }
 
+    public void manageGradeQuizz(){
+
+    }
+
     public void manageDeleteQuizz() {
 
     }
@@ -199,7 +244,7 @@ public class ClassroomManager {
 
     }
 
-    // save every classroom
+    // save all classrooms
     private void saveClassrooms(JSONArray allClass) {
         try (FileWriter file = new FileWriter("shared/data/classroom.json")) {
             file.write(allClass.toString(4)); // Pretty-print with 4 spaces
@@ -209,7 +254,17 @@ public class ClassroomManager {
         }
     }
 
-    // load every classroom
+    // save all progresses
+    private void saveProgresses(JSONArray allProgress) {
+        try (FileWriter file = new FileWriter("shared/data/progress.json")) {
+            file.write(allProgress.toString(4)); // Pretty-print with 4 spaces
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // load all classrooms
     private JSONArray loadClassroom(){
         try {
             String contents = new String(Files.readAllBytes(Paths.get("shared/data/classroom.json")));
@@ -221,22 +276,24 @@ public class ClassroomManager {
         return null;
     }
 
-    private String idGenerator(String filepath) {
+    // load all progresses
+    private JSONArray loadProgress() {
         try {
-            File file = new File(filepath);
-            JSONArray jsonArray = null;
-            if (file.exists()) {
-                String content = new String(Files.readAllBytes(Paths.get(filepath)));
-                jsonArray = new JSONArray(content);
-            } else {
-                jsonArray = new JSONArray();
-            }
-            int nextIdNumber = jsonArray.length() + 1;
-            return "A" + nextIdNumber;
+            String contents = new String(Files.readAllBytes(Paths.get("shared/data/progress.json")));
+            JSONArray allprogress = new JSONArray(contents);
+            return allprogress;
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
 
+    private String idGenerator(JSONArray objects, String baseId) { // baseId receives Ex: "A000"
+        String numberPart = baseId.replaceAll("[^0-9]", ""); // extract number part "000"
+        int numberLength = numberPart.length();
+        int nextIdNumber = objects.length() + 1; // find next available id
+        String formattedNumber = String.format("%0" + numberLength + "d", nextIdNumber); // %03d
+        String prefixChar = baseId.replaceAll("[0-9]", ""); // extract the non-numeric part "A"
+        return prefixChar + formattedNumber;
+    }
 }

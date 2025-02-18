@@ -1,10 +1,25 @@
-[
-  {
+[{
     "studentId": "S000001",
-    "assignments": [],
+    "assignments": [
+        {
+            "pending": "Ongoing",
+            "id": "A001"
+        },
+        {
+            "pending": "Ongoing",
+            "id": "A002"
+        },
+        {
+            "pending": "Ongoing",
+            "id": "A003"
+        },
+        {
+            "pending": "Ongoing",
+            "id": "A004"
+        }
+    ],
     "resources": [],
-    "quizzes": [],
     "classroomId": "GEN10-CS-SE-G1-OOP",
+    "quizzes": [],
     "id": "P000001"
-  }
-]
+}]

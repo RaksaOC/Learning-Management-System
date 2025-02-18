@@ -85,6 +85,11 @@ public class ClassroomController {
         classroomManager.manageEditQuizz();
     }
 
+    public void gradeQuizz() {
+        ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
+        classroomManager.manageGradeQuizz();
+    }
+
     public void deleteQuizz() {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
         classroomManager.manageDeleteQuizz();

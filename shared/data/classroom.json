@@ -29,7 +29,7 @@
             "status": "active"
         },
         {
-            "description": "He's lost his family, and his last daughter, to violent terrorism. He'll stop at nothing for the day of reckoning.",
+            "description": "He lost his family, and his last daughter, to violent terrorism. He'll stop at nothing for the day of reckoning.",
             "title": "SpongeBob SquarePants",
             "deadline": {
                 "date": "2025-03-08",
@@ -38,10 +38,15 @@
             "status": "active"
         }
     ],
-    "students": ["S000001"],
+    "students": [
+        "S000001",
+        "S000002",
+        "S000003",
+        "S000004"
+    ],
     "resources": [],
     "id": "GEN10-CS-SE-G1-OOP",
-    "quizzes": [],
+    "quizzes": ["Q0012"],
     "courseId": "",
     "status": "active"
 }]

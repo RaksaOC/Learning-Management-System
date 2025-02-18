@@ -12,23 +12,24 @@ import java.util.Calendar;
 
 public class ClassroomController {
     String classIdToEdit;
+
     public ClassroomController(String classroomId) {
         this.classIdToEdit = classroomId;
     }
 
     // Assignment Controller
-    public void addAssignment(){
+    public void addAssignment() {
         // logic to add a grade to an assignment of the student...
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
         classroomManager.manageAddAssignment();
     }
 
-    public void editAssignment(){
+    public void editAssignment() {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
         classroomManager.manageEditAssignment();
     }
 
-    public void deleteAssignment(){
+    public void deleteAssignment() {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
         classroomManager.manageDeleteAssignment();
     }
@@ -43,7 +44,7 @@ public class ClassroomController {
         classroomManager.manageCommentStudentAssignment();
     }
 
-    public void viewStudentAssignment(){
+    public void viewStudentAssignment() {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
         classroomManager.manageViewStudentAssignment();
     }
@@ -77,22 +78,38 @@ public class ClassroomController {
     // Quizz Controller
     public void addQuizz() {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
-        classroomManager.manageAddQuizz();
+        // Just sample data
+        String title = "Rate teacher";
+        String createdBy = "T0001";
+        String questions = "[{\"questionTitle\":\"How zesty is the teacher?\", \"choices\": [\"straight\", \"lemony\", \"holy zesty\", \"gay\"], \"answer\": \"gay\"}, {\"questionTitle\":\"How zesty is the teacher?\", \"choices\": [\"straight\", \"lemony\", \"holy zesty\", \"gay\"], \"answer\": \"gay\"}, {\"questionTitle\":\"How zesty is the teacher?\", \"choices\": [\"straight\", \"lemony\", \"holy zesty\", \"gay\"], \"answer\": \"gay\"}]";
+        JSONArray questionsJson = new JSONArray(questions);
+        String classroomID="GEN10-CS-SE-G1-OOP";
+        classroomManager.manageAddQuizz(classroomID ,title, createdBy, questionsJson);
     }
 
     public void editQuizz() {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
-        classroomManager.manageEditQuizz();
+        String id = "";
+        classroomManager.manageViewQuizz(id);
+        String title = "Rate teacher beauty";
+        String questions = "[{\"questionTitle\":\"How handsome is the teacher?\",\"answer\":\"Ugly mf\",\"choices\": [\"Ugly mf\",\"Vini Jnr handsome\",\"Average asian dude\",\"Jungkook\"]}, {\"questionTitle\":\"How handsome is the teacher?\",\"answer\":\"Joe Biden handsome\",\"choices\": [\"Ugly mf\",\"Vini Jnr handsome\",\"Average asian dude\",\"Jungkook\"]}, {\"questionTitle\":\"How handsome is the teacher?\",\"answer\":\"Joe Biden handsome\",\"choices\": [\"Ugly mf\",\"Vini Jnr handsome\",\"Average asian dude\",\"Jungkook\"]}]";
+        JSONArray questionsJson=new JSONArray(questions);
+        String idToEdit="Q0002";
+        classroomManager.manageEditQuizz(title, questionsJson, idToEdit);
     }
 
     public void deleteQuizz() {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
-        classroomManager.manageDeleteQuizz();
+        // sample data
+        String idToDelete = "Q0011";
+        String classID="GEN10-CS-SE-G1-OOP";
+        classroomManager.manageDeleteQuizz(idToDelete);
     }
 
     public void viewQuizz() {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
-        classroomManager.manageViewQuizz();
+        String id = "Q0002";
+        classroomManager.manageViewQuizz(id);
     }
 
 }

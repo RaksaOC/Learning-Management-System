@@ -91,6 +91,7 @@ public class TeacherController {
     // Quizz Controller
     public void handleAddQuizzes() {
         ClassroomController classroomController = new ClassroomController(indexOfClass);
+
         classroomController.addQuizz();
     }
 
@@ -104,10 +105,7 @@ public class TeacherController {
         classroomController.deleteQuizz();
     }
 
-    public void handleGradeQuizzes() {
-        ClassroomController classroomController = new ClassroomController(indexOfClass);
-        classroomController.gradeQuizz();
-    }
+
 
     public void handleViewQuizzes() {
         ClassroomController classroomController = new ClassroomController(indexOfClass);

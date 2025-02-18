@@ -1,0 +1,16 @@
+[{
+    "createdAt": "2025-02-04 22:42:52",
+    "lastLogin": "2025-02-18 13:21:17",
+    "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "phoneNumber": "011554049",
+    "gender": "Male",
+    "dob": "23/09/2000",
+    "name": {
+        "firstName": "Chan",
+        "lastName": "Raksa"
+    },
+    "id": "T0001",
+    "classrooms": ["GEN10-CS-SE-G1-OOP"],
+    "email": "raksaoc@gmail.com",
+    "status": "active"
+}]

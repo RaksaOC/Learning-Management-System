@@ -231,9 +231,6 @@ public class MainController {
                     teacherController.handleDeleteQuizzes();
                     break;
                 case "4":
-                    teacherController.handleGradeQuizzes();
-                    break;
-                case "5":
                     teacherController.handleViewQuizzes();
                     break;
                 case "-b":

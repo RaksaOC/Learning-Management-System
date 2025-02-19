@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
@@ -19,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer0.MainFrameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer2.groupActionController.DeleteGroupController">
     <left>
         <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
             <children>
@@ -302,73 +299,12 @@
                     <children>
                         <VBox prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
                             <children>
-                                <Label text="Department">
-                                    <font>
-                                        <Font name="Gill Sans Bold" size="19.0" />
-                                    </font>
-                                </Label>
-                                <ComboBox maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Department">
-                                    <items>
-                                        <FXCollections fx:factory="observableArrayList">
-                                            <String fx:value="Male" />
-                                            <String fx:value="Female" />
-                                            <String fx:value="Other" />
-                                        </FXCollections>
-                                    </items>
-                                </ComboBox>
-                            </children>
-                        </VBox>
-                        <VBox prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
-                            <children>
-                                <Label text="Specialization">
-                                    <font>
-                                        <Font name="Gill Sans Bold" size="19.0" />
-                                    </font>
-                                </Label>
-                                <ComboBox maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Specialization">
-                                    <items>
-                                        <FXCollections fx:factory="observableArrayList">
-                                            <String fx:value="Male" />
-                                            <String fx:value="Female" />
-                                            <String fx:value="Other" />
-                                        </FXCollections>
-                                    </items>
-                                </ComboBox>
-                            </children>
-                        </VBox>
-                        <VBox prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
-                            <children>
-                                <Label text="Generation">
-                                    <font>
-                                        <Font name="Gill Sans Bold" size="19.0" />
-                                    </font>
-                                </Label>
-                                <ComboBox maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Generation">
-                                    <items>
-                                        <FXCollections fx:factory="observableArrayList">
-                                            <String fx:value="Male" />
-                                            <String fx:value="Female" />
-                                            <String fx:value="Other" />
-                                        </FXCollections>
-                                    </items>
-                                </ComboBox>
-                            </children>
-                        </VBox>
-                    </children>
-                    <VBox.margin>
-                        <Insets top="20.0" />
-                    </VBox.margin>
-                </HBox>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1139.0" spacing="20.0">
-                    <children>
-                        <VBox prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
-                            <children>
                                 <Label text="Group ID">
                                     <font>
                                         <Font name="Gill Sans Bold" size="19.0" />
                                     </font>
                                 </Label>
-                                <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Group ID">
+                                <TextField fx:id="idField" prefHeight="48.0" prefWidth="502.0" promptText="Enter Group ID">
                                     <font>
                                         <Font size="17.0" />
                                     </font>
@@ -377,7 +313,7 @@
                         </VBox>
                     </children>
                 </HBox>
-                <Button mnemonicParsing="false" text="Search">
+                <Button fx:id="searchButton" mnemonicParsing="false" onMouseClicked="#handleSearch" text="Search">
                     <font>
                         <Font name="Gill Sans" size="20.0" />
                     </font>
@@ -387,10 +323,9 @@
                   <Font name="Gill Sans Bold" size="20.0" />
                </font>
             </Text>
-            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: green;" />
-            <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Delete" />
+            <VBox fx:id="detailsVBox" prefHeight="200.0" prefWidth="100.0" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" onMouseClicked="#handleDelete" style="-fx-background-color: red;" text="Delete" />
             </children>
-
         </VBox>
     </center>
     <top>

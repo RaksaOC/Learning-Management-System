@@ -249,4 +249,13 @@ public class ManageClassroomManager extends ManageEntityManager {
         baseId = base.toString();
         return baseId;
     }
+
+    public JSONObject getDetails(String classroomID) {
+        for (int i = 0; i < entityData.length(); i++) {
+            if (entityData.getJSONObject(i).getString("id").equals(classroomID)) {
+                return entityData.getJSONObject(i);
+            }
+        }
+        return null;
+    }
 }

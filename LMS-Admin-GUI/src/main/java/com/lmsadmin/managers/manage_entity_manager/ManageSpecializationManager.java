@@ -37,6 +37,18 @@ public class ManageSpecializationManager extends ManageEntityManager {
         saveEntity();
     }
 
+    public void manageDeleteEntity(String spec_id) {
+        JSONArray departments = entityData_Obj.getJSONArray("departments");
+        for (int i = 0; i < departments.length(); i++) {
+            for (int j = 0; j < departments.getJSONObject(i).getJSONArray("specializations").length(); j++) {
+                if (departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getString("id").equals(spec_id)) {
+                    departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).put("status", "inactive");
+                    return;
+                }
+            }
+        }
+    }
+
     public void manageViewEntity(String dep_id) {
         getSpecializations(dep_id);
         System.out.println(specializations.toString(4));
@@ -84,5 +96,18 @@ public class ManageSpecializationManager extends ManageEntityManager {
             }
         }
         return false;
+    }
+
+    public JSONObject getDetails(String specId) {
+        JSONArray departments = entityData_Obj.getJSONArray("departments");
+        for (int i = 0; i < departments.length(); i++) {
+            JSONArray specializations = departments.getJSONObject(i).getJSONArray("specializations");
+            for (int j = 0; j < specializations.length(); j++) {
+                if (specializations.getJSONObject(j).getString("id").equals(specId)) {
+                    return specializations.getJSONObject(j);
+                }
+            }
+        }
+        return null;
     }
 }

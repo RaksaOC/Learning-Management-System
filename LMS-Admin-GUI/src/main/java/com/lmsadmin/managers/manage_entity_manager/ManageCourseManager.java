@@ -74,5 +74,15 @@ public class ManageCourseManager extends ManageEntityManager{
         }
         return false;
     }
+
+    public JSONObject getDetails(String id) {
+        JSONArray courses = entityData_Obj.getJSONArray("courses");
+        for (int i = 0; i < courses.length(); i++) {
+            if (courses.getJSONObject(i).getString("id").equals(id)) {
+                return courses.getJSONObject(i);
+            }
+        }
+        return null;
+    }
 }
 

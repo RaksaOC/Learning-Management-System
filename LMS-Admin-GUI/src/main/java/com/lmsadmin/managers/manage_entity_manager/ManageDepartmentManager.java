@@ -88,5 +88,14 @@ public class ManageDepartmentManager extends ManageEntityManager {
         return false;
     }
 
+    public JSONObject getDetails(String id) {
+        for (int i = 0; i < departments.length(); i++) {
+            if (departments.getJSONObject(i).getString("id").equals(id)) {
+                return departments.getJSONObject(i);
+            }
+        }
+        return null;
+    }
+
 
 }

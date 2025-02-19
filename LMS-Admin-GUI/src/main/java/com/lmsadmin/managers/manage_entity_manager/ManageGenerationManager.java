@@ -117,5 +117,23 @@ public class ManageGenerationManager extends ManageEntityManager {
         return false;
     }
 
+    public JSONArray getDetails(String genID) {
+        JSONArray genDetails = new JSONArray();
+        JSONArray departments = entityData_Obj.getJSONArray("departments");
+        for (int i = 0; i < departments.length(); i++) {
+            JSONArray specializations = departments.getJSONObject(i).getJSONArray("specializations");
+            for (int j = 0; j < specializations.length(); j++) {
+                JSONArray generations = specializations.getJSONObject(j).getJSONArray("generations");
+                for (int k = 0; k < generations.length(); k++) {
+                    if (generations.getJSONObject(k).getString("id").equals(genID)) {
+                         genDetails.put(generations.getJSONObject(k));
+                         break;
+                    }
+                }
+            }
+        }
+        return genDetails;
+    }
+
 
 }

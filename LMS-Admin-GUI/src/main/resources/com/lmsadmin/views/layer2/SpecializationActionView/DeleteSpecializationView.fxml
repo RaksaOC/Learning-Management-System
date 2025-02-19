@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer0.MainFrameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer2.specializationActionController.DeleteSpecializationController">
     <left>
         <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
             <children>
@@ -295,24 +295,6 @@
                         <Font name="Gill Sans Bold" size="26.0" />
                     </font>
                 </Text>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1139.0" spacing="20.0">
-                    <children>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
-                            <children>
-                                <Label text="Department ID">
-                                    <font>
-                                        <Font name="Gill Sans Bold" size="19.0" />
-                                    </font>
-                                </Label>
-                                <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Department ID">
-                                    <font>
-                                        <Font size="17.0" />
-                                    </font>
-                                </TextField>
-                            </children>
-                        </VBox>
-                    </children>
-                </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1139.0" spacing="20.0">
                <children>
                   <VBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
@@ -322,7 +304,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Specialization ID">
+                        <TextField fx:id="idField" prefHeight="48.0" prefWidth="502.0" promptText="Enter Specialization ID">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -331,26 +313,26 @@
                   </VBox>
                </children>
             </HBox>
-                <Button mnemonicParsing="false" text="Search">
+                <Button fx:id="searchButton" mnemonicParsing="false" onMouseClicked="#handleSearch" text="Search">
                     <font>
                         <Font name="Gill Sans" size="20.0" />
                     </font>
                 </Button>
-            <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="1118.0" spacing="40.0">
+            <VBox fx:id="detailsVBox" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="1118.0" spacing="40.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Specialization Info">
                      <font>
                         <Font name="Gill Sans Bold" size="19.0" />
                      </font>
                   </Text>
-                  <VBox prefHeight="247.0" prefWidth="1118.0" style="-fx-background-color: #AEAE12;" />
-                  <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Delete">
-                     <font>
-                        <Font name="Gill Sans" size="20.0" />
-                     </font>
-                  </Button>
+                  <VBox prefHeight="247.0" prefWidth="1118.0" />
                </children>
             </VBox>
+            <Button fx:id="deleteButton" mnemonicParsing="false" onMouseClicked="#handleDelete" style="-fx-background-color: red;" text="Delete">
+               <font>
+                  <Font name="Gill Sans" size="20.0" />
+               </font>
+            </Button>
             </children>
 
         </VBox>

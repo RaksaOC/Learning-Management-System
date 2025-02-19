@@ -144,5 +144,24 @@ public class ManageGroupManager extends ManageEntityManager {
         return false;
     }
 
+    public JSONObject getDetails(String groupID) {
+        JSONArray departments = entityData_Obj.getJSONArray("departments");
+        for (int i = 0; i < departments.length(); i++) {
+            JSONArray specializations = departments.getJSONObject(i).getJSONArray("specializations");
+            for (int j = 0; j < specializations.length(); j++) {
+                JSONArray generations = specializations.getJSONObject(j).getJSONArray("generations");
+                for (int k = 0; k < generations.length(); k++) {
+                    JSONArray groups = generations.getJSONObject(k).getJSONArray("groups");
+                    for (int l = 0; l < groups.length(); l++) {
+                        if (groups.getJSONObject(l).getString("id").equals(groupID)) {
+                            return groups.getJSONObject(l);
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
 
 }

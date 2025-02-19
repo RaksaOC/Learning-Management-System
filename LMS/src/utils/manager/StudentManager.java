@@ -2,10 +2,11 @@ package utils.manager;
 
 import entities.Student;
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class StudentManager {
     Student studentToEdit;
+    private JSONArray classroom;
+
     public StudentManager(Student student) {
         //                  ^
         //      the constructor takes in the student object to get the changed data in its fields to write back to file
@@ -24,6 +25,7 @@ public class StudentManager {
         String profile = String.format("""
                 Student Table:
                 ----------------
+                Student status: %s
                 ID: %s
                 Name: %s
                 Gender: %s
@@ -36,7 +38,7 @@ public class StudentManager {
                 Generation: %s
                 -----------------
                 """,
-                studentToEdit.getId(), studentToEdit.getFullName(), studentToEdit.getGender(), studentToEdit.getDoB(),
+                studentToEdit.getStatus() ,studentToEdit.getId(), studentToEdit.getFullName(), studentToEdit.getGender(), studentToEdit.getDoB(),
                 studentToEdit.getEmail(), studentToEdit.getPhone(), studentToEdit.getProvince(),studentToEdit.getSpecialization(),
                 studentToEdit.getDepartment(), studentToEdit.getGeneration()
         );
@@ -51,6 +53,19 @@ public class StudentManager {
 
     public void changeName(String newName){
 
-
     }
+
+    public String selectProgress(JSONArray progress){
+        String allClass = "";
+        for(int i = 0; i < progress.length(); i ++){
+            allClass += progress.getString(i) + "\n" ;
+        }
+        return allClass;
+    }
+
+    public String manageViewClassroom(){
+
+        return null;
+    }
+
 }

@@ -17,6 +17,7 @@ public class Student extends User {
     private final String department;
     private final JSONObject progress;
     private final String generation;
+    private final String status;
 
     public Student(JSONObject studentObject) throws JSONException {
         super(
@@ -25,6 +26,7 @@ public class Student extends User {
                 studentObject.getString("email"),
                 studentObject.getString("password")
         );
+        this.status = studentObject.getString("status");
         this.id = studentObject.getString("id");
         this.gender = studentObject.getString("gender");
         this.phone = studentObject.getString("phoneNumber");
@@ -41,6 +43,7 @@ public class Student extends User {
     }
 
     // Getter methods
+    public String getStatus() { return  status; }
     public String getId() { return id; }
     public String getGender() { return gender; }
     public String getPhone() { return phone; }

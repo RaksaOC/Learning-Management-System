@@ -58,10 +58,21 @@ public class StudentController {
         // logic to make the data look nice i.e. into a table...
     }
 
+    public String selectProgress() {
+        StudentManager studentManager = new StudentManager(student);
+        System.out.println(studentManager.printClassrooms(student.getProgress()));
+        String choice = Menu.prompt("Select a Progress: ");
+        return Integer.toString(Integer.parseInt(choice) - 1);
+    }
+
+    public void viewClassroom(){
+        StudentManager studentManager = new StudentManager(student);
+        String classDetails = studentManager.manageViewClassroom();
+        System.out.println(UI.TextColor.addColor((classDetails), UI.TextColor.BLUE));
+    }
+
+
     // more methods/functionalities to be added
-
-
-
 
     // helper methods goes here
 

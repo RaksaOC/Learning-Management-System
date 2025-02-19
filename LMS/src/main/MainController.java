@@ -13,6 +13,7 @@ public class MainController {
     private User user;
     private Student student;
     private Teacher teacher;
+    private String indexOfClass;
 
     public MainController() {
     }
@@ -93,8 +94,10 @@ public class MainController {
     }
 
     private void handleStudentViewClassroom() {
-
-
+        StudentController studentController = new StudentController(student);
+        this.indexOfClass = studentController.
+                this.indexOfClass = teacherController.selectClassroom();
+        studentController.viewClassroom();
     }
 
     private void handleStudentViewProfile() {

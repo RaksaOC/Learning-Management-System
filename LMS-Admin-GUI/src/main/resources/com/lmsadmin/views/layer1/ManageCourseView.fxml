@@ -289,7 +289,7 @@
                 <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
             </padding>
             <children>
-                <HBox alignment="CENTER_LEFT" prefHeight="140.0" prefWidth="1068.0" spacing="40.0" style="-fx-border-width: 2; -fx-background-color: #6A84AC; -fx-border-color: #000000;" fx:id="add" onMouseClicked="#handleAdd">
+                <HBox fx:id="add" alignment="CENTER_LEFT" onMouseClicked="#handleAdd" prefHeight="140.0" prefWidth="1068.0" spacing="40.0" style="-fx-border-width: 2; -fx-background-color: #6A84AC; -fx-border-color: #000000;">
                     <children>
                         <ImageView fitHeight="109.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -315,7 +315,7 @@
                         <DropShadow />
                     </effect>
                 </HBox>
-                <HBox alignment="CENTER_LEFT" prefHeight="140.0" prefWidth="1068.0" spacing="40.0" style="-fx-border-width: 2; -fx-border-color: #000000; -fx-background-color: #6A84AC;" fx:id="edit" onMouseClicked="#handleEdit">
+                <HBox fx:id="edit" alignment="CENTER_LEFT" onMouseClicked="#handleEdit" prefHeight="140.0" prefWidth="1068.0" spacing="40.0" style="-fx-border-width: 2; -fx-border-color: #000000; -fx-background-color: #6A84AC;">
                     <children>
                         <ImageView fitHeight="109.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -341,7 +341,7 @@
                         <DropShadow />
                     </effect>
                 </HBox>
-                <HBox alignment="CENTER_LEFT" prefHeight="140.0" prefWidth="1068.0" spacing="40.0" style="-fx-border-width: 2; -fx-border-color: #000000; -fx-background-color: #6A84AC;" fx:id="delete" onMouseClicked="#handleDelete">
+                <HBox fx:id="delete" alignment="CENTER_LEFT" onMouseClicked="#handleDelete" prefHeight="140.0" prefWidth="1068.0" spacing="40.0" style="-fx-border-width: 2; -fx-border-color: #000000; -fx-background-color: #6A84AC;">
                     <children>
                         <ImageView fitHeight="109.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -367,7 +367,7 @@
                         <DropShadow />
                     </effect>
                 </HBox>
-                <HBox alignment="CENTER_LEFT" prefHeight="140.0" prefWidth="1068.0" spacing="40.0" style="-fx-border-width: 2; -fx-border-color: #000000; -fx-background-color: #6A84AC;" fx:id="view" onMouseClicked="#handleView">
+                <HBox fx:id="view" alignment="CENTER_LEFT" onMouseClicked="#handleView" prefHeight="140.0" prefWidth="1068.0" spacing="40.0" style="-fx-border-width: 2; -fx-border-color: #000000; -fx-background-color: #6A84AC;">
                     <children>
                         <ImageView fitHeight="109.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -452,7 +452,7 @@
                                 </Text>
                             </children>
                         </VBox>
-                        <Text layoutX="502.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard" AnchorPane.leftAnchor="502.0">
+                        <Text layoutX="502.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="502.0">
                             <font>
                                 <Font name="Gill Sans Bold" size="30.0" />
                             </font>

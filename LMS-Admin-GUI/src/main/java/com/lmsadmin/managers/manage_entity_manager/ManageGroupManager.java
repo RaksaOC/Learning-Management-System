@@ -163,5 +163,24 @@ public class ManageGroupManager extends ManageEntityManager {
         return null;
     }
 
+    public JSONArray getAllDetails(){
+        JSONArray gps = new JSONArray();
+        JSONArray departments = entityData_Obj.getJSONArray("departments");
+        for (int i = 0; i < departments.length(); i++) {
+            JSONArray specializations = departments.getJSONObject(i).getJSONArray("specializations");
+            for (int j = 0; j < specializations.length(); j++) {
+                JSONArray generations = specializations.getJSONObject(j).getJSONArray("generations");
+                for (int k = 0; k < generations.length(); k++) {
+                    JSONArray groups = generations.getJSONObject(k).getJSONArray("groups");
+                    for (int l = 0; l < groups.length(); l++) {
+                        gps.put(groups.getJSONObject(l));
+                    }
+                }
+
+            }
+        }
+        return gps;
+    }
+
 
 }

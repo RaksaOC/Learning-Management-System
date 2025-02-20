@@ -1,6 +1,7 @@
 
 package main.java.com.lmsadmin.managers.manage_entity_manager;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class ManageAdminManager extends ManageEntityManager {
@@ -11,13 +12,18 @@ public class ManageAdminManager extends ManageEntityManager {
         this.baseID = "A000";
     }
 
-    public JSONObject getAdminDetails(String id) {
-        for (int i = 0; i < entityData.length(); i++){
-            if(entityData.getJSONObject(i).getString("id").equals(id)){
-                return entityData.getJSONObject(i);
+    public JSONObject getDetails(String id) {
+        for (int i = 0; i < entityData_Arr.length(); i++) {
+            if (entityData_Arr.getJSONObject(i).getString("id").equals(id)) {
+                return entityData_Arr.getJSONObject(i);
             }
         }
         return null;
     }
+
+    public JSONArray getAllDetails() {
+        return entityData_Arr;
+    }
+
 
 }

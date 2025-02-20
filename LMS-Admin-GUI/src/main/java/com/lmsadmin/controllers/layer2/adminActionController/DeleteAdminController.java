@@ -7,7 +7,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.input.MouseEvent;
@@ -57,7 +56,7 @@ public class DeleteAdminController extends MainFrameController{
     private void createDetails(){
         String idToSearch = idField.getText();
         ManageAdminManager manageAdminManager = new ManageAdminManager();
-        JSONObject details = manageAdminManager.getAdminDetails(idToSearch);
+        JSONObject details = manageAdminManager.getDetails(idToSearch);
         detailsVBox.getChildren().clear();
         detailsVBox.setStyle("-fx-background-color: #ebebeb");
         Pos center_left = Pos.CENTER_LEFT;

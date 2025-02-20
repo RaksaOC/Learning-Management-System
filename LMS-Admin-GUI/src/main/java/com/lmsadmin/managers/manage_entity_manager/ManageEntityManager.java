@@ -28,7 +28,7 @@ interface ManageEntityManagerInterface {
 
 public abstract class ManageEntityManager implements ManageEntityManagerInterface {
     protected String content;
-    protected JSONArray entityData;
+    protected JSONArray entityData_Arr;
     protected JSONObject entityData_Obj;
     protected String filePath;
     protected String baseID;
@@ -38,21 +38,21 @@ public abstract class ManageEntityManager implements ManageEntityManagerInterfac
 
     public void manageAddEntity(JSONObject newObj) {
         newObj.put("id", generateNewID());
-        entityData.put(newObj);
+        entityData_Arr.put(newObj);
         saveEntity();
     }
 
     public void manageDeleteEntity(String idToDelete) {
-        for (int i = 0; i < entityData.length(); i++) {
-            if (entityData.getJSONObject(i).getString("id").equals(idToDelete)) {
-                entityData.getJSONObject(i).put("status", "inactive");
+        for (int i = 0; i < entityData_Arr.length(); i++) {
+            if (entityData_Arr.getJSONObject(i).getString("id").equals(idToDelete)) {
+                entityData_Arr.getJSONObject(i).put("status", "inactive");
             }
         }
         saveEntity();
     }
 
     public void manageViewEntity() {
-        entityData.toString(4);
+        entityData_Arr.toString(4);
     }
 
     public void setEntityFilePath(String filePath) {
@@ -62,7 +62,7 @@ public abstract class ManageEntityManager implements ManageEntityManagerInterfac
     public void loadEntity() {
         try {
             this.content = new String(Files.readAllBytes(Paths.get(filePath)));
-            entityData = new JSONArray(content);
+            entityData_Arr = new JSONArray(content);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -72,7 +72,7 @@ public abstract class ManageEntityManager implements ManageEntityManagerInterfac
 
     public void saveEntity() {
         try (FileWriter file = new FileWriter(filePath)) {
-            file.write(entityData.toString(4)); // Pretty-print with 4 spaces
+            file.write(entityData_Arr.toString(4)); // Pretty-print with 4 spaces
             file.flush();
         } catch (IOException e) {
             e.printStackTrace();

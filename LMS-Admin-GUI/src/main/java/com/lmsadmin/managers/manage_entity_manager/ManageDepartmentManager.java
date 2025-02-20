@@ -97,5 +97,9 @@ public class ManageDepartmentManager extends ManageEntityManager {
         return null;
     }
 
+    public JSONArray getAllDetails(){
+        return departments;
+    }
+
 
 }

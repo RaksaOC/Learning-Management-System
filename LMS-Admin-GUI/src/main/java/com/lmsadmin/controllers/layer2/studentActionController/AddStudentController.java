@@ -100,7 +100,7 @@ public class AddStudentController extends MainFrameController {
             gName.put("lastName", gLName);
             guardian.put("name", gName);
             guardian.put("gender", gGender);
-            guardian.put("phone", gPhone);
+            guardian.put("phoneNumber", gPhone);
             newStudent.put("guardian", guardian);
 
             address.put("commune", com);

@@ -1,48 +1,82 @@
 package main.java.com.lmsadmin.controllers.layer2.teacherActionController;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import main.java.com.lmsadmin.controllers.layer0.MainFrameController;
-import main.java.com.lmsadmin.managers.manage_entity_manager.ManageAdminManager;
 import main.java.com.lmsadmin.managers.manage_entity_manager.ManageTeacherManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.Optional;
+public class ViewTeacherController extends MainFrameController {
 
-public class DeleteTeacherController extends MainFrameController{
     @FXML
     private TextField idField;
     @FXML
     private Button searchButton;
+
     @FXML
-    private Button deleteButton;
+    private TableView<JSONObject> tableView;
+    @FXML
+    private TableColumn<JSONObject, String> idColumn;
+    @FXML
+    private TableColumn<JSONObject, String> firstNameColumn;
+    @FXML
+    private TableColumn<JSONObject, String> lastNameColumn;
+    @FXML
+    private TableColumn<JSONObject, String> genderColumn;
+    @FXML
+    private TableColumn<JSONObject, String> dobColumn;
+    @FXML
+    private TableColumn<JSONObject, String> phoneColumn;
+    @FXML
+    private TableColumn<JSONObject, String> emailColumn;
+    @FXML
+    private TableColumn<JSONObject, String> createdAtColumn;
+    @FXML
+    private TableColumn<JSONObject, String> lastLoginColumn;
+
     @FXML
     private VBox detailsVBox;
 
     @FXML
-    private void handleSearch(MouseEvent event) {
-        createDetails();
+    public void initialize() {
+        ManageTeacherManager manageTeacherManager = new ManageTeacherManager();
+        JSONArray all = manageTeacherManager.getAllDetails();
+
+        // Convert JSON data to ObservableList
+        ObservableList<JSONObject> data = FXCollections.observableArrayList();
+        for (int i = 0; i < all.length(); i++) {
+            data.add(all.getJSONObject(i));
+        }
+
+        // Set up column cell value factories
+        idColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "id"));
+        firstNameColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "firstName"));
+        lastNameColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "lastName"));
+        genderColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "gender"));
+        dobColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "dob"));
+        phoneColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "phoneNumber"));
+        emailColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "email"));
+        createdAtColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "createdAt"));
+        lastLoginColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "lastLogin"));
+
+        // Set data to table
+        tableView.setItems(data);
     }
 
     @FXML
-    private void handleDelete(MouseEvent event) {
-        if(showDeleteConfirmation()){
-            ManageTeacherManager manageTeacherManager = new ManageTeacherManager();
-            manageTeacherManager.manageDeleteEntity(idField.getText());
-        }
-        else{
-            clearDetails();
-        }
+    private void handleSearch(MouseEvent event) {
+        createDetails();
     }
 
     private void createDetails(){
@@ -95,20 +129,14 @@ public class DeleteTeacherController extends MainFrameController{
         detailsVBox.getChildren().addAll(textNodes);
     }
 
-    private boolean showDeleteConfirmation(){
-        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmation.setTitle("Confirmation");
-        confirmation.setHeaderText(null);
-        confirmation.setContentText("Are you sure you want to delete?");
-        Optional<ButtonType> result = confirmation.showAndWait();
-        if (result.get() == ButtonType.OK){
-            return true;
-        }
-        return false;
-    }
 
-    private void clearDetails(){
-        idField.clear();
-        detailsVBox.getChildren().clear();
+    private javafx.beans.property.SimpleStringProperty getJSONValue(JSONObject obj, String key) {
+        return switch (key) {
+            case "firstName" ->
+                    new javafx.beans.property.SimpleStringProperty(obj.optJSONObject("name").optString("firstName", "N/A"));
+            case "lastName" ->
+                    new javafx.beans.property.SimpleStringProperty(obj.optJSONObject("name").optString("lastName", "N/A"));
+            default -> new javafx.beans.property.SimpleStringProperty(obj.optString(key, "N/A"));
+        };
     }
 }

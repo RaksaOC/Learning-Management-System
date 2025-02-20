@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer0.MainFrameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer2.adminActionController.ViewAdminController">
     <left>
         <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
             <children>
@@ -35,7 +35,8 @@
                     </children>
                     <VBox.margin>
                         <Insets top="10.0" />
-                    </VBox.margin></HBox>
+                    </VBox.margin>
+                </HBox>
                 <HBox fx:id="homeLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToHome" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn">
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
@@ -297,42 +298,40 @@
                         <Font name="Gill Sans Bold" size="26.0" />
                     </font>
                 </Text>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1139.0" spacing="20.0">
+                <TableView fx:id="tableView" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                        <TableColumn fx:id="idColumn" editable="false" maxWidth="500.0" prefWidth="128.0" text="ID" />
+                        <TableColumn fx:id="firstNameColumn" editable="false" maxWidth="500.0" minWidth="0.0" prefWidth="172.0" text="First Name" />
+                        <TableColumn fx:id="lastNameColumn" editable="false" maxWidth="500.0" prefWidth="178.0" text="Last Name" />
+                        <TableColumn fx:id="genderColumn" editable="false" maxWidth="500.0" minWidth="0.0" prefWidth="86.0" text="Gender" />
+                        <TableColumn fx:id="dobColumn" editable="false" maxWidth="500.0" minWidth="0.0" prefWidth="189.0" text="DOB" />
+                        <TableColumn fx:id="phoneColumn" editable="false" maxWidth="500.0" minWidth="0.0" prefWidth="61.0" text="Tel." />
+                        <TableColumn fx:id="emailColumn" editable="false" maxWidth="601.0" minWidth="0.0" prefWidth="118.0" text="Email" />
+                        <TableColumn fx:id="createdAtColumn" editable="false" maxWidth="601.0" minWidth="0.0" prefWidth="118.0" text="Created At" />
+                        <TableColumn fx:id="lastLogInColumn" editable="false" maxWidth="601.0" minWidth="0.0" prefWidth="118.0" text="Last Logged In" />
+                    </columns>
+                </TableView>
+                <VBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" spacing="20.0">
                     <children>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
-                            <children>
-                                <Label text="Admin ID">
-                                    <font>
-                                        <Font name="Gill Sans Bold" size="19.0" />
-                                    </font>
-                                </Label>
-                                <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Teacher ID">
-                                    <font>
-                                        <Font size="17.0" />
-                                    </font>
-                                </TextField>
-                            </children>
-                        </VBox>
+                        <Label text="Admin ID">
+                            <font>
+                                <Font name="Gill Sans Bold" size="19.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="idField" prefHeight="48.0" prefWidth="502.0" promptText="Enter Admin ID">
+                            <font>
+                                <Font size="17.0" />
+                            </font>
+                        </TextField>
                     </children>
-                </HBox>
-                <Button mnemonicParsing="false" text="Search">
+                </VBox>
+                <Button fx:id="searchButton" mnemonicParsing="false" onMouseClicked="#handleSearch" text="Search">
                     <font>
                         <Font name="Gill Sans" size="20.0" />
                     </font>
                 </Button>
-            <TableView maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
-              <columns>
-                <TableColumn editable="false" maxWidth="500.0" prefWidth="128.0" text="ID" />
-                <TableColumn editable="false" maxWidth="500.0" minWidth="0.0" prefWidth="172.0" text="First Name" />
-                  <TableColumn editable="false" maxWidth="500.0" prefWidth="178.0" text="Last Name" />
-                  <TableColumn editable="false" maxWidth="500.0" minWidth="0.0" prefWidth="86.0" text="Gender" />
-                  <TableColumn editable="false" maxWidth="500.0" minWidth="0.0" prefWidth="189.0" text="DOB" />
-                  <TableColumn editable="false" maxWidth="500.0" minWidth="0.0" prefWidth="180.0" text="Tel." />
-                  <TableColumn editable="false" maxWidth="601.0" minWidth="0.0" prefWidth="184.0" text="Email" />
-              </columns>
-            </TableView>
+                <VBox fx:id="detailsVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
             </children>
-
         </VBox>
     </center>
     <top>
@@ -345,7 +344,8 @@
                                 <Image url="@../../../images/banner.png" />
                             </image>
                         </ImageView>
-                    </children></Pane>
+                    </children>
+                </Pane>
                 <AnchorPane layoutX="232.0" layoutY="-1.0" prefHeight="118.0" prefWidth="1168.0" style="-fx-background-color: #ebebeb;" AnchorPane.leftAnchor="232.0" AnchorPane.rightAnchor="0.0">
                     <children>
                         <ImageView fitHeight="50.0" fitWidth="52.0" layoutX="1017.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="101.0">
@@ -378,14 +378,16 @@
                                     </VBox.margin>
                                     <font>
                                         <Font name="Gill Sans Bold" size="15.0" />
-                                    </font></Text>
+                                    </font>
+                                </Text>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ory Chanraksa">
                                     <VBox.margin>
                                         <Insets left="20.0" />
                                     </VBox.margin>
                                     <font>
                                         <Font name="Gill Sans Bold" size="15.0" />
-                                    </font></Text>
+                                    </font>
+                                </Text>
                             </children>
                         </VBox>
                     </children>

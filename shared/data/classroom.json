@@ -1,11 +1,11 @@
 [
     {
         "teacherId": "T0001",
-        "assignments": [],
+        "assignments": ["A00001", "A000002"],
         "students": ["S000001"],
-        "resources": [],
+        "resources": ["R0001", "R0002"],
         "id": "GEN10-CS-SE-G1-OOP",
-        "quizzes": [],
+        "quizzes": ["Q001", "Q002"],
         "courseId": "",
         "status": "active"
     },

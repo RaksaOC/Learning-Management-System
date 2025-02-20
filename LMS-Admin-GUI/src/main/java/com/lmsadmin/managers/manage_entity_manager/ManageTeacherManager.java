@@ -1,5 +1,6 @@
 package main.java.com.lmsadmin.managers.manage_entity_manager;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class ManageTeacherManager extends ManageEntityManager {
@@ -10,8 +11,8 @@ public class ManageTeacherManager extends ManageEntityManager {
     }
 
     public boolean isTeacherIdExist(String teacherId) {
-        for (int i = 0; i < entityData.length(); i++) {
-            if (entityData.getJSONObject(i).getString("id").equals(teacherId)) {
+        for (int i = 0; i < entityData_Arr.length(); i++) {
+            if (entityData_Arr.getJSONObject(i).getString("id").equals(teacherId)) {
                 return true;
             }
         }
@@ -19,12 +20,16 @@ public class ManageTeacherManager extends ManageEntityManager {
     }
 
     public JSONObject getDetails(String id) {
-        for (int i = 0; i < entityData.length(); i++){
-            if(entityData.getJSONObject(i).getString("id").equals(id)){
-                return entityData.getJSONObject(i);
+        for (int i = 0; i < entityData_Arr.length(); i++){
+            if(entityData_Arr.getJSONObject(i).getString("id").equals(id)){
+                return entityData_Arr.getJSONObject(i);
             }
         }
         return null;
+    }
+
+    public JSONArray getAllDetails(){
+        return entityData_Arr;
     }
 
 

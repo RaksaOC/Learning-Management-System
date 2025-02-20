@@ -297,29 +297,6 @@
                         <Font name="Gill Sans Bold" size="26.0" />
                     </font>
                 </Text>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1139.0" spacing="20.0">
-                    <children>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
-                            <children>
-                                <Label text="Generation ID">
-                                    <font>
-                                        <Font name="Gill Sans Bold" size="19.0" />
-                                    </font>
-                                </Label>
-                                <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Generation ID">
-                                    <font>
-                                        <Font size="17.0" />
-                                    </font>
-                                </TextField>
-                            </children>
-                        </VBox>
-                    </children>
-                </HBox>
-                <Button mnemonicParsing="false" text="Search">
-                    <font>
-                        <Font name="Gill Sans" size="20.0" />
-                    </font>
-                </Button>
             <TableView maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
               <columns>
                 <TableColumn maxWidth="500.0" prefWidth="256.0" text="ID" />
@@ -327,6 +304,26 @@
                   <TableColumn maxWidth="556.0" prefWidth="319.0" text="Groups" />
               </columns>
             </TableView>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" spacing="20.0">
+                      <children>
+                          <Label text="Generation ID">
+                              <font>
+                                  <Font name="Gill Sans Bold" size="19.0" />
+                              </font>
+                          </Label>
+                          <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Generation ID">
+                              <font>
+                                  <Font size="17.0" />
+                              </font>
+                          </TextField>
+                      </children>
+                  </VBox>
+                <Button mnemonicParsing="false" text="Search">
+                    <font>
+                        <Font name="Gill Sans" size="20.0" />
+                    </font>
+                </Button>
+            <VBox prefHeight="200.0" prefWidth="100.0" />
             </children>
 
         </VBox>

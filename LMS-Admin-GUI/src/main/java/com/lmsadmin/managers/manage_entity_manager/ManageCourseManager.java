@@ -84,5 +84,9 @@ public class ManageCourseManager extends ManageEntityManager{
         }
         return null;
     }
+
+    public JSONArray getAllDetails(){
+        return entityData_Obj.getJSONArray("courses");
+    }
 }
 

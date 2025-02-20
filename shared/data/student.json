@@ -20,9 +20,12 @@
         "progress": {"GEN10-CS-SE-G1-OOP": "P000001"},
         "id": "S000001",
         "guardian": {
-            "guardianGender": "female",
-            "guardianName": "mom",
-            "guardianPhoneNumber": "0123423432"
+            "gender": "Male",
+            "phoneNumber": "adasd",
+            "name": {
+                "firstName": "asda",
+                "lastName": "asdasd"
+            }
         },
         "department": "Computer Science",
         "email": "ocraksa@gmail.com",
@@ -50,7 +53,7 @@
         "id": "S000002",
         "guardian": {
             "gender": "Male",
-            "phone": "adasd",
+            "phoneNumber": "adasd",
             "name": {
                 "firstName": "asda",
                 "lastName": "asdasd"

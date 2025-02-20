@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer1.ManageTeacherController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer2.teacherActionController.ViewTeacherController">
     <left>
         <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
             <children>
@@ -297,40 +297,39 @@
                         <Font name="Gill Sans Bold" size="26.0" />
                     </font>
                 </Text>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1139.0" spacing="20.0">
-                    <children>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
-                            <children>
-                                <Label text="Teacher ID">
-                                    <font>
-                                        <Font name="Gill Sans Bold" size="19.0" />
-                                    </font>
-                                </Label>
-                                <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Teacher ID">
-                                    <font>
-                                        <Font size="17.0" />
-                                    </font>
-                                </TextField>
-                            </children>
-                        </VBox>
-                    </children>
-                </HBox>
-                <Button mnemonicParsing="false" text="Search">
+            <TableView fx:id="tableView" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn fx:id="idColumn" editable="false" maxWidth="500.0" prefWidth="128.0" text="ID" />
+                <TableColumn fx:id="firstNameColumn" editable="false" maxWidth="500.0" minWidth="0.0" prefWidth="128.5523681640625" text="First Name" />
+                  <TableColumn fx:id="lastNameColumn" editable="false" maxWidth="500.0" prefWidth="150.61175537109375" text="Last Name" />
+                  <TableColumn fx:id="genderColumn" editable="false" maxWidth="500.0" minWidth="0.0" prefWidth="144.423095703125" text="Gender" />
+                  <TableColumn fx:id="dobColumn" editable="false" maxWidth="500.0" minWidth="0.0" prefWidth="139.1153564453125" text="DOB" />
+                  <TableColumn fx:id="phoneColumn" editable="false" maxWidth="500.0" minWidth="0.0" prefWidth="116.8846435546875" text="Tel." />
+                  <TableColumn fx:id="emailColumn" editable="false" maxWidth="601.0" minWidth="0.0" prefWidth="117.989501953125" text="Email" />
+                  <TableColumn fx:id="createdAtColumn" editable="false" maxWidth="601.0" minWidth="0.0" prefWidth="96.4930419921875" text="Created At" />
+                  <TableColumn fx:id="lastLoginColumn" editable="false" maxWidth="601.0" minWidth="0.0" prefWidth="96.5069580078125" text="Last Logged In" />
+              </columns>
+            </TableView>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" spacing="20.0">
+                      <children>
+                          <Label text="Teacher ID">
+                              <font>
+                                  <Font name="Gill Sans Bold" size="19.0" />
+                              </font>
+                          </Label>
+                          <TextField fx:id="idField" prefHeight="48.0" prefWidth="502.0" promptText="Enter Teacher ID">
+                              <font>
+                                  <Font size="17.0" />
+                              </font>
+                          </TextField>
+                      </children>
+                  </VBox>
+                <Button fx:id="searchButton" mnemonicParsing="false" onMouseClicked="#handleSearch" text="Search">
                     <font>
                         <Font name="Gill Sans" size="20.0" />
                     </font>
                 </Button>
-            <TableView maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
-              <columns>
-                <TableColumn editable="false" maxWidth="500.0" prefWidth="128.0" text="ID" />
-                <TableColumn editable="false" maxWidth="500.0" minWidth="0.0" prefWidth="172.0" text="First Name" />
-                  <TableColumn editable="false" maxWidth="500.0" prefWidth="178.0" text="Last Name" />
-                  <TableColumn editable="false" maxWidth="500.0" minWidth="0.0" prefWidth="86.0" text="Gender" />
-                  <TableColumn editable="false" maxWidth="500.0" minWidth="0.0" prefWidth="189.0" text="DOB" />
-                  <TableColumn editable="false" maxWidth="500.0" minWidth="0.0" prefWidth="180.0" text="Tel." />
-                  <TableColumn editable="false" maxWidth="601.0" minWidth="0.0" prefWidth="184.0" text="Email" />
-              </columns>
-            </TableView>
+            <VBox fx:id="detailsVBox" prefHeight="200.0" prefWidth="100.0" />
             </children>
 
         </VBox>

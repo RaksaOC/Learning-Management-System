@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer0.MainFrameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer2.departmentActionController.ViewDepartmentController">
     <left>
         <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
             <children>
@@ -287,7 +287,7 @@
         </VBox>
     </left>
     <center>
-        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="40.0" style="-fx-background-color: #ebebeb;" BorderPane.alignment="CENTER">
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="40.0" style="-fx-background-color: #ebebeb;" BorderPane.alignment="CENTER" >
             <padding>
                 <Insets bottom="50.0" left="25.0" right="25.0" top="10.0" />
             </padding>
@@ -297,36 +297,33 @@
                         <Font name="Gill Sans Bold" size="26.0" />
                     </font>
                 </Text>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1139.0" spacing="20.0">
-                    <children>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
-                            <children>
-                                <Label text="Department ID">
-                                    <font>
-                                        <Font name="Gill Sans Bold" size="19.0" />
-                                    </font>
-                                </Label>
-                                <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Department ID">
-                                    <font>
-                                        <Font size="17.0" />
-                                    </font>
-                                </TextField>
-                            </children>
-                        </VBox>
-                    </children>
-                </HBox>
-                <Button mnemonicParsing="false" text="Search">
+            <TableView maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" fx:id="tableView">
+              <columns>
+                <TableColumn maxWidth="500.0" prefWidth="256.0" text="ID" fx:id="idColumn"/>
+                <TableColumn maxWidth="533.0" prefWidth="329.0" text="Department Name" fx:id="nameColumn"/>
+                  <TableColumn maxWidth="556.0" prefWidth="166.0" text="Specializations" fx:id="specColumn"/>
+              </columns>
+            </TableView>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" spacing="20.0">
+                      <children>
+                          <Label text="Department ID">
+                              <font>
+                                  <Font name="Gill Sans Bold" size="19.0" />
+                              </font>
+                          </Label>
+                          <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Department ID" fx:id="idField">
+                              <font>
+                                  <Font size="17.0" />
+                              </font>
+                          </TextField>
+                      </children>
+                  </VBox>
+                <Button mnemonicParsing="false" text="Search" fx:id="searchButton" onMouseClicked="#handleSearch">
                     <font>
                         <Font name="Gill Sans" size="20.0" />
                     </font>
                 </Button>
-            <TableView maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
-              <columns>
-                <TableColumn maxWidth="500.0" prefWidth="256.0" text="ID" />
-                <TableColumn maxWidth="533.0" prefWidth="329.0" text="Department Name" />
-                  <TableColumn maxWidth="556.0" prefWidth="166.0" text="Specializations" />
-              </columns>
-            </TableView>
+            <VBox prefHeight="200.0" prefWidth="100.0" fx:id="detailsVBox"/>
             </children>
 
         </VBox>

@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer0.MainFrameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer2.specializationActionController.ViewSpecializationController">
     <left>
         <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
             <children>
@@ -297,36 +297,32 @@
                         <Font name="Gill Sans Bold" size="26.0" />
                     </font>
                 </Text>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1139.0" spacing="20.0">
-                    <children>
-                        <VBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
-                            <children>
-                                <Label text="Specialization ID">
-                                    <font>
-                                        <Font name="Gill Sans Bold" size="19.0" />
-                                    </font>
-                                </Label>
-                                <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Department ID">
-                                    <font>
-                                        <Font size="17.0" />
-                                    </font>
-                                </TextField>
-                            </children>
-                        </VBox>
-                    </children>
-                </HBox>
-                <Button mnemonicParsing="false" text="Search">
+            <TableView fx:id="tableView" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn fx:id="idColumn" editable="false" maxWidth="500.0" prefWidth="382.0" text="ID" />
+                <TableColumn fx:id="nameColumn" editable="false" maxWidth="608.0" minWidth="0.0" prefWidth="331.0" text="Name" />
+              </columns>
+            </TableView>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0" spacing="20.0">
+                      <children>
+                          <Label text="Specialization ID">
+                              <font>
+                                  <Font name="Gill Sans Bold" size="19.0" />
+                              </font>
+                          </Label>
+                          <TextField fx:id="idField" prefHeight="48.0" prefWidth="502.0" promptText="Enter Department ID">
+                              <font>
+                                  <Font size="17.0" />
+                              </font>
+                          </TextField>
+                      </children>
+                  </VBox>
+                <Button fx:id="searchButton" mnemonicParsing="false" onMouseClicked="#handleSearch" text="Search">
                     <font>
                         <Font name="Gill Sans" size="20.0" />
                     </font>
                 </Button>
-            <TableView maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
-              <columns>
-                <TableColumn editable="false" maxWidth="500.0" prefWidth="382.0" text="ID" />
-                <TableColumn editable="false" maxWidth="608.0" minWidth="0.0" prefWidth="331.0" text="Name" />
-                  <TableColumn editable="false" maxWidth="796.0" minWidth="0.0" prefWidth="404.0" text="Generations" />
-              </columns>
-            </TableView>
+            <VBox fx:id="detailsVBox" prefHeight="200.0" prefWidth="100.0" />
             </children>
 
         </VBox>

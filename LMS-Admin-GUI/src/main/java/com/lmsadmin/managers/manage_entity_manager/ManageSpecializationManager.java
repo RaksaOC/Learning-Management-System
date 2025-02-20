@@ -110,4 +110,16 @@ public class ManageSpecializationManager extends ManageEntityManager {
         }
         return null;
     }
+
+    public JSONArray getAllDetails(){
+        JSONArray spec = new JSONArray();
+        JSONArray departments = entityData_Obj.getJSONArray("departments");
+        for (int i = 0; i < departments.length(); i++) {
+            JSONArray specializations = departments.getJSONObject(i).getJSONArray("specializations");
+            for (int j = 0; j < specializations.length(); j++) {
+                spec.put(specializations.getJSONObject(j));
+            }
+        }
+        return spec;
+    }
 }

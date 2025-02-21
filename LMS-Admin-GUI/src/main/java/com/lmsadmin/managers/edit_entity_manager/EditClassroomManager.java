@@ -4,8 +4,8 @@ public class EditClassroomManager extends EditEntityManager {
     public EditClassroomManager(String classroomID) {
         super(classroomID);
         setFilePath("shared/data/classroom.json");
-        setEntityID(classroomID); // entuty id to search for is the old groupID
-        getEntityData();
+        setIdToEdit(classroomID); // entuty id to search for is the old groupID
+        loadEntityDataToEdit();
 
     }
 

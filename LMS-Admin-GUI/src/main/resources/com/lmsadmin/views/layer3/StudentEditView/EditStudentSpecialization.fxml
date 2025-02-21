@@ -296,6 +296,16 @@
                         <Font name="Gill Sans Bold" size="26.0" />
                     </font>
                 </Text>
+                <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="ID">
+                            <font>
+                                <Font name="Gill Sans Bold" size="19.0" />
+                            </font>
+                        </Label>
+                        <ComboBox fx:id="idComboBox" maxWidth="1.7976931348623157E308" prefHeight="47.0" prefWidth="1118.0" promptText="Select ID" />
+                    </children>
+                </VBox>
                 <HBox alignment="CENTER" prefHeight="183.0" prefWidth="1118.0" spacing="20.0">
                     <children>
                         <VBox alignment="TOP_CENTER" prefHeight="191.0" prefWidth="1118.0" spacing="20.0" HBox.hgrow="ALWAYS">
@@ -305,7 +315,7 @@
                                         <Font name="Gill Sans Bold" size="19.0" />
                                     </font>
                                 </Label>
-                                <TextField alignment="CENTER" prefHeight="48.0" prefWidth="502.0">
+                                <TextField alignment="CENTER" disable="true" prefHeight="48.0" prefWidth="502.0">
                                     <font>
                                         <Font size="17.0" />
                                     </font>
@@ -315,12 +325,12 @@
                                         <Font name="Gill Sans Bold" size="19.0" />
                                     </font>
                                 </Label>
-                                <ComboBox prefHeight="42.0" prefWidth="1118.0" promptText="Select a Specialization" />
+                                <ComboBox disable="true" prefHeight="42.0" prefWidth="1118.0" promptText="Select a Specialization" />
                             </children>
                         </VBox>
                     </children>
                 </HBox>
-                <Button mnemonicParsing="false" text="Edit">
+                <Button disable="true" mnemonicParsing="false" text="Edit">
                     <font>
                         <Font name="Gill Sans" size="20.0" />
                     </font>

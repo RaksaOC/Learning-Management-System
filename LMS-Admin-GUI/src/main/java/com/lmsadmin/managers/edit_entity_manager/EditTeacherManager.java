@@ -5,8 +5,8 @@ public class EditTeacherManager extends EditEntityManager {
         super(idToEdit);
         setFilePath("shared/data/teacher.json");
         this.baseId = "T000000";
-        setEntityID(idToEdit); // this is for getting the entityDataToEdit
-        getEntityData();
+        setIdToEdit(idToEdit); // this is for getting the entityDataToEdit
+        loadEntityDataToEdit();
     }
 
     public String getOldGender() {

@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
@@ -290,7 +291,7 @@
                 <Insets bottom="50.0" left="25.0" right="25.0" top="10.0" />
             </padding>
             <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Email">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Edit ID">
                     <font>
                         <Font name="Gill Sans Bold" size="26.0" />
                     </font>
@@ -299,12 +300,18 @@
                     <children>
                         <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
                             <children>
+                                <Label text="ID">
+                                    <font>
+                                        <Font name="Gill Sans Bold" size="19.0" />
+                                    </font>
+                                </Label>
+                                <ComboBox maxWidth="1.7976931348623157E308" prefHeight="47.0" prefWidth="1118.0" promptText="Select ID" />
                                 <Label text="Current">
                                     <font>
                                         <Font name="Gill Sans Bold" size="19.0" />
                                     </font>
                                 </Label>
-                                <TextField alignment="CENTER" prefHeight="48.0" prefWidth="502.0">
+                                <TextField alignment="CENTER" disable="true" prefHeight="48.0" prefWidth="502.0">
                                     <font>
                                         <Font size="17.0" />
                                     </font>
@@ -314,7 +321,7 @@
                                         <Font name="Gill Sans Bold" size="19.0" />
                                     </font>
                                 </Label>
-                                <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter new">
+                                <TextField disable="true" prefHeight="48.0" prefWidth="502.0" promptText="Enter new">
                                     <font>
                                         <Font size="17.0" />
                                     </font>

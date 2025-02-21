@@ -10,12 +10,12 @@ import java.nio.file.Paths;
 
 public class EditGenerationManager extends EditEntityManager {
     // idToEdit = oldID;
-    // entityID = oldID
+    // idToEdit = oldID
     public EditGenerationManager(String idToEdit) {
         super(idToEdit);
         setFilePath("shared/data/university.json");
-        setEntityID(idToEdit);
-        getEntityData();
+        setIdToEdit(idToEdit);
+        this.loadEntityDataToEdit();
     }
 
     public void setNewID(String newId) {
@@ -23,7 +23,7 @@ public class EditGenerationManager extends EditEntityManager {
         for (int i = 0; i < department.length(); i++) {
             for (int j = 0; j < department.getJSONObject(i).getJSONArray("specializations").length(); j++) {
                 for (int k = 0; k < department.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
-                    if (department.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getString("id").equals(entityID)) {
+                    if (department.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getString("id").equals(idToEdit)) {
                         department.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).put("id", newId);
                     }
                 }
@@ -33,7 +33,7 @@ public class EditGenerationManager extends EditEntityManager {
         saveEntityData();
     }
 
-    public void getEntityData() {
+    public void loadEntityDataToEdit() {
         try {
             this.content = new String(Files.readAllBytes(Paths.get(this.filePath)));
             this.entityData_Obj = new JSONObject(content);

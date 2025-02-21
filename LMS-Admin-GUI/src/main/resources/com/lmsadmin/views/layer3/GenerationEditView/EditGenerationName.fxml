@@ -34,7 +34,8 @@
                     </children>
                     <VBox.margin>
                         <Insets top="10.0" />
-                    </VBox.margin></HBox>
+                    </VBox.margin>
+                </HBox>
                 <HBox fx:id="homeLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToHome" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn">
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
@@ -175,7 +176,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </HBox>
-                <HBox fx:id="manageGenerationLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToManageGeneration" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn">
+                <HBox fx:id="manageGenerationLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToManageGeneration" prefHeight="58.0" prefWidth="232.0" spacing="20.0" style="-fx-background-color: #6A84AC;" styleClass="sidebar-menu-btn">
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -259,7 +260,7 @@
                     </cursor>
                 </HBox>
                 <HBox prefHeight="2.0" prefWidth="232.0" style="-fx-background-color: #CECECE;" />
-                <HBox fx:id="manageAdminLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToManageAdmin" prefHeight="58.0" prefWidth="232.0" spacing="20.0" style="-fx-background-color: #6A84AC;" styleClass="sidebar-menu-btn">
+                <HBox fx:id="manageAdminLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToManageAdmin" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn">
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -296,101 +297,36 @@
                         <Font name="Gill Sans Bold" size="26.0" />
                     </font>
                 </Text>
-                <HBox alignment="CENTER" prefHeight="395.0" prefWidth="1118.0" spacing="20.0">
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1139.0" spacing="20.0">
                     <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="399.0" prefWidth="1118.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                        <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
                             <children>
-                        <VBox alignment="CENTER" prefHeight="102.0" prefWidth="1118.0" spacing="20.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
-                                 <font>
-                                    <Font name="Gill Sans Bold" size="19.0" />
-                                 </font>
-                              </Text>
-                              <ComboBox maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="1118.0" promptText="Select ID" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER">
-                           <children>
-                                      <Label text="Current">
-                                          <font>
-                                              <Font name="Gill Sans Bold" size="19.0" />
-                                          </font>
-                                      </Label>
-                              <HBox spacing="115.0" VBox.vgrow="ALWAYS">
-                                 <children>
-                                    <VBox spacing="20.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Label text="First Name">
-                                             <font>
-                                                <Font name="Gill Sans Bold" size="19.0" />
-                                             </font>
-                                          </Label>
-                                                  <TextField alignment="CENTER" disable="true" prefHeight="48.0" prefWidth="502.0" VBox.vgrow="ALWAYS">
-                                                      <font>
-                                                          <Font size="17.0" />
-                                                      </font>
-                                                  </TextField>
-                                       </children>
-                                    </VBox>
-                                    <VBox spacing="20.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <Label text="Last Name">
-                                             <font>
-                                                <Font name="Gill Sans Bold" size="19.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField alignment="CENTER" disable="true" prefHeight="48.0" prefWidth="502.0" VBox.vgrow="ALWAYS">
-                                             <font>
-                                                <Font size="17.0" />
-                                             </font>
-                                          </TextField>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                              </HBox>
-                           </children>
-                        </VBox>
+                                <Label text="ID">
+                                    <font>
+                                        <Font name="Gill Sans Bold" size="19.0" />
+                                    </font>
+                                </Label>
+                                <ComboBox maxWidth="1.7976931348623157E308" prefHeight="47.0" prefWidth="1118.0" promptText="Select ID" />
+                                <Label text="Current">
+                                    <font>
+                                        <Font name="Gill Sans Bold" size="19.0" />
+                                    </font>
+                                </Label>
+                                <TextField alignment="CENTER" disable="true" prefHeight="48.0" prefWidth="502.0">
+                                    <font>
+                                        <Font size="17.0" />
+                                    </font>
+                                </TextField>
                                 <Label text="New">
                                     <font>
                                         <Font name="Gill Sans Bold" size="19.0" />
                                     </font>
                                 </Label>
-                        <HBox spacing="115.0">
-                           <children>
-                              <VBox spacing="20.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <Label text="First Name">
-                                       <font>
-                                          <Font name="Gill Sans Bold" size="19.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField alignment="CENTER" disable="true" prefHeight="48.0" prefWidth="502.0" VBox.vgrow="ALWAYS">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </TextField>
-                                 </children>
-                              </VBox>
-                              <VBox spacing="20.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <Label text="Last Name">
-                                       <font>
-                                          <Font name="Gill Sans Bold" size="19.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField alignment="CENTER" disable="true" prefHeight="48.0" prefWidth="502.0" VBox.vgrow="ALWAYS">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </TextField>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
+                                <TextField disable="true" prefHeight="48.0" prefWidth="502.0" promptText="Enter new">
+                                    <font>
+                                        <Font size="17.0" />
+                                    </font>
+                                </TextField>
                             </children>
                         </VBox>
                     </children>
@@ -414,7 +350,8 @@
                                 <Image url="@../../../images/banner.png" />
                             </image>
                         </ImageView>
-                    </children></Pane>
+                    </children>
+                </Pane>
                 <AnchorPane layoutX="232.0" layoutY="-1.0" prefHeight="118.0" prefWidth="1168.0" style="-fx-background-color: #ebebeb;" AnchorPane.leftAnchor="232.0" AnchorPane.rightAnchor="0.0">
                     <children>
                         <ImageView fitHeight="50.0" fitWidth="52.0" layoutX="1017.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="101.0">
@@ -447,14 +384,16 @@
                                     </VBox.margin>
                                     <font>
                                         <Font name="Gill Sans Bold" size="15.0" />
-                                    </font></Text>
+                                    </font>
+                                </Text>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ory Chanraksa">
                                     <VBox.margin>
                                         <Insets left="20.0" />
                                     </VBox.margin>
                                     <font>
                                         <Font name="Gill Sans Bold" size="15.0" />
-                                    </font></Text>
+                                    </font>
+                                </Text>
                             </children>
                         </VBox>
                     </children>

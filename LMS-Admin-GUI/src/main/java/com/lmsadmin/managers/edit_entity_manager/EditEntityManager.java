@@ -11,11 +11,11 @@ import java.nio.file.Paths;
 interface EditInterface {
     void setFilePath(String filePath);
 
-    void getEntityData();
+    void loadEntityDataToEdit();
 
     void saveEntityData();
 
-    void setEntityID(String entityID);
+    void setIdToEdit(String idToEdit);
 
     String getOldName();
 
@@ -37,15 +37,16 @@ interface EditInterface {
 }
 
 public class EditEntityManager implements EditInterface {
-    protected String entityID;
+    protected String idToEdit;
     protected String content;
-    protected JSONArray entityData;
+    protected JSONArray entityData_Arr;
     protected JSONObject entityData_Obj;
     protected JSONObject entityDataToEdit;
     protected String filePath;
     // this is for checking the validity of entered id
     protected String baseId;
 
+    public EditEntityManager() {}
     public EditEntityManager(String id) {
     }
 
@@ -102,17 +103,17 @@ public class EditEntityManager implements EditInterface {
         this.filePath = filePath;
     }
 
-    public void setEntityID(String entityID) {
-        this.entityID = entityID;
+    public void setIdToEdit(String idToEdit) {
+        this.idToEdit = idToEdit;
     }
 
-    public void getEntityData() {
+    public void loadEntityDataToEdit() {
         try {
             this.content = new String(Files.readAllBytes(Paths.get(this.filePath)));
-            this.entityData = new JSONArray(content);
-            for (int i = 0; i < this.entityData.length(); i++) {
-                if (entityData.getJSONObject(i).getString("id").equals(this.entityID)) {
-                    this.entityDataToEdit = entityData.getJSONObject(i);
+            this.entityData_Arr = new JSONArray(content);
+            for (int i = 0; i < this.entityData_Arr.length(); i++) {
+                if (entityData_Arr.getJSONObject(i).getString("id").equals(this.idToEdit)) {
+                    this.entityDataToEdit = entityData_Arr.getJSONObject(i);
                 }
             }
         } catch (IOException e) {
@@ -122,20 +123,20 @@ public class EditEntityManager implements EditInterface {
 
     public void saveEntityData() {
         try (FileWriter writer = new FileWriter(filePath)) {
-            for (int i = 0; i < entityData.length(); i++) {
-                if (entityData.getJSONObject(i).getString("id").equals(entityID)) {
-                    entityData.put(i, entityDataToEdit);
+            for (int i = 0; i < entityData_Arr.length(); i++) {
+                if (entityData_Arr.getJSONObject(i).getString("id").equals(idToEdit)) {
+                    entityData_Arr.put(i, entityDataToEdit);
                     break;
                 }
             }
-            writer.write(entityData.toString(4));
+            writer.write(entityData_Arr.toString(4));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     public boolean isEntityIDExist(String id) {
-        int length = entityData.length();
+        int length = entityData_Arr.length();
         int idNumber = Integer.parseInt(id.substring(1, id.length()));
         if ((idNumber <= length) && id.charAt(0) == baseId.charAt(0) && baseId.length() == id.length()) return true;
         else return false;

@@ -16,15 +16,15 @@ public class EditSpecializationManager extends EditEntityManager {
     public EditSpecializationManager(String idToEdit) {
         super(idToEdit);
         setFilePath("shared/data/university.json");
-        setEntityID(idToEdit);
-        getEntityData();
+        setIdToEdit(idToEdit);
+        loadEntityDataToEdit();
     }
 
     public EditSpecializationManager(String dep_id, String spec_id) {
         super(dep_id);
         setFilePath("shared/data/university.json");
         // this for using to find the specific data, the specific specialization within the array of specializations
-        setEntityID(spec_id);
+        setIdToEdit(spec_id);
         getEntityData(dep_id);
     }
 
@@ -56,8 +56,8 @@ public class EditSpecializationManager extends EditEntityManager {
                 }
             }
             for (int i = 0; i < specializations.length(); i++) {
-                // means traversing until we find the specific specialization (entityID)
-                if (specializations.getJSONObject(i).getString("id").equals(entityID)) {
+                // means traversing until we find the specific specialization (idToEdit)
+                if (specializations.getJSONObject(i).getString("id").equals(idToEdit)) {
                     entityDataToEdit = specializations.getJSONObject(i);
                 }
             }
@@ -70,7 +70,7 @@ public class EditSpecializationManager extends EditEntityManager {
         try (FileWriter writer = new FileWriter(filePath)) {
             // put the specific spec to the correct place
             for (int i = 0; i < specializations.length(); i++) {
-                if (specializations.getJSONObject(i).getString("id").equals(entityID)) {
+                if (specializations.getJSONObject(i).getString("id").equals(idToEdit)) {
                     specializations.put(i, entityDataToEdit);
                     break;
                 }

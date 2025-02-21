@@ -8,8 +8,8 @@ public class EditStudentManager extends EditEntityManager {
         super(idToEdit);
         setFilePath("shared/data/student.json");
         this.baseId = "S000000";
-        setEntityID(idToEdit);
-        getEntityData();
+        setIdToEdit(idToEdit);
+        loadEntityDataToEdit();
     }
 
     public String getOldAddress() {

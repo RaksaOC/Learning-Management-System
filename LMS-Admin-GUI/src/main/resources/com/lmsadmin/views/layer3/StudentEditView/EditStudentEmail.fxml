@@ -16,6 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.ComboBox?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer1.ManageTeacherController">
     <left>
         <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
@@ -295,6 +296,18 @@
                         <Font name="Gill Sans Bold" size="26.0" />
                     </font>
                 </Text>
+                <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="500.0" spacing="20.0"
+                      HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="ID">
+                            <font>
+                                <Font name="Gill Sans Bold" size="19.0"/>
+                            </font>
+                        </Label>
+                        <ComboBox maxWidth="1.7976931348623157E308" prefHeight="47.0" prefWidth="1118.0"
+                                  promptText="Select ID" fx:id="idComboBox"/>
+                    </children>
+                </VBox>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1139.0" spacing="20.0">
                     <children>
                         <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">

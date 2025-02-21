@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -17,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer1.ManageTeacherController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer3.adminEditController.EditAdminDOBController">
     <left>
         <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
             <children>
@@ -34,7 +35,8 @@
                     </children>
                     <VBox.margin>
                         <Insets top="10.0" />
-                    </VBox.margin></HBox>
+                    </VBox.margin>
+                </HBox>
                 <HBox fx:id="homeLink" alignment="CENTER_LEFT" onMouseClicked="#navigateToHome" prefHeight="58.0" prefWidth="232.0" spacing="20.0" styleClass="sidebar-menu-btn">
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
@@ -296,31 +298,41 @@
                         <Font name="Gill Sans Bold" size="26.0" />
                     </font>
                 </Text>
-                <HBox alignment="CENTER" prefHeight="172.0" prefWidth="1118.0" spacing="20.0">
+                <VBox alignment="CENTER" spacing="40.0">
                     <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="197.0" prefWidth="1118.0" spacing="20.0" HBox.hgrow="ALWAYS">
-                            <children>
-                                <Label text="Current">
-                                    <font>
-                                        <Font name="Gill Sans Bold" size="19.0" />
-                                    </font>
-                                </Label>
-                                <TextField alignment="CENTER" prefHeight="48.0" prefWidth="502.0">
-                                    <font>
-                                        <Font size="17.0" />
-                                    </font>
-                                </TextField>
-                        <Label text="New">
-                           <font>
-                              <Font name="Gill Sans Bold" size="19.0" />
-                           </font>
+                        <Label text="ID">
+                            <font>
+                                <Font name="Gill Sans Bold" size="19.0" />
+                            </font>
                         </Label>
-                        <DatePicker prefHeight="59.0" prefWidth="1118.0" />
-                            </children>
-                        </VBox>
+                        <ComboBox fx:id="idComboBox" maxWidth="1.7976931348623157E308" prefHeight="41.0" prefWidth="1118.0" promptText="Select ID" />
                     </children>
-                </HBox>
-                <Button mnemonicParsing="false" text="Edit">
+                </VBox>
+                <VBox alignment="CENTER" spacing="40.0">
+                    <children>
+                        <Label text="Current">
+                            <font>
+                                <Font name="Gill Sans Bold" size="19.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="curDOBTextField" alignment="CENTER" disable="true" prefHeight="48.0" prefWidth="502.0">
+                            <font>
+                                <Font size="17.0" />
+                            </font>
+                        </TextField>
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER" spacing="40.0">
+                    <children>
+                        <Label text="New">
+                            <font>
+                                <Font name="Gill Sans Bold" size="19.0" />
+                            </font>
+                        </Label>
+                        <DatePicker fx:id="newDOBDatePicker" disable="true" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="1118.0" />
+                    </children>
+                </VBox>
+                <Button fx:id="editButton" mnemonicParsing="false" onMouseClicked="#handleEdit" text="Edit">
                     <font>
                         <Font name="Gill Sans" size="20.0" />
                     </font>
@@ -339,7 +351,8 @@
                                 <Image url="@../../../images/banner.png" />
                             </image>
                         </ImageView>
-                    </children></Pane>
+                    </children>
+                </Pane>
                 <AnchorPane layoutX="232.0" layoutY="-1.0" prefHeight="118.0" prefWidth="1168.0" style="-fx-background-color: #ebebeb;" AnchorPane.leftAnchor="232.0" AnchorPane.rightAnchor="0.0">
                     <children>
                         <ImageView fitHeight="50.0" fitWidth="52.0" layoutX="1017.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="101.0">
@@ -372,14 +385,16 @@
                                     </VBox.margin>
                                     <font>
                                         <Font name="Gill Sans Bold" size="15.0" />
-                                    </font></Text>
+                                    </font>
+                                </Text>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ory Chanraksa">
                                     <VBox.margin>
                                         <Insets left="20.0" />
                                     </VBox.margin>
                                     <font>
                                         <Font name="Gill Sans Bold" size="15.0" />
-                                    </font></Text>
+                                    </font>
+                                </Text>
                             </children>
                         </VBox>
                     </children>

@@ -9,14 +9,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class EditGroupManager extends EditEntityManager {
-    // entityID = old ID
+    // idToEdit = old ID
     public EditGroupManager(String groupID) {
         //                           ^
         //                   old Group id for noe
         super(groupID);
         setFilePath("shared/data/university.json");
-        setEntityID(groupID); // entuty id to search for is the old groupID
-        getEntityData();
+        setIdToEdit(groupID); // entuty id to search for is the old groupID
+        loadEntityDataToEdit();
     }
 
     public void setNewID(String newID) {
@@ -24,7 +24,7 @@ public class EditGroupManager extends EditEntityManager {
         this.saveEntityData();
     }
 
-    public void getEntityData() {
+    public void loadEntityDataToEdit() {
         try {
             this.content = new String(Files.readAllBytes(Paths.get(this.filePath)));
             this.entityData_Obj = new JSONObject(content);
@@ -38,7 +38,7 @@ public class EditGroupManager extends EditEntityManager {
                         JSONArray groups = generations.getJSONObject(k).getJSONArray("groups");
                         for (int l = 0; l < groups.length(); l++) {
                             JSONObject group = groups.getJSONObject(l);
-                            if (group.getString("id").equals(entityID)) {
+                            if (group.getString("id").equals(idToEdit)) {
                                 this.entityDataToEdit = group;
                             }
                         }
@@ -59,7 +59,7 @@ public class EditGroupManager extends EditEntityManager {
                 for (int j = 0; j < departments.getJSONObject(i).getJSONArray("specializations").length(); j++) {
                     for (int k = 0; k < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
                         for (int l = 0; l < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").length(); l++) {
-                            if (departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).getString("id").equals(entityID)) {
+                            if (departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).getString("id").equals(idToEdit)) {
                                 departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").put(l, entityDataToEdit);
                             }
                         }

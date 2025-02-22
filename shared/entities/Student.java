@@ -1,5 +1,6 @@
 package entities;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,6 +19,7 @@ public class Student extends User {
     private final JSONObject progress;
     private final String generation;
     private final String status;
+    private final JSONArray classrooms;
 
     public Student(JSONObject studentObject) throws JSONException {
         super(
@@ -40,6 +42,7 @@ public class Student extends User {
         this.department = studentObject.getString("department");
         this.progress = studentObject.getJSONObject("progress");
         this.generation = studentObject.getString("generation");
+        this.classrooms = studentObject.getJSONArray("classrooms");
     }
 
     // Getter methods
@@ -57,6 +60,7 @@ public class Student extends User {
     public String getDepartment() { return department; }
     public String getGeneration() { return generation; }
     public JSONObject getProgress() { return progress; }
+    public JSONArray getClassrooms() { return classrooms; }
 
     @Override
     public String toString() {

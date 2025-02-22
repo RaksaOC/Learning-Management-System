@@ -13,6 +13,14 @@ public class StudentManager {
         studentToEdit = student;
     }
 
+    public String printClassrooms(JSONArray classroom){
+        String allClass = "";
+        for(int i = 0; i < classroom.length(); i ++){
+            allClass += classroom.getString(i) + "\n" ;
+        }
+        return allClass;
+    }
+
     public JSONArray manageViewAssignment() {
         // this function would take the student object, go search for that student's assignments and return the array
 
@@ -53,14 +61,6 @@ public class StudentManager {
 
     public void changeName(String newName){
 
-    }
-
-    public String selectProgress(JSONArray progress){
-        String allClass = "";
-        for(int i = 0; i < progress.length(); i ++){
-            allClass += progress.getString(i) + "\n" ;
-        }
-        return allClass;
     }
 
     public String manageViewClassroom(){

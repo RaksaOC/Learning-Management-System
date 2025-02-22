@@ -60,6 +60,23 @@ public class Menu {
         return choice;
     }
 
+    public String showStudentViewClassroom(){
+        UI.showLoadingBar(10);
+        System.out.println("Student Manage Classroom: ");
+        do{
+            menu = """
+                    [1] Do Assignment
+                    [2] Do Resources
+                    [3] Do Quizzes
+                    """;
+            printMenu();
+            this.choice = sc.nextLine();
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
+        return choice;
+    }
+
     public String showTeacherSideMenu() {
         UI.showLoadingBar(10);
         System.out.println("teacher side menu");

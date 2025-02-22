@@ -1,6 +1,6 @@
 [{
     "generation": "GEN10",
-    "lastLogin": "2025-02-19 17:49:02",
+    "lastLogin": "2025-02-22 15:28:41",
     "address": {
         "province": "phnom penh",
         "district": "Chbar ampv"
@@ -17,6 +17,7 @@
     "specialization": "Software Engineering",
     "progress": {"GEN10-CS-SE-G1-OOP": "P000001"},
     "id": "S000001",
+    "classrooms": ["GEN10-CS-SE-G1-OOP"],
     "guardian": {
         "guardianGender": "female",
         "guardianName": "mom",

@@ -9,6 +9,7 @@
       <change beforePath="$PROJECT_DIR$/LMS/src/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/main/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS/src/utils/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/controller/StudentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS/src/utils/manager/StudentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/manager/StudentManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/src/utils/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/menu/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/data/history.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/history.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/data/student.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/student.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/entities/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/entities/Student.java" afterDir="false" />
@@ -90,8 +91,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Run LMS" />
       <item itemvalue="Application.Run LMS-Admin" />
+      <item itemvalue="Application.Run LMS" />
     </list>
   </component>
   <component name="SharedIndexes">
@@ -119,6 +120,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

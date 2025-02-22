@@ -49,13 +49,13 @@ public class MainController {
                     handleStudentViewClassroom();
                     break;
                 case "2":
-                    handleStudentViewProfile();
+//                    handleStudentViewProfile();
                     break;
                 case "3":
-                    handleStudentLogOut();
+//                    handleStudentLogOut();
                     return;
                 case "4":
-                    handleExit();
+//                    handleExit();
                     break;
                 default:
                     break;
@@ -95,10 +95,28 @@ public class MainController {
 
     private void handleStudentViewClassroom() {
         StudentController studentController = new StudentController(student);
-        this.indexOfClass = studentController.
-                this.indexOfClass = teacherController.selectClassroom();
-        studentController.viewClassroom();
-    }
+        this.indexOfClass = studentController.selectClassroom();
+        Menu menu = new Menu();
+        String choice = menu.showStudentViewClassroom();
+        while (true) {
+            switch(choice) {
+                case "1":
+
+                    break;
+                case "2":
+
+                    break;
+                case "3":
+
+                    break;
+                case "-b":
+                    return;
+                default:
+                    break;
+            }
+            choice = menu.showStudentViewClassroom();
+            }
+        }
 
     private void handleStudentViewProfile() {
         StudentController studentController = new StudentController(student);

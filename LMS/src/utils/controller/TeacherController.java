@@ -52,21 +52,6 @@ public class TeacherController {
         classroomController.gradeAssignment();
     }
 
-    public void handleCommentStudentAssignment() {
-        ClassroomController classroomController = new ClassroomController(indexOfClass);
-        classroomController.commentStudentAssignment();
-    }
-
-    public void handleViewStudentAssignment() {
-        ClassroomController classroomController = new ClassroomController(indexOfClass);
-        classroomController.viewStudentAssignment();
-    }
-
-    public void handleViewAllStudentAssignment() {
-        ClassroomController classroomController = new ClassroomController(indexOfClass);
-        classroomController.viewAllStudentAssignment();
-    }
-
     // Resources Controller
     public void handleAddResources() {
         ClassroomController classroomController = new ClassroomController(indexOfClass);

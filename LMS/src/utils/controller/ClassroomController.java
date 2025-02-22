@@ -38,21 +38,6 @@ public class ClassroomController {
         classroomManager.manageGradeAssignment();
     }
 
-    public void commentStudentAssignment() {
-        ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
-        classroomManager.manageCommentStudentAssignment();
-    }
-
-    public void viewStudentAssignment(){
-        ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
-        classroomManager.manageViewStudentAssignment();
-    }
-
-    public void viewAllStudentAssignment() {
-        ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
-        classroomManager.manageViewAllStudentAssignment();
-    }
-
     // Resource Controller
     public void addResource() {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);

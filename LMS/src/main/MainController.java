@@ -170,15 +170,6 @@ public class MainController {
                 case "4":
                     teacherController.handleGradeStudentAssignment();
                     break;
-                case "5":
-                    teacherController.handleCommentStudentAssignment();
-                    break;
-                case "6":
-                    teacherController.handleViewStudentAssignment();
-                    break;
-                case "7":
-                    teacherController.handleViewAllStudentAssignment();
-                    break;
                 case "-b":
                     return;
                 default:

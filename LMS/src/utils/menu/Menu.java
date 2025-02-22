@@ -104,9 +104,6 @@ public class Menu {
                     [2]. Edit Assignment
                     [3]. Delete Assignment
                     [4]. Grade Assignment
-                    [5]. Comment on Student Assignment
-                    [6]. View Student Assignment
-                    [7]. View All Student Assignment
                     """;
             printMenu();
             this.choice = sc.nextLine();

@@ -2,20 +2,26 @@
     "studentId": "S000001",
     "assignments": [
         {
-            "pending": "Ongoing",
-            "id": "A001"
+            "feedback": "Good Job",
+            "pending": "(Ongoing)",
+            "grade": "",
+            "id": "A001",
+            "status": "active"
         },
         {
-            "pending": "Ongoing",
-            "id": "A002"
+            "pending": "(Ongoing)",
+            "id": "A002",
+            "status": "active"
         },
         {
-            "pending": "Ongoing",
-            "id": "A003"
+            "pending": "(Ongoing)",
+            "id": "A003",
+            "status": "active"
         },
         {
-            "pending": "Ongoing",
-            "id": "A004"
+            "pending": "(Ongoing)",
+            "id": "A004",
+            "status": "active"
         }
     ],
     "resources": [],

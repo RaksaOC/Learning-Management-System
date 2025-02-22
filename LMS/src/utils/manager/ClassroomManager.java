@@ -26,20 +26,11 @@ interface classroomManagementInterface {
 
     void manageGradeAssignment();
 
-    void manageCommentStudentAssignment();
-
-    void manageViewStudentAssignment();
-
-    void manageViewAllStudentAssignment();
-
     void manageAddResource();
-
 
     void manageEditResource();
 
-
     void manageDeleteResource();
-
 
     void manageViewResource();
 
@@ -71,19 +62,36 @@ public class ClassroomManager implements classroomManagementInterface{
         deadline.put("date", date);
         deadline.put("time", time);
         JSONObject newAssignment = new JSONObject();
-        String assignmentId = idGenerator(getAssignments(), "A000");
+        String assignmentId = idGenerator(getClassroomAssignments(), "A000");
         newAssignment.put("id", assignmentId);
         newAssignment.put("title", title);
         newAssignment.put("description", description);
         newAssignment.put("deadline", deadline);
         newAssignment.put("status", "active");
-        assignmentToProgress(assignmentId);
-        saveAssignments(newAssignment, title);
+        JSONArray allClassroom = loadClassroom();
+        saveAssignments(newAssignment, title); // saves to classroom
+        // handles saving to progress
+        for (int i = 0; i < allClassroom.length(); i++) {
+            if (getClassroomId().equals(allClassroom.getJSONObject(i).getString("id"))) {
+                for (int j = 0; i < allClassroom.getJSONObject(i).getJSONArray("students").length(); j++) {
+                    assignmentToProgress(allClassroom.getJSONObject(i).getJSONArray("students").getString(j) ,assignmentId, "(Ongoing)", "", "");
+                }
+            }
+        }
     }
 
     public void manageEditAssignment() {
         int titleId = Integer.parseInt(selectAssignmentTitle()) - 1; // hold title selection
-        JSONArray allAssignments = getAssignments();
+        JSONArray allAssignments = getClassroomAssignments();
+        //handles inactive assignment
+        for (int i = 0; i < allAssignments.length(); i++) {
+            if (i == titleId) {
+                if (allAssignments.getJSONObject(i).getString("status").equals("inactive")) {
+                    titleId++;
+                }
+            }
+        }
+        // editing process
         for (int i = 0; i < allAssignments.length(); i++) {
             if (i == titleId) {
                 // print previous info
@@ -105,7 +113,7 @@ public class ClassroomManager implements classroomManagementInterface{
                 if (!newDate.isEmpty()) {
                     assignmentDeadline.put("date", newDate);
                 }
-                String newTime = Menu.prompt("Enter a new Deadline Time (hh:mm) (if not leave empty): ");
+                String newTime = Menu.prompt("Enter a new Deadline Time (HH:MM) (if not leave empty): ");
                 if (!newTime.isEmpty()) {
                     assignmentDeadline.put("time", newTime);
                 }
@@ -118,63 +126,73 @@ public class ClassroomManager implements classroomManagementInterface{
 
     public void manageDeleteAssignment() {
         int titleId = Integer.parseInt(selectAssignmentTitle()) - 1; // hold title selection
-        JSONArray allAssignments = getAssignments();
-        for (int i = 0; i < allAssignments.length(); i++) {
+        JSONArray allClassroomAssignments = getClassroomAssignments();
+        // handles inactive assignment
+        for (int i = 0; i < allClassroomAssignments.length(); i++) {
             if (i == titleId) {
-                JSONObject assignmentToEdit = allAssignments.getJSONObject(i);
+                if (allClassroomAssignments.getJSONObject(i).getString("status").equals("inactive")) {
+                    titleId++;
+                }
+            }
+        }
+        // updates classroomAssignment
+        for (int i = 0; i < allClassroomAssignments.length(); i++) {
+            if (i == titleId) {
+                JSONObject assignmentToEdit = allClassroomAssignments.getJSONObject(i);
                 assignmentToEdit.put("status", "inactive");
-                allAssignments.put(i, assignmentToEdit); // ensure it saves into correct index
+                allClassroomAssignments.put(i, assignmentToEdit); // ensure it saves into correct index
                 saveAssignments(assignmentToEdit, assignmentToEdit.getString("id"));
                 break;
+            }
+        }
+        // updates progressAssignment
+        JSONArray allProgress = loadProgress();
+        for (int i = 0; i < allProgress.length(); i++) {
+            if (getClassroomId().equals(allProgress.getJSONObject(i).getString("classroomId"))) {
+                for (int j = 0; j < allProgress.getJSONObject(i).getJSONArray("assignments").length(); j++) {
+                    if (j == titleId) {
+                        allProgress.getJSONObject(i).getJSONArray("assignments").getJSONObject(j).put("status", "inactive");
+                        saveProgresses(allProgress);
+                        break;
+                    }
+                }
             }
         }
     }
 
     public void manageGradeAssignment() {
-        int assignmentIndex = Integer.parseInt(selectAssignmentTitle()) - 1; // holds an Assignment's index from user input
-        JSONArray allAssignments = getAssignments();
-        // get the specific assignment ID
-        String assignmentId = "";
-        for (int i = 0; i < allAssignments.length(); i++) {
-            if (i == assignmentIndex) {
-                assignmentId = allAssignments.getJSONObject(i).getString("id");
-                break;
+        JSONArray allProgress = loadProgress();
+        int selectedAssignment = Integer.parseInt(selectAssignmentTitle()) - 1; // hold the selected assignment's index
+        int selectedStudent = Integer.parseInt(selectStudentToGrade()) - 1; // hold the selected student's index
+        String grade = Menu.prompt("Grade the student Assignment (0 - 100): ");
+        String feedback = "";
+        feedback = Menu.prompt("Enter feedback (if not leave empty):");
+        // handles inactive assignment
+        JSONArray allProgressAssignment = getProgressAssignments();
+        for (int i = 0; i < allProgressAssignment.length(); i++) {
+            if (i == selectedAssignment) {
+                if (allProgressAssignment.getJSONObject(i).getString("status").equals("inactive")) {
+                    selectedAssignment++;
+                }
             }
         }
-        String classroomId = getclassroomId();
-        JSONArray progresses = loadProgress();
-        for (int i = 0; i < progresses.length(); i++) {
-            if (classroomId.equals(progresses.getJSONObject(i).getString("classroomId"))) {
-                boolean isAssignmentId = false;
-                for (int j = 0; j < progresses.getJSONObject(i).getJSONArray("assignments").length(); j++) {
-                    if (assignmentId.equals(progresses.getJSONObject(i).getJSONArray("assignments").getJSONObject(j).getString("id"))) {
-                        progresses.getJSONObject(i).getJSONArray("assignments").getJSONObject(j).put("Grade", "");
-                        isAssignmentId = true;
+        // updates progress
+        for (int i = 0; i < allProgress.length(); i++) {
+            if (i == selectedStudent) {
+                String studentId = allProgress.getJSONObject(i).getString("studentId");
+                for (int j = 0; j < allProgress.getJSONObject(i).getJSONArray("assignments").length(); j++) {
+                    if (j == selectedAssignment) {
+                        String assignmentId = allProgress.getJSONObject(i).getJSONArray("assignments").getJSONObject(j).getString("id");
+                        assignmentToProgress(assignmentId, studentId, "(Graded)", grade, feedback);
                         break;
                     }
                 }
-                if (!isAssignmentId) {
-
-                }
             }
-
         }
     }
 
-    public void manageCommentStudentAssignment() {
-
-    }
-
-    public void manageViewStudentAssignment() {
-
-    }
-
-    public void manageViewAllStudentAssignment() {
-
-    }
-
     // get a specific classroomId id Ex: "GEN10-CS-SE-G1-OOP"
-    private String getclassroomId() {
+    private String getClassroomId() {
         int indexOfClass = Integer.parseInt(classIdToEdit);
         JSONArray allClass = loadClassroom();
         for (int i = 0; i < allClass.length(); i++) {
@@ -186,8 +204,8 @@ public class ClassroomManager implements classroomManagementInterface{
         return null;
     }
 
-    // get only assignment JSONArray
-    private JSONArray getAssignments() {
+    // get only assignments from classroom.json
+    private JSONArray getClassroomAssignments() {
         int indexOfClass = Integer.parseInt(classIdToEdit);
         JSONArray allClass = loadClassroom();
         for (int i = 0; i < allClass.length(); i++) {
@@ -200,15 +218,72 @@ public class ClassroomManager implements classroomManagementInterface{
         return null;
     }
 
+    // get only assignments from progress.json
+    private JSONArray getProgressAssignments() {
+        String selectedClassroomId = getClassroomId();
+        JSONArray allProgress = loadProgress();
+        for (int i = 0; i < allProgress.length(); i++) {
+            if (selectedClassroomId.equals(allProgress.getJSONObject(i).getString("classroomId"))) {
+                return allProgress.getJSONObject(i).getJSONArray("assignments");
+            }
+        }
+        return null;
+    }
 
-    // display only assignment titles and select an input
+
+    // display only the assignment's titles from classroom and select an input
     private String selectAssignmentTitle() {
-        JSONArray allAssignments = getAssignments();
+        JSONArray allAssignments = getClassroomAssignments();
         for (int i = 0; i < allAssignments.length(); i++) {
-            JSONObject assignment = allAssignments.getJSONObject(i);
-            System.out.println(assignment.getString("title"));
+            if (allAssignments.getJSONObject(i).getString("status").equals("active")) {
+                JSONObject assignment = allAssignments.getJSONObject(i);
+                System.out.println(assignment.getString("title"));
+            }
         }
         return Menu.prompt("Select an Assignment: ");
+    }
+
+    // get student Ids from classroom.json
+    private JSONArray getClassroomStudents() {
+        JSONArray allClassroom = loadClassroom();
+        String classroomId = getClassroomId();
+        for (int i = 0; i < allClassroom.length(); i++) {
+            if (classroomId.equals(allClassroom.getJSONObject(i).getString("id"))) {
+                return allClassroom.getJSONObject(i).getJSONArray("students");
+            }
+        }
+        return null;
+    }
+
+    // get grade status from progress.json
+    private String pendingStatus(int assignmentIndex) {
+        JSONArray allProgressAssignment = getProgressAssignments();
+        for (int i = 0; i < allProgressAssignment.length(); i++) {
+            if (i == assignmentIndex) {
+                return allProgressAssignment.getJSONObject(i).getString("pending");
+            }
+        }
+        return "";
+    }
+
+    // display only the student names and select an input
+    private String selectStudentToGrade() {
+        StringBuilder listStudentName = new StringBuilder();
+        JSONArray classroomStudentId = getClassroomStudents();
+        JSONArray allStudent = loadStudent();
+        int assignmentIndex = 0;
+        for (int i = 0; i < classroomStudentId.length(); i++) {
+            String cStudentId = classroomStudentId.getString(i);
+            for (int j = 0; j < allStudent.length(); j++) {
+                if (cStudentId.equals(allStudent.getJSONObject(j).getString("id"))) {
+                    listStudentName.append(allStudent.getJSONObject(i).getJSONObject("name").getString("firstName")).append(" ").append(allStudent.getJSONObject(i).getJSONObject("name").getString("lastName")).append(" | ") .append(pendingStatus(assignmentIndex)).append("\n");
+                    assignmentIndex++;
+                    break;
+                }
+            }
+        }
+        System.out.print(listStudentName);
+        return Menu.prompt("Select a Student: ");
     }
 
     // check & save only the assignment into the correct index
@@ -243,15 +318,18 @@ public class ClassroomManager implements classroomManagementInterface{
     }
 
     // assigns only the assignment to progress
-    private void  assignmentToProgress(String assignmentId) {
-        String classroomId = getclassroomId();
+    private void  assignmentToProgress(String assignmentId, String studentId, String pending, String grade, String feedback) {
+        String classroomId = getClassroomId();
         JSONArray progresses = loadProgress();
         for (int i = 0; i < progresses.length(); i++) {
-            if (classroomId.equals(progresses.getJSONObject(i).getString("classroomId"))){
+            if (classroomId.equals(progresses.getJSONObject(i).getString("classroomId")) && studentId.equals(progresses.getJSONObject(i).getString("studentId"))){
                 boolean found = false;
                 for (int j = 0; j < progresses.getJSONObject(i).getJSONArray("assignments").length(); j++) {
                     if (assignmentId.equals(progresses.getJSONObject(i).getJSONArray("assignments").getJSONObject(j).getString("id"))){
-                        progresses.getJSONObject(i).getJSONArray("assignments").getJSONObject(j).put("pending", "Ongoing");
+                        progresses.getJSONObject(i).getJSONArray("assignments").getJSONObject(j).put("pending", pending);
+                        progresses.getJSONObject(i).getJSONArray("assignments").getJSONObject(j).put("grade", grade);
+                        progresses.getJSONObject(i).getJSONArray("assignments").getJSONObject(j).put("feedback", feedback);
+                        progresses.getJSONObject(i).getJSONArray("assignments").getJSONObject(j).put("status", "active");
                         found = true;
                         break;
                     }
@@ -259,7 +337,10 @@ public class ClassroomManager implements classroomManagementInterface{
                 if (!found) {
                     JSONObject newAssignment = new JSONObject();
                     newAssignment.put("id", assignmentId);
-                    newAssignment.put("pending", "Ongoing");
+                    newAssignment.put("pending", pending);
+                    newAssignment.put("grade", grade);
+                    newAssignment.put("feedback", feedback);
+                    newAssignment.put("status", "active");
                     progresses.getJSONObject(i).getJSONArray("assignments").put(newAssignment);
                 }
             }

@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import main.SceneManager;
 
-import java.util.Optional;
+import java.util.*;
 
 public class MainFrameController {
 
@@ -72,51 +72,61 @@ public class MainFrameController {
 //        homeLink.setStyle("-fx-background-color: #6A84AC");
         SceneManager.setScene("home");
     }
+
     @FXML
     private void navigateToDashboard() {
 //        dashboardLink.setStyle("-fx-background-color: #6A84AC");
         SceneManager.setScene("dashboard");
     }
+
     @FXML
     private void navigateToManageStudent() {
 //        manageStudentLink.setStyle("-fx-background-color: #6A84AC");
         SceneManager.setScene("manageStudent");
     }
+
     @FXML
     private void navigateToManageTeacher() {
         SceneManager.setScene("manageTeacher");
     }
+
     @FXML
     private void navigateToManageDepartment() {
         SceneManager.setScene("manageDepartment");
     }
+
     @FXML
     private void navigateToManageSpecialization() {
         SceneManager.setScene("manageSpecialization");
     }
+
     @FXML
     private void navigateToManageGeneration() {
         SceneManager.setScene("manageGeneration");
     }
+
     @FXML
     private void navigateToManageGroup() {
         SceneManager.setScene("manageGroup");
     }
+
     @FXML
     private void navigateToManageCourse() {
         SceneManager.setScene("manageCourse");
     }
+
     @FXML
     private void navigateToManageClassroom() {
         SceneManager.setScene("manageClassroom");
     }
+
     @FXML
     private void navigateToManageAdmin() {
         SceneManager.setScene("manageAdmin");
     }
 
     @FXML
-    protected boolean isConfirmed(){
+    protected boolean isConfirmed() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText(null);
@@ -126,7 +136,7 @@ public class MainFrameController {
     }
 
     @FXML
-    protected void loadSuccess(String sceneToReturnTo){
+    protected void loadSuccess(String sceneToReturnTo) {
         SceneManager.setScene("success"); // Show success screen
         PauseTransition delay = new PauseTransition(Duration.seconds(2)); // 2-second delay
         delay.setOnFinished(ev -> {
@@ -135,4 +145,5 @@ public class MainFrameController {
 
         delay.play(); // Start the delay
     }
+
 }

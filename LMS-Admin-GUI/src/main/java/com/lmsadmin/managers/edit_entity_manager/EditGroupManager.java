@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class EditGroupManager extends EditEntityManager {
     // idToEdit = old ID
@@ -19,7 +20,13 @@ public class EditGroupManager extends EditEntityManager {
         loadEntityDataToEdit();
     }
 
-    public void setNewID(String newID) {
+    public EditGroupManager() {
+        setFilePath("shared/data/university.json");
+        setIdToEdit("");
+        loadEntityDataToEdit();
+    }
+
+    public void manageEditId(String newID) {
         this.entityDataToEdit.put("id", newID);
         this.saveEntityData();
     }
@@ -75,6 +82,24 @@ public class EditGroupManager extends EditEntityManager {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public ArrayList<String> loadIds(){
+        ArrayList<String> ids = new ArrayList<>();
+        JSONArray departments = entityData_Obj.getJSONArray("departments");
+        for (int i = 0; i < departments.length(); i++) {
+            JSONArray specializations = departments.getJSONObject(i).getJSONArray("specializations");
+            for (int j = 0; j < specializations.length(); j++) {
+                JSONArray generations = specializations.getJSONObject(j).getJSONArray("generations");
+                for (int k = 0; k < generations.length(); k++) {
+                    JSONArray groups = generations.getJSONObject(k).getJSONArray("groups");
+                    for (int l = 0; l < groups.length(); l++) {
+                        ids.add(groups.getJSONObject(l).getString("id"));
+                    }
+                }
+            }
+        }
+        return ids;
     }
 
 

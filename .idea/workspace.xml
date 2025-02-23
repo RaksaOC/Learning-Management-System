@@ -5,21 +5,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="816c4d4f-796b-4ab7-98a7-72a49b87cc0e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/adminEditController/EditAdminDOBController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/CourseEditView/note.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/GenerationEditView/EditGenerationName.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/adminEditControllers/EditAdminEmailController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/adminEditControllers/EditAdminGenderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/adminEditControllers/EditAdminNameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/adminEditControllers/EditAdminPasswordController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/adminEditControllers/EditAdminPhoneController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/classroomEditControllers/EditClassroomIDController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/courseEditControllers/EditCourseIDController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/courseEditControllers/EditCourseNameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/departmentEditControllers/EditDepartmentIDController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/departmentEditControllers/EditDepartmentNameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/generationEditController/EditGenerationIDController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/generationEditController/EditGenerationNameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/groupEditControllers/EditGroupIDController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/specializationEditControllers/EditSpecializationIDController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/specializationEditControllers/EditSpecializationNameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/studentEditControllers/EditStudentAddressController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/studentEditControllers/EditStudentDOBController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/studentEditControllers/EditStudentDepartmentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/studentEditControllers/EditStudentEmailController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/studentEditControllers/EditStudentGenderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/studentEditControllers/EditStudentGuardianController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/studentEditControllers/EditStudentNameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/studentEditControllers/EditStudentPasswordController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/studentEditControllers/EditStudentPhoneNumberController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/studentEditControllers/EditStudentSpecializationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/teacherEditControllers/EditTeacherDOBController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/teacherEditControllers/EditTeacherEmailController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/teacherEditControllers/EditTeacherGenderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/teacherEditControllers/EditTeacherNameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/teacherEditControllers/EditTeacherPasswordController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/teacherEditControllers/EditTeacherPhoneController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditCourseManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/utils/CambodiaAdministrative.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/SceneManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer0/MainFrameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer0/MainFrameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/adminEditController/EditAdminDOBController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/adminEditControllers/EditAdminDOBController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditAdminManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditAdminManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditClassroomManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditClassroomManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditDepartmentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditDepartmentManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditEntityManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditEntityManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditGenerationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditGenerationManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditGroupManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditGroupManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditSpecializationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditSpecializationManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditStudentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditStudentManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditTeacherManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers/edit_entity_manager/EditTeacherManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer2/AdminActionView/EditAdminView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer2/AdminActionView/EditAdminView.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/AdminEditView/EditAdminDOB.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/AdminEditView/EditAdminDOB.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/AdminEditView/EditAdminEmail.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/AdminEditView/EditAdminEmail.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/AdminEditView/EditAdminGender.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/AdminEditView/EditAdminGender.fxml" afterDir="false" />
@@ -27,15 +57,14 @@
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/AdminEditView/EditAdminPassword.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/AdminEditView/EditAdminPassword.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/AdminEditView/EditAdminPhoneNumber.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/AdminEditView/EditAdminPhoneNumber.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/ClassroomEditView/EditClassroomID.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/ClassroomEditView/EditClassroomID.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/ClassroomEditView/EditClassroomName.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/ClassroomEditView/EditClassroomName.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/ClassroomEditView/EditClassroomName.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/CourseEditView/EditCourseID.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/CourseEditView/EditCourseID.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/CourseEditView/EditCourseName.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/CourseEditView/EditCourseName.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/DepartmentEditView/EditDepartmentID.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/DepartmentEditView/EditDepartmentID.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/DepartmentEditView/EditDepartmentName.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/DepartmentEditView/EditDepartmentName.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/GenerationEditView/EditGenerationID.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/GenerationEditView/EditGenerationID.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/GenerationEditView/EditGenerationName.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/GenerationEditView/EditGenerationName.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/GroupEditView/EditGroupID.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/GroupEditView/EditGroupID.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/SpecializationEditView/EditSpecializationID.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/SpecializationEditView/EditSpecializationID.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/SpecializationEditView/EditSpecializationName.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/SpecializationEditView/EditSpecializationName.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/StudentEditView/EditStudentAddress.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/StudentEditView/EditStudentAddress.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/StudentEditView/EditStudentDOB.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/StudentEditView/EditStudentDOB.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/StudentEditView/EditStudentDepartment.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/StudentEditView/EditStudentDepartment.fxml" afterDir="false" />
@@ -46,12 +75,6 @@
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/StudentEditView/EditStudentPassword.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/StudentEditView/EditStudentPassword.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/StudentEditView/EditStudentPhoneNumber.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/StudentEditView/EditStudentPhoneNumber.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/StudentEditView/EditStudentSpecialization.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/StudentEditView/EditStudentSpecialization.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/TeacherEditView/EditTeacherDOB.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/TeacherEditView/EditTeacherDOB.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/TeacherEditView/EditTeacherEmail.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/TeacherEditView/EditTeacherEmail.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/TeacherEditView/EditTeacherGender.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/TeacherEditView/EditTeacherGender.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/TeacherEditView/EditTeacherName.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/TeacherEditView/EditTeacherName.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/TeacherEditView/EditTeacherPassword.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/TeacherEditView/EditTeacherPassword.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/TeacherEditView/EditTeacherPhoneNumber.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/TeacherEditView/EditTeacherPhoneNumber.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/data/admin.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/admin.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,40 +108,40 @@
     <option name="showLibraryContents" value="true" />
     <option name="showScratchesAndConsoles" value="false" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Run LMS-Admin-GUI.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Run LMS-Admin.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Run LMS.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ToolWindow.Run.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;GUI-version&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/raksa/School/Year 2/Term 2/OOP/Project/Learning-Management-System/backup_misc&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.Run LMS-Admin-GUI.executor": "Run",
+    "Application.Run LMS-Admin.executor": "Run",
+    "Application.Run LMS.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ToolWindow.Run.ShowToolbar": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "GUI-version",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/raksa/School/Year 2/Term 2/OOP/Project/Learning-Management-System/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/teacherEditControllers",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/controllers/layer3/teacherEditControllers" />
       <recent name="$PROJECT_DIR$/backup_misc" />
       <recent name="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsadmin/managers" />
       <recent name="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer3/StudentEditView" />
       <recent name="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer2/AdminActionView" />
-      <recent name="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer2/ClassroomActionsView" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/images" />
@@ -184,7 +207,7 @@
       <workItem from="1739282736568" duration="31683000" />
       <workItem from="1739377289384" duration="97008000" />
       <workItem from="1740022995142" duration="10469000" />
-      <workItem from="1740041153869" duration="17208000" />
+      <workItem from="1740041153869" duration="43039000" />
     </task>
     <servers />
   </component>

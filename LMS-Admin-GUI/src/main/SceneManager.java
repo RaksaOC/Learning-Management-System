@@ -149,13 +149,13 @@ public class SceneManager extends Application {
 
         // GenerationEditView
         loadScene("editGenerationID", "resources/com/lmsadmin/views/layer3/GenerationEditView/EditGenerationID.fxml");
+        loadScene("editGenerationName", "resources/com/lmsadmin/views/layer3/GenerationEditView/EditGenerationName.fxml");
 
         // GroupEditView
         loadScene("editGroupID", "resources/com/lmsadmin/views/layer3/GroupEditView/EditGroupID.fxml");
 
 // ClassroomEditView
         loadScene("editClassroomID", "resources/com/lmsadmin/views/layer3/ClassroomEditView/EditClassroomID.fxml");
-        loadScene("editClassroomName", "resources/com/lmsadmin/views/layer3/ClassroomEditView/EditClassroomName.fxml");
 
 // CourseEditView
         loadScene("editCourseID", "resources/com/lmsadmin/views/layer3/CourseEditView/EditCourseID.fxml");

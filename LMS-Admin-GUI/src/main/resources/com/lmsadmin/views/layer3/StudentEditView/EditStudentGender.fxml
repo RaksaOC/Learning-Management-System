@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer1.ManageTeacherController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer3.studentEditControllers.EditStudentGenderController">
     <left>
         <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
             <children>
@@ -319,7 +319,7 @@
                                         <Font name="Gill Sans Bold" size="19.0" />
                                     </font>
                                 </Label>
-                                <TextField alignment="CENTER" prefHeight="48.0" prefWidth="502.0">
+                                <TextField alignment="CENTER" prefHeight="48.0" prefWidth="502.0" fx:id="curTextField">
                                     <font>
                                         <Font size="17.0" />
                                     </font>
@@ -329,7 +329,7 @@
                                         <Font name="Gill Sans Bold" size="19.0" />
                                     </font>
                                 </Label>
-                                <ComboBox maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Gender" visibleRowCount="3">
+                                <ComboBox maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Gender" visibleRowCount="3" fx:id="newComboBox">
                                     <items>
                                         <FXCollections fx:factory="observableArrayList">
                                             <String fx:value="Male" />
@@ -342,7 +342,7 @@
                         </VBox>
                     </children>
                 </HBox>
-                <Button mnemonicParsing="false" text="Edit">
+                <Button mnemonicParsing="false" text="Edit" fx:id="editButton" onMouseClicked="#handleEdit">
                     <font>
                         <Font name="Gill Sans" size="20.0" />
                     </font>

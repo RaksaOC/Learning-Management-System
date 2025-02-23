@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class EditDepartmentManager extends EditEntityManager {
 
@@ -17,16 +18,34 @@ public class EditDepartmentManager extends EditEntityManager {
         setFilePath("shared/data/university.json");
         setIdToEdit(idToEdit);
         loadEntityDataToEdit();
-
     }
 
-    public void setNewID(String newID) {
+    public EditDepartmentManager() {
+        setFilePath("shared/data/university.json");
+        setIdToEdit("");
+        loadEntityDataToEdit();
+    }
+
+    public void manageEditId(String newID) {
         this.entityDataToEdit.put("id", newID);
+        saveEntityData();
+    }
+
+    public void manageEditName(String newName) {
+        this.entityDataToEdit.put("name", newName);
         saveEntityData();
     }
 
     public String getOldID() {
         return entityDataToEdit.getString("id");
+    }
+
+    public ArrayList<String> loadIds() {
+        ArrayList<String> ids = new ArrayList<>();
+        for(int i = 0; i < departments.length(); i++) {
+            ids.add(departments.getJSONObject(i).getString("id"));
+        }
+        return ids;
     }
 
     @Override
@@ -35,9 +54,11 @@ public class EditDepartmentManager extends EditEntityManager {
             this.content = new String(Files.readAllBytes(Paths.get(this.filePath)));
             this.entityData_Obj = new JSONObject(content);
             this.departments = this.entityData_Obj.getJSONArray("departments");
-            for (int i = 0; i < departments.length(); i++) {
-                if (departments.getJSONObject(i).getString("id").equals(idToEdit)) {
-                    this.entityDataToEdit = departments.getJSONObject(i);
+            if (!idToEdit.isEmpty()) {
+                for (int i = 0; i < departments.length(); i++) {
+                    if (departments.getJSONObject(i).getString("id").equals(idToEdit)) {
+                        this.entityDataToEdit = departments.getJSONObject(i);
+                    }
                 }
             }
         } catch (IOException e) {

@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class EditSpecializationManager extends EditEntityManager {
     private JSONArray departments;
@@ -17,6 +18,12 @@ public class EditSpecializationManager extends EditEntityManager {
         super(idToEdit);
         setFilePath("shared/data/university.json");
         setIdToEdit(idToEdit);
+        loadEntityDataToEdit();
+    }
+
+    public EditSpecializationManager() {
+        setFilePath("shared/data/university.json");
+        setIdToEdit("");
         loadEntityDataToEdit();
     }
 
@@ -88,26 +95,65 @@ public class EditSpecializationManager extends EditEntityManager {
         }
     }
 
-    ;
+    @Override
+    public void loadEntityDataToEdit() {
+        try {
+            this.content = new String(Files.readAllBytes(Paths.get(this.filePath)));
+            this.entityData_Obj = new JSONObject(content);
+            JSONArray departments = this.entityData_Obj.getJSONArray("departments");
 
-    // No Uses
+            for (int i = 0; i < departments.length(); i++) {
+                entityData_Arr.put(departments.getJSONObject(i).getJSONArray("specializations"));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<String> loadIds() {
+        ArrayList<String> ids = new ArrayList<>();
+        for(int i = 0; i < entityData_Arr.length(); i++) {
+            ids.add(entityData_Arr.getJSONObject(i).getString("id"));
+        }
+        return ids;
+    }
+
+    public void manageEditId(String newId){
+        for (int i = 0; i < entityData_Arr.length(); i++) {
+            if (entityData_Arr.getJSONObject(i).getString("id").equals(newId)) {
+                entityData_Arr.getJSONObject(i).put("id", newId);
+                break;
+            }
+        }
+        saveEntityData();
+    }
+
+    public void manageEditName(String newName){
+        for (int i = 0; i < entityData_Arr.length(); i++) {
+            if (entityData_Arr.getJSONObject(i).getString("id").equals(idToEdit)) {
+                entityData_Arr.getJSONObject(i).put("name", newName);
+                break;
+            }
+        }
+        saveEntityData();
+    }
+
+    public String getOldName(){
+        for (int i = 0; i < entityData_Arr.length(); i++) {
+            if (entityData_Arr.getJSONObject(i).getString("id").equals(idToEdit)) {
+                return entityData_Arr.getJSONObject(i).getString("name");
+            }
+        }
+        return null;
+    }
 
     @Override
-    public String getOldPhone() {
-        return null;
+    public void saveEntityData(){
+        entityData_Obj.getJSONArray("specializations").put(entityData_Arr);
+        try (FileWriter writer = new FileWriter(filePath)) {
+            writer.write(entityData_Obj.toString(4));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
-
-    ;
-
-    public String getOldEmail() {
-        return null;
-    }
-
-    ;
-
-    public String getOldPassword() {
-        return null;
-    }
-
-    ;
 }

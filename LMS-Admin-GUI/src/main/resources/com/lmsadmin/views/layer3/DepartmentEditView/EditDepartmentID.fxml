@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Text?>
 
 <?import javafx.scene.control.ComboBox?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer1.ManageTeacherController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer3.departmentEditControllers.EditDepartmentIDController">
     <left>
         <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
             <children>
@@ -307,13 +307,13 @@
                                     </font>
                                 </Label>
                                 <ComboBox maxWidth="1.7976931348623157E308" prefHeight="47.0" prefWidth="1118.0"
-                                          promptText="Select ID"/>
+                                          promptText="Select ID" fx:id="idComboBox"/>
                                 <Label text="Current">
                                     <font>
                                         <Font name="Gill Sans Bold" size="19.0"/>
                                     </font>
                                 </Label>
-                                <TextField alignment="CENTER" disable="true" prefHeight="48.0" prefWidth="502.0">
+                                <TextField alignment="CENTER" disable="true" prefHeight="48.0" prefWidth="502.0" fx:id="curTextField">
                                     <font>
                                         <Font size="17.0"/>
                                     </font>
@@ -323,7 +323,7 @@
                                         <Font name="Gill Sans Bold" size="19.0"/>
                                     </font>
                                 </Label>
-                                <TextField disable="true" prefHeight="48.0" prefWidth="502.0" promptText="Enter new">
+                                <TextField disable="true" prefHeight="48.0" prefWidth="502.0" promptText="Enter new" fx:id="newTextField">
                                     <font>
                                         <Font size="17.0"/>
                                     </font>
@@ -332,7 +332,7 @@
                         </VBox>
                     </children>
                 </HBox>
-                <Button mnemonicParsing="false" text="Edit">
+                <Button mnemonicParsing="false" text="Edit" fx:id="editButton" onMouseClicked="#handleEdit">
                     <font>
                         <Font name="Gill Sans" size="20.0" />
                     </font>

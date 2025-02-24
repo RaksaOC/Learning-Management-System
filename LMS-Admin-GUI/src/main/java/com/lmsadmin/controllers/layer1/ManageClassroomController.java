@@ -37,4 +37,14 @@ public class ManageClassroomController extends MainFrameController {
         SceneManager.setScene("viewClassroom");
         System.out.println("At viewClassroom scene");
     }
+    @FXML
+    private void handleAssignTeacher(MouseEvent actionEvent) {
+        SceneManager.setScene("assignTeacherToClassroom");
+        System.out.println("At assignTeacherToClassroom scene");
+    }
+    @FXML
+    private void handleAssignCourse(MouseEvent actionEvent) {
+        SceneManager.setScene("assignCourseToClassroom");
+        System.out.println("At assignCourseToClassroom scene");
+    }
 }

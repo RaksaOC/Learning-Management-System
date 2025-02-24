@@ -48,22 +48,33 @@
                 {
                     "generations": [
                         {
+                            "name": "Generation 10",
                             "groups": [
                                 {
-                                    "students": ["S000001"],
+                                    "students": [
+                                        "S000001",
+                                        "S000001",
+                                        "S000002",
+                                        "S000001",
+                                        "S000002",
+                                        "S000001",
+                                        "S000002"
+                                    ],
                                     "id": "GEN10-CS-SE-G1",
                                     "classrooms": ["GEN10-CS-SE-G1-OOP"],
                                     "status": "active"
                                 },
                                 {
-                                    "students": [],
+                                    "students": [
+                                        "S000001",
+                                        "S000002"
+                                    ],
                                     "id": "GEN10-CS-SE-G4",
                                     "classrooms": ["GEN10-CS-SE-G4-OOP"],
                                     "status": "active"
                                 }
                             ],
                             "id": "GEN10",
-                            "name": "Generation 10",
                             "status": "active"
                         },
                         {

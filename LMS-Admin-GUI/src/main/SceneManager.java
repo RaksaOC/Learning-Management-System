@@ -98,12 +98,16 @@ public class SceneManager extends Application {
         loadScene("editGroup", "resources/com/lmsadmin/views/layer2/GroupActionView/EditGroupView.fxml");
         loadScene("deleteGroup", "resources/com/lmsadmin/views/layer2/GroupActionView/DeleteGroupView.fxml");
         loadScene("viewGroup", "resources/com/lmsadmin/views/layer2/GroupActionView/ViewGroupView.fxml");
+        loadScene("addStudentToGroup", "resources/com/lmsadmin/views/layer2/GroupActionView/AddStudentToGroupView.fxml");
+
 
 // Layer 2 - Classroom
         loadScene("addClassroom", "resources/com/lmsadmin/views/layer2/ClassroomActionView/AddClassroomView.fxml");
         loadScene("editClassroom", "resources/com/lmsadmin/views/layer2/ClassroomActionView/EditClassroomView.fxml");
         loadScene("deleteClassroom", "resources/com/lmsadmin/views/layer2/ClassroomActionView/DeleteClassroomView.fxml");
         loadScene("viewClassroom", "resources/com/lmsadmin/views/layer2/ClassroomActionView/ViewClassroomView.fxml");
+        loadScene("assignTeacherToClassroom", "resources/com/lmsadmin/views/layer2/ClassroomActionView/AssignTeacherToClassroomView.fxml");
+        loadScene("assignCourseToClassroom", "resources/com/lmsadmin/views/layer2/ClassroomActionView/AssignCourseToClassroomView.fxml");
 
 // Layer 2 - Course
         loadScene("addCourse", "resources/com/lmsadmin/views/layer2/CourseActionView/AddCourseView.fxml");

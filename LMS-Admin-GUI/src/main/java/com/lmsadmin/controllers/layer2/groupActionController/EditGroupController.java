@@ -13,6 +13,6 @@ public class EditGroupController extends MainFrameController {
 
     @FXML
     private void navigateToEditId(MouseEvent event) {
-        SceneManager.setScene("");
+        SceneManager.setScene("editGroupID");
     }
 }

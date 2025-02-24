@@ -102,5 +102,25 @@ public class EditGroupManager extends EditEntityManager {
         return ids;
     }
 
+    public ArrayList<String> loadStudentsInGroup(){
+        ArrayList<String> ids = new ArrayList<>();
+        JSONArray departments = entityData_Obj.getJSONArray("departments");
+        for (int i = 0; i < departments.length(); i++) {
+            JSONArray specializations = departments.getJSONObject(i).getJSONArray("specializations");
+            for (int j = 0; j < specializations.length(); j++) {
+                JSONArray generations = specializations.getJSONObject(j).getJSONArray("generations");
+                for (int k = 0; k < generations.length(); k++) {
+                    JSONArray groups = generations.getJSONObject(k).getJSONArray("groups");
+                    for (int l = 0; l < groups.length(); l++) {
+                        if (groups.getJSONObject(l).getString("id").equals(idToEdit)) {
+                            ids.add(groups.getJSONObject(l).getString("id"));
+                        }
+                    }
+                }
+            }
+        }
+        return ids;
+    }
+
 
 }

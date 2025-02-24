@@ -394,7 +394,7 @@
                         <DropShadow />
                     </effect>
                 </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="140.0" prefWidth="1068.0" spacing="40.0" style="-fx-border-width: 2; -fx-border-color: #000000; -fx-background-color: #6A84AC;">
+            <HBox alignment="CENTER_LEFT" prefHeight="140.0" prefWidth="1068.0" spacing="40.0" style="-fx-border-width: 2; -fx-border-color: #000000; -fx-background-color: #6A84AC;" onMouseClicked="#handleAddStudentToGroup">
                <children>
                   <ImageView fitHeight="109.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
                      <image>

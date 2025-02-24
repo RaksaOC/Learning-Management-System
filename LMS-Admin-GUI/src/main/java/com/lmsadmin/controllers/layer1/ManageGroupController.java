@@ -1,6 +1,5 @@
 package main.java.com.lmsadmin.controllers.layer1;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -24,7 +23,7 @@ public class ManageGroupController extends MainFrameController {
         System.out.println("At addGroup scene");
     }
     @FXML
-    private void handleEdit(ActionEvent actionEvent) {
+    private void handleEdit(MouseEvent actionEvent) {
         SceneManager.setScene("editGroup");
         System.out.println("At editGroup scene");
     }
@@ -37,6 +36,12 @@ public class ManageGroupController extends MainFrameController {
     private void handleView(MouseEvent actionEvent) {
         SceneManager.setScene("viewGroup");
         System.out.println("At viewGroup scene");
+    }
+
+    @FXML
+    private void handleAddStudentToGroup(MouseEvent actionEvent) {
+        SceneManager.setScene("addStudentToGroup");
+        System.out.println("At addStudentToGroup scene");
     }
 
 }

@@ -5,26 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="816c4d4f-796b-4ab7-98a7-72a49b87cc0e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LMS/src/utils/controller/ClassroomController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LMS/src/utils/manager/ClassroomManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/images/ERD.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/images/LMS-Admin-UML.drawio.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/reources/How-to-org-json.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/reources/How-to-org-jsonV2.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/reources/Structure-and-tips.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/data/quiz.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/main/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS/src/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS/src/utils/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/controller/TeacherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS/src/utils/manager/AuthenticationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/manager/AuthenticationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS/src/utils/manager/TeacherManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/manager/TeacherManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS/src/utils/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/menu/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/admin.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/admin.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/classroom.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/classroom.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/src/utils/controller/ClassroomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/controller/ClassroomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/src/utils/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/controller/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/src/utils/manager/ClassroomManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/manager/ClassroomManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/src/utils/manager/StudentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/manager/StudentManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/history.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/history.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/data/progress.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/progress.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/university.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/university.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/student.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/student.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/teachers.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/teachers.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +57,7 @@
     "ToolWindow.Run.ShowToolbar": "false",
     "dart.analysis.tool.window.visible": "false",
     "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "Merging squiz",
+    "git-widget-placeholder": "squiz",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/raksa/School/Year 2/Term 2/OOP/Project/Learning-Management-System",
     "node.js.detected.package.eslint": "true",

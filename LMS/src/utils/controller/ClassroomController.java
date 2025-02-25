@@ -111,4 +111,8 @@ public class ClassroomController {
         classroomManager.manageViewQuizz(id);
     }
 
+    public void goToDoQuiz(){
+        ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
+        classroomManager.manageDoQuiz();
+    }
 }

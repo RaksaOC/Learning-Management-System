@@ -114,7 +114,7 @@ public class MainController {
 
                     break;
                 case "3":
-
+                    studentController.doQuiz();
                     break;
                 case "-b":
                     return;

@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -53,7 +54,7 @@ interface classroomManagementInterface {
     void manageDeleteQuizz(String id);
 
     void manageViewQuizz(String id);
-
+    void manageDoQuiz();
 
 }
 
@@ -475,6 +476,33 @@ public class ClassroomManager implements classroomManagementInterface {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void manageDoQuiz(){
+        try{
+            String content = new String(Files.readAllBytes(Paths.get("shared/data/classroom.json")));
+            JSONArray contentToEdit = new JSONArray(content);
+            String[] quizzesID=null;
+            if (!content.isEmpty()) {
+                for (int i = 0; i < contentToEdit.length(); i++) {
+                    if(contentToEdit.getJSONObject(i).getString("id").equals("GEN10-CS-SE-G1-OOP")){
+                        quizzesID=new String[contentToEdit.getJSONObject(i).getJSONArray("quizzes").length()];
+                        for(int j=0; j< contentToEdit.getJSONObject(i).getJSONArray("quizzes").length(); j++){
+                            quizzesID[j]=contentToEdit.getJSONObject(i).getJSONArray("quizzes").getString(j);
+                        }
+                        break;
+                    }
+                }
+                System.out.println(Arrays.toString(quizzesID));
+            }
+            try (FileWriter file = new FileWriter("shared/data/progress.json")) {
+                file.write(contentToEdit.toString(4));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

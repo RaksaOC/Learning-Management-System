@@ -3,6 +3,7 @@ package utils.controller;
 import entities.Student;
 import entities.Teacher;
 import ui.UI;
+import utils.manager.ClassroomManager;
 import utils.manager.StudentManager;
 import utils.menu.Menu;
 
@@ -16,7 +17,7 @@ public class StudentController {
 //            takes in the student object from the authentication controller
         this.student = s;
     }
-    public StudentController(String indexOfClass) {
+    public StudentController(Student student ,String indexOfClass) {
         this.indexOfClass  = indexOfClass;
     }
 
@@ -79,6 +80,11 @@ public class StudentController {
         StudentManager studentManager = new StudentManager(student);
         String classDetails = studentManager.manageViewClassroom();
         System.out.println(UI.TextColor.addColor((classDetails), UI.TextColor.BLUE));
+    }
+
+    public void doQuiz(){
+        ClassroomController classroomController = new ClassroomController(indexOfClass);
+        classroomController.goToDoQuiz();
     }
 
 

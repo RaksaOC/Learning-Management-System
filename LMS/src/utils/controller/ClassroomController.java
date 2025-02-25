@@ -90,25 +90,24 @@ public class ClassroomController {
     public void editQuizz() {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
         String id = "";
-        classroomManager.manageViewQuizz(id);
         String title = "Rate teacher beauty";
         String questions = "[{\"questionTitle\":\"How handsome is the teacher?\",\"answer\":\"Ugly mf\",\"choices\": [\"Ugly mf\",\"Vini Jnr handsome\",\"Average asian dude\",\"Jungkook\"]}, {\"questionTitle\":\"How handsome is the teacher?\",\"answer\":\"Joe Biden handsome\",\"choices\": [\"Ugly mf\",\"Vini Jnr handsome\",\"Average asian dude\",\"Jungkook\"]}, {\"questionTitle\":\"How handsome is the teacher?\",\"answer\":\"Joe Biden handsome\",\"choices\": [\"Ugly mf\",\"Vini Jnr handsome\",\"Average asian dude\",\"Jungkook\"]}]";
         JSONArray questionsJson=new JSONArray(questions);
-        String idToEdit="Q0002";
+        String idToEdit="Q0012";
         classroomManager.manageEditQuizz(title, questionsJson, idToEdit);
     }
 
     public void deleteQuizz() {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
         // sample data
-        String idToDelete = "Q0011";
+        String idToDelete = "Q0013";
         String classID="GEN10-CS-SE-G1-OOP";
         classroomManager.manageDeleteQuizz(idToDelete);
     }
 
     public void viewQuizz() {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
-        String id = "Q0002";
+        String id = "";
         classroomManager.manageViewQuizz(id);
     }
 

@@ -1,120 +1,114 @@
 [
-  {
-    "generation": "GEN10",
-    "lastLogin": "2025-02-07 15:38:21",
-    "address": {
-      "province": "phnom penh",
-      "district": "Chbar ampv"
+    {
+        "generation": "GEN10",
+        "lastLogin": "2025-02-25 10:49:20",
+        "address": {
+            "province": "phnom penh",
+            "district": "Chbar ampv"
+        },
+        "gender": "Male",
+        "createdAt": "2025-02-04 21:53:36",
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "phoneNumber": "012540494",
+        "dob": "03042006",
+        "name": {
+            "firstName": "Chan",
+            "lastName": "Raksa"
+        },
+        "specialization": "Software Engineering",
+        "progress": {"GEN10-CS-SE-G1-OOP": "P000001"},
+        "id": "S000001",
+        "guardian": {
+            "guardianGender": "female",
+            "guardianName": "mom",
+            "guardianPhoneNumber": "0123423432"
+        },
+        "department": "Computer Science",
+        "email": "ocraksa@gmail.com",
+        "status": "active"
     },
-    "gender": "Male",
-    "createdAt": "2025-02-04 21:53:36",
-    "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-    "phoneNumber": "012540494",
-    "dob": "03042006",
-    "name": {
-      "firstName": "Chan",
-      "lastName": "Raksa"
+    {
+        "generation": "GEN10",
+        "lastLogin": "2025-02-07 15:38:21",
+        "address": {
+            "province": "phnom penh",
+            "district": "Chbar ampv"
+        },
+        "gender": "Male",
+        "createdAt": "2025-02-04 21:53:36",
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "phoneNumber": "012540494",
+        "dob": "03042006",
+        "name": {
+            "firstName": "Chan",
+            "lastName": "Raksa"
+        },
+        "specialization": "Software Engineering",
+        "progress": {"GEN10-CS-SE-G1-OOP": "P000001"},
+        "id": "S000002",
+        "guardian": {
+            "guardianGender": "female",
+            "guardianName": "mom",
+            "guardianPhoneNumber": "0123423432"
+        },
+        "department": "Computer Science",
+        "email": "ocraksa@gmail.com",
+        "status": "active"
     },
-    "specialization": "Software Engineering",
-    "progress": {
-      "GEN10-CS-SE-G1-OOP": "P000001"
+    {
+        "generation": "GEN10",
+        "lastLogin": "2025-02-07 15:38:21",
+        "address": {
+            "province": "phnom penh",
+            "district": "Chbar ampv"
+        },
+        "gender": "Male",
+        "createdAt": "2025-02-04 21:53:36",
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "phoneNumber": "012540494",
+        "dob": "03042006",
+        "name": {
+            "firstName": "Chan",
+            "lastName": "Raksa"
+        },
+        "specialization": "Software Engineering",
+        "progress": {"GEN10-CS-SE-G1-OOP": "P000001"},
+        "id": "S000003",
+        "guardian": {
+            "guardianGender": "female",
+            "guardianName": "mom",
+            "guardianPhoneNumber": "0123423432"
+        },
+        "department": "Computer Science",
+        "email": "ocraksa@gmail.com",
+        "status": "active"
     },
-    "id": "S000001",
-    "guardian": {
-      "guardianGender": "female",
-      "guardianName": "mom",
-      "guardianPhoneNumber": "0123423432"
-    },
-    "department": "Computer Science",
-    "email": "ocraksa@gmail.com",
-    "status": "active"
-  },{
-    "generation": "GEN10",
-    "lastLogin": "2025-02-07 15:38:21",
-    "address": {
-      "province": "phnom penh",
-      "district": "Chbar ampv"
-    },
-    "gender": "Male",
-    "createdAt": "2025-02-04 21:53:36",
-    "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-    "phoneNumber": "012540494",
-    "dob": "03042006",
-    "name": {
-      "firstName": "Chan",
-      "lastName": "Raksa"
-    },
-    "specialization": "Software Engineering",
-    "progress": {
-      "GEN10-CS-SE-G1-OOP": "P000001"
-    },
-    "id": "S000002",
-    "guardian": {
-      "guardianGender": "female",
-      "guardianName": "mom",
-      "guardianPhoneNumber": "0123423432"
-    },
-    "department": "Computer Science",
-    "email": "ocraksa@gmail.com",
-    "status": "active"
-  },{
-    "generation": "GEN10",
-    "lastLogin": "2025-02-07 15:38:21",
-    "address": {
-      "province": "phnom penh",
-      "district": "Chbar ampv"
-    },
-    "gender": "Male",
-    "createdAt": "2025-02-04 21:53:36",
-    "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-    "phoneNumber": "012540494",
-    "dob": "03042006",
-    "name": {
-      "firstName": "Chan",
-      "lastName": "Raksa"
-    },
-    "specialization": "Software Engineering",
-    "progress": {
-      "GEN10-CS-SE-G1-OOP": "P000001"
-    },
-    "id": "S000003",
-    "guardian": {
-      "guardianGender": "female",
-      "guardianName": "mom",
-      "guardianPhoneNumber": "0123423432"
-    },
-    "department": "Computer Science",
-    "email": "ocraksa@gmail.com",
-    "status": "active"
-  },{
-    "generation": "GEN10",
-    "lastLogin": "2025-02-07 15:38:21",
-    "address": {
-      "province": "phnom penh",
-      "district": "Chbar ampv"
-    },
-    "gender": "Male",
-    "createdAt": "2025-02-04 21:53:36",
-    "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-    "phoneNumber": "012540494",
-    "dob": "03042006",
-    "name": {
-      "firstName": "Chan",
-      "lastName": "Raksa"
-    },
-    "specialization": "Software Engineering",
-    "progress": {
-      "GEN10-CS-SE-G1-OOP": "P000001"
-    },
-    "id": "S000004",
-    "guardian": {
-      "guardianGender": "female",
-      "guardianName": "mom",
-      "guardianPhoneNumber": "0123423432"
-    },
-    "department": "Computer Science",
-    "email": "ocraksa@gmail.com",
-    "status": "active"
-  },
+    {
+        "generation": "GEN10",
+        "lastLogin": "2025-02-07 15:38:21",
+        "address": {
+            "province": "phnom penh",
+            "district": "Chbar ampv"
+        },
+        "gender": "Male",
+        "createdAt": "2025-02-04 21:53:36",
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "phoneNumber": "012540494",
+        "dob": "03042006",
+        "name": {
+            "firstName": "Chan",
+            "lastName": "Raksa"
+        },
+        "specialization": "Software Engineering",
+        "progress": {"GEN10-CS-SE-G1-OOP": "P000001"},
+        "id": "S000004",
+        "guardian": {
+            "guardianGender": "female",
+            "guardianName": "mom",
+            "guardianPhoneNumber": "0123423432"
+        },
+        "department": "Computer Science",
+        "email": "ocraksa@gmail.com",
+        "status": "active"
+    }
 ]
-

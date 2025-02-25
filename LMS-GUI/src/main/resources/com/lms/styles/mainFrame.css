@@ -1,0 +1,63 @@
+.menu-btn {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-background-color: #6A84AC; /* Your color */
+}
+
+/* Hover effect for .menu-btn */
+.menu-btn:hover {
+    -fx-translate-y: -5px; /* Subtle hover movement */
+    -fx-background-color: #5A7397; /* Darken the background color */
+}
+
+/* Sidebar button specific styles */
+.sidebar-menu-btn {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+/* Hover effect for sidebar button */
+.sidebar-menu-btn:hover {
+    -fx-background-color: #6A84AC; /* Slightly darkened on hover */
+    -fx-translate-x: 2px; /* Subtle horizontal hover effect */
+    -fx-translate-y: -3px; /* Subtle vertical hover effect */
+}
+
+/*.sidebar-menu-btn:focused{*/
+/*    -fx-background-color: #6A84AC; !* Slightly darkened on hover *!*/
+/*}*/
+
+.table-view {
+    -fx-background-color: #f8f9fa; /* Light gray background */
+    -fx-border-color: #d1d1d1;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+.table-column {
+    -fx-alignment: CENTER-LEFT;
+    -fx-font-size: 14px;
+}
+
+.table-row-cell {
+    -fx-background-color: #ffffff; /* Default row background */
+    -fx-border-color: #e0e0e0;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #f2f2f2; /* Zebra striping */
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #0078d7; /* Highlight selected row */
+    -fx-text-fill: white;
+}
+
+.table-cell {
+    -fx-padding: 8px;
+}
+
+.table-column .label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}

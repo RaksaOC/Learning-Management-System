@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/LMS/LMS.iml" filepath="$PROJECT_DIR$/LMS/LMS.iml" />
       <module fileurl="file://$PROJECT_DIR$/LMS-Admin/LMS-Admin.iml" filepath="$PROJECT_DIR$/LMS-Admin/LMS-Admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/LMS-Admin-GUI/LMS-Admin-GUI.iml" filepath="$PROJECT_DIR$/LMS-Admin-GUI/LMS-Admin-GUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LMS-GUI/LMS-GUI.iml" filepath="$PROJECT_DIR$/LMS-GUI/LMS-GUI.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Learning-Management-System.iml" filepath="$PROJECT_DIR$/.idea/Learning-Management-System.iml" />
       <module fileurl="file://$PROJECT_DIR$/shared/shared.iml" filepath="$PROJECT_DIR$/shared/shared.iml" />
     </modules>

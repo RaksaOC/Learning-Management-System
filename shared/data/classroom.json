@@ -48,4 +48,55 @@
     "quizzes": [],
     "courseId": "",
     "status": "active"
-}]
+},
+    {
+        "teacherId": "T0001",
+        "assignments": [
+            {
+                "description": "Write an Arduino script to display a countdown timer on an OLED screen and trigger a buzzer when it reaches zero.",
+                "id": "A001",
+                "title": "Embedded Systems Task",
+                "deadline": {
+                    "date": "2025-03-05",
+                    "time": "23:59"
+                },
+                "status": "active"
+            },
+            {
+                "description": "Use CSS Grid and Flexbox to design a responsive webpage layout with a header, sidebar, main content area, and footer.",
+                "id": "A002",
+                "title": "Web Layout Design",
+                "deadline": {
+                    "date": "2025-03-02",
+                    "time": "23:59"
+                },
+                "status": "active"
+            },
+            {
+                "description": "Create a linked list that stores book titles and allows users to add, remove, and search for books.",
+                "id": "A003",
+                "title": "Data Structure Explorer",
+                "deadline": {
+                    "date": "2025-02-20",
+                    "time": "23:59"
+                },
+                "status": "active"
+            },
+            {
+                "description": "Implement a program that sorts a list of student grades using at least two different sorting algorithms (e.g., Bubble Sort and Quick Sort).",
+                "id": "A004",
+                "title": "Algorithm Challenge",
+                "deadline": {
+                    "date": "2025-02-19",
+                    "time": "23:59"
+                },
+                "status": "active"
+            }
+        ],
+        "students": ["S000001"],
+        "resources": [],
+        "id": "Operating System",
+        "quizzes": [],
+        "courseId": "",
+        "status": "active"
+    }]

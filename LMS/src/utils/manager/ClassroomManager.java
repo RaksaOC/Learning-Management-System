@@ -1,6 +1,7 @@
 package utils.manager;
 
 import org.json.JSONArray;
+import org.json.JSONMLParserConfiguration;
 import org.json.JSONObject;
 import utils.controller.ClassroomController;
 import utils.menu.Menu;
@@ -351,8 +352,41 @@ public class ClassroomManager implements classroomManagementInterface{
 
 
 
+
+
+
+
+
     // Resource Manager
     public void manageAddResource() {
+        int selectedWeek = Integer.parseInt(selectWeek()) - 1;
+        String title = Menu.prompt("Enter Resource Title: ");
+        String description = Menu.prompt("Enter Resource Description: ");
+
+        JSONArray resources = new JSONArray();
+        JSONObject resourceObject = new JSONObject();
+        String resourceId = idGenerator(loadResource(), "R0000");
+        resourceObject.put("resourceId", resourceId);
+        resourceObject.put("status", "active");
+        JSONArray allWeekResource = new JSONArray();
+        JSONObject week = new JSONObject();
+        String weekId = idGenerator(loadResource(), "Week00");
+        week.put("id", weekId);
+        JSONArray contents = new JSONArray();
+        JSONObject content = new JSONObject();
+        JSONArray weekResources = getAllResource();
+        JSONArray aWeekContents = null;
+        for (int i = 0; i < weekResources.length(); i++) {
+            if (i == selectedWeek) {
+                aWeekContents = weekResources.getJSONObject(i).getJSONArray("contents");
+                break;
+            }
+        }
+        String contentId = idGenerator(aWeekContents, "C0000");
+        content.put("id", contentId);
+        content.put("title", title);
+        content.put("description", description);
+        content.put("status", "active");
 
     }
 
@@ -368,7 +402,33 @@ public class ClassroomManager implements classroomManagementInterface{
 
     }
 
+    // display each week and select and input
+    private String selectWeek() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Week0" + i+1);
+        }
+        return Menu.prompt("Select a Week: ");
+    }
 
+    // get Resource array (all weeks) from resource.json only
+    private JSONArray getAllResource() {
+        JSONArray allResource = loadResource();
+        String classroomId = getClassroomId();
+        for (int i = 0; i < allResource.length(); i++) {
+            if (classroomId.equals(allResource.getJSONObject(i).getString("classroomId"))) {
+                return allResource.getJSONObject(i).getJSONArray("resources");
+            }
+        }
+        return null;
+    }
+
+    private void saveToResource() {
+        String classroomId = getClassroomId();
+        JSONArray allResource = loadResource();
+        for (int i = 0; i < allResource.length(); i++) {
+            if (classroomId.equals(allResource.getJSONObject(i).get))
+        }
+    }
 
 
     // Quizz Manager
@@ -412,6 +472,16 @@ public class ClassroomManager implements classroomManagementInterface{
         }
     }
 
+    // save all resource
+    private void saveResource(JSONArray allResource) {
+        try (FileWriter file = new FileWriter("shared/data/progress.json")) {
+            file.write(allResource.toString(4)); // Pretty-print with 4 spaces
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     // load all classrooms
     private JSONArray loadClassroom(){
         try {
@@ -448,10 +518,27 @@ public class ClassroomManager implements classroomManagementInterface{
         return null;
     }
 
+    // load all resource
+    private JSONArray loadResource(){
+        try {
+            String contents = new String(Files.readAllBytes(Paths.get("shared/data/resource.json")));
+            JSONArray allResource = new JSONArray(contents);
+            return allResource;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     private String idGenerator(JSONArray objects, String baseId) { // baseId receives Ex: "A000"
         String numberPart = baseId.replaceAll("[^0-9]", ""); // extract number part "000"
         int numberLength = numberPart.length();
-        int nextIdNumber = objects.length() + 1; // find next available id
+        int nextIdNumber;
+        if (objects != null) {
+            nextIdNumber = objects.length() + 1; // find next available id
+        } else {
+            nextIdNumber = 1;
+        }
         String formattedNumber = String.format("%0" + numberLength + "d", nextIdNumber); // %03d
         String prefixChar = baseId.replaceAll("[0-9]", ""); // extract the non-numeric part "A"
         return prefixChar + formattedNumber;

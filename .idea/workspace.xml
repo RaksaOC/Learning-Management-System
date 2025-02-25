@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="816c4d4f-796b-4ab7-98a7-72a49b87cc0e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_18_2025_3_36_PM_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_18_2025_3_36_PM_[Changes]1/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_18_2025_3_36_PM__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/data/resource.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS/src/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/main/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS/src/utils/controller/ClassroomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/controller/ClassroomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS/src/utils/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/controller/TeacherController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS/src/utils/manager/ClassroomManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/manager/ClassroomManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS/src/utils/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/menu/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/data/classroom.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/classroom.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/data/history.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/history.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/data/progress.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/progress.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/student.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/student.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/data/teachers.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/teachers.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

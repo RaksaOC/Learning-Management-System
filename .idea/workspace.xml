@@ -50,7 +50,7 @@
     "ToolWindow.Run.ShowToolbar": "false",
     "dart.analysis.tool.window.visible": "false",
     "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "quiz-for-student",
+    "git-widget-placeholder": "test3",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/coding/Year2/OOP-project-term2/Learning-Management-System/shared/lib/openjfx-23.0.2_windows-x64_bin-sdk/javafx-sdk-23.0.2/lib",
     "node.js.detected.package.eslint": "true",
@@ -61,7 +61,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "preferences.JavaFX",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -113,14 +113,6 @@
       <item itemvalue="Application.Run LMS-Admin" />
       <item itemvalue="Application.Run LMS-Admin-GUI" />
     </list>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

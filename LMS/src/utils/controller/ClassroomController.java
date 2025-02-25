@@ -93,21 +93,21 @@ public class ClassroomController {
         String title = "Rate teacher beauty";
         String questions = "[{\"questionTitle\":\"How handsome is the teacher?\",\"answer\":\"Ugly mf\",\"choices\": [\"Ugly mf\",\"Vini Jnr handsome\",\"Average asian dude\",\"Jungkook\"]}, {\"questionTitle\":\"How handsome is the teacher?\",\"answer\":\"Joe Biden handsome\",\"choices\": [\"Ugly mf\",\"Vini Jnr handsome\",\"Average asian dude\",\"Jungkook\"]}, {\"questionTitle\":\"How handsome is the teacher?\",\"answer\":\"Joe Biden handsome\",\"choices\": [\"Ugly mf\",\"Vini Jnr handsome\",\"Average asian dude\",\"Jungkook\"]}]";
         JSONArray questionsJson=new JSONArray(questions);
-        String idToEdit="Q0012";
+        String idToEdit="Q0014";
         classroomManager.manageEditQuizz(title, questionsJson, idToEdit);
     }
 
     public void deleteQuizz() {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
         // sample data
-        String idToDelete = "Q0013";
+        String idToDelete = "Q0014";
         String classID="GEN10-CS-SE-G1-OOP";
         classroomManager.manageDeleteQuizz(idToDelete);
     }
 
     public void viewQuizz() {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
-        String id = "";
+        String id = "Q0014";
         classroomManager.manageViewQuizz(id);
     }
 

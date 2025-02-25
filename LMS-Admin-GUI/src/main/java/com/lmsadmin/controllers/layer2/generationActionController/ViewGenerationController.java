@@ -13,8 +13,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.java.com.lmsadmin.controllers.layer0.MainFrameController;
-import main.java.com.lmsadmin.managers.manage_entity_manager.ManageDepartmentManager;
-import main.java.com.lmsadmin.managers.manage_entity_manager.ManageGenerationManager;
+import main.java.com.lmsadmin.managers.layer2.manage_entity_manager.ManageDepartmentManager;
+import main.java.com.lmsadmin.managers.layer2.manage_entity_manager.ManageGenerationManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

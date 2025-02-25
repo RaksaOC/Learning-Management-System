@@ -8,7 +8,7 @@ import javafx.util.Duration;
 import lib.Hasher;
 import main.SceneManager;
 import main.java.com.lmsadmin.controllers.layer0.MainFrameController;
-import main.java.com.lmsadmin.managers.manage_entity_manager.ManageTeacherManager;
+import main.java.com.lmsadmin.managers.layer2.manage_entity_manager.ManageTeacherManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

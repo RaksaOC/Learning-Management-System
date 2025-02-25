@@ -1,6 +1,5 @@
-package main.java.com.lmsadmin.managers.edit_entity_manager;
+package main.java.com.lmsadmin.managers.layer3.edit_entity_manager;
 
-import javafx.fxml.FXML;
 import lib.Hasher;
 
 import java.util.ArrayList;

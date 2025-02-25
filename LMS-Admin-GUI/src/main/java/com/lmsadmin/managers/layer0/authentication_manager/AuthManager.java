@@ -1,4 +1,4 @@
-package main.java.com.lmsadmin.managers.authentication_manager;
+package main.java.com.lmsadmin.managers.layer0.authentication_manager;
 
 import lib.Hasher;
 import org.json.JSONArray;

@@ -5,8 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import main.java.com.lmsadmin.controllers.layer0.MainFrameController;
-import main.java.com.lmsadmin.managers.edit_entity_manager.EditSpecializationManager;
-import main.java.com.lmsadmin.managers.edit_entity_manager.EditStudentManager;
+import main.java.com.lmsadmin.managers.layer3.edit_entity_manager.EditSpecializationManager;
+import main.java.com.lmsadmin.managers.layer3.edit_entity_manager.EditStudentManager;
 
 public class EditStudentSpecializationController extends MainFrameController {
     EditStudentManager idLoader = new EditStudentManager();

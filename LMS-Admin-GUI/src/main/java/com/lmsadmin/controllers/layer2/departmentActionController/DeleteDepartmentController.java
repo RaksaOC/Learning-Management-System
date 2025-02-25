@@ -1,6 +1,5 @@
 package main.java.com.lmsadmin.controllers.layer2.departmentActionController;
 
-import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -9,17 +8,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
-import main.SceneManager;
 import main.java.com.lmsadmin.controllers.layer0.MainFrameController;
-import main.java.com.lmsadmin.managers.manage_entity_manager.ManageClassroomManager;
-import main.java.com.lmsadmin.managers.manage_entity_manager.ManageDepartmentManager;
-import main.java.com.lmsadmin.managers.manage_entity_manager.ManageStudentManager;
+import main.java.com.lmsadmin.managers.layer2.manage_entity_manager.ManageDepartmentManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.time.temporal.TemporalQueries;
-import java.util.Iterator;
 
 public class DeleteDepartmentController extends MainFrameController{
     @FXML

@@ -1,8 +1,7 @@
-package main.java.com.lmsadmin.managers.edit_entity_manager;
+package main.java.com.lmsadmin.managers.layer3.edit_entity_manager;
 
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class EditStudentManager extends EditEntityManager {

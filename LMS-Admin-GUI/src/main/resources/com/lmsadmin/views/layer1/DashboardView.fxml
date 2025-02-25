@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer0.MainFrameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsadmin.controllers.layer1.DashboardController">
    <left>
       <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
          <children>
@@ -282,15 +284,212 @@
       </VBox>
    </left>
    <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="40.0" style="-fx-background-color: #ebebeb;" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f4f6fa;" BorderPane.alignment="CENTER">
          <padding>
-            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
          <children>
-            <HBox prefHeight="300.0" prefWidth="200.0" style="-fx-background-color: #000000;" />
-            <HBox prefHeight="300.0" prefWidth="200.0" style="-fx-background-color: #000000;" />
-            <HBox prefHeight="300.0" prefWidth="200.0" style="-fx-background-color: #000000;" />
-            <HBox prefHeight="300.0" prefWidth="200.0" style="-fx-background-color: #000000;" />
+            <HBox alignment="TOP_CENTER" prefHeight="160.0" prefWidth="1128.0" spacing="40.0">
+               <children>
+                  <AnchorPane prefHeight="140.0" prefWidth="228.0" style="-fx-border-radius: 20; -fx-background-color: #FFFFFF; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.leftAnchor="0.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Students">
+                                 <font>
+                                    <Font name="System Italic" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="numOfStudents" fill="#6a84ac" strokeType="OUTSIDE" strokeWidth="0.0" text="numOfStudents ">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <ImageView fitHeight="101.0" fitWidth="122.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                           <image>
+                              <Image url="@../../images/student-icon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="140.0" prefWidth="228.0" style="-fx-border-radius: 20; -fx-background-color: #FFFFFF; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.leftAnchor="0.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Teachers">
+                                 <font>
+                                    <Font name="System Italic" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="numOfTeachers" fill="#6a84ac" strokeType="OUTSIDE" strokeWidth="0.0" text="Num ">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <ImageView fitHeight="101.0" fitWidth="122.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                           <image>
+                              <Image url="@../../images/teacher-icon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="140.0" prefWidth="228.0" style="-fx-border-radius: 20; -fx-background-color: #FFFFFF; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.leftAnchor="0.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Courses">
+                                 <font>
+                                    <Font name="System Italic" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="numOfCourses" fill="#6a84ac" strokeType="OUTSIDE" strokeWidth="0.0" text="Num ">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <ImageView fitHeight="101.0" fitWidth="122.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                           <image>
+                              <Image url="@../../images/course-icon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="140.0" prefWidth="228.0" style="-fx-border-radius: 20; -fx-background-color: #FFFFFF; -fx-background-radius: 20;" HBox.hgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.leftAnchor="0.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Classrooms">
+                                 <font>
+                                    <Font name="System Italic" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="numOfClassrooms" fill="#6a84ac" strokeType="OUTSIDE" strokeWidth="0.0" text="Num ">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <ImageView fitHeight="101.0" fitWidth="122.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                           <image>
+                              <Image url="@../../images/classroom-icon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </AnchorPane>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="515.0" prefWidth="1128.0" spacing="40.0" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="212.0" prefWidth="515.0" style="-fx-background-color: white; -fx-border-radius: 20; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Student Logs" wrappingWidth="106.66796875" VBox.vgrow="ALWAYS">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                              </Text>
+                              <TableView fx:id="studentLogTableView" prefWidth="516.0">
+                                <columns>
+                                  <TableColumn fx:id="studentIDTableColumn" maxWidth="1.7976931348623157E308" prefWidth="75.0" text="ID" />
+                                  <TableColumn fx:id="studentTimeTableColumn" maxWidth="1.7976931348623157E308" prefWidth="206.0" text="Time" />
+                                    <TableColumn fx:id="studentActionTableColumn" maxWidth="1.7976931348623157E308" prefWidth="237.0" text="Action" />
+                                </columns>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
+                                 </VBox.margin>
+                              </TableView>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-radius: 20; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Teacher Logs" wrappingWidth="110.66796875">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <TableView fx:id="teacherLogTableView" prefWidth="516.0">
+                                 <columns>
+                                    <TableColumn fx:id="teacherIDTableColumn" prefWidth="75.0" text="ID" />
+                                    <TableColumn fx:id="teacherTimeTableColumn" prefWidth="206.0" text="Time" />
+                                    <TableColumn fx:id="teacherActionTableColumn" prefWidth="237.0" text="Action" />
+                                 </columns>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
+                                 </VBox.margin>
+                              </TableView>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="443.0" prefWidth="574.0" style="-fx-background-color: white; -fx-background-radius: 20;" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Classrooms" textAlignment="CENTER" wrappingWidth="106.66796875">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <TableView fx:id="activeClassroomTableView" prefWidth="512.0">
+                                 <columns>
+                                    <TableColumn fx:id="activeClassroomClassIDTableColumn" maxWidth="1.7976931348623157E308" prefWidth="163.0" text="Classroom ID" />
+                                    <TableColumn fx:id="activeClassroomCourseTableColumn" maxWidth="1.7976931348623157E308" prefWidth="118.0" text="Course" />
+                                    <TableColumn fx:id="activeClassroomTeacherTableColumn" maxWidth="1.7976931348623157E308" prefWidth="237.0" text="Teacher" />
+                                 </columns>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
+                                 </VBox.margin>
+                              </TableView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </center>
@@ -305,7 +504,7 @@
                      </image>
                   </ImageView>
                </children></Pane>
-            <AnchorPane layoutX="232.0" layoutY="-1.0" prefHeight="118.0" prefWidth="1168.0" style="-fx-background-color: #ebebeb;" AnchorPane.leftAnchor="232.0" AnchorPane.rightAnchor="0.0">
+            <AnchorPane layoutX="232.0" layoutY="-1.0" prefHeight="118.0" prefWidth="1168.0" style="-fx-background-color: #f4f6fa;" AnchorPane.leftAnchor="232.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="52.0" layoutX="1017.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="101.0">
                      <image>

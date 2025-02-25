@@ -6,8 +6,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import main.java.com.lmsadmin.controllers.layer0.MainFrameController;
-import main.java.com.lmsadmin.managers.edit_entity_manager.EditStudentManager;
-import main.java.com.lmsadmin.utils.CambodiaAdministrative;
+import main.java.com.lmsadmin.managers.layer3.edit_entity_manager.EditStudentManager;
+import main.java.com.lmsadmin.managers.layer3.edit_entity_manager.utils.CambodiaAdministrative;
 import org.json.JSONObject;
 
 import java.util.ArrayList;

@@ -6,14 +6,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import main.java.com.lmsadmin.controllers.layer0.MainFrameController;
-import main.java.com.lmsadmin.managers.manage_entity_manager.ManageAdminManager;
-import main.java.com.lmsadmin.managers.manage_entity_manager.ManageTeacherManager;
+import main.java.com.lmsadmin.managers.layer2.manage_entity_manager.ManageTeacherManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

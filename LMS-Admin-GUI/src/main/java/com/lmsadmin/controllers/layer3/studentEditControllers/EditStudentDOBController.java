@@ -6,8 +6,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import main.java.com.lmsadmin.controllers.layer0.MainFrameController;
-import main.java.com.lmsadmin.managers.edit_entity_manager.EditDepartmentManager;
-import main.java.com.lmsadmin.managers.edit_entity_manager.EditStudentManager;
+import main.java.com.lmsadmin.managers.layer3.edit_entity_manager.EditStudentManager;
 
 public class EditStudentDOBController extends MainFrameController {
     EditStudentManager idLoader = new EditStudentManager();

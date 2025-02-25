@@ -9,7 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import main.SceneManager;
 import main.java.com.lmsadmin.controllers.layer0.MainFrameController;
-import main.java.com.lmsadmin.managers.manage_entity_manager.ManageClassroomManager;
+import main.java.com.lmsadmin.managers.layer2.manage_entity_manager.ManageClassroomManager;
 
 public class AddClassroomController extends MainFrameController {
     @FXML

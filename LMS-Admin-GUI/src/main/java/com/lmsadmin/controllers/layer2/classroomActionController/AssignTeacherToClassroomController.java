@@ -5,10 +5,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import main.java.com.lmsadmin.controllers.layer0.MainFrameController;
-import main.java.com.lmsadmin.controllers.layer1.ManageClassroomController;
-import main.java.com.lmsadmin.managers.edit_entity_manager.EditClassroomManager;
-import main.java.com.lmsadmin.managers.edit_entity_manager.EditTeacherManager;
-import main.java.com.lmsadmin.managers.manage_entity_manager.ManageClassroomManager;
+import main.java.com.lmsadmin.managers.layer3.edit_entity_manager.EditClassroomManager;
+import main.java.com.lmsadmin.managers.layer3.edit_entity_manager.EditTeacherManager;
+import main.java.com.lmsadmin.managers.layer2.manage_entity_manager.ManageClassroomManager;
 
 public class AssignTeacherToClassroomController extends MainFrameController {
     private final EditTeacherManager teacherIDLoader = new EditTeacherManager();

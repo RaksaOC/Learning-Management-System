@@ -6,7 +6,7 @@
         "resources": ["R0001", "R0002"],
         "id": "GEN10-CS-SE-G1-OOP",
         "quizzes": ["Q001", "Q002"],
-        "courseId": "",
+        "courseId": "VA",
         "status": "active"
     },
     {
@@ -16,7 +16,7 @@
         "resources": [],
         "id": "GEN10-CS-SE-G4-OOP",
         "quizzes": [],
-        "courseId": "",
+        "courseId": "IL",
         "status": "active"
     },
     {
@@ -26,7 +26,7 @@
         "resources": [],
         "id": "GEN10-CS-SE-G4-OOP",
         "quizzes": [],
-        "courseId": "",
+        "courseId": "DBMS",
         "status": "active"
     },
     {
@@ -36,7 +36,7 @@
         "resources": [],
         "id": "GEN10-CS-SE-G4-OOP",
         "quizzes": [],
-        "courseId": "",
+        "courseId": "OOP",
         "status": "active"
     }
 ]

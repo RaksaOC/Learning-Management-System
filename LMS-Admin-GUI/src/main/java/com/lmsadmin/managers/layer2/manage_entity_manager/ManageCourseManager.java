@@ -1,4 +1,4 @@
-package main.java.com.lmsadmin.managers.manage_entity_manager;
+package main.java.com.lmsadmin.managers.layer2.manage_entity_manager;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

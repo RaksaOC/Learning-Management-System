@@ -6,8 +6,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import main.java.com.lmsadmin.controllers.layer0.MainFrameController;
-import main.java.com.lmsadmin.managers.edit_entity_manager.EditAdminManager;
-import main.java.com.lmsadmin.managers.edit_entity_manager.EditTeacherManager;
+import main.java.com.lmsadmin.managers.layer3.edit_entity_manager.EditTeacherManager;
 
 public class EditTeacherPhoneController extends MainFrameController {
     EditTeacherManager idLoader = new EditTeacherManager();

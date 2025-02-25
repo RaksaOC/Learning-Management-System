@@ -19,7 +19,8 @@ public class Student extends User {
     private final JSONObject progress;
     private final String generation;
     private final String status;
-    private final JSONArray classrooms;
+    private JSONArray classrooms;
+    private JSONArray assignments;
 
     public Student(JSONObject studentObject) throws JSONException {
         super(
@@ -42,8 +43,13 @@ public class Student extends User {
         this.department = studentObject.getString("department");
         this.progress = studentObject.getJSONObject("progress");
         this.generation = studentObject.getString("generation");
-        this.classrooms = studentObject.getJSONArray("classrooms");
+        this.classrooms = studentObject.optJSONArray("classrooms");
+        if (this.classrooms == null) this.classrooms = new JSONArray();
+        this.assignments = studentObject.optJSONArray("assignments");
+        if (this.assignments == null) this.assignments = new JSONArray();
+
     }
+
 
     // Getter methods
     public String getStatus() { return  status; }
@@ -61,6 +67,8 @@ public class Student extends User {
     public String getGeneration() { return generation; }
     public JSONObject getProgress() { return progress; }
     public JSONArray getClassrooms() { return classrooms; }
+    public String getAddress() { return province + " " + district; }
+    public JSONArray getAssignments() { return assignments; }
 
     @Override
     public String toString() {

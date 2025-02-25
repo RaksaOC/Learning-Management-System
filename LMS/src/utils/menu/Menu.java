@@ -60,19 +60,38 @@ public class Menu {
         return choice;
     }
 
-    public String showStudentViewClassroom(){
+    public String showStudentViewEachProgress(){
         UI.showLoadingBar(10);
         System.out.println("Student Manage Classroom: ");
         do{
             menu = """
-                    [1] Do Assignment
-                    [2] Do Resources
-                    [3] Do Quizzes
+                    [1] Show Assignment
+                    [2] Show Resources
+                    [3] Show Quizzes
                     """;
             printMenu();
             this.choice = sc.nextLine();
             if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
         } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
+        return choice;
+    }
+
+    public String showAssignment(){
+        UI.showLoadingBar(10);
+        System.out.println("Student View Assignment: ");
+        do {
+            menu = """
+                    [1]. View Assignment
+                    [2]. Do Assignment
+                    [3]. Submit Assignment
+                    [4]. View Submitted Assignments
+                    [5]. View Grades & Comments
+                    """;
+            printMenu();
+            this.choice = sc.nextLine();
+            if (!(isChoiceValid("1", "5", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "5", choice));
         this.clearScreen();
         return choice;
     }
@@ -86,6 +105,81 @@ public class Menu {
                     [2] View Profile
                     [3] Log Out
                     [4] Exit
+                    """;
+            printMenu();
+            this.choice = sc.nextLine();
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
+        return choice;
+    }
+
+    public String showViewClassroomMenu(){
+        UI.showLoadingBar(10);
+        System.out.println("Teacher Manage Classroom: ");
+        do {
+            menu = """
+                    [1] Manage Assignment
+                    [2] Manage Resources
+                    [3] Manage Quizzes
+                    """;
+            printMenu();
+            this.choice = sc.nextLine();
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
+        return choice;
+    }
+
+    public String showManageAssignmentMenu(){
+        UI.showLoadingBar(10);
+        System.out.println("Teacher Manage Classroom: ");
+        do {
+            menu = """
+                    [1]. Add Assignment
+                    [2]. Edit Assignment
+                    [3]. Delete Assignment
+                    [4]. Grade Assignment
+                    [5]. Comment on Student Assignment
+                    [6]. View Student Assignment
+                    [7]. View All Student Assignment
+                    """;
+            printMenu();
+            this.choice = sc.nextLine();
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
+        return choice;
+    }
+
+    public String showManageResourcesMenu(){
+        UI.showLoadingBar(10);
+        System.out.println("Teacher Manage Classroom: ");
+        do {
+            menu = """
+                    [1]. Add Resources
+                    [2]. Edit Resources
+                    [3]. Delete Resources
+                    [4]. View Resources
+                    """;
+            printMenu();
+            this.choice = sc.nextLine();
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
+        return choice;
+    }
+
+    public String showManageQuizzesMenu(){
+        UI.showLoadingBar(10);
+        System.out.println("Teacher Manage Classroom: ");
+        do {
+            menu = """
+                    [1]. Add Quizzes
+                    [2]. Edit Quizzes
+                    [3]. Delete Quizzes
+                    [4]. Grade Quizzes
+                    [5]. View Quizzes
                     """;
             printMenu();
             this.choice = sc.nextLine();

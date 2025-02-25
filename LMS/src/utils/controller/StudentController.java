@@ -5,6 +5,7 @@ import entities.Teacher;
 import ui.UI;
 import utils.manager.StudentManager;
 import utils.menu.Menu;
+import utils.controller.ClassroomController;
 
 import java.util.Scanner;
 
@@ -16,9 +17,6 @@ public class StudentController {
 //            takes in the student object from the authentication controller
         this.student = s;
     }
-    public StudentController(String indexOfClass) {
-        this.indexOfClass  = indexOfClass;
-    }
 
     public String selectClassroom(){
         StudentManager studentManager = new StudentManager(student);
@@ -26,6 +24,21 @@ public class StudentController {
         String choice = Menu.prompt("Select a Classroom: ");
         return Integer.toString(Integer.parseInt(choice) - 1);
     }
+
+    public String selectProgress(){
+        StudentManager studentManager = new StudentManager(student);
+        System.out.println(studentManager.printProgress(student.getProgress()));
+        String choice = Menu.prompt("Select a Progress: ");
+        return Integer.toString(Integer.parseInt(choice) - 1);
+    }
+
+    // Assignment Controller
+    public void handleViewAssignment() {
+        StudentManager studentManager = new StudentManager(student);
+        String AssignmentDeatails = studentManager.manageViewAssignment();
+        System.out.println(UI.TextColor.addColor((AssignmentDeatails), UI.TextColor.BLUE));
+    }
+
     public void submitAssignment(){
         // handles the actions of submitting an assignment
         // getting input like link to the finished work of the student
@@ -68,18 +81,11 @@ public class StudentController {
         // logic to make the data look nice i.e. into a table...
     }
 
-//    public String selectProgress() {
+//    public void viewClassroom(){
 //        StudentManager studentManager = new StudentManager(student);
-//        System.out.println(studentManager.printClassrooms(student.getProgress()));
-//        String choice = Menu.prompt("Select a Progress: ");
-//        return Integer.toString(Integer.parseInt(choice) - 1);
+//        String classDetails = studentManager.manageViewClassroom();
+//        System.out.println(UI.TextColor.addColor((classDetails), UI.TextColor.BLUE));
 //    }
-
-    public void viewClassroom(){
-        StudentManager studentManager = new StudentManager(student);
-        String classDetails = studentManager.manageViewClassroom();
-        System.out.println(UI.TextColor.addColor((classDetails), UI.TextColor.BLUE));
-    }
 
 
     // more methods/functionalities to be added

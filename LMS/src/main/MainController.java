@@ -5,15 +5,19 @@ import entities.Teacher;
 import entities.User;
 import ui.UI;
 import utils.controller.AuthenticationController;
+import utils.controller.ClassroomController;
 import utils.controller.StudentController;
 import utils.controller.TeacherController;
 import utils.menu.Menu;
+
+import static java.awt.SystemColor.menu;
 
 public class MainController {
     private User user;
     private Student student;
     private Teacher teacher;
     private String indexOfClass;
+    private String indexOfProgress;
 
     public MainController() {
     }
@@ -49,14 +53,16 @@ public class MainController {
                     handleStudentViewClassroom();
                     break;
                 case "2":
-//                    handleStudentViewProfile();
+                    handleStudentViewProfile();
                     break;
                 case "3":
-//                    handleStudentLogOut();
+                    handleStudentLogOut();
                     return;
                 case "4":
-//                    handleExit();
+                    handleExit();
                     break;
+                case "-b":
+                    return;
                 default:
                     break;
             }
@@ -82,6 +88,8 @@ public class MainController {
                 case "4":
                     handleExit();
                     break;
+                case "-b":
+                    return;
                 default:
                     break;
             }
@@ -96,12 +104,13 @@ public class MainController {
     private void handleStudentViewClassroom() {
         StudentController studentController = new StudentController(student);
         this.indexOfClass = studentController.selectClassroom();
+        this.indexOfProgress = studentController.selectProgress();
         Menu menu = new Menu();
-        String choice = menu.showStudentViewClassroom();
+        String choice = menu.showStudentViewEachProgress();
         while (true) {
             switch(choice) {
                 case "1":
-
+                    showAssignment();
                     break;
                 case "2":
 
@@ -114,9 +123,45 @@ public class MainController {
                 default:
                     break;
             }
-            choice = menu.showStudentViewClassroom();
+            choice = menu.showStudentViewEachProgress();
             }
         }
+
+    public void showAssignment(){
+        StudentController studentController = new StudentController(student);
+        Menu menu = new Menu();
+        String choice = menu.showAssignment();
+        while (true) {
+            switch (choice) {
+                case "1":
+                    studentController.handleViewAssignment();
+                    break;
+                case "2":
+//                    studentController.handleEditAssignment();
+                    break;
+                case "3":
+//                    studentController.handleDeleteAssignment();
+                    break;
+                case "4":
+//                    studentController.handleGradeStudentAssignment();
+                    break;
+                case "5":
+//                    studentController.handleCommentStudentAssignment();
+                    break;
+                case "6":
+//                    studentController.handleViewStudentAssignment();
+                    break;
+                case "7":
+//                    studentController.handleViewAllStudentAssignment();
+                    break;
+                case "-b":
+                    return;
+                default:
+                    break;
+            }
+            choice = menu.showAssignment();
+        }
+    }
 
     private void handleStudentViewProfile() {
         StudentController studentController = new StudentController(student);
@@ -128,8 +173,29 @@ public class MainController {
         authenticationController.logout("student");
     }
 
-
     private void handleTeacherViewClassroom() {
+        TeacherController teacherController = new TeacherController(teacher);
+        this.indexOfClass = teacherController.selectClassroom();
+        Menu menu = new Menu();
+            String choice = menu.showViewClassroomMenu();
+        while (true) {
+            switch(choice) {
+                case "1":
+                    showManageAssignment();
+                    break;
+                case "2":
+                    showManageResources();
+                    break;
+                case "3":
+                    showManageQuizzes();
+                    break;
+                case "-b":
+                    return;
+                default:
+                    break;
+            }
+            choice = menu.showViewClassroomMenu();
+        }
     }
 
     private void handleTeacherViewProfile() {
@@ -144,5 +210,98 @@ public class MainController {
 
     private void handleExit() {
         System.exit(0);
+    }
+
+    public void showManageAssignment(){
+        TeacherController teacherController = new TeacherController(teacher, indexOfClass);
+        Menu menu = new Menu();
+        String choice = menu.showManageAssignmentMenu();
+        while (true) {
+            switch (choice) {
+                case "1":
+                    teacherController.handleAddAssignment();
+                    break;
+                case "2":
+                    teacherController.handleEditAssignment();
+                    break;
+                case "3":
+                    teacherController.handleDeleteAssignment();
+                    break;
+                case "4":
+                    teacherController.handleGradeStudentAssignment();
+                    break;
+                case "5":
+                    teacherController.handleCommentStudentAssignment();
+                    break;
+                case "6":
+                    teacherController.handleViewStudentAssignment();
+                    break;
+                case "7":
+                    teacherController.handleViewAllStudentAssignment();
+                    break;
+                case "-b":
+                    return;
+                default:
+                    break;
+            }
+            choice = menu.showManageAssignmentMenu();
+        }
+    }
+
+    public void showManageResources(){
+        TeacherController teacherController = new TeacherController(teacher, indexOfClass);
+        Menu menu = new Menu();
+        String choice = menu.showManageResourcesMenu();
+        while (true) {
+            switch (choice){
+                case "1":
+                    teacherController.handleAddResources();
+                    break;
+                case "2":
+                    teacherController.handleEditResources();
+                    break;
+                case "3":
+                    teacherController.handleDeleteResources();
+                    break;
+                case "4":
+                    teacherController.handleViewResources();
+                    break;
+                case "-b":
+                    return;
+                default:
+                    break;
+            }
+            choice = menu.showManageResourcesMenu();
+        }
+    }
+
+    public void showManageQuizzes(){
+        TeacherController teacherController = new TeacherController(teacher, indexOfClass);
+        Menu menu = new Menu();
+        String choice = menu.showManageQuizzesMenu();
+        while (true) {
+            switch (choice){
+                case "1":
+                    teacherController.handleAddQuizzes();
+                    break;
+                case "2":
+                    teacherController.handleEditQuizzes();
+                    break;
+                case "3":
+                    teacherController.handleDeleteQuizzes();
+                    break;
+                case "4":
+                    teacherController.handleGradeQuizzes();
+                    break;
+                case "5":
+                    teacherController.handleViewQuizzes();
+                    break;
+                case "-b":
+                    return;
+                default:
+                    break;
+            }
+            choice = menu.showManageQuizzesMenu();
+        }
     }
 }

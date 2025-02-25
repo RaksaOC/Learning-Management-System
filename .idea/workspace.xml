@@ -5,13 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="816c4d4f-796b-4ab7-98a7-72a49b87cc0e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/LMS/src/utils/controller/ClassroomController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS/src/utils/manager/ClassroomManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_18_2025_12_29_PM_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_18_2025_12_29_PM__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/main/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS/src/main/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/main/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS/src/utils/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/controller/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/src/utils/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/controller/TeacherController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS/src/utils/manager/StudentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/manager/StudentManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/src/utils/manager/TeacherManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/manager/TeacherManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS/src/utils/menu/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/menu/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/classroom.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/classroom.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/data/history.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/history.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/progress.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/progress.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/data/student.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/student.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/teachers.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/teachers.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/entities/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/entities/Student.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +40,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Visall666&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/RaksaOC/Learning-Management-System.git&quot;,
+    &quot;accountId&quot;: &quot;1e95391c-d201-492d-9402-b4dea20d3da2&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 1
@@ -55,9 +77,9 @@
     &quot;ToolWindow.Run.ShowToolbar&quot;: &quot;false&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;student&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Merging student&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/raksa/School/Year 2/Term 2/OOP/Project/Learning-Management-System&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/IT Feild/Project oop/Learning-Management-System&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -94,14 +116,6 @@
       <item itemvalue="Application.Run LMS-Admin" />
       <item itemvalue="Application.Run LMS" />
     </list>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

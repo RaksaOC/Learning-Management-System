@@ -54,7 +54,8 @@ interface classroomManagementInterface {
     void manageDeleteQuizz(String id);
 
     void manageViewQuizz(String id);
-    void manageDoQuiz();
+
+    void manageDoQuiz(int quizIndex, String[] answers);
 
 }
 
@@ -478,31 +479,68 @@ public class ClassroomManager implements classroomManagementInterface {
         return null;
     }
 
-    public void manageDoQuiz(){
-        try{
+    public void manageDoQuiz(int quizIndex, String[] answers) {
+        JSONArray getQuizFromFile = returnQuiz(quizIndex);
+        int result= checkAnswer(answers, getQuizFromFile);
+        System.out.println(result);
+    }
+
+    private JSONArray returnQuiz(int quizIndex) {
+        try {
             String content = new String(Files.readAllBytes(Paths.get("shared/data/classroom.json")));
             JSONArray contentToEdit = new JSONArray(content);
-            String[] quizzesID=null;
+            String[] quizzesID = null;
             if (!content.isEmpty()) {
                 for (int i = 0; i < contentToEdit.length(); i++) {
-                    if(contentToEdit.getJSONObject(i).getString("id").equals("GEN10-CS-SE-G1-OOP")){
-                        quizzesID=new String[contentToEdit.getJSONObject(i).getJSONArray("quizzes").length()];
-                        for(int j=0; j< contentToEdit.getJSONObject(i).getJSONArray("quizzes").length(); j++){
-                            quizzesID[j]=contentToEdit.getJSONObject(i).getJSONArray("quizzes").getString(j);
+                    if (contentToEdit.getJSONObject(i).getString("id").equals("GEN10-CS-SE-G1-OOP")) {
+                        quizzesID = new String[contentToEdit.getJSONObject(i).getJSONArray("quizzes").length()];
+                        for (int j = 0; j < contentToEdit.getJSONObject(i).getJSONArray("quizzes").length(); j++) {
+                            quizzesID[j] = contentToEdit.getJSONObject(i).getJSONArray("quizzes").getString(j);
                         }
-                        break;
                     }
                 }
-                System.out.println(Arrays.toString(quizzesID));
-            }
-            try (FileWriter file = new FileWriter("shared/data/progress.json")) {
-                file.write(contentToEdit.toString(4));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                try {
+                    String contentQuiz = new String(Files.readAllBytes(Paths.get("shared/data/quiz.json")));
+                    JSONArray questions = null;
+                    if (!contentQuiz.isEmpty()) {
+                        JSONArray jsonContent = new JSONArray(contentQuiz);
+                        int index = 0;
+                        for (int i = 0; i < jsonContent.length(); i++) {
+                            if (jsonContent.getJSONObject(i).getString("id").equals(quizzesID[index])) {
+                                index++;
+                                JSONObject quiz = jsonContent.getJSONObject(i);
+                                if (quiz.getString("id").equals(quizzesID[quizIndex-1])) {
+
+                                    questions = quiz.getJSONArray("questions");
+                                }
+                                System.out.println("------------------------------------------------------");
+                                System.out.println("Id: " + quiz.getString("id"));
+                                System.out.println("Title: " + quiz.getString("title"));
+
+                                System.out.println("------------------------------------------------------");
+                            }
+                        }
+
+                    }
+                    return questions;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
+    }
+
+    private int checkAnswer(String[] answers, JSONArray questions){
+        int result=0;
+        for(int i=0;i<questions.length();i++){
+            if(answers[i].equals(questions.getJSONObject(i).getString("answer"))){
+                result++;
+            }
+        }
+        return result;
     }
 
 }

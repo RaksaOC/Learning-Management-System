@@ -113,6 +113,8 @@ public class ClassroomController {
 
     public void goToDoQuiz(){
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
-        classroomManager.manageDoQuiz();
+        int index=1;
+        String[] answer= {"gay", "とてもかわいい", "braindead"};
+        classroomManager.manageDoQuiz(index, answer);
     }
 }

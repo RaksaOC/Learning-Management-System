@@ -14,7 +14,7 @@ public class TeacherController {
         this.teacher = teacher;
     }
 
-    public TeacherController(Teacher teacher, String IndexOfClass) {
+    public       TeacherController(Teacher teacher, String IndexOfClass) {
         this.indexOfClass = IndexOfClass;
     }
 

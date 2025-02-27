@@ -14,10 +14,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -49,13 +46,13 @@ interface classroomManagementInterface {
 
     void manageAddQuizz(String classroomID, String title, String createdBy, JSONArray questions);
 
-    void manageEditQuizz(String title, JSONArray questionJson, String id);
+    void manageEditQuizz(String title, JSONArray questionJson, String id, String classID);
 
-    void manageDeleteQuizz(String id);
+    void manageDeleteQuizz(String id, String classID);
 
-    void manageViewQuizz(String id);
+    void manageViewQuizz(String id, String classID);
 
-    void manageDoQuiz(int quizIndex, String[] answers);
+    void manageDoQuiz(int quizIndex, String[] answers, String classID);
 
 }
 
@@ -223,13 +220,12 @@ public class ClassroomManager implements classroomManagementInterface {
 
     // Quizz Manager
     public void manageAddQuizz(String classroomID, String title, String createdBy, JSONArray questions) {
-        String id = "";
+        String id = "Q0000";
         try {
             String content = new String(Files.readAllBytes(Paths.get("shared/data/quiz.json")));
-            JSONArray quizWriteToFile = new JSONArray(content);
-            if (!content.isEmpty()) {
-                quizWriteToFile = new JSONArray(content);
-                String getIDToUpdate = quizWriteToFile.getJSONObject(quizWriteToFile.length() - 1).getString("id");
+            JSONObject quizWriteToFile = new JSONObject(content);
+            if (!quizWriteToFile.getJSONArray("GEN10-CS-SE-G1-OOP").isEmpty()) {
+                String getIDToUpdate = quizWriteToFile.getJSONArray("GEN10-CS-SE-G1-OOP").getJSONObject(quizWriteToFile.getJSONArray("GEN10-CS-SE-G1-OOP").length() - 1).getString("id");
                 int updateID = Integer.parseInt(getIDToUpdate.substring(1)) + 1;
                 id = "Q" + String.format("%04d", updateID);
             }
@@ -238,7 +234,7 @@ public class ClassroomManager implements classroomManagementInterface {
             quiz.put("title", title);
             quiz.put("createdBy", createdBy);
             quiz.put("questions", questions);
-            quizWriteToFile.put(quiz);
+            quizWriteToFile.getJSONArray("GEN10-CS-SE-G1-OOP").put(quiz);
             try (FileWriter file = new FileWriter("shared/data/quiz.json")) {
                 file.write(quizWriteToFile.toString(4));
             } catch (IOException e) {
@@ -271,7 +267,10 @@ public class ClassroomManager implements classroomManagementInterface {
             if (!contentToEdit.isEmpty()) {
                 for (int i = 0; i < contentToEdit.length(); i++) {
                     if (contentToEdit.getJSONObject(i).getString("classroomId").equals(classroomID)) {
-                        contentToEdit.getJSONObject(i).getJSONArray("quizzes").put(id);
+                        JSONObject quizToPut = new JSONObject();
+                        quizToPut.put("id", id);
+                        quizToPut.put("score", -1);
+                        contentToEdit.getJSONObject(i).getJSONArray("quizzes").put(quizToPut);
                     }
                 }
             }
@@ -287,16 +286,16 @@ public class ClassroomManager implements classroomManagementInterface {
 
     }
 
-    public void manageEditQuizz(String title, JSONArray questionJson, String id) {
+    public void manageEditQuizz(String title, JSONArray questionJson, String id, String classID) {
         try {
             String content = new String(Files.readAllBytes(Paths.get("shared/data/quiz.json")));
-            JSONArray contentArray = new JSONArray(content);
-            if (!contentArray.isEmpty()) {
+            JSONObject contentArray = new JSONObject(content);
+            if (!contentArray.getJSONArray(classID).isEmpty()) {
                 for (int i = 0; i < contentArray.length(); i++) {
-                    if (contentArray.getJSONObject(i).getString("id").equals(id)) {
+                    if (contentArray.getJSONArray(classID).getJSONObject(i).getString("id").equals(id)) {
 
-                        contentArray.getJSONObject(i).put("title", title);
-                        contentArray.getJSONObject(i).put("questions", questionJson);
+                        contentArray.getJSONArray(classID).getJSONObject(i).put("title", title);
+                        contentArray.getJSONArray(classID).getJSONObject(i).put("questions", questionJson);
                         try (FileWriter file = new FileWriter("shared/data/quiz.json")) {
                             file.write(contentArray.toString(4));
                         } catch (IOException e) {
@@ -311,26 +310,18 @@ public class ClassroomManager implements classroomManagementInterface {
         }
     }
 
-    public void manageDeleteQuizz(String idToDelete) {
+    public void manageDeleteQuizz(String idToDelete, String classID) {
         try {
             String content = new String(Files.readAllBytes(Paths.get("shared/data/quiz.json")));
-            JSONArray contentToUpdateLater;
-            JSONArray quizWriteToFile = new JSONArray();
-            boolean isTheIDThere = false;
-            if (!content.isEmpty()) {
-                contentToUpdateLater = new JSONArray(content);
-                for (int i = 0; i < contentToUpdateLater.length(); i++) {
-                    if (!contentToUpdateLater.getJSONObject(i).getString("id").equals(idToDelete)) {
-                        quizWriteToFile.put(contentToUpdateLater.getJSONObject(i));
-                    } else {
-                        isTheIDThere = true;
+            JSONObject quizWriteToFile = new JSONObject(content);
+            if (!quizWriteToFile.getJSONArray(classID).isEmpty()) {
+                for (int i = 0; i < quizWriteToFile.getJSONArray(classID).length(); i++) {
+                    if (quizWriteToFile.getJSONArray(classID).getJSONObject(i).getString("id").equals(idToDelete)) {
+                        quizWriteToFile.getJSONArray(classID).remove(i);
                     }
                 }
             }
-            if (!isTheIDThere) {
-                System.out.println("The ID is not here");
-                return;
-            }
+
             try (FileWriter file = new FileWriter("shared/data/quiz.json")) {
                 file.write(quizWriteToFile.toString(4));
             } catch (IOException e) {
@@ -367,7 +358,7 @@ public class ClassroomManager implements classroomManagementInterface {
             if (!content.isEmpty()) {
                 for (int i = 0; i < contentToEdit.length(); i++) {
                     for (int j = 0; j < contentToEdit.getJSONObject(i).getJSONArray("quizzes").length(); j++) {
-                        if (contentToEdit.getJSONObject(i).getJSONArray("quizzes").getString(j).equals(idToDelete)) {
+                        if (contentToEdit.getJSONObject(i).getJSONArray("quizzes").getJSONObject(j).getString("id").equals(idToDelete)) {
                             contentToEdit.getJSONObject(i).getJSONArray("quizzes").remove(j);
                             break;
                         }
@@ -384,16 +375,17 @@ public class ClassroomManager implements classroomManagementInterface {
         }
     }
 
-    public void manageViewQuizz(String id) {
+    public void manageViewQuizz(String id, String classID) {
         try {
             String content = new String(Files.readAllBytes(Paths.get("shared/data/quiz.json")));
-            if (!content.isEmpty()) {
-                JSONArray jsonContent = new JSONArray(content);
+            JSONObject jsonContent = new JSONObject(content);
+            if (!jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").isEmpty()) {
                 if (id.isEmpty()) {
-                    for (int i = 0; i < jsonContent.length(); i++) {
-                        JSONObject quiz = jsonContent.getJSONObject(i);
+                    for (int i = 0; i < jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").length(); i++) {
+                        JSONObject quiz = jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").getJSONObject(i);
                         JSONArray questions = quiz.getJSONArray("questions");
                         System.out.println("------------------------------------------------------");
+                        System.out.println("Class ID: "+ classID);
                         System.out.println("Id: " + quiz.getString("id"));
                         System.out.println("Title: " + quiz.getString("title"));
                         System.out.println("Created by: " + quiz.getString("createdBy"));
@@ -410,11 +402,12 @@ public class ClassroomManager implements classroomManagementInterface {
                         System.out.println("------------------------------------------------------");
                     }
                 } else {
-                    for (int i = 0; i < jsonContent.length(); i++) {
-                        if (jsonContent.getJSONObject(i).getString("id").equals(id)) {
-                            JSONObject quiz = jsonContent.getJSONObject(i);
+                    for (int i = 0; i < jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").length(); i++) {
+                        if (jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").getJSONObject(i).getString("id").equals(id)) {
+                            JSONObject quiz = jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").getJSONObject(i);
                             JSONArray questions = quiz.getJSONArray("questions");
                             System.out.println("------------------------------------------------------");
+                            System.out.println("Class ID: "+ classID);
                             System.out.println("Id: " + quiz.getString("id"));
                             System.out.println("Title: " + quiz.getString("title"));
                             System.out.println("Created by: " + quiz.getString("createdBy"));
@@ -479,38 +472,41 @@ public class ClassroomManager implements classroomManagementInterface {
         return null;
     }
 
-    public void manageDoQuiz(int quizIndex, String[] answers) {
-        JSONArray getQuizFromFile = returnQuiz(quizIndex);
-        int result= checkAnswer(answers, getQuizFromFile);
-        System.out.println(result);
+    //student side quiz
+    public void manageDoQuiz(int quizIndex, String[] answers, String classID) {
+        Map<String, Object> getQuizFromFile = returnQuiz(quizIndex, classID);
+        checkAnswer(getQuizFromFile, answers);
     }
 
-    private JSONArray returnQuiz(int quizIndex) {
+    private Map<String, Object> returnQuiz(int quizIndex, String classID) {
+        System.out.println(classIdToEdit);
         try {
-            String content = new String(Files.readAllBytes(Paths.get("shared/data/classroom.json")));
+            String content = new String(Files.readAllBytes(Paths.get("shared/data/progress.json")));
             JSONArray contentToEdit = new JSONArray(content);
-            String[] quizzesID = null;
+            ArrayList<String> quizzesID = new ArrayList<>();
+            String quizIdToReturn = "";
             if (!content.isEmpty()) {
                 for (int i = 0; i < contentToEdit.length(); i++) {
-                    if (contentToEdit.getJSONObject(i).getString("id").equals("GEN10-CS-SE-G1-OOP")) {
-                        quizzesID = new String[contentToEdit.getJSONObject(i).getJSONArray("quizzes").length()];
+                    if (contentToEdit.getJSONObject(i).getString("classroomId").equals("GEN10-CS-SE-G1-OOP")) {
                         for (int j = 0; j < contentToEdit.getJSONObject(i).getJSONArray("quizzes").length(); j++) {
-                            quizzesID[j] = contentToEdit.getJSONObject(i).getJSONArray("quizzes").getString(j);
+                            if (contentToEdit.getJSONObject(i).getJSONArray("quizzes").getJSONObject(j).getInt("score") == -1) {
+                                quizzesID.add(contentToEdit.getJSONObject(i).getJSONArray("quizzes").getJSONObject(j).getString("id"));
+                            }
                         }
                     }
                 }
                 try {
                     String contentQuiz = new String(Files.readAllBytes(Paths.get("shared/data/quiz.json")));
                     JSONArray questions = null;
-                    if (!contentQuiz.isEmpty()) {
-                        JSONArray jsonContent = new JSONArray(contentQuiz);
+                    JSONObject jsonContent = new JSONObject(contentQuiz);
+                    if (!jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").isEmpty()) {
                         int index = 0;
-                        for (int i = 0; i < jsonContent.length(); i++) {
-                            if (jsonContent.getJSONObject(i).getString("id").equals(quizzesID[index])) {
+                        for (int i = 0; i < jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").length(); i++) {
+                            if (jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").getJSONObject(i).getString("id").equals(quizzesID.get(index))) {
                                 index++;
-                                JSONObject quiz = jsonContent.getJSONObject(i);
-                                if (quiz.getString("id").equals(quizzesID[quizIndex-1])) {
-
+                                JSONObject quiz = jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").getJSONObject(i);
+                                if (quiz.getString("id").equals(quizzesID.get(quizIndex - 1))) {
+                                    quizIdToReturn = quizzesID.get(quizIndex - 1);
                                     questions = quiz.getJSONArray("questions");
                                 }
                                 System.out.println("------------------------------------------------------");
@@ -520,27 +516,73 @@ public class ClassroomManager implements classroomManagementInterface {
                                 System.out.println("------------------------------------------------------");
                             }
                         }
-
                     }
-                    return questions;
+                    Map<String, Object> result = new HashMap<>();
+                    result.put("questions", questions);
+                    result.put("Id", quizIdToReturn);
+                    return result;
                 } catch (IOException e) {
+                    System.err.println("Error while parsing: quiz.json");
                     e.printStackTrace();
                 }
             }
         } catch (Exception e) {
+            System.err.println("Error while parsing: progress.json");
             e.printStackTrace();
         }
         return null;
     }
 
-    private int checkAnswer(String[] answers, JSONArray questions){
-        int result=0;
-        for(int i=0;i<questions.length();i++){
-            if(answers[i].equals(questions.getJSONObject(i).getString("answer"))){
+    private void checkAnswer(Map<String, Object> questionsAndID, String[] answers) {
+        int result = 0;
+        Object questionsObject = questionsAndID.get("questions");
+        JSONArray questions;
+
+        if (questionsObject instanceof JSONArray) {
+            questions = (JSONArray) questionsObject;  // Safe cast ✅
+        } else if (questionsObject instanceof String) {
+            try {
+                questions = new JSONArray((String) questionsObject);  // Convert JSON string to JSONArray ✅
+            } catch (Exception e) {
+                System.err.println("Error: 'questions' is not a valid JSON string.");
+                e.printStackTrace();
+                return;  // Exit to prevent further errors
+            }
+        } else {
+            System.err.println("Error: 'questions' is not a JSONArray or a String.");
+            return;  // Exit if type is incorrect
+        }
+
+        System.out.println("kdor");
+        String ID = (String) questionsAndID.get("Id");
+        for (int i = 0; i < questions.length(); i++) {
+            if (answers[i].equals(questions.getJSONObject(i).getString("answer"))) {
                 result++;
             }
         }
-        return result;
+        try {
+            String contentQuiz = new String(Files.readAllBytes(Paths.get("shared/data/progress.json")));
+            if (!contentQuiz.isEmpty()) {
+                JSONArray content = new JSONArray(contentQuiz);
+                for (int i = 0; i < content.length(); i++) {
+                    if (content.getJSONObject(i).getString("classroomId").equals("GEN10-CS-SE-G1-OOP"))
+                        for (int j = 0; j < content.getJSONObject(i).getJSONArray("quizzes").length(); j++) {
+                            if (content.getJSONObject(i).getJSONArray("quizzes").getJSONObject(j).getString("id").equals(ID)) {
+                                content.getJSONObject(i).getJSONArray("quizzes").getJSONObject(j).put("score", result);
+                                try (FileWriter file = new FileWriter("shared/data/progress.json")) {
+                                    file.write(content.toString(4));
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+                                break;
+                            }
+                        }
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error while parsing: quiz.json");
+            e.printStackTrace();
+        }
     }
 
 }

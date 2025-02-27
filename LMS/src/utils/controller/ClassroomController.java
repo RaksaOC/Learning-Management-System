@@ -89,32 +89,34 @@ public class ClassroomController {
 
     public void editQuizz() {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
-        String id = "";
+        String id = "GEN10-CS-SE-G1-OOP";
         String title = "Rate teacher beauty";
         String questions = "[{\"questionTitle\":\"How handsome is the teacher?\",\"answer\":\"Ugly mf\",\"choices\": [\"Ugly mf\",\"Vini Jnr handsome\",\"Average asian dude\",\"Jungkook\"]}, {\"questionTitle\":\"How handsome is the teacher?\",\"answer\":\"Joe Biden handsome\",\"choices\": [\"Ugly mf\",\"Vini Jnr handsome\",\"Average asian dude\",\"Jungkook\"]}, {\"questionTitle\":\"How handsome is the teacher?\",\"answer\":\"Joe Biden handsome\",\"choices\": [\"Ugly mf\",\"Vini Jnr handsome\",\"Average asian dude\",\"Jungkook\"]}]";
         JSONArray questionsJson=new JSONArray(questions);
-        String idToEdit="Q0014";
-        classroomManager.manageEditQuizz(title, questionsJson, idToEdit);
+        String idToEdit="Q0001";
+        classroomManager.manageEditQuizz(title, questionsJson, idToEdit, id);
     }
 
     public void deleteQuizz() {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
         // sample data
-        String idToDelete = "Q0014";
+        String idToDelete = "Q0000";
         String classID="GEN10-CS-SE-G1-OOP";
-        classroomManager.manageDeleteQuizz(idToDelete);
+        classroomManager.manageDeleteQuizz(idToDelete, classID);
     }
 
     public void viewQuizz() {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
-        String id = "Q0014";
-        classroomManager.manageViewQuizz(id);
+        String id = "Q0001";
+        String classID="GEN10-CS-SE-G1-OOP";
+        classroomManager.manageViewQuizz(id, classID);
     }
 
     public void goToDoQuiz(){
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
         int index=1;
         String[] answer= {"gay", "とてもかわいい", "braindead"};
-        classroomManager.manageDoQuiz(index, answer);
+        String classID="GEN10-CS-SE-G1-OOP";
+        classroomManager.manageDoQuiz(index, answer, classID);
     }
 }

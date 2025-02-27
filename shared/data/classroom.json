@@ -47,10 +47,9 @@
     "resources": [],
     "id": "GEN10-CS-SE-G1-OOP",
     "quizzes": [
-        "Q0015",
-        "Q0016",
-        "Q0017",
-        "Q0018"
+        "Q0001",
+        "Q0002",
+        "Q0003"
     ],
     "courseId": "",
     "status": "active"

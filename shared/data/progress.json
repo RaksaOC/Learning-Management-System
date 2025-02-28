@@ -27,15 +27,15 @@
     "classroomId": "GEN10-CS-SE-G1-OOP",
     "quizzes": [
         {
-            "score": 0,
+            "score": 3,
             "id": "Q0001"
         },
         {
-            "score": -1,
+            "score": 3,
             "id": "Q0002"
         },
         {
-            "score": -1,
+            "score": 3,
             "id": "Q0003"
         }
     ],

@@ -91,7 +91,7 @@ public class ClassroomController {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
         String id = "GEN10-CS-SE-G1-OOP";
         String title = "Rate teacher beauty";
-        String questions = "[{\"questionTitle\":\"How handsome is the teacher?\",\"answer\":\"Ugly mf\",\"choices\": [\"Ugly mf\",\"Vini Jnr handsome\",\"Average asian dude\",\"Jungkook\"]}, {\"questionTitle\":\"How handsome is the teacher?\",\"answer\":\"Joe Biden handsome\",\"choices\": [\"Ugly mf\",\"Vini Jnr handsome\",\"Average asian dude\",\"Jungkook\"]}, {\"questionTitle\":\"How handsome is the teacher?\",\"answer\":\"Joe Biden handsome\",\"choices\": [\"Ugly mf\",\"Vini Jnr handsome\",\"Average asian dude\",\"Jungkook\"]}]";
+        String questions = "[{\"questionTitle\":\"How zesty is the teacher?\", \"choices\": [\"straight\", \"lemony\", \"holy zesty\", \"gay\"], \"answer\": \"gay\"}, {\"questionTitle\":\"How zesty is the teacher?\", \"choices\": [\"straight\", \"lemony\", \"holy zesty\", \"gay\"], \"answer\": \"gay\"}, {\"questionTitle\":\"How zesty is the teacher?\", \"choices\": [\"straight\", \"lemony\", \"holy zesty\", \"gay\"], \"answer\": \"gay\"}]";
         JSONArray questionsJson=new JSONArray(questions);
         String idToEdit="Q0001";
         classroomManager.manageEditQuizz(title, questionsJson, idToEdit, id);
@@ -115,7 +115,7 @@ public class ClassroomController {
     public void goToDoQuiz(){
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
         int index=1;
-        String[] answer= {"gay", "とてもかわいい", "braindead"};
+        String[] answer= {"gay", "gay", "gay"};
         String classID="GEN10-CS-SE-G1-OOP";
         classroomManager.manageDoQuiz(index, answer, classID);
     }

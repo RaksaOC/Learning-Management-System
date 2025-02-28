@@ -54,6 +54,8 @@ interface classroomManagementInterface {
 
     void manageDoQuiz(int quizIndex, String[] answers, String classID);
 
+    int getQuizScore(String studentID);
+
 }
 
 public class ClassroomManager implements classroomManagementInterface {
@@ -385,7 +387,7 @@ public class ClassroomManager implements classroomManagementInterface {
                         JSONObject quiz = jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").getJSONObject(i);
                         JSONArray questions = quiz.getJSONArray("questions");
                         System.out.println("------------------------------------------------------");
-                        System.out.println("Class ID: "+ classID);
+                        System.out.println("Class ID: " + classID);
                         System.out.println("Id: " + quiz.getString("id"));
                         System.out.println("Title: " + quiz.getString("title"));
                         System.out.println("Created by: " + quiz.getString("createdBy"));
@@ -407,7 +409,7 @@ public class ClassroomManager implements classroomManagementInterface {
                             JSONObject quiz = jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").getJSONObject(i);
                             JSONArray questions = quiz.getJSONArray("questions");
                             System.out.println("------------------------------------------------------");
-                            System.out.println("Class ID: "+ classID);
+                            System.out.println("Class ID: " + classID);
                             System.out.println("Id: " + quiz.getString("id"));
                             System.out.println("Title: " + quiz.getString("title"));
                             System.out.println("Created by: " + quiz.getString("createdBy"));
@@ -475,7 +477,12 @@ public class ClassroomManager implements classroomManagementInterface {
     //student side quiz
     public void manageDoQuiz(int quizIndex, String[] answers, String classID) {
         Map<String, Object> getQuizFromFile = returnQuiz(quizIndex, classID);
+        if(getQuizFromFile==null){
+            System.out.println("You have done all the quizzes");
+            return;
+        }
         checkAnswer(getQuizFromFile, answers);
+        System.out.println("The score is: "+getQuizScore("S000001"));
     }
 
     private Map<String, Object> returnQuiz(int quizIndex, String classID) {
@@ -494,6 +501,9 @@ public class ClassroomManager implements classroomManagementInterface {
                             }
                         }
                     }
+                }
+                if(quizzesID==null){
+                    return null;
                 }
                 try {
                     String contentQuiz = new String(Files.readAllBytes(Paths.get("shared/data/quiz.json")));
@@ -533,6 +543,31 @@ public class ClassroomManager implements classroomManagementInterface {
         return null;
     }
 
+    public int getQuizScore(String studentID) {
+        int score = 0;
+        try {
+            String contentQuiz = new String(Files.readAllBytes(Paths.get("shared/data/progress.json")));
+            if (!contentQuiz.isEmpty()) {
+                JSONArray content = new JSONArray(contentQuiz);
+                for (int i = 0; i < content.length(); i++) {
+                    if (content.getJSONObject(i).getString("studentId").equals(studentID)) {
+                        for (int j = 0; j < content.getJSONObject(i).getJSONArray("quizzes").length(); j++) {
+                            if (content.getJSONObject(i).getJSONArray("quizzes").getJSONObject(j).getInt("score") != -1) {
+                                score += content.getJSONObject(i).getJSONArray("quizzes").getJSONObject(j).getInt("score");
+                            }
+                        }
+                    }
+
+
+                }
+            }
+            return score;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     private void checkAnswer(Map<String, Object> questionsAndID, String[] answers) {
         int result = 0;
         Object questionsObject = questionsAndID.get("questions");
@@ -553,7 +588,6 @@ public class ClassroomManager implements classroomManagementInterface {
             return;  // Exit if type is incorrect
         }
 
-        System.out.println("kdor");
         String ID = (String) questionsAndID.get("Id");
         for (int i = 0; i < questions.length(); i++) {
             if (answers[i].equals(questions.getJSONObject(i).getString("answer"))) {
@@ -580,7 +614,6 @@ public class ClassroomManager implements classroomManagementInterface {
                 }
             }
         } catch (IOException e) {
-            System.err.println("Error while parsing: quiz.json");
             e.printStackTrace();
         }
     }

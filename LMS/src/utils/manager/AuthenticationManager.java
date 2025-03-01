@@ -253,7 +253,7 @@ public class AuthenticationManager {
     }
 
     private void saveTeacher(JSONArray teachers) {
-        try (FileWriter file = new FileWriter("shared/data/teachers.json")) {
+        try (FileWriter file = new FileWriter("shared/data/teacher.json")) {
             file.write(teachers.toString(4)); // Pretty-print with 4 spaces
             file.flush();
         } catch (IOException e) {

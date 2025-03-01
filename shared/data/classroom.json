@@ -1,10 +1,42 @@
-[{
-    "teacherId": "T0001",
-    "assignments": [],
-    "students": ["S000001"],
-    "resources": [],
-    "id": "GEN10-CS-SE-G1-OOP",
-    "quizzes": [],
-    "courseId": "",
-    "status": "active"
-}]
+[
+    {
+        "teacherId": "T0001",
+        "assignments": ["A00001", "A000002"],
+        "students": ["S000001"],
+        "resources": ["R0001", "R0002"],
+        "id": "GEN10-CS-SE-G1-OOP",
+        "quizzes": ["Q001", "Q002"],
+        "courseId": "VA",
+        "status": "active"
+    },
+    {
+        "teacherId": "",
+        "assignments": [],
+        "students": [],
+        "resources": [],
+        "id": "GEN10-CS-SE-G4-OOP",
+        "quizzes": [],
+        "courseId": "IL",
+        "status": "active"
+    },
+    {
+        "teacherId": "",
+        "assignments": [],
+        "students": [],
+        "resources": [],
+        "id": "GEN10-CS-SE-G4-OOP",
+        "quizzes": [],
+        "courseId": "DBMS",
+        "status": "active"
+    },
+    {
+        "teacherId": "",
+        "assignments": [],
+        "students": [],
+        "resources": [],
+        "id": "GEN10-CS-SE-G4-OOP",
+        "quizzes": [],
+        "courseId": "OOP",
+        "status": "active"
+    }
+]

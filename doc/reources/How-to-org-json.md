@@ -14,14 +14,14 @@ JSON (JavaScript Object Notation) is a structured format for storing and exchang
 
 ```json
 {
-  "name": "John Doe",
+  "nameText": "John Doe",
   "role": "Student",
   "courses": ["Math", "Physics"],
   "status": "active"
 }
 ```
 
-- **Key-Value Pair:** `"name": "John Doe"` means **"name"** is the **key** to access **"John Doe"**.
+- **Key-Value Pair:** `"nameText": "John Doe"` means **"nameText"** is the **key** to access **"John Doe"**.
 - **Data Types:** Values can be **strings, integers, booleans, JSONObjects, or JSONArrays**.
 - **Objects (`{}`)** contain key-value pairs.
 - **Arrays (`[]`)** store multiple values in an ordered list.
@@ -94,8 +94,8 @@ JSONObject progress = jsonObject.getJSONObject("progress");
 ### **Accessing Nested Data**
 
 ```java
-JSONObject name = jsonObject.getJSONObject("name");
-String firstName = name.getString("firstName");
+JSONObject nameText = jsonObject.getJSONObject("nameText");
+String firstName = nameText.getString("firstName");
 ```
 
 ---

@@ -10,6 +10,7 @@ public class Teacher extends User {
     private final String phoneNumber;
     private final String DoB;
     private final JSONArray classrooms;
+    private final String lastLogin;
 
     public Teacher(JSONObject teacher) throws JSONException {
         super(teacher.getJSONObject("name").getString("firstName"),
@@ -21,22 +22,31 @@ public class Teacher extends User {
         this.phoneNumber = teacher.getString("phoneNumber");
         this.DoB = teacher.getString("dob");
         this.classrooms = teacher.getJSONArray("classrooms");
+        this.lastLogin = teacher.getString("lastLogin");
     }
 
     public String getId() {
         return id;
     }
+
     public String getGender() {
         return gender;
     }
+
     public String getPhone() {
         return phoneNumber;
     }
+
     public String getDoB() {
         return DoB;
     }
+
     public JSONArray getClassrooms() {
         return classrooms;
+    }
+
+    public String getLastLogin() {
+        return lastLogin;
     }
 
     @Override

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lms.controllers.StudentMainFrameController">
+   <left>
+      <VBox prefHeight="900.0" prefWidth="301.0" style="-fx-background-color: #f4f6fa;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="939.0" prefWidth="261.0" style="-fx-background-color: #2F92BC; -fx-background-radius: 30;" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="30.0" left="20.0" top="30.0" />
+               </padding>
+               <children>
+                  <ImageView fitHeight="109.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/course-icon.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets right="20.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <HBox fx:id="dashboardLink" alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="25.0">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/dashboard-icon.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust brightness="-1.0" />
+                           </effect>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard">
+                           <font>
+                              <Font name="AppleGothic Regular" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </HBox>
+                  <HBox fx:id="classroomsLink" alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="25.0">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/classroom-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Classrooms">
+                           <font>
+                              <Font name="AppleGothic Regular" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </HBox>
+                  <HBox fx:id="assignmentsLink" alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="25.0">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/assignments-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Assignments">
+                           <font>
+                              <Font name="AppleGothic Regular" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </HBox>
+                  <HBox fx:id="resourcesLink" alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="25.0">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/resources-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Resources">
+                           <font>
+                              <Font name="AppleGothic Regular" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </HBox>
+                  <HBox fx:id="quizzesLink" alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="25.0">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/quizzes-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quizzes">
+                           <font>
+                              <Font name="AppleGothic Regular" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </HBox>
+                  <HBox fx:id="gradeReportLink" alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="241.0" spacing="25.0">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/grade-report-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Grade Report">
+                           <font>
+                              <Font name="AppleGothic Regular" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </HBox>
+                  <HBox fx:id="settingsLink" alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="241.0" spacing="25.0">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/settings-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
+                           <font>
+                              <Font name="AppleGothic Regular" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="100.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </HBox>
+                  <HBox fx:id="logoutLink" alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="241.0" spacing="25.0">
+                     <children>
+                        <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/logout.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust brightness="-1.0" />
+                           </effect>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Log Out">
+                           <font>
+                              <Font name="AppleGothic Regular" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </HBox>
+               </children>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="41.76" radius="23.345" width="53.62" />
+               </effect>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="30.0" left="20.0" right="20.0" top="30.0" />
+         </padding>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="404.0" prefWidth="1099.0" style="-fx-background-color: #f4f6fa;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="103.0" prefWidth="1019.0">
+               <children>
+                  <AnchorPane prefHeight="110.0" prefWidth="1019.0">
+                     <children>
+                        <Text layoutX="26.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student" AnchorPane.leftAnchor="0.0">
+                           <font>
+                              <Font name="AppleGothic Regular" size="20.0" />
+                           </font>
+                        </Text>
+                        <AnchorPane layoutX="789.0" layoutY="12.0" prefHeight="84.0" prefWidth="232.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <Text fx:id="nameText" layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" AnchorPane.leftAnchor="15.0">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="20.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fx:id="profile" fitHeight="52.0" fitWidth="63.0" layoutX="227.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0">
+                                 <image>
+                                    <Image url="@../images/avatar.png" />
+                                 </image>
+                                 <effect>
+                                    <ColorAdjust brightness="-1.0" />
+                                 </effect>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>

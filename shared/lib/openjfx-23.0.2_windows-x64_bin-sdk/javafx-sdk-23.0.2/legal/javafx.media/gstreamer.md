@@ -586,8 +586,8 @@ safest to attach them to the start of each source file to most effectively
 convey the exclusion of warranty; and each file should have at least the
 "copyright" line and a pointer to where the full notice is found.
 
-    <one line to give the library's name and a brief idea of what it does.>
-    Copyright (C) <year>  <name of author>
+    <one line to give the library's nameText and a brief idea of what it does.>
+    Copyright (C) <year>  <nameText of author>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -688,7 +688,7 @@ this list of conditions and the following disclaimer.
 this list of conditions and the following disclaimer in the documentation
 and/or other materials provided with the distribution.
 
-3. Neither the name of the copyright holder nor the names of its contributors
+3. Neither the nameText of the copyright holder nor the names of its contributors
 may be used to endorse or promote products derived from this software without
 specific prior written permission.
 
@@ -737,7 +737,7 @@ are met:
 2. Redistributions in binary form must reproduce the above copyright
    notice, this list of conditions and the following disclaimer in the
    documentation and/or other materials provided with the distribution.
-3. Neither the name of the University nor the names of its contributors
+3. Neither the nameText of the University nor the names of its contributors
    may be used to endorse or promote products derived from this software
    without specific prior written permission.
 

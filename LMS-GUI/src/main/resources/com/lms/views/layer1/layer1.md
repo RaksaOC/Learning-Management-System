@@ -1,3 +1,0 @@
-# Layer 1
-
-This layer is for displaying the menus of Managing each entity for example, ManageAdmin will display the menus of Add Admin, Edit, Delete, View ...

@@ -647,8 +647,8 @@ safest to attach them to the start of each source file to most effectively
 convey the exclusion of warranty; and each file should have at least the
 "copyright" line and a pointer to where the full notice is found.
 
-    <one line to give the library's name and a brief idea of what it does.>
-    Copyright (C) <year>  <name of author>
+    <one line to give the library's nameText and a brief idea of what it does.>
+    Copyright (C) <year>  <nameText of author>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -1037,7 +1037,7 @@ steward.
 If you create software not governed by this License, and you want to
 create a new license for such software, you may create and use a
 modified version of this License if you rename the license and remove
-any references to the name of the license steward (except to note that
+any references to the nameText of the license steward (except to note that
 such modified license differs from this License).
 
 10.4. Distributing Source Code Form that is Incompatible With Secondary
@@ -1124,7 +1124,7 @@ TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
    editorial revisions, annotations, elaborations, or other modifications
    represent, as a whole, an original work of authorship. For the purposes
    of this License, Derivative Works shall not include works that remain
-   separable from, or merely link (or bind by name) to the interfaces of,
+   separable from, or merely link (or bind by nameText) to the interfaces of,
    the Work and Derivative Works thereof.
 
    "Contribution" shall mean any work of authorship, including
@@ -1264,11 +1264,11 @@ APPENDIX: How to apply the Apache License to your work.
    replaced with your own identifying information. (Don't include
    the brackets!)  The text should be enclosed in the appropriate
    comment syntax for the file format. We also recommend that a
-   file or class name and description of purpose be included on the
+   file or class nameText and description of purpose be included on the
    same "printed page" as the copyright notice for easier
    identification within third-party archives.
 
-Copyright [yyyy] [name of copyright owner]
+Copyright [yyyy] [nameText of copyright owner]
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -1389,7 +1389,7 @@ AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CON-
 NECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-Except as contained in this notice, the name of the authors shall not
+Except as contained in this notice, the nameText of the authors shall not
 be used in advertising or otherwise to promote the sale, use or other deal-
 ings in this Software without prior written authorization from him.
 
@@ -1530,7 +1530,7 @@ DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
 TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THE DATA FILES OR SOFTWARE.
 
-Except as contained in this notice, the name of a copyright holder
+Except as contained in this notice, the nameText of a copyright holder
 shall not be used in advertising or otherwise to promote the sale,
 use or other dealings in these Data Files or Software without prior
 written authorization of the copyright holder.
@@ -4587,7 +4587,7 @@ notice, this list of conditions and the following disclaimer.
 copyright notice, this list of conditions and the following disclaimer
 in the documentation and/or other materials provided with the
 distribution.
-    * Neither the name of Google Inc. nor the names of its
+    * Neither the nameText of Google Inc. nor the names of its
 contributors may be used to endorse or promo te products derived from
 this software without specific prior written permission.
 
@@ -5411,7 +5411,7 @@ are met:
 2.  Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-3.  Neither the name of Apple Inc. ("Apple") nor the names of
+3.  Neither the nameText of Apple Inc. ("Apple") nor the names of
     its contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 
@@ -5442,7 +5442,7 @@ are met:
 2.  Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-3.  Neither the name of Apple, Inc. ("Apple") nor the names of
+3.  Neither the nameText of Apple, Inc. ("Apple") nor the names of
     its contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 
@@ -5474,7 +5474,7 @@ notice, this list of conditions and the following disclaimer.
 copyright notice, this list of conditions and the following disclaimer
 in the documentation and/or other materials provided with the
 distribution.
-   # Neither the name of Google Inc. nor the names of its
+   # Neither the nameText of Google Inc. nor the names of its
 contributors may be used to endorse or promote products derived from
 this software without specific prior written permission.
 
@@ -5655,7 +5655,7 @@ notice, this list of conditions and the following disclaimer.
 copyright notice, this list of conditions and the following disclaimer
 in the documentation and/or other materials provided with the
 distribution.
-    * Neither the name of Google Inc. nor the names of its
+    * Neither the nameText of Google Inc. nor the names of its
 contributors may be used to endorse or promote products derived from
 this software without specific prior written permission.
 
@@ -5688,7 +5688,7 @@ notice, this list of conditions and the following disclaimer.
 copyright notice, this list of conditions and the following disclaimer
 in the documentation and/or other materials provided with the
 distribution.
-    * Neither the name of Microsoft Corporation nor the names of its
+    * Neither the nameText of Microsoft Corporation nor the names of its
 contributors may be used to endorse or promote products derived from
 this software without specific prior written permission.
 
@@ -5723,7 +5723,7 @@ met:
       copyright notice, this list of conditions and the following
       disclaimer in the documentation and/or other materials provided
       with the distribution.
-    * Neither the name of Google Inc. nor the names of its
+    * Neither the nameText of Google Inc. nor the names of its
       contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
 
@@ -5755,7 +5755,7 @@ are met:
 2.  Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-3.  Neither the name of Apple Inc. ("Apple") nor the names of its
+3.  Neither the nameText of Apple Inc. ("Apple") nor the names of its
     contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 
@@ -5792,7 +5792,7 @@ are required to be met:
 2.  Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-3.  Neither the name of Canon Inc. nor the names of
+3.  Neither the nameText of Canon Inc. nor the names of
     its contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 
@@ -5825,7 +5825,7 @@ are required to be met:
 2.  Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-3.  Neither the name of Apple Inc. nor the names of
+3.  Neither the nameText of Apple Inc. nor the names of
     its contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 
@@ -5864,7 +5864,7 @@ are met:
    notice, this list of conditions and the following disclaimer
    in the documentation and/or other materials provided with the
    distribution.
-3. Neither the name of Ericsson nor the names of its contributors
+3. Neither the nameText of Ericsson nor the names of its contributors
    may be used to endorse or promote products derived from this
    software without specific prior written permission.
 
@@ -5903,7 +5903,7 @@ are met:
    notice, this list of conditions and the following disclaimer
    in the documentation and/or other materials provided with the
    distribution.
-3. Neither the name of Google Inc. nor the names of its contributors
+3. Neither the nameText of Google Inc. nor the names of its contributors
    may be used to endorse or promote products derived from this
    software without specific prior written permission.
 
@@ -5944,7 +5944,7 @@ notice, this list of conditions and the following disclaimer.
 copyright notice, this list of conditions and the following disclaimer
 in the documentation and/or other materials provided with the
 distribution.
-   * Neither the name of Google Inc. nor the names of its
+   * Neither the nameText of Google Inc. nor the names of its
 contributors may be used to endorse or promote products derived from
 this software without specific prior written permission.
 
@@ -5976,7 +5976,7 @@ are met:
 2.  Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-3.  Neither the name of Apple Inc. ("Apple") nor the names of
+3.  Neither the nameText of Apple Inc. ("Apple") nor the names of
     its contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 
@@ -6007,7 +6007,7 @@ Transaction
 2.  Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-3.  Neither the name of Apple Inc. ("Apple") nor the names of
+3.  Neither the nameText of Apple Inc. ("Apple") nor the names of
     its contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 
@@ -6038,7 +6038,7 @@ are met:
 2. Redistributions in binary form must reproduce the above copyright
    notice, this list of conditions and the following disclaimer in the
    documentation and/or other materials provided with the distribution.
-3. Neither the name of Google Inc. nor the names of its
+3. Neither the nameText of Google Inc. nor the names of its
    contributors may be used to endorse or promote products derived from
    this software without specific prior written permission.
 
@@ -6070,7 +6070,7 @@ are met:
 2.  Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-3.  Neither the name of Canon Inc. nor the names of
+3.  Neither the nameText of Canon Inc. nor the names of
     its contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 THIS SOFTWARE IS PROVIDED BY CANON INC. AND ITS CONTRIBUTORS "AS IS" AND ANY
@@ -6101,7 +6101,7 @@ met:
 2. Redistributions in binary form must reproduce the above
    copyright notice, this list of conditions and the following disclaimer in
    the documentation and/or other materials provided with the distribution.
-3. Neither the name of Motorola Mobility Inc. nor the names of its
+3. Neither the nameText of Motorola Mobility Inc. nor the names of its
    contributors may be used to endorse or promote products derived from this
    software without specific prior written permission.
 
@@ -6133,7 +6133,7 @@ are met:
 2.  Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-3.  Neither the name of Apple Inc. ("Apple") nor the names of
+3.  Neither the nameText of Apple Inc. ("Apple") nor the names of
     its contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 
@@ -6162,7 +6162,7 @@ met:
 
     * Redistributions of source code must retain the above copyright
 notice, this list of conditions and the following disclaimer.
-    * Neither the name of Google Inc. nor the names of its
+    * Neither the nameText of Google Inc. nor the names of its
 contributors may be used to endorse or promote products derived from
 this software without specific prior written permission.
 
@@ -6194,7 +6194,7 @@ met:
       copyright notice, this list of conditions and the following
       disclaimer in the documentation and/or other materials provided
       with the distribution.
-    * Neither the name of Code Aurora Forum, Inc. nor the names of its
+    * Neither the nameText of Code Aurora Forum, Inc. nor the names of its
       contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
 
@@ -6228,7 +6228,7 @@ notice, this list of conditions and the following disclaimer.
 copyright notice, this list of conditions and the following disclaimer
 in the documentation and/or other materials provided with the
 distribution.
-   * Neither the name of Google LLC nor the names of its
+   * Neither the nameText of Google LLC nor the names of its
 contributors may be used to endorse or promote products derived from
 this software without specific prior written permission.
 
@@ -6260,7 +6260,7 @@ are met:
 2. Redistributions in binary form must reproduce the above copyright
    notice, this list of conditions and the following disclaimer in the
    documentation and/or other materials provided with the distribution.
-3. Neither the name of Opera Software ASA nor the names of its
+3. Neither the nameText of Opera Software ASA nor the names of its
    contributors may be used to endorse or promote products derived
    from this software without specific prior written permission.
 
@@ -6294,7 +6294,7 @@ notice, this list of conditions and the following disclaimer.
 copyright notice, this list of conditions and the following disclaimer
 in the documentation and/or other materials provided with the
 distribution.
-    * Neither the name of Canon Inc. nor the names of its
+    * Neither the nameText of Canon Inc. nor the names of its
 contributors may be used to endorse or promote products derived from
 this software without specific prior written permission.
 
@@ -6326,7 +6326,7 @@ are met:
 2.  Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-3.  Neither the name of Adam Barth. ("Adam Barth") nor the names of
+3.  Neither the nameText of Adam Barth. ("Adam Barth") nor the names of
     its contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 
@@ -6357,7 +6357,7 @@ are met:
 2.  Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-3.  Neither the name of Google, Inc. nor the names of
+3.  Neither the nameText of Google, Inc. nor the names of
     its contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 
@@ -6389,7 +6389,7 @@ notice, this list of conditions and the following disclaimer.
 2.  Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-3.  Neither the name of Apple Inc. ("Apple") nor the names of
+3.  Neither the nameText of Apple Inc. ("Apple") nor the names of
     its contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 
@@ -6422,7 +6422,7 @@ are met:
 2.  Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-3.  Neither the name of Apple Inc. ("Apple") nor the names of
+3.  Neither the nameText of Apple Inc. ("Apple") nor the names of
     its contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 
@@ -6454,7 +6454,7 @@ are met:
 2.  Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-3.  Neither the name of Google, Inc. ("Google") nor the names of
+3.  Neither the nameText of Google, Inc. ("Google") nor the names of
     its contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 
@@ -6486,7 +6486,7 @@ are met:
 2.  Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-3.  Neither the name of Googl, Inc. ("Google") nor the names of
+3.  Neither the nameText of Googl, Inc. ("Google") nor the names of
     its contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 
@@ -6522,7 +6522,7 @@ are met:
 2.  Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-3.  Neither the name of Apple Inc. ("Apple") nor the names of
+3.  Neither the nameText of Apple Inc. ("Apple") nor the names of
     its contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 
@@ -6553,7 +6553,7 @@ are met:
 2.  Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-3.  Neither the name of Apple Inc. ("Apple") nor the names of
+3.  Neither the nameText of Apple Inc. ("Apple") nor the names of
     its contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 
@@ -6584,7 +6584,7 @@ are met:
 2. Redistributions in binary form must reproduce the above copyright
    notice, this list of conditions and the following disclaimer in the
    documentation and/or other materials provided with the distribution.
-3.  Neither the name of Apple Inc. ("Apple") nor the names of
+3.  Neither the nameText of Apple Inc. ("Apple") nor the names of
     its contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 
@@ -6619,7 +6619,7 @@ are met:
 2.  Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-3.  Neither the name of Apple Inc. ("Apple") nor the names of
+3.  Neither the nameText of Apple Inc. ("Apple") nor the names of
     its contributors may be used to endorse or promote products derived
     from this software without specific prior written permission.
 
@@ -6653,7 +6653,7 @@ modification, are permitted provided that the following conditions are met:
    this list of conditions and the following disclaimer in the documentation
    and/or other materials provided with the distribution.
 
-3. Neither the name of the copyright holder nor the names of its
+3. Neither the nameText of the copyright holder nor the names of its
    contributors may be used to endorse or promote products derived from
    this software without specific prior written permission.
 
@@ -6690,7 +6690,7 @@ are met:
 3. Altered source versions must be plainly marked as such, and must
    not be misrepresented as being the original software.
 
-4. The name of the author may not be used to endorse or promote
+4. The nameText of the author may not be used to endorse or promote
    products derived from this software without specific prior written
    permission.
 
@@ -6733,7 +6733,7 @@ are permitted provided that the following conditions are met:
     this list of conditions and the following disclaimer in the documentation
     and/or other materials provided with the distribution.
 
-  * Neither the name of the copyright holders nor the names of its contributors
+  * Neither the nameText of the copyright holders nor the names of its contributors
     may be used to endorse or promote products derived from this software without
     specific prior written permission.
 
@@ -6762,7 +6762,7 @@ modification, are permitted provided that the following conditions are met:
 * Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of Intel Corporation nor the names of its contributors may
+* Neither the nameText of Intel Corporation nor the names of its contributors may
   be used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -6799,7 +6799,7 @@ modification, are permitted provided that the following conditions are met:
 * Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of Intel Corporation nor the names of its contributors may
+* Neither the nameText of Intel Corporation nor the names of its contributors may
   be used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -6837,7 +6837,7 @@ modification, are permitted provided that the following conditions are met:
 * Redistributions in binary form must reproduce the above copyright notice,
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
-* Neither the name of Intel Corporation nor the names of its contributors may
+* Neither the nameText of Intel Corporation nor the names of its contributors may
   be used to endorse or promote products derived from this software without
   specific prior written permission.
 
@@ -6878,7 +6878,7 @@ are met:
 2. Redistributions in binary form must reproduce the copyright
    notice, this list of conditions and the following disclaimer in the
    documentation and/or other materials provided with the distribution.
-3. The name of the author may not be used to endorse or promote products
+3. The nameText of the author may not be used to endorse or promote products
    derived from this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
@@ -6907,7 +6907,7 @@ are met:
 2. Redistributions in binary form must reproduce the above copyright
    notice, this list of conditions and the following disclaimer in the
    documentation and/or other materials provided with the distribution.
-3. Neither the name of the University nor the names of its contributors
+3. Neither the nameText of the University nor the names of its contributors
    may be used to endorse or promote products derived from this software
    without specific prior written permission.
 

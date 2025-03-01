@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="701.0" prefWidth="1078.0" spacing="20.0" style="-fx-background-color: #f4f6fa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lms.controllers.studentSide.StudentProfileSettingsController">
+   <children>
+      <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="713.0" prefWidth="1078.0" style="-fx-background-color: #f4f6fa;" VBox.vgrow="ALWAYS">
+         <content>
+            <VBox alignment="TOP_CENTER" prefHeight="675.0" prefWidth="1078.0" spacing="15.0" style="-fx-background-color: #f4f6fa;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/student-icon.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" text="Ory Chanraksa">
+                     <font>
+                        <Font name="AppleGothic Regular" size="17.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="studentID" strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID: S000001">
+                     <font>
+                        <Font name="AppleGothic Regular" size="17.0" />
+                     </font>
+                  </Text>
+                  <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="11.0" prefWidth="1078.0" style="-fx-background-color: black;" />
+                  <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="33.0" prefWidth="1078.0" spacing="325.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Text fx:id="generation" strokeType="OUTSIDE" strokeWidth="0.0" text="Generation: 10">
+                           <font>
+                              <Font name="AppleGothic Regular" size="17.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="department" strokeType="OUTSIDE" strokeWidth="0.0" text="Generation: 10">
+                           <font>
+                              <Font name="AppleGothic Regular" size="17.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="specialization" strokeType="OUTSIDE" strokeWidth="0.0" text="Generation: 10">
+                           <font>
+                              <Font name="AppleGothic Regular" size="17.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Information">
+                     <font>
+                        <Font name="AppleGothic Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <VBox prefHeight="252.0" prefWidth="1078.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 30;">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="1018.0" spacing="20.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gender                   :">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="gender" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="17.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="1018.0" spacing="20.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date Of Birth           :">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="dob" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="17.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="1018.0" spacing="20.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address                  :">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="address" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="17.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="1018.0" spacing="20.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email                       :">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="email" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="17.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="1018.0" spacing="20.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tel.                         :">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="phone" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="17.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="1018.0" spacing="20.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Guardian Name        :">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="gName" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="17.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="1018.0" spacing="20.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Guardian Gender      :">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="gGender" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="17.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="1018.0" spacing="20.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Guardian Tel.           :">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="gPhone" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="17.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="1018.0" spacing="20.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last Logged In         :">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="17.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="lastLoggedIn" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                 <font>
+                                    <Font name="AppleGothic Regular" size="17.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                     </padding>
+                  </VBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
+                     <font>
+                        <Font name="AppleGothic Regular" size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
+</VBox>

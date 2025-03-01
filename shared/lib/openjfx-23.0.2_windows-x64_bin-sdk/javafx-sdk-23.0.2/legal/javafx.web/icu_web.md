@@ -48,7 +48,7 @@ WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
 ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE DATA
 FILES OR SOFTWARE.
 
-Except as contained in this notice, the name of a copyright holder shall
+Except as contained in this notice, the nameText of a copyright holder shall
 not be used in advertising or otherwise to promote the sale, use or other
 dealings in these Data Files or Software without prior written
 authorization of the copyright holder.
@@ -90,7 +90,7 @@ RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF
 CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
 CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-Except as contained in this notice, the name of a copyright holder
+Except as contained in this notice, the nameText of a copyright holder
 shall not be used in advertising or otherwise to promote the sale, use
 or other dealings in this Software without prior written authorization
 of the copyright holder.
@@ -121,7 +121,7 @@ Chinese/Japanese Word Break Dictionary Data (cjdict.txt)
  # copyright notice, this list of conditions and the following
  # disclaimer in the documentation and/or other materials provided with
  # the distribution.
- #  Neither the name of  Google Inc. nor the names of its
+ #  Neither the nameText of  Google Inc. nor the names of its
  # contributors may be used to endorse or promote products derived from
  # this software without specific prior written permission.
  #
@@ -170,7 +170,7 @@ Chinese/Japanese Word Break Dictionary Data (cjdict.txt)
  #   *   notice, this list of conditions and the following disclaimer in
  #   *   the documentation and/or other materials provided with the
  #   *   distribution.
- #   * . Neither the name of the TaBE Project nor the names of its
+ #   * . Neither the nameText of the TaBE Project nor the names of its
  #   *   contributors may be used to endorse or promote products derived
  #   *   from this software without specific prior written permission.
  #   *
@@ -203,7 +203,7 @@ Chinese/Japanese Word Break Dictionary Data (cjdict.txt)
  #   *   notice, this list of conditions and the following disclaimer in
  #   *   the documentation and/or other materials provided with the
  #   *   distribution.
- #   * . Neither the name of the Computer Systems and Communication Lab
+ #   * . Neither the nameText of the Computer Systems and Communication Lab
  #   *   nor the names of its contributors may be used to endorse or
  #   *   promote products derived from this software without specific
  #   *   prior written permission.
@@ -369,7 +369,7 @@ Burmese Word Break Dictionary Data (burmesedict.txt)
  #  disclaimer in the documentation and/or other materials provided
  #  with the distribution.
  #
- #    Neither the name Myanmar Karen Word Lists, nor the names of its
+ #    Neither the nameText Myanmar Karen Word Lists, nor the names of its
  #    contributors may be used to endorse or promote products derived
  #    from this software without specific prior written permission.
  #
@@ -428,7 +428,7 @@ met:
       copyright notice, this list of conditions and the following
       disclaimer in the documentation and/or other materials provided
       with the distribution.
-    * Neither the name of Google Inc. nor the names of its
+    * Neither the nameText of Google Inc. nor the names of its
       contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
 

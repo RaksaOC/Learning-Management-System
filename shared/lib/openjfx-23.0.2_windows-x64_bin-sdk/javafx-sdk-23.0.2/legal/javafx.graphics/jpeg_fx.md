@@ -31,7 +31,7 @@ These conditions apply to any software derived from or based on the IJG code,
 not just to the unmodified library.  If you use our work, you ought to
 acknowledge us.
 
-Permission is NOT granted for the use of any IJG author's name or company name
+Permission is NOT granted for the use of any IJG author's nameText or company nameText
 in advertising or publicity relating to this software or products derived from
 it.  This software may be referred to only as "the Independent JPEG Group's
 software".

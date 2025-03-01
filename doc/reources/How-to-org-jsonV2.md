@@ -14,14 +14,14 @@ Example JSON:
 
 ```json
 {
-  "name": "John Doe",
+  "nameText": "John Doe",
   "role": "Student",
   "courses": ["Math", "Physics"],
   "status": "active"
 }
 ```
 
-- Ex: ```"name": "John Doe"``` is a key-value pair. It means that **"name"** is the **key** to access the value **"John Doe"**.
+- Ex: ```"nameText": "John Doe"``` is a key-value pair. It means that **"nameText"** is the **key** to access the value **"John Doe"**.
 - The value can be of any types including **string, int, boolean, JSONObject and JSONArray**. However, most of our data is mostly string for easy access.
 - Stuff in `{}` is called a `JSONObject`, and stuff in `[]` are called `JSONArray`.
 
@@ -57,7 +57,7 @@ For this file, it would be an **object** history (similar to one above).
     "lastLogin": "2025-02-07 20:33:32",
     "password": "2744ccd10c7533bd736ad890f9dd5cab2adb27b07d500b9493f29cdc420cb2e0",
     "phoneNumber": "+1234567890",
-    "name": {
+    "nameText": {
       "firstName": "Chanraksa",
       "lastName": "Ory"
     },
@@ -70,7 +70,7 @@ For this file, it would be an **object** history (similar to one above).
     "lastLogin": "2025-02-05 10:22:18",
     "password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd63a3d9f20c7d47f0d",
     "phoneNumber": "+1987654321",
-    "name": {
+    "nameText": {
       "firstName": "Sophia",
       "lastName": "Nguyen"
     },
@@ -83,7 +83,7 @@ For this file, it would be an **object** history (similar to one above).
     "lastLogin": "2025-02-08 14:12:50",
     "password": "f7c3bc1d808e04732adf679965ccc34ca7ae3441a1f2a98a83090adcb8c82d7d",
     "phoneNumber": "+1122334455",
-    "name": {
+    "nameText": {
       "firstName": "David",
       "lastName": "Martinez"
     },
@@ -131,7 +131,7 @@ Example JSON:
     "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
     "phoneNumber": "012540494",
     "dob": "03042006",
-    "name": {
+    "nameText": {
       "firstName": "Chan",
       "lastName": "Raksa"
     },
@@ -168,11 +168,11 @@ JSONObject progress = jsonObject.getJSONObject("progress");
 
 ### **Accessing Nested Data**
 
-Example we want the firstName of the student but its stuck in the "name" object, We can access it like this:
+Example we want the firstName of the student but its stuck in the "nameText" object, We can access it like this:
 
 ```java
-JSONObject name = jsonObject.getJSONObject("name"); // this would get the object 
-String firstName = name.getString("firstName"); // get the firstname of the name object
+JSONObject nameText = jsonObject.getJSONObject("nameText"); // this would get the object 
+String firstName = nameText.getString("firstName"); // get the firstname of the nameText object
 ```
 
 ---

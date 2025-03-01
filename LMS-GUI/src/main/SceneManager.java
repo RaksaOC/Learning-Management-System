@@ -5,191 +5,178 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import main.java.com.lms.controllers.studentSide.StudentClassroomsController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 public class SceneManager extends Application {
     private static Stage primaryStage;
-    public static  HashMap<String, Scene> scenes = new HashMap<>();
-    private int numOfScenes;
+    private static HashMap<String, Scene> fullViews = new HashMap<>();
+    private static HashMap<String, Parent> centerViews = new HashMap<>();
+    private static HashMap<String, Object> centerViewsControllers = new HashMap<>();
+    private static HashMap<String, Parent> components = new HashMap<>();
+
+
+    private static BorderPane mainLayout; // Stores the BorderPane layout
 
     @Override
     public void start(Stage stage) {
         primaryStage = stage;
-
-        loadScenes();
-        setScene("login"); // Set initial scene
-        primaryStage.setTitle("CADT LMS-Admin");
-        primaryStage.show();
+        loadFullView("userType", "resources/com/lms/views/UserType.fxml");
+        setFullView("userType");
     }
 
-    private void loadScene(String name, String fxmlPath) {
+    /**
+     * Loads a full-screen view into the HashMap.
+     */
+    public static void loadFullView(String name, String fxmlPath) {
         try {
-            URL resource = getClass().getResource(fxmlPath);
-            if (resource == null) {
-                throw new IOException("FXML file not found: " + fxmlPath);
-            }
+            URL resource = SceneManager.class.getResource(fxmlPath);
+            if (resource == null) throw new IOException("FXML file not found: " + fxmlPath);
 
-            System.out.println("Loading FXML: " + resource);
             FXMLLoader loader = new FXMLLoader(resource);
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            scenes.put(name, scene);
-            numOfScenes++;
+            fullViews.put(name, scene);
         } catch (IOException e) {
             System.err.println("Error loading scene: " + fxmlPath);
             e.printStackTrace();
         }
     }
 
-    private void loadScenes() {
-        // Layer 0
-        loadScene("login", "resources/com/lms/views/layer0/authenticationView/LogInView2.fxml");
-        loadScene("home", "resources/com/lms/views/layer0/homeView/HomeView.fxml");
-
-// Layer 1
-        loadScene("dashboard", "resources/com/lms/views/layer1/DashboardView.fxml");
-        loadScene("manageStudent", "resources/com/lms/views/layer1/ManageStudentView.fxml");
-        loadScene("manageTeacher", "resources/com/lms/views/layer1/ManageTeacherView.fxml");
-        loadScene("manageDepartment", "resources/com/lms/views/layer1/ManageDepartmentView.fxml");
-        loadScene("manageSpecialization", "resources/com/lms/views/layer1/ManageSpecializationView.fxml");
-        loadScene("manageGeneration", "resources/com/lms/views/layer1/ManageGenerationView.fxml");
-        loadScene("manageGroup", "resources/com/lms/views/layer1/ManageGroupView.fxml");
-        loadScene("manageClassroom", "resources/com/lms/views/layer1/ManageClassroomView.fxml");
-        loadScene("manageCourse", "resources/com/lms/views/layer1/ManageCourseView.fxml");
-        loadScene("manageAdmin", "resources/com/lms/views/layer1/ManageAdminView.fxml");
-
-// Layer 2 - Student
-        loadScene("addStudent", "resources/com/lms/views/layer2/StudentActionView/AddStudentView.fxml");
-        loadScene("editStudent", "resources/com/lms/views/layer2/StudentActionView/EditStudentView.fxml");
-        loadScene("deleteStudent", "resources/com/lms/views/layer2/StudentActionView/DeleteStudentView.fxml");
-        loadScene("viewStudent", "resources/com/lms/views/layer2/StudentActionView/ViewStudentView.fxml");
-
-// Layer 2 - Teacher
-        loadScene("addTeacher", "resources/com/lms/views/layer2/TeacherActionView/AddTeacherView.fxml");
-        loadScene("editTeacher", "resources/com/lms/views/layer2/TeacherActionView/EditTeacherView.fxml");
-        loadScene("deleteTeacher", "resources/com/lms/views/layer2/TeacherActionView/DeleteTeacherView.fxml");
-        loadScene("viewTeacher", "resources/com/lms/views/layer2/TeacherActionView/ViewTeacherView.fxml");
-
-// Layer 2 - Department
-        loadScene("addDepartment", "resources/com/lms/views/layer2/DepartmentActionView/AddDepartmentView.fxml");
-        loadScene("editDepartment", "resources/com/lms/views/layer2/DepartmentActionView/EditDepartmentView.fxml");
-        loadScene("deleteDepartment", "resources/com/lms/views/layer2/DepartmentActionView/DeleteDepartmentView.fxml");
-        loadScene("viewDepartment", "resources/com/lms/views/layer2/DepartmentActionView/ViewDepartmentView.fxml");
-
-// Layer 2 - Specialization
-        loadScene("addSpecialization", "resources/com/lms/views/layer2/SpecializationActionView/AddSpecializationView.fxml");
-        loadScene("editSpecialization", "resources/com/lms/views/layer2/SpecializationActionView/EditSpecializationView.fxml");
-        loadScene("deleteSpecialization", "resources/com/lms/views/layer2/SpecializationActionView/DeleteSpecializationView.fxml");
-        loadScene("viewSpecialization", "resources/com/lms/views/layer2/SpecializationActionView/ViewSpecializationView.fxml");
-
-// Layer 2 - Generation
-        loadScene("addGeneration", "resources/com/lms/views/layer2/GenerationActionView/AddGenerationView.fxml");
-        loadScene("editGeneration", "resources/com/lms/views/layer2/GenerationActionView/EditGenerationView.fxml");
-        loadScene("deleteGeneration", "resources/com/lms/views/layer2/GenerationActionView/DeleteGenerationView.fxml");
-        loadScene("viewGeneration", "resources/com/lms/views/layer2/GenerationActionView/ViewGenerationView.fxml");
-
-// Layer 2 - Group
-        loadScene("addGroup", "resources/com/lms/views/layer2/GroupActionView/AddGroupView.fxml");
-        loadScene("editGroup", "resources/com/lms/views/layer2/GroupActionView/EditGroupView.fxml");
-        loadScene("deleteGroup", "resources/com/lms/views/layer2/GroupActionView/DeleteGroupView.fxml");
-        loadScene("viewGroup", "resources/com/lms/views/layer2/GroupActionView/ViewGroupView.fxml");
-        loadScene("addStudentToGroup", "resources/com/lms/views/layer2/GroupActionView/AddStudentToGroupView.fxml");
-
-
-// Layer 2 - Classroom
-        loadScene("addClassroom", "resources/com/lms/views/layer2/ClassroomActionView/AddClassroomView.fxml");
-        loadScene("editClassroom", "resources/com/lms/views/layer2/ClassroomActionView/EditClassroomView.fxml");
-        loadScene("deleteClassroom", "resources/com/lms/views/layer2/ClassroomActionView/DeleteClassroomView.fxml");
-        loadScene("viewClassroom", "resources/com/lms/views/layer2/ClassroomActionView/ViewClassroomView.fxml");
-        loadScene("assignTeacherToClassroom", "resources/com/lms/views/layer2/ClassroomActionView/AssignTeacherToClassroomView.fxml");
-        loadScene("assignCourseToClassroom", "resources/com/lms/views/layer2/ClassroomActionView/AssignCourseToClassroomView.fxml");
-
-// Layer 2 - Course
-        loadScene("addCourse", "resources/com/lms/views/layer2/CourseActionView/AddCourseView.fxml");
-        loadScene("editCourse", "resources/com/lms/views/layer2/CourseActionView/EditCourseView.fxml");
-        loadScene("deleteCourse", "resources/com/lms/views/layer2/CourseActionView/DeleteCourseView.fxml");
-        loadScene("viewCourse", "resources/com/lms/views/layer2/CourseActionView/ViewCourseView.fxml");
-
-// Layer 2 - Admin
-        loadScene("addAdmin", "resources/com/lms/views/layer2/AdminActionView/AddAdminView.fxml");
-        loadScene("editAdmin", "resources/com/lms/views/layer2/AdminActionView/EditAdminView.fxml");
-        loadScene("deleteAdmin", "resources/com/lms/views/layer2/AdminActionView/DeleteAdminView.fxml");
-        loadScene("viewAdmin", "resources/com/lms/views/layer2/AdminActionView/ViewAdminView.fxml");
-
-        // layer 3
-
-        // StudentEditView
-        loadScene("editStudentAddress", "resources/com/lms/views/layer3/StudentEditView/EditStudentAddress.fxml");
-        loadScene("editStudentDOB", "resources/com/lms/views/layer3/StudentEditView/EditStudentDOB.fxml");
-        loadScene("editStudentDepartment", "resources/com/lms/views/layer3/StudentEditView/EditStudentDepartment.fxml");
-        loadScene("editStudentEmail", "resources/com/lms/views/layer3/StudentEditView/EditStudentEmail.fxml");
-        loadScene("editStudentGender", "resources/com/lms/views/layer3/StudentEditView/EditStudentGender.fxml");
-        loadScene("editStudentGuardian", "resources/com/lms/views/layer3/StudentEditView/EditStudentGuardian.fxml");
-        loadScene("editStudentName", "resources/com/lms/views/layer3/StudentEditView/EditStudentName.fxml");
-        loadScene("editStudentPassword", "resources/com/lms/views/layer3/StudentEditView/EditStudentPassword.fxml");
-        loadScene("editStudentPhoneNumber", "resources/com/lms/views/layer3/StudentEditView/EditStudentPhoneNumber.fxml");
-        loadScene("editStudentSpecialization", "resources/com/lms/views/layer3/StudentEditView/EditStudentSpecialization.fxml");
-
-        // TeacherEditView
-        loadScene("editTeacherDOB", "resources/com/lms/views/layer3/TeacherEditView/EditTeacherDOB.fxml");
-        loadScene("editTeacherEmail", "resources/com/lms/views/layer3/TeacherEditView/EditTeacherEmail.fxml");
-        loadScene("editTeacherGender", "resources/com/lms/views/layer3/TeacherEditView/EditTeacherGender.fxml");
-        loadScene("editTeacherName", "resources/com/lms/views/layer3/TeacherEditView/EditTeacherName.fxml");
-        loadScene("editTeacherPassword", "resources/com/lms/views/layer3/TeacherEditView/EditTeacherPassword.fxml");
-        loadScene("editTeacherPhoneNumber", "resources/com/lms/views/layer3/TeacherEditView/EditTeacherPhoneNumber.fxml");
-
-// DepartmentEditView
-        loadScene("editDepartmentID", "resources/com/lms/views/layer3/DepartmentEditView/EditDepartmentID.fxml");
-        loadScene("editDepartmentName", "resources/com/lms/views/layer3/DepartmentEditView/EditDepartmentName.fxml");
-
-        // SpecializationEditView
-        loadScene("editSpecializationID", "resources/com/lms/views/layer3/SpecializationEditView/EditSpecializationID.fxml");
-        loadScene("editSpecializationName", "resources/com/lms/views/layer3/SpecializationEditView/EditSpecializationName.fxml");
-
-        // GenerationEditView
-        loadScene("editGenerationID", "resources/com/lms/views/layer3/GenerationEditView/EditGenerationID.fxml");
-        loadScene("editGenerationName", "resources/com/lms/views/layer3/GenerationEditView/EditGenerationName.fxml");
-
-        // GroupEditView
-        loadScene("editGroupID", "resources/com/lms/views/layer3/GroupEditView/EditGroupID.fxml");
-
-// ClassroomEditView
-        loadScene("editClassroomID", "resources/com/lms/views/layer3/ClassroomEditView/EditClassroomID.fxml");
-
-// CourseEditView
-        loadScene("editCourseID", "resources/com/lms/views/layer3/CourseEditView/EditCourseID.fxml");
-        loadScene("editCourseName", "resources/com/lms/views/layer3/CourseEditView/EditCourseName.fxml");
-
-        // AdminEditView
-        loadScene("editAdminDOB", "resources/com/lms/views/layer3/AdminEditView/EditAdminDOB.fxml");
-        loadScene("editAdminEmail", "resources/com/lms/views/layer3/AdminEditView/EditAdminEmail.fxml");
-        loadScene("editAdminGender", "resources/com/lms/views/layer3/AdminEditView/EditAdminGender.fxml");
-        loadScene("editAdminName", "resources/com/lms/views/layer3/AdminEditView/EditAdminName.fxml");
-        loadScene("editAdminPassword", "resources/com/lms/views/layer3/AdminEditView/EditAdminPassword.fxml");
-        loadScene("editAdminPhoneNumber", "resources/com/lms/views/layer3/AdminEditView/EditAdminPhoneNumber.fxml");
-
-        // misc
-        loadScene("success", "resources/com/lms/views/misc/SuccessView.fxml");
-
-        System.out.println("Finished loading " + numOfScenes + " scenes");
-    }
-
-    public static void setScene(String name) {
-        Scene scene = scenes.get(name);
+    /**
+     * Sets a full-screen view (used for login, splash screens, etc.).
+     */
+    public static void setFullView(String name) {
+        Scene scene = fullViews.get(name);
         if (scene != null) {
             Rectangle2D screenBounds = Screen.getPrimary().getBounds();
             primaryStage.setScene(scene);
             primaryStage.setWidth(screenBounds.getWidth());
             primaryStage.setHeight(screenBounds.getHeight());
-            System.out.println("Scene " + name + " loaded");
+            System.out.println("Switched to full view: " + name);
+            primaryStage.setTitle("CADT Learning Management System");
+            primaryStage.show();
         } else {
-            System.out.println("Scene '" + name + "' not found!");
+            System.err.println("Full view '" + name + "' not found!");
         }
+    }
+
+    /**
+     * Loads the main layout (BorderPane) and sets it as the root scene.
+     */
+    public static <T> T loadMainFrame(String userType) {
+        try {
+            String fxmlPath = "resources/com/lms/views/" + (userType.equalsIgnoreCase("student") ? "StudentMainFrame.fxml" : "TeacherMainFrame.fxml");
+
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(fxmlPath));
+            mainLayout = loader.load();
+            Scene scene = new Scene(mainLayout);
+
+            Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+            primaryStage.setScene(scene);
+            primaryStage.setWidth(screenBounds.getWidth());
+            primaryStage.setHeight(screenBounds.getHeight());
+            System.out.println(userType + " main layout loaded");
+            return loader.getController();
+        } catch (IOException e) {
+            System.err.println("Error loading " + userType + " MainFrame.fxml");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Loads center content views (like Dashboard, Classrooms, etc.).
+     */
+    public static void loadCenterView(String name, String fxmlPath) {
+        try {
+            URL resource = SceneManager.class.getResource(fxmlPath);
+            if (resource == null) throw new IOException("FXML file not found: " + fxmlPath);
+
+            FXMLLoader loader = new FXMLLoader(resource);
+            Parent view = loader.load();
+            centerViews.put(name, view);
+            centerViewsControllers.put(name, loader.getController());
+            System.out.println("Loaded center view: " + name + " fxml: " + fxmlPath);
+        } catch (IOException e) {
+            System.err.println("Error loading center view: " + fxmlPath);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Sets the center content inside the BorderPane.
+     */
+    public static void setCenterView(String name) {
+        if (mainLayout != null) {
+            // Get the center VBox (which contains the fake top part)
+            VBox contentLessVBox = (VBox) mainLayout.getCenter();
+            System.out.println("got the center of the border pane");
+            // Get the second VBox (after the top part)
+            System.out.println(centerViews);
+            System.out.println("center view to get " + centerViews.get(name));
+            VBox contentVBox = (VBox) centerViews.get(name);
+
+            contentVBox.setMaxWidth(Double.MAX_VALUE);
+            contentVBox.setMinWidth(0);
+
+            // Clear only the content after the fake top part (i.e., clear all except the first child)
+            if (contentLessVBox.getChildren().size() > 1) {
+                contentLessVBox.getChildren().remove(1, contentLessVBox.getChildren().size());
+            }
+
+            // Add the new content VBox to the layout
+            contentLessVBox.getChildren().add(contentVBox);
+
+            System.out.println("Set center view: " + name);
+            primaryStage.setTitle("CADT Learning Management System");
+            primaryStage.show();
+        } else {
+            System.err.println("Center view '" + name + "' not found!");
+        }
+    }
+
+    public static void loadComponent(String name, String fxmlPath) {
+        try {
+            URL resource = SceneManager.class.getResource(fxmlPath);
+            if (resource == null) throw new IOException("FXML file not found: " + fxmlPath);
+
+            FXMLLoader loader = new FXMLLoader(resource);
+            Parent root = loader.load();
+            components.put(name, root);
+            System.out.println("Loaded component " + name);
+        } catch (IOException e) {
+            System.err.println("Error loading scene: " + fxmlPath);
+            e.printStackTrace();
+        }
+    }
+
+    public static Parent getCenterView(String name) {
+        return centerViews.get(name);
+    }
+
+    public static Scene getFullView(String name) {
+        return fullViews.get(name);
+    }
+
+    public static Object getCenterViewController(String name) {
+        return centerViewsControllers.get(name);
+    }
+
+    public static void setCenterViewController(String name, Object controller) {
+        centerViewsControllers.put(name, controller);
+    }
+
+    public static Parent getComponent(String name) {
+        return components.get(name);
     }
 
 

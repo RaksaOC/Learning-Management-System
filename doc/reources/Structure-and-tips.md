@@ -228,8 +228,8 @@ The original approach (directly modifying the nested object and using `break`) i
   JSONObject student = fetchStudentData(studentId);
   
   // ❌ Bad: Redundant comment
-  // This line prints the student name
-  System.out.println(student.getString("name"));
+  // This line prints the student nameText
+  System.out.println(student.getString("nameText"));
   ```
 
 ### ✅ **File Naming & Organization**
@@ -243,7 +243,7 @@ The original approach (directly modifying the nested object and using `break`) i
   class ManageStudents { ... }
   void studentFetcher() { ... }
   ```
-- **Filename matches class name.** (`StudentManager.java` should contain `class StudentManager`).
+- **Filename matches class nameText.** (`StudentManager.java` should contain `class StudentManager`).
 - **Avoid unnecessary prefixes/suffixes.** Instead of `StudentClass.java`, just use `Student.java`.
 - **Keep related files close together.** Example project structure:
   ```

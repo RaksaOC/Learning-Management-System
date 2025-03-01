@@ -1,7 +1,7 @@
 [
     {
         "generation": "GEN10",
-        "lastLogin": "2025-02-07 15:38:21",
+        "lastLogin": "2025-03-01 12:24:48",
         "address": {
             "province": "phnom penh",
             "commune": "Male",
@@ -16,18 +16,30 @@
             "firstName": "Chan",
             "lastName": "Raksa"
         },
-        "specialization": "Software Engineering",
-        "progress": {"GEN10-CS-SE-G1-OOP": "P000001"},
+        "specialization": "CS-SE",
+        "progress": {
+            "GEN10-CS-SE-G1-E": "P000001",
+            "GEN10-CS-SE-G1-F": "P000001",
+            "GEN10-CS-SE-G1-C": "P000001",
+            "GEN10-CS-SE-G1-VA": "P000001",
+            "GEN10-CS-SE-G1-D": "P000001",
+            "GEN10-CS-SE-G1-DBMS": "P000001",
+            "GEN10-CS-SE-G1-A": "P000001",
+            "GEN10-CS-SE-G1-B": "P000001",
+            "GEN10-CS-SE-G1-OS": "P000001",
+            "GEN10-CS-SE-G1-G": "P000001",
+            "GEN10-CS-SE-G1-H": "P000001"
+        },
         "id": "S000001",
         "guardian": {
-            "gender": "Male",
             "phoneNumber": "adasd",
+            "gender": "Male",
             "name": {
                 "firstName": "asda",
                 "lastName": "asdasd"
             }
         },
-        "department": "Computer Science",
+        "department": "CS",
         "email": "ocraksa@gmail.com",
         "status": "active"
     },
@@ -52,8 +64,8 @@
         "progress": {},
         "id": "S000002",
         "guardian": {
-            "gender": "Male",
             "phoneNumber": "adasd",
+            "gender": "Male",
             "name": {
                 "firstName": "asda",
                 "lastName": "asdasd"

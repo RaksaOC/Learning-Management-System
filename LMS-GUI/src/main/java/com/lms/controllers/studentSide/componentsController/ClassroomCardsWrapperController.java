@@ -33,7 +33,7 @@ public class ClassroomCardsWrapperController {
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         scrollPane.setPrefWidth(1675);
         scrollPane.setStyle("-fx-background-color: #f4f6fa");
-        scrollPane.setPrefHeight(1100);
+        scrollPane.setPrefHeight(1000);
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
         scrollPane.setContent(classroomsWrapper());

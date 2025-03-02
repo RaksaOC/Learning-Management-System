@@ -1,7 +1,7 @@
 [
     {
         "generation": "GEN10",
-        "lastLogin": "2025-03-01 12:24:48",
+        "lastLogin": "2025-03-02 12:18:18",
         "address": {
             "province": "phnom penh",
             "commune": "Male",
@@ -18,17 +18,11 @@
         },
         "specialization": "CS-SE",
         "progress": {
-            "GEN10-CS-SE-G1-E": "P000001",
-            "GEN10-CS-SE-G1-F": "P000001",
-            "GEN10-CS-SE-G1-C": "P000001",
             "GEN10-CS-SE-G1-VA": "P000001",
-            "GEN10-CS-SE-G1-D": "P000001",
             "GEN10-CS-SE-G1-DBMS": "P000001",
-            "GEN10-CS-SE-G1-A": "P000001",
-            "GEN10-CS-SE-G1-B": "P000001",
-            "GEN10-CS-SE-G1-OS": "P000001",
-            "GEN10-CS-SE-G1-G": "P000001",
-            "GEN10-CS-SE-G1-H": "P000001"
+            "GEN10-CS-SE-G1-SS": "P000001",
+            "GEN10-CS-SE-G1-IL": "P000001",
+            "GEN10-CS-SE-G1-OOP": "P000001"
         },
         "id": "S000001",
         "guardian": {

@@ -17,7 +17,7 @@
    <left>
       <VBox prefHeight="900.0" prefWidth="301.0" style="-fx-background-color: #f4f6fa;" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="939.0" prefWidth="261.0" style="-fx-background-color: #2F92BC; -fx-background-radius: 30;" VBox.vgrow="ALWAYS">
+            <VBox alignment="TOP_CENTER" prefHeight="939.0" prefWidth="261.0" style="-fx-background-color: #2F92BC; -fx-background-radius: 30; -fx-border-radius: 20;" VBox.vgrow="ALWAYS">
                <padding>
                   <Insets bottom="30.0" left="20.0" top="30.0" />
                </padding>

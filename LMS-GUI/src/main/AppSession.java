@@ -8,6 +8,14 @@ public class AppSession {
     private Student currentStudent;
     private Teacher currentTeacher;
 
+    private String selectedClassroom;
+
+    private String selectedAssignment;
+    private String selectedResources;
+    private String selectedQuiz;
+
+    private boolean isAssignmentSubmissionFromAssignmentsPage = false;
+
     private AppSession() {}  // Private constructor for singleton pattern
 
     public static AppSession getInstance() {
@@ -29,6 +37,25 @@ public class AppSession {
         System.out.println("Current teacher is " + this.currentTeacher);
     }
 
+    public void setSelectedClassroom(String selectedClassroom) {
+        this.selectedClassroom = selectedClassroom;
+    }
+
+    public void setSelectedAssignment(String selectedAssignment) {
+        this.selectedAssignment = selectedAssignment;
+    }
+
+    public void isAssignmentSubmissionFromAssignmentsPage(boolean assignmentSubmissionFromAssignmentsPage) {
+        this.isAssignmentSubmissionFromAssignmentsPage = assignmentSubmissionFromAssignmentsPage;
+    }
+
+    public void setSelectedResources(String selectedResources) {
+        this.selectedResources = selectedResources;
+    }
+    public void setSelectedQuiz(String selectedQuiz) {
+        this.selectedQuiz = selectedQuiz;
+    }
+
     public Student getStudent() {
         return currentStudent;
     }
@@ -36,4 +63,23 @@ public class AppSession {
     public Teacher getTeacher() {
         return currentTeacher;
     }
+
+    public String getSelectedClassroom() {
+        return selectedClassroom;
+    }
+
+    public String getSelectedAssignment() {
+        return selectedAssignment;
+    }
+    public String getSelectedResources() {
+        return selectedResources;
+    }
+    public String getSelectedQuiz() {
+        return selectedQuiz;
+    }
+
+    public boolean getIsAssignmentSubmissionFromAssignmentsPage() {
+        return this.isAssignmentSubmissionFromAssignmentsPage;
+    }
+
 }

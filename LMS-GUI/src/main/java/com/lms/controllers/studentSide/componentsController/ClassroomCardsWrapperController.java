@@ -1,23 +1,29 @@
 package main.java.com.lms.controllers.studentSide.componentsController;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.AppSession;
+import main.SceneManager;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Set;
 
 public class ClassroomCardsWrapperController {
@@ -29,14 +35,34 @@ public class ClassroomCardsWrapperController {
     private ArrayList<String> classroomIds = new ArrayList<>();
 
     public void initialize() {
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-        scrollPane.setPrefWidth(1675);
-        scrollPane.setStyle("-fx-background-color: #f4f6fa");
-        scrollPane.setPrefHeight(1100);
-        scrollPane.setFitToHeight(true);
-        scrollPane.setFitToWidth(true);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setStyle("-fx-background-color: red");
+
         scrollPane.setContent(classroomsWrapper());
+
+        // Delay execution until parent is available
+        Platform.runLater(() -> {
+            if (scrollPane.getScene() != null && scrollPane.getScene().getRoot() instanceof BorderPane parent) {
+                Node centerNode = parent.getCenter();
+                if (centerNode instanceof Region region) {
+                    // Bind width to the available space
+                    scrollPane.maxWidthProperty().bind(region.widthProperty());
+
+                    // Dynamically set height to maintain responsiveness
+                    scrollPane.setPrefHeight(region.getHeight() * 0.9); // 90% of the parent height
+                    scrollPane.maxHeightProperty().bind(region.heightProperty()); // Prevent overflow
+
+                    // Enable scrolling while maintaining content's natural size
+                    scrollPane.setFitToHeight(false);
+                    scrollPane.setFitToWidth(true);
+
+                    // Allow content inside to scroll properly
+                    VBox content = (VBox) scrollPane.getContent();
+                    content.maxHeightProperty().bind(scrollPane.maxHeightProperty()); // Bind content height to ScrollPane
+                }
+            }
+        });
     }
 
     private VBox classroomsWrapper() {
@@ -57,7 +83,7 @@ public class ClassroomCardsWrapperController {
         row.setSpacing(40); // Space between cards
 
         for (int i = 0; i < classroomIds.size(); i++) {
-            if (i % 3 == 0 && i != 0) {
+            if (i % 4 == 0 && i != 0) {
                 rows.add(row); // Add completed row
                 row = new HBox(); // Start a new row
                 row.setSpacing(20);
@@ -79,9 +105,8 @@ public class ClassroomCardsWrapperController {
         VBox classroomCard = new VBox();
 
         ImageView classroomCardBanner = new ImageView();
-        Image image = new Image(getClass().getResource("../../../../../../resources/com/lms/images/classroom-icon.png").toExternalForm());
+        Image image = new Image(getClass().getResource("../../../../../../resources/com/lms/images/img.png").toExternalForm());
         classroomCardBanner.setImage(image);
-
 
         VBox classroomIDVBox = new VBox();
         Text classroomID = new Text(classroomIds.get(idx));
@@ -94,8 +119,8 @@ public class ClassroomCardsWrapperController {
         // styling
         classroomCard.setSpacing(20);
         classroomCard.setAlignment(Pos.TOP_CENTER);
-        classroomCard.setPrefWidth(700);
-        classroomCard.setMinHeight(400);
+        classroomCard.setPrefWidth(450);
+        classroomCard.setMinHeight(200);
         classroomCard.setStyle("-fx-border-radius: 30; -fx-background-color: #FFFFFF; -fx-background-radius: 30");
         classroomCard.setCursor(Cursor.HAND);
 
@@ -122,14 +147,28 @@ public class ClassroomCardsWrapperController {
 //        clip.setArcWidth(30);
 //        classroomCardBanner.setClip(clip);
 
-        classroomCardBanner.setFitWidth(250);
+        classroomCardBanner.setFitWidth(420);
         classroomCardBanner.setFitHeight(250);
-        classroomIDVBox.setStyle("-fx-border-radius: 30; -fx-background-color: #2F92BC; -fx-background-radius: 30");
+        classroomCard.setPadding(new Insets(15, 0, 0, 0));
+//        classroomIDVBox.setStyle("-fx-border-radius: 30; -fx-background-color: #2F92BC; -fx-background-radius: 30");
         classroomIDVBox.setAlignment(Pos.CENTER);
         classroomIDVBox.setPrefWidth(Double.MAX_VALUE);
         classroomIDVBox.setPrefHeight(150);
 
-        classroomID.setFont(Font.font("AppleGothic", 18));
+
+        classroomID.setFont(Font.font("AppleGothic", 24));
+
+        // very important block here to set the id and transibtion scene
+        classroomCard.setOnMouseClicked(e -> {
+            System.out.println("clicked on "+ classroomIds.get(idx));
+            session.setSelectedClassroom(classroomIds.get(idx));
+            // switch to classroom contents scene
+            SceneManager.loadCenterView("classroomContents", "resources/com/lms/views/studentSide/ClassroomContents.fxml");
+            Platform.runLater(() ->{
+                SceneManager.setCenterView("classroomContents");
+            });
+        });
+
         return classroomCard;
     }
 }

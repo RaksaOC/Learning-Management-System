@@ -17,7 +17,8 @@ public class MainController {
     private Student student;
     private Teacher teacher;
     private String indexOfClass;
-    private String indexOfProgress;
+    private String classrromId;
+    private String progressId;
 
     public MainController() {
     }
@@ -103,14 +104,14 @@ public class MainController {
 
     private void handleStudentViewClassroom() {
         StudentController studentController = new StudentController(student);
-        this.indexOfClass = studentController.selectClassroom();
-        this.indexOfProgress = studentController.selectProgress();
+        classrromId= studentController.selectClassroom();
+        progressId = studentController.selectProgress();
         Menu menu = new Menu();
         String choice = menu.showStudentViewEachProgress();
         while (true) {
             switch(choice) {
                 case "1":
-                    showAssignment();
+                    showAssignment(classrromId);
                     break;
                 case "2":
 
@@ -124,17 +125,17 @@ public class MainController {
                     break;
             }
             choice = menu.showStudentViewEachProgress();
-            }
         }
+    }
 
-    public void showAssignment(){
+    public void showAssignment(String classrromId){
         StudentController studentController = new StudentController(student);
         Menu menu = new Menu();
         String choice = menu.showAssignment();
         while (true) {
             switch (choice) {
                 case "1":
-                    studentController.handleViewAssignment();
+                    studentController.handleViewAssignment(classrromId);
                     break;
                 case "2":
 //                    studentController.handleEditAssignment();

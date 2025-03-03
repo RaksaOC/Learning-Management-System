@@ -32,7 +32,7 @@ public class TeacherManager {
         Classrooms: %s
         """,
                 teacherToEdit.getId(), teacherToEdit.getFirstName(), teacherToEdit.getLastName(),teacherToEdit.getEmail()
-                , teacherToEdit.getGender(), teacherToEdit.getPhone(), teacherToEdit.getDoB(), printClassrooms(teacherToEdit.getClassrooms())
+                ,teacherToEdit.getGender(), teacherToEdit.getPhone(), teacherToEdit.getDoB(), printClassrooms(teacherToEdit.getClassrooms())
         );
 
         return profile;

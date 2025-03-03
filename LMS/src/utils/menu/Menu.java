@@ -71,8 +71,8 @@ public class Menu {
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
-        } while (!isChoiceValid("1", "4", choice));
+            if (!(isChoiceValid("1", "3", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "3", choice));
         this.clearScreen();
         return choice;
     }

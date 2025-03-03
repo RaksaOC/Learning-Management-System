@@ -16,7 +16,7 @@ public class AssignmentSubmissionController {
             if (AppSession.getInstance().getIsAssignmentSubmissionFromAssignmentsPage()) {
                 SceneManager.setCenterView("studentAssignments");
             } else {
-                SceneManager.setCenterView("classroomContents");
+                SceneManager.setCenterView("studentClassroomContents");
             }
         });
     }

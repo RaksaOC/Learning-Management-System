@@ -16,13 +16,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.AppSession;
 import main.SceneManager;
-import main.java.com.lms.managers.AssignmentsManager;
-import org.json.JSONObject;
+import main.java.com.lms.managers.studentSide.AssignmentsManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Set;
 
 public class AssignmentCardsWrapperController {
     @FXML
@@ -153,6 +151,7 @@ public class AssignmentCardsWrapperController {
         assignmentIDVBox.setPrefHeight(100);
 
         assignmentID.setFont(Font.font("AppleGothic", 24));
+        assignmentCard.setMaxWidth(400);
         HBox.setHgrow(assignmentCard, Priority.ALWAYS);
 
         assignmentCard.setOnMouseClicked(e -> {

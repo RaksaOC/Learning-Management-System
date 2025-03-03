@@ -2,7 +2,6 @@ package main.java.com.lms.controllers;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.HBox;
@@ -11,8 +10,7 @@ import javafx.scene.text.Text;
 import main.SceneManager;
 
 import javafx.scene.image.ImageView;
-import main.java.com.lms.controllers.studentSide.StudentClassroomsController;
-import main.java.com.lms.managers.AuthenticationManager;
+import main.java.com.lms.managers.studentSide.AuthenticationManager;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -124,7 +122,6 @@ public class StudentMainFrameController {
             SceneManager.setCenterView("studentProfileSettings");
             highlightSelectedLink(settingsLink);
         });
-
     }
 
     private void highlightSelectedLink(HBox selectedTab) {

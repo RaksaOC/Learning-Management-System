@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import main.SceneManager;
-import main.java.com.lms.managers.AuthenticationManager;
+import main.java.com.lms.managers.studentSide.AuthenticationManager;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -21,12 +21,6 @@ public class TeacherMainFrameController {
     private HBox dashboardLink;
     @FXML
     private HBox classroomsLink;
-    @FXML
-    private HBox assignmentsLink;
-    @FXML
-    private HBox resourcesLink;
-    @FXML
-    private HBox quizzesLink;
     @FXML
     private HBox settingsLink;
     @FXML
@@ -50,29 +44,11 @@ public class TeacherMainFrameController {
 
         classroomsLink.setOnMouseClicked(event -> {
             SceneManager.loadCenterView("teacherClassrooms", "resources/com/lms/views/teacherSide/Classrooms.fxml");
-            SceneManager.loadComponent("teacherClassroomsWrapper", "resources/com/lms/views/teacherSide/components/ClassroomCardsWrapper.fxml");
-
-            VBox center = (VBox) SceneManager.getCenterView("teacherClassrooms");
-            center.getChildren().add(SceneManager.getComponent("teacherClassroomsWrapper"));
-
             SceneManager.setCenterView("teacherClassrooms");
+
             highlightSelectedLink(classroomsLink);
         });
-        assignmentsLink.setOnMouseClicked(event -> {
-            SceneManager.loadCenterView("teacherAssignments", "resources/com/lms/views/teacherSide/Assignments.fxml");
-            SceneManager.setCenterView("teacherAssignments");
-            highlightSelectedLink(assignmentsLink);
-        });
-        resourcesLink.setOnMouseClicked(event -> {
-            SceneManager.loadCenterView("teacherResources", "resources/com/lms/views/teacherSide/Resources.fxml");
-            SceneManager.setCenterView("teacherResources");
-            highlightSelectedLink(resourcesLink);
-        });
-        quizzesLink.setOnMouseClicked(event -> {
-            SceneManager.loadCenterView("teacherQuizzes", "resources/com/lms/views/teacherSide/Quizzes.fxml");
-            SceneManager.setCenterView("teacherQuizzes");
-            highlightSelectedLink(quizzesLink);
-        });
+
         settingsLink.setOnMouseClicked(event -> {
             SceneManager.loadCenterView("teacherProfileSettings", "resources/com/lms/views/teacherSide/Profile-Settings.fxml");
             SceneManager.setCenterView("teacherProfileSettings");
@@ -128,11 +104,8 @@ public class TeacherMainFrameController {
         links = new ArrayList<>();
         links.add(dashboardLink);
         links.add(classroomsLink);
-        links.add(assignmentsLink);
-        links.add(resourcesLink);
-        links.add(quizzesLink);
         links.add(settingsLink);
-        //        links.add(logoutLink); // left out intentionally
+        links.add(logoutLink);
     }
 
     public void setNameText(String name) {

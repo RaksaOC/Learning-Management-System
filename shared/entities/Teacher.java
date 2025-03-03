@@ -14,7 +14,7 @@ public class Teacher extends User {
 
     public Teacher(JSONObject teacher) throws JSONException {
         super(teacher.getJSONObject("name").getString("firstName"),
-                teacher.getJSONObject("name").getString("firstName"),
+                teacher.getJSONObject("name").getString("lastName"),
                 teacher.getString("email"),
                 teacher.getString("password"));
         this.id = teacher.getString("id");

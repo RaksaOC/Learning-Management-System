@@ -1,4 +1,4 @@
-package main.java.com.lms.managers;
+package main.java.com.lms.managers.studentSide;
 
 import entities.Student;
 import entities.Teacher;

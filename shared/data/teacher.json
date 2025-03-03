@@ -1,7 +1,7 @@
 [
     {
         "createdAt": "2025-02-04 22:42:52",
-        "lastLogin": "2025-03-01 12:24:52",
+        "lastLogin": "2025-03-03 14:01:36",
         "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
         "phoneNumber": "011554049",
         "gender": "Male",
@@ -11,7 +11,10 @@
             "lastName": "Raksa"
         },
         "id": "T0001",
-        "classrooms": ["GEN10-CS-SE-G1-OOP"],
+        "classrooms": [
+            "GEN10-CS-SE-G1-OOP",
+            "GEN10-CS-SE-G1-DBMS"
+        ],
         "email": "raksaoc@gmail.com",
         "status": "active"
     },

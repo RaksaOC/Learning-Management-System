@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import main.AppSession;
 import main.SceneManager;
-import main.java.com.lms.managers.AuthenticationManager;
+import main.java.com.lms.managers.studentSide.AuthenticationManager;
 
 public class UserTypeController {
     @FXML
@@ -49,8 +49,6 @@ public class UserTypeController {
                 StudentMainFrameController studentMainFrameController = SceneManager.loadMainFrame("student");
                 studentMainFrameController.setNameText(session.getStudent().getFullName());
 
-                SceneManager.loadCenterView("studentProfileSettings", "resources/com/lms/views/studentSide/Profile-Settings.fxml");
-
                 SceneManager.loadCenterView("studentDashboard", "resources/com/lms/views/studentSide/Dashboard.fxml");
                 SceneManager.setCenterView("studentDashboard");
             } else {
@@ -69,7 +67,6 @@ public class UserTypeController {
 
                 TeacherMainFrameController teacherMainFrameController = SceneManager.loadMainFrame("teacher");
                 teacherMainFrameController.setNameText(session.getTeacher().getFullName());
-
 
                 SceneManager.loadCenterView("teacherDashboard", "resources/com/lms/views/teacherSide/Dashboard.fxml");
                 SceneManager.setCenterView("teacherDashboard");

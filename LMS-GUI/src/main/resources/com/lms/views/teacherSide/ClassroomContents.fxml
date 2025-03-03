@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1117.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lms.controllers.teacherSide.ClassroomContentsController">
+    <children>
+        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <content>
+                <VBox maxHeight="1.7976931348623157E308" prefHeight="1106.0" prefWidth="597.0">
+                    <children>
+                        <VBox prefHeight="27.0" prefWidth="600.0">
+                            <children>
+                                <ImageView fx:id="backButton" fitHeight="41.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                                    <image>
+                                        <Image url="@../../images/back-icon.png" />
+                                    </image>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </ImageView>
+                            </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                            <children>
+                                <AnchorPane prefHeight="39.0" prefWidth="600.0">
+                                    <VBox.margin>
+                                        <Insets top="20.0" />
+                                    </VBox.margin>
+                                    <children>
+                                        <Text layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assignments" AnchorPane.leftAnchor="0.0">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="20.0" />
+                                            </font>
+                                        </Text>
+                                        <Button fx:id="addAssignmentButton" layoutX="545.0" layoutY="7.0" mnemonicParsing="false" style="-fx-background-color: #2F92BC; -fx-border-radius: 30; -fx-background-radius: 30;" text="+ Add" AnchorPane.rightAnchor="10.0">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                            <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                            </cursor>
+                                            <padding>
+                                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                            </padding>
+                                        </Button>
+                                    </children>
+                                </AnchorPane>
+                                <ScrollPane fx:id="assignmentsScrollPane" hbarPolicy="ALWAYS" maxHeight="1.7976931348623157E308" prefHeight="147.0" prefWidth="600.0" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                                    <VBox.margin>
+                                        <Insets top="10.0" />
+                                    </VBox.margin>
+                                </ScrollPane>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="20.0" />
+                            </VBox.margin>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                            <children>
+                                <AnchorPane prefHeight="39.0" prefWidth="600.0">
+                                    <children>
+                                        <Text layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resources" AnchorPane.leftAnchor="0.0">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="20.0" />
+                                            </font>
+                                        </Text>
+                                        <Button fx:id="addResourceButton" layoutX="545.0" layoutY="7.0" mnemonicParsing="false" style="-fx-background-color: #2F92BC; -fx-border-radius: 30; -fx-background-radius: 30;" text="+ Add" AnchorPane.rightAnchor="10.0">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                            <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                            </cursor>
+                                            <padding>
+                                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                            </padding>
+                                        </Button>
+                                    </children>
+                                </AnchorPane>
+                                <ScrollPane fx:id="resourcesScrollPane" hbarPolicy="ALWAYS" maxHeight="1.7976931348623157E308" prefHeight="147.0" prefWidth="600.0" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                                    <VBox.margin>
+                                        <Insets top="10.0" />
+                                    </VBox.margin>
+                                </ScrollPane>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="20.0" />
+                            </VBox.margin>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                            <children>
+                                <AnchorPane prefHeight="39.0" prefWidth="600.0">
+                                    <children>
+                                        <Text layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quizzes" AnchorPane.leftAnchor="0.0">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="20.0" />
+                                            </font>
+                                        </Text>
+                                        <Button fx:id="addQuizButton" layoutX="545.0" layoutY="7.0" mnemonicParsing="false" style="-fx-background-color: #2F92BC; -fx-border-radius: 30; -fx-background-radius: 30;" text="+ Add" AnchorPane.rightAnchor="10.0">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                            <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                            </cursor>
+                                            <padding>
+                                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                            </padding>
+                                        </Button>
+                                    </children>
+                                </AnchorPane>
+                                <ScrollPane fx:id="quizzesScrollPane" hbarPolicy="ALWAYS" maxHeight="1.7976931348623157E308" prefHeight="147.0" prefWidth="600.0" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                                    <VBox.margin>
+                                        <Insets top="10.0" />
+                                    </VBox.margin>
+                                </ScrollPane>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="20.0" />
+                            </VBox.margin>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Students">
+                                    <font>
+                                        <Font name="AppleGothic Regular" size="20.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="10.0" top="10.0" />
+                                    </VBox.margin>
+                                </Text>
+                                <TableView prefHeight="200.0" prefWidth="200.0">
+                                    <columns>
+                                        <TableColumn prefWidth="75.0" text="ID" />
+                                        <TableColumn prefWidth="108.0" text="Name" />
+                                        <TableColumn prefWidth="104.0" text="Grade" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </children>
+</VBox>

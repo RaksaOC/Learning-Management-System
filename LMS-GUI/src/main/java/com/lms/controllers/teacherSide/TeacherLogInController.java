@@ -1,6 +1,5 @@
 package main.java.com.lms.controllers.teacherSide;
 
-import entities.Student;
 import entities.Teacher;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -8,9 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import main.AppSession;
 import main.SceneManager;
-import main.java.com.lms.controllers.StudentMainFrameController;
 import main.java.com.lms.controllers.TeacherMainFrameController;
-import main.java.com.lms.managers.AuthenticationManager;
+import main.java.com.lms.managers.studentSide.AuthenticationManager;
 
 public class TeacherLogInController {
     @FXML

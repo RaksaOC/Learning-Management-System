@@ -3,13 +3,19 @@ package main;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Labeled;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import main.java.com.lms.controllers.studentSide.StudentClassroomsController;
+import ui.UI;
 
 import java.io.IOException;
 import java.net.URL;
@@ -106,6 +112,7 @@ public class SceneManager extends Application {
             centerViews.put(name, view);
             centerViewsControllers.put(name, loader.getController());
             System.out.println("Loaded center view: " + name + " fxml: " + fxmlPath);
+            System.out.println("center view after loaded:" + centerViews);
         } catch (IOException e) {
             System.err.println("Error loading center view: " + fxmlPath);
             e.printStackTrace();
@@ -118,6 +125,7 @@ public class SceneManager extends Application {
     public static void setCenterView(String name) {
         if (mainLayout != null) {
             // Get the center VBox (which contains the fake top part)
+            System.out.println("trying to set center view: " + name);
             VBox contentLessVBox = (VBox) mainLayout.getCenter();
             System.out.println("got the center of the border pane");
             // Get the second VBox (after the top part)
@@ -126,7 +134,9 @@ public class SceneManager extends Application {
             VBox contentVBox = (VBox) centerViews.get(name);
 
             contentVBox.setMaxWidth(Double.MAX_VALUE);
+            contentVBox.setMaxHeight(Double.MAX_VALUE);
             contentVBox.setMinWidth(0);
+            contentVBox.setMinHeight(0);
 
             // Clear only the content after the fake top part (i.e., clear all except the first child)
             if (contentLessVBox.getChildren().size() > 1) {
@@ -148,16 +158,62 @@ public class SceneManager extends Application {
         try {
             URL resource = SceneManager.class.getResource(fxmlPath);
             if (resource == null) throw new IOException("FXML file not found: " + fxmlPath);
-
+            System.out.println(components);
             FXMLLoader loader = new FXMLLoader(resource);
             Parent root = loader.load();
             components.put(name, root);
-            System.out.println("Loaded component " + name);
+            System.out.println(UI.TextColor.addColor(components.toString(), UI.TextColor.YELLOW));
         } catch (IOException e) {
             System.err.println("Error loading scene: " + fxmlPath);
             e.printStackTrace();
         }
     }
+
+//    public static void toggleDarkThemeOn(Parent root) {
+//        for (Node node : root.getChildrenUnmodifiable()) {
+//            applyDarkTheme(node);
+//
+//            if (node instanceof Parent) { // Recursively check deeper levels
+//                toggleDarkThemeOn((Parent) node);
+//            }
+//        }
+//    }
+//
+//    public static void toggleDarkThemeOff(Parent root) {
+//        for (Node node : root.getChildrenUnmodifiable()) {
+//            applyLightTheme(node);
+//
+//            if (node instanceof Parent) { // Recursively check deeper levels
+//                toggleDarkThemeOff((Parent) node);
+//            }
+//        }
+//    }
+//
+//    // Helper methods to apply styles
+//    private static void applyDarkTheme(Node node) {
+//        if (node instanceof Region) {
+//            node.setStyle("-fx-background-color: #2E2E2E;");
+//        }
+//        if (node instanceof Labeled) {
+//            ((Labeled) node).setStyle("-fx-text-fill: white;");
+//        }
+//        if (node instanceof Text) {
+//            ((Text) node).setFill(Color.WHITE);
+//        }
+//    }
+//
+//    private static void applyLightTheme(Node node) {
+//        if (node instanceof Region) {
+//            node.setStyle("-fx-background-color: white;");
+//        }
+//        if (node instanceof Labeled) {
+//            ((Labeled) node).setStyle("-fx-text-fill: black;");
+//        }
+//        if (node instanceof Text) {
+//            ((Text) node).setFill(Color.BLACK);
+//        }
+//    }
+
 
     public static Parent getCenterView(String name) {
         return centerViews.get(name);
@@ -173,6 +229,10 @@ public class SceneManager extends Application {
 
     public static void setCenterViewController(String name, Object controller) {
         centerViewsControllers.put(name, controller);
+    }
+
+    public static BorderPane getMainLayout() {
+        return mainLayout;
     }
 
     public static Parent getComponent(String name) {

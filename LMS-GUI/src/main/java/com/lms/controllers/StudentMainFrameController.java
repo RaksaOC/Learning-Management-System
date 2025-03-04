@@ -2,7 +2,6 @@ package main.java.com.lms.controllers;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.HBox;
@@ -11,8 +10,7 @@ import javafx.scene.text.Text;
 import main.SceneManager;
 
 import javafx.scene.image.ImageView;
-import main.java.com.lms.controllers.studentSide.StudentClassroomsController;
-import main.java.com.lms.managers.AuthenticationManager;
+import main.java.com.lms.managers.studentSide.AuthenticationManager;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -53,27 +51,46 @@ public class StudentMainFrameController {
             highlightSelectedLink(dashboardLink);
         });
         classroomsLink.setOnMouseClicked(event -> {
-            SceneManager.loadCenterView("studentClassrooms", "resources/com/lms/views/studentSide/Classrooms.fxml");
-            SceneManager.loadComponent("studentClassroomCardsWrapper", "resources/com/lms/views/studentSide/components/ClassroomCardsWrapper.fxml");
-
-            VBox center = (VBox) SceneManager.getCenterView("studentClassrooms");
-            center.getChildren().add(SceneManager.getComponent("studentClassroomCardsWrapper"));
+            loadDynamicComponentToCenterView(
+                    "studentClassrooms",
+                    "studentClassroomCardsWrapper",
+                    "resources/com/lms/views/studentSide/Classrooms.fxml",
+                    "resources/com/lms/views/studentSide/components/ClassroomCardsWrapper.fxml"
+            );
 
             SceneManager.setCenterView("studentClassrooms");
             highlightSelectedLink(classroomsLink);
         });
         assignmentsLink.setOnMouseClicked(event -> {
-            SceneManager.loadCenterView("studentAssignments", "resources/com/lms/views/studentSide/Assignments.fxml");
+            loadDynamicComponentToCenterView(
+                    "studentAssignments",
+                    "studentAssignmentCardsWrapper",
+                    "resources/com/lms/views/studentSide/Assignments.fxml",
+                    "resources/com/lms/views/studentSide/components/AssignmentCardsWrapper.fxml"
+            );
+
             SceneManager.setCenterView("studentAssignments");
             highlightSelectedLink(assignmentsLink);
         });
         resourcesLink.setOnMouseClicked(event -> {
-            SceneManager.loadCenterView("studentResources", "resources/com/lms/views/studentSide/Resources.fxml");
+            loadDynamicComponentToCenterView(
+                    "studentResources",
+                    "studentResourceCardsWrapper",
+                    "resources/com/lms/views/studentSide/Resources.fxml",
+                    "resources/com/lms/views/studentSide/components/ResourceCardsWrapper.fxml"
+            );
+
             SceneManager.setCenterView("studentResources");
             highlightSelectedLink(resourcesLink);
         });
         quizzesLink.setOnMouseClicked(event -> {
-            SceneManager.loadCenterView("studentQuizzes", "resources/com/lms/views/studentSide/Quizzes.fxml");
+            loadDynamicComponentToCenterView(
+                    "studentQuizzes",
+                    "studentQuizCardsWrapper",
+                    "resources/com/lms/views/studentSide/Resources.fxml",
+                    "resources/com/lms/views/studentSide/components/QuizCardsWrapper.fxml"
+            );
+
             SceneManager.setCenterView("studentQuizzes");
             highlightSelectedLink(quizzesLink);
         });
@@ -105,7 +122,6 @@ public class StudentMainFrameController {
             SceneManager.setCenterView("studentProfileSettings");
             highlightSelectedLink(settingsLink);
         });
-
     }
 
     private void highlightSelectedLink(HBox selectedTab) {
@@ -149,5 +165,13 @@ public class StudentMainFrameController {
     public void setNameText(String name) {
         Platform.runLater(() -> nameText.setText(name));
         System.out.println("setNameText method called" + this.nameText);
+    }
+
+    private void loadDynamicComponentToCenterView(String centerViewName, String dynamicComponentName, String centerViewFilePath, String dynamicComponentFilePath) {
+        SceneManager.loadCenterView(centerViewName, centerViewFilePath);
+        SceneManager.loadComponent(dynamicComponentName, dynamicComponentFilePath);
+
+        VBox center = (VBox) SceneManager.getCenterView(centerViewName);
+        center.getChildren().add(SceneManager.getComponent(dynamicComponentName));
     }
 }

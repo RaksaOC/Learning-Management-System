@@ -1,10 +1,18 @@
 package main.java.com.lms.controllers.studentSide;
 
-import entities.Student;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.AppSession;
+import main.SceneManager;
+import main.ThemeManager;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class StudentProfileSettingsController {
     @FXML
@@ -37,8 +45,19 @@ public class StudentProfileSettingsController {
     private Text gPhone;
     @FXML
     private Text lastLoggedIn;
+    @FXML
+    private HBox themeToggleWrapper;
+    @FXML
+    private VBox themeSwitch;
+    @FXML
+    private VBox themeToggleLabel;
 
     public void initialize() {
+        initPersonalInfo();
+        initSettings();
+    }
+
+    private void initPersonalInfo(){
         AppSession session = AppSession.getInstance();
         this.name.setText(session.getStudent().getFullName());
         this.studentID.setText("Student ID: " + session.getStudent().getId());
@@ -54,5 +73,54 @@ public class StudentProfileSettingsController {
         this.gGender.setText(session.getStudent().getGuardianGender());
         this.gPhone.setText(session.getStudent().getGuardianPhoneNumber());
         this.lastLoggedIn.setText(session.getStudent().getLastLogin());
+    }
+
+    private void initSettings(){
+        AtomicBoolean isOn = new AtomicBoolean(false);
+        themeToggleWrapper.setOnMouseClicked(event -> {
+            if (!isOn.get()) {
+                // ON State (left side filled, right side empty)
+                themeSwitch.setStyle("-fx-background-color: white; -fx-border-radius: 20; -fx-background-radius: 20");
+                themeToggleLabel.setStyle("-fx-background-color: #2F92BC; -fx-background-radius: 20; -fx-border-radius: 20");
+
+                themeSwitch.getChildren().clear();
+                themeToggleLabel.getChildren().clear();
+
+                Text onLabel = new Text("ON");
+                onLabel.setFill(Color.BLACK);
+                onLabel.setFont(Font.font("AppleGothic", 13));
+
+                themeSwitch.setAlignment(Pos.CENTER);
+                themeSwitch.getChildren().add(onLabel); // Add text to the left side
+
+//                ThemeManager.toggleTheme(SceneManager.getMainLayout());
+                isOn.set(true);
+            } else {
+                // OFF State (right side filled, left side empty)
+                themeSwitch.setStyle("-fx-background-color: #2F92BC; -fx-border-radius: 20; -fx-background-radius: 20");
+                themeToggleLabel.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20");
+
+                themeSwitch.getChildren().clear();
+                themeToggleLabel.getChildren().clear();
+
+                Text offLabel = new Text("OFF");
+                offLabel.setFill(Color.BLACK);
+                offLabel.setFont(Font.font("AppleGothic", 13));
+
+                themeToggleLabel.setAlignment(Pos.CENTER);
+                themeToggleLabel.getChildren().add(offLabel); // Add text to the right side
+//                ThemeManager.toggleTheme(SceneManager.getMainLayout());
+
+                isOn.set(false);
+            }
+        });
+
+        themeToggleWrapper.setOnMouseEntered(event -> {
+            themeToggleWrapper.setOpacity(0.9);
+        });
+        themeToggleWrapper.setOnMouseExited(event -> {
+            themeToggleWrapper.setOpacity(1);
+        });
+
     }
 }

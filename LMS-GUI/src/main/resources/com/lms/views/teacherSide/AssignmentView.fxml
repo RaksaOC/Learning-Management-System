@@ -31,6 +31,9 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                         </ImageView>
                      </children>
                   </VBox>
@@ -38,17 +41,17 @@
                      <children>
                         <VBox spacing="10.0" AnchorPane.leftAnchor="0.0">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="A000001" fx:id="assignmentID">
+                              <Text fx:id="assignmentID" strokeType="OUTSIDE" strokeWidth="0.0" text="A000001">
                                  <font>
                                     <Font name="AppleGothic Regular" size="18.0" />
                                  </font>
                               </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Assignment Title" fx:id="assignmentName">
+                              <Text fx:id="assignmentName" strokeType="OUTSIDE" strokeWidth="0.0" text="Assignment Title">
                                  <font>
                                     <Font name="AppleGothic Regular" size="18.0" />
                                  </font>
                               </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Due: " fx:id="assignmentDueDate">
+                              <Text fx:id="assignmentDueDate" strokeType="OUTSIDE" strokeWidth="0.0" text="Due: ">
                                  <font>
                                     <Font name="AppleGothic Regular" size="18.0" />
                                  </font>
@@ -67,7 +70,7 @@
                               <Font name="AppleGothic Regular" size="18.0" />
                            </font>
                         </Text>
-                        <TextArea disable="true" prefHeight="239.0" prefWidth="1144.0" style="-fx-background-color: #f4f6fa; -fx-border-color: #f4f6fa; -fx-background-radius: 0; -fx-border-width: 0;" wrapText="true" />
+                        <TextArea disable="true" prefHeight="239.0" prefWidth="900.0" style="-fx-background-color: #f4f6fa; -fx-border-color: #f4f6fa; -fx-background-radius: 0; -fx-border-width: 0;" wrapText="true" />
                      </children>
                      <VBox.margin>
                         <Insets top="40.0" />
@@ -108,11 +111,14 @@
                            </children>
                         </VBox>
                      </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                   </VBox>
                   <HBox prefHeight="19.0" prefWidth="1144.0" spacing="20.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Edit" fx:id="editButton" />
-                        <Button mnemonicParsing="false" text="Delete" fx:id="deleteButton"/>
+                        <Button fx:id="editButton" mnemonicParsing="false" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 30; -fx-background-radius: 30;" text="Edit" />
+                        <Button fx:id="deleteButton" mnemonicParsing="false" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 30; -fx-background-radius: 30;" text="Delete" />
                      </children>
                      <VBox.margin>
                         <Insets top="20.0" />
@@ -130,22 +136,7 @@
                         </Text>
                      </children>
                   </VBox>
-                  <VBox prefHeight="563.0" prefWidth="1144.0" spacing="10.0" style="-fx-background-color: gray;" VBox.vgrow="NEVER">
-                     <children>
-                        <HBox minHeight="300.0" minWidth="300.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: red;" VBox.vgrow="NEVER" />
-                        <HBox minHeight="300.0" minWidth="300.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: red;" VBox.vgrow="NEVER" />
-                        <HBox minHeight="300.0" minWidth="300.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: red;" VBox.vgrow="NEVER" />
-                        <HBox minHeight="300.0" minWidth="300.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: red;" VBox.vgrow="NEVER" />
-                        <HBox minHeight="300.0" minWidth="300.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: red;" VBox.vgrow="NEVER" />
-                        <HBox minHeight="300.0" minWidth="300.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: red;" VBox.vgrow="NEVER" />
-                        <HBox minHeight="300.0" minWidth="300.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: red;" VBox.vgrow="NEVER" />
-                        <HBox minHeight="300.0" minWidth="300.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: red;" VBox.vgrow="NEVER" />
-                        <HBox minHeight="300.0" minWidth="300.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: green;" />
-                        <HBox minHeight="300.0" minWidth="300.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: green;" />
-                        <HBox minHeight="300.0" minWidth="300.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: green;" />
-                        <HBox minHeight="300.0" minWidth="300.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: green;" />
-                     </children>
-                  </VBox>
+                  <VBox prefHeight="563.0" prefWidth="1144.0" spacing="10.0" style="-fx-background-color: #f4f6fa;" VBox.vgrow="NEVER" />
                </children>
                <padding>
                   <Insets bottom="20.0" left="10.0" right="20.0" top="20.0" />

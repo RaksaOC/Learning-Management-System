@@ -34,7 +34,7 @@ public class AssignmentViewController {
     @FXML
     private VBox studentsList; // TODO: from the manger generate HBOXes in this list
     @FXML
-    private Button gradeButton; // TODO: add this button to a VBOX in studentsList and setCenterView to gradeAssignment
+    private Button gradeButton; // TODO: add this button to a VBOX in studentsList and setCenterView to gradeAssignment and assign it to go to "gradeAssignment" centerView
 
     public void initialize() {
         backButton.setOnMouseClicked(event -> {

@@ -15,9 +15,9 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1117.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lms.controllers.teacherSide.ClassroomContentsController">
     <children>
-        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+        <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" VBox.vgrow="ALWAYS">
             <content>
-                <VBox maxHeight="1.7976931348623157E308" prefHeight="1106.0" prefWidth="597.0">
+                <VBox maxHeight="1.7976931348623157E308" prefHeight="1331.0" prefWidth="584.0" style="-fx-background-color: #f4f6fa;">
                     <children>
                         <VBox prefHeight="27.0" prefWidth="600.0">
                             <children>
@@ -56,7 +56,7 @@
                                         </Button>
                                     </children>
                                 </AnchorPane>
-                                <ScrollPane fx:id="assignmentsScrollPane" hbarPolicy="ALWAYS" maxHeight="1.7976931348623157E308" prefHeight="147.0" prefWidth="600.0" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                                <ScrollPane fx:id="assignmentsScrollPane" hbarPolicy="ALWAYS" maxHeight="1.7976931348623157E308" minHeight="300.0" prefHeight="147.0" prefWidth="600.0" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
                                     <VBox.margin>
                                         <Insets top="10.0" />
                                     </VBox.margin>
@@ -88,7 +88,7 @@
                                         </Button>
                                     </children>
                                 </AnchorPane>
-                                <ScrollPane fx:id="resourcesScrollPane" hbarPolicy="ALWAYS" maxHeight="1.7976931348623157E308" prefHeight="147.0" prefWidth="600.0" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                                <ScrollPane fx:id="resourcesScrollPane" hbarPolicy="ALWAYS" maxHeight="1.7976931348623157E308" minHeight="300.0" prefHeight="147.0" prefWidth="600.0" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
                                     <VBox.margin>
                                         <Insets top="10.0" />
                                     </VBox.margin>
@@ -120,7 +120,7 @@
                                         </Button>
                                     </children>
                                 </AnchorPane>
-                                <ScrollPane fx:id="quizzesScrollPane" hbarPolicy="ALWAYS" maxHeight="1.7976931348623157E308" prefHeight="147.0" prefWidth="600.0" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                                <ScrollPane fx:id="quizzesScrollPane" hbarPolicy="ALWAYS" maxHeight="1.7976931348623157E308" minHeight="300.0" prefHeight="147.0" prefWidth="600.0" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
                                     <VBox.margin>
                                         <Insets top="10.0" />
                                     </VBox.margin>
@@ -130,7 +130,7 @@
                                 <Insets top="20.0" />
                             </VBox.margin>
                         </VBox>
-                        <VBox alignment="TOP_CENTER">
+                        <VBox alignment="TOP_CENTER" prefHeight="281.0" prefWidth="598.0">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Students">
                                     <font>
@@ -140,7 +140,7 @@
                                         <Insets bottom="10.0" top="10.0" />
                                     </VBox.margin>
                                 </Text>
-                                <TableView prefHeight="200.0" prefWidth="200.0">
+                                <TableView prefHeight="221.0" prefWidth="598.0">
                                     <columns>
                                         <TableColumn prefWidth="75.0" text="ID" />
                                         <TableColumn prefWidth="108.0" text="Name" />

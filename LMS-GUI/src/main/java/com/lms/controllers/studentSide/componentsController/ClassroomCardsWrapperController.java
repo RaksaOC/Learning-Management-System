@@ -163,9 +163,9 @@ public class ClassroomCardsWrapperController {
             System.out.println("clicked on "+ classroomIds.get(idx));
             session.setSelectedClassroom(classroomIds.get(idx));
             // switch to classroom contents scene
-            SceneManager.loadCenterView("classroomContents", "resources/com/lms/views/studentSide/ClassroomContents.fxml");
+            SceneManager.loadCenterView("studentClassroomContents", "resources/com/lms/views/studentSide/ClassroomContents.fxml");
             Platform.runLater(() ->{
-                SceneManager.setCenterView("classroomContents");
+                SceneManager.setCenterView("studentClassroomContents");
             });
         });
 

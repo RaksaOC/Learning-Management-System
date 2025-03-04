@@ -1,32 +1,10 @@
 [
     {
-        "teacherId": "T0001",
-        "assignments": [],
-        "students": ["S000001"],
-        "resources": [],
-        "id": "GEN10-CS-SE-G1-OOP",
-        "quizzes": [],
-        "courseId": "",
-        "status": "active"
-    },
-    {
-        "teacherId": "",
-        "assignments": [],
-        "students": [],
-        "resources": [],
-        "id": "GEN10-CS-SE-G4-OOP",
-        "quizzes": [],
-        "courseId": "",
-        "status": "active"
-    },
-    {
-        "teacherId": "",
-        "assignments": [],
-        "students": [],
-        "resources": [],
-        "id": "GEN10-CS-SE-G4-OOP",
-        "quizzes": [],
-        "courseId": "",
-        "status": "active"
+        "studentId": "S000001",
+        "classroomId": "GEN10-CS-SE-G1-DBMS",
+        "assignments": ["A00001", "B", "C", "A00001", "B", "C", "A00001", "B", "C", "A00001", "B", "C", "A00001", "B", "C", "A00001", "B", "C"],
+        "resources": ["a", "b", "c"],
+        "quizzes": ["a", "b", "c", "a", "b", "c"],
+        "id": "P000001"
     }
 ]

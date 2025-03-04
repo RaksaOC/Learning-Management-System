@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="701.0" prefWidth="1078.0" spacing="20.0" style="-fx-background-color: #f4f6fa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lms.controllers.studentSide.StudentProfileSettingsController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1130.0" prefWidth="1078.0" spacing="20.0" style="-fx-background-color: #f4f6fa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lms.controllers.studentSide.StudentProfileSettingsController">
    <children>
-      <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="713.0" prefWidth="1078.0" style="-fx-background-color: #f4f6fa;" VBox.vgrow="ALWAYS">
+      <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="814.0" prefWidth="1078.0" style="-fx-background-color: #f4f6fa;" VBox.vgrow="NEVER">
          <content>
             <VBox alignment="TOP_CENTER" prefHeight="675.0" prefWidth="1078.0" spacing="15.0" style="-fx-background-color: #f4f6fa;">
                <children>
@@ -193,6 +195,34 @@
                         <Font name="AppleGothic Regular" size="20.0" />
                      </font>
                   </Text>
+                  <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="1076.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <HBox fx:id="themeToggleWrapper" layoutX="954.0" layoutY="31.0" prefHeight="34.0" prefWidth="108.0" spacing="2.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: black;" AnchorPane.rightAnchor="15.0">
+                           <children>
+                              <VBox fx:id="themeSwitch" prefHeight="200.0" prefWidth="100.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #2F92BC;" />
+                              <VBox fx:id="themeToggleLabel" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-radius: 20; -fx-background-radius: 20;">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="OFF">
+                                       <font>
+                                          <Font name="AppleGothic Regular" size="13.0" />
+                                       </font></Text>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </HBox>
+                        <Text fx:id="generation1" layoutX="8.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dark Theme" AnchorPane.leftAnchor="14.5">
+                           <font>
+                              <Font name="AppleGothic Regular" size="17.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
                </children>
             </VBox>
          </content>

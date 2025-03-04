@@ -5,7 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="816c4d4f-796b-4ab7-98a7-72a49b87cc0e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/shared/data/classroom-icon.png" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-GUI/src/main/ThemeManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/AssignmentSubmissionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/ClassroomContentsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/componentsController/AssignmentCardsWrapperController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/componentsController/QuizCardsWrapperController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/componentsController/ResourceCardsWrapperController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/AssignmentsManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/QuizzesManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/ResourcesManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/images/back-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/AssignmentSubmission.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/ClassroomContents.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/components/AssignmentCardsWrapper.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/components/QuizCardsWrapper.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/components/ResourceCardsWrapper.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/AppSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/AppSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/SceneManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/StudentMainFrameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/StudentMainFrameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/StudentProfileSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/StudentProfileSettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/componentsController/ClassroomCardsWrapperController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/componentsController/ClassroomCardsWrapperController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/componentsController/ClassroomCardsWrapperController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/componentsController/ClassroomCardsWrapperController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/StudentMainFrame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/StudentMainFrame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/Assignments.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/Assignments.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/Profile-Settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/Profile-Settings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/Test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/Test.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/classroom.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/classroom.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/history.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/history.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/progress.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/progress.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/student.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/student.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +82,7 @@
     "ToolWindow.Run.ShowToolbar": "false",
     "dart.analysis.tool.window.visible": "false",
     "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Merging test",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/raksa/School/Year 2/Term 2/OOP/Project/Learning-Management-System/shared/data",
     "node.js.detected.package.eslint": "true",

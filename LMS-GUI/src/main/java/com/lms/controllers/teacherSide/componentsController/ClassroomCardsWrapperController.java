@@ -127,7 +127,7 @@ public class ClassroomCardsWrapperController {
         classroomIDVBox.setPrefWidth(Double.MAX_VALUE);
         classroomIDVBox.setPrefHeight(150);
 
-        classroomID.setFont(Font.font("AppleGothic", 18));
+        classroomID.setFont(Font.font("AppleGothic", 24));
         return classroomCard;
     }
 }

@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -98,7 +99,7 @@ public class ClassroomManager implements classroomManagementInterface{
                 // print previous info
                 JSONObject assignmentToEdit = allAssignments.getJSONObject(i);
                 System.out.println("Title: " + assignmentToEdit.getString("title"));
-                System.out.println("Description: " +assignmentToEdit.getString("description"));
+                System.out.println("Description: " + assignmentToEdit.getString("description"));
                 JSONObject assignmentDeadline = assignmentToEdit.getJSONObject("deadline");
                 System.out.println("Deadline: " + assignmentDeadline.getString("date") + " | " + assignmentDeadline.getString("time"));
                 // takes new info
@@ -300,7 +301,6 @@ public class ClassroomManager implements classroomManagementInterface{
                 }
                 boolean found = false;
                 for (int j = 0; j < assignments.length(); j++) {
-                    // needs to compare id instead
                     if (assignmentId.equals(assignments.getJSONObject(j).getString("id"))) {
                         assignments.put(j, newAssignment); // save into the correct index
                         found = true;
@@ -350,10 +350,7 @@ public class ClassroomManager implements classroomManagementInterface{
     }
 
 
-
-
-
-
+// ---------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -362,73 +359,227 @@ public class ClassroomManager implements classroomManagementInterface{
         int selectedWeek = Integer.parseInt(selectWeek()) - 1;
         String title = Menu.prompt("Enter Resource Title: ");
         String description = Menu.prompt("Enter Resource Description: ");
-
-        JSONArray resources = new JSONArray();
-        JSONObject resourceObject = new JSONObject();
-        String resourceId = idGenerator(loadResource(), "R0000");
-        resourceObject.put("resourceId", resourceId);
-        resourceObject.put("status", "active");
-        JSONArray allWeekResource = new JSONArray();
-        JSONObject week = new JSONObject();
-        String weekId = idGenerator(loadResource(), "Week00");
-        week.put("id", weekId);
+        String attachment = Menu.prompt("Enter Attachment: ");
+        String newResourceId = "Week0" + (selectedWeek + 1);
+        JSONObject resource = new JSONObject();
+        resource.put("resourceId", newResourceId);
+        JSONArray weekResources = getAllResource(newResourceId);
+        String newContentId = idGenerator(weekResources, "R00000");
+        JSONObject newResource = new JSONObject();
+        newResource.put("id", newContentId);
+        newResource.put("title", title);
+        newResource.put("description", description);
+        newResource.put("attachment", attachment);
+        newResource.put("status", "active");
         JSONArray contents = new JSONArray();
-        JSONObject content = new JSONObject();
-        JSONArray weekResources = getAllResource();
-        JSONArray aWeekContents = null;
-        for (int i = 0; i < weekResources.length(); i++) {
-            if (i == selectedWeek) {
-                aWeekContents = weekResources.getJSONObject(i).getJSONArray("contents");
-                break;
-            }
-        }
-        String contentId = idGenerator(aWeekContents, "C0000");
-        content.put("id", contentId);
-        content.put("title", title);
-        content.put("description", description);
-        content.put("status", "active");
-
+        contents.put(newResource);
+        resource.put("contents", contents);
+        saveToResource(resource, newResource, newResourceId, newContentId); // save into resource.json
     }
 
     public void manageEditResource() {
-
+        int selectedWeek = Integer.parseInt(selectWeek()) - 1; // hold selected week index
+        int selectedTitle = Integer.parseInt(selectResourceTitle(selectedWeek)) - 1; // hold selected title index
+        previousResourceInfo(selectedWeek, selectedTitle); // print the previous info
+        // saving preparation
+        JSONArray allResources = loadResource();
+        JSONObject weekResources = new JSONObject();
+        JSONObject resourceToEdit = new JSONObject();
+        String resourceId = "";
+        String contentId = "";
+        for (int i = 0; i < allResources.length(); i++) {
+            if (getClassroomId().equals(allResources.getJSONObject(i).getString("classroomId"))) {
+                for (int j = 0; j < allResources.getJSONObject(i).getJSONArray("resources").length(); j++) {
+                    if (j == selectedWeek) {
+                        resourceId = allResources.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getString("resourceId");
+                        for (int k = 0; k < allResources.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").length(); k++) {
+                            if (k == selectedTitle) {
+                                contentId = allResources.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("id");
+                                resourceToEdit = allResources.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // edit process
+        String newTitle = Menu.prompt("Enter a new title (if not leave empty): ");
+        if (!newTitle.isEmpty()) {
+            resourceToEdit.put("title", newTitle);
+        }
+        String newDescription = Menu.prompt("Enter a new description (if not leave empty): ");
+        if (!newDescription.isEmpty()) {
+            resourceToEdit.put("description", newDescription);
+        }
+        String newAttachment = Menu.prompt("Enter a new attachment (if not leave empty): ");
+        if (!newAttachment.isEmpty()) {
+            resourceToEdit.put("attachment", newAttachment);
+        }
+        saveToResource(weekResources, resourceToEdit, resourceId, contentId); // save
     }
 
     public void manageDeleteResource() {
-
+        int selectedWeek = Integer.parseInt(selectWeek()) - 1; // hold selected week index
+        int selectedTitle = Integer.parseInt(selectResourceTitle(selectedWeek)) - 1; // hold selected title index
+        // saving preparation
+        JSONArray allResources = loadResource();
+        JSONObject weekResources = new JSONObject();
+        JSONObject resourceToEdit = new JSONObject();
+        String resourceId = "";
+        String contentId = "";
+        for (int i = 0; i < allResources.length(); i++) {
+            if (getClassroomId().equals(allResources.getJSONObject(i).getString("classroomId"))) {
+                for (int j = 0; j < allResources.getJSONObject(i).getJSONArray("resources").length(); j++) {
+                    if (j == selectedWeek) {
+                        resourceId = allResources.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getString("resourceId");
+                        for (int k = 0; k < allResources.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").length(); k++) {
+                            if (k == selectedTitle) {
+                                contentId = allResources.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("id");
+                                resourceToEdit = allResources.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        resourceToEdit.put("status", "inactive"); // update status
+        saveToResource(weekResources, resourceToEdit, resourceId, contentId); // save
     }
 
     public void manageViewResource() {
-
+        JSONArray allResource = loadResource();
+        for (int i = 0; i < allResource.length(); i++) {
+            if (getClassroomId().equals(allResource.getJSONObject(i).getString("classroomId"))) {
+                for (int j = 0; j < allResource.getJSONObject(i).getJSONArray("resources").length(); j++) {
+                    System.out.println(allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getString("resourceId"));
+                    for (int k = 0; k < allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").length(); k++) {
+                        System.out.println("    Title: " + allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("title"));
+                        System.out.println("    Description: " + allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("description"));
+                        System.out.println("    Attachment: " + allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("attachment"));
+                        System.out.println("-".repeat(200)); // separates each content
+                    }
+                }
+            }
+        }
     }
 
     // display each week and select and input
     private String selectWeek() {
         for (int i = 0; i < 10; i++) {
-            System.out.println("Week0" + i+1);
+            System.out.print("Week");
+            System.out.println(i+1);
         }
         return Menu.prompt("Select a Week: ");
     }
 
-    // get Resource array (all weeks) from resource.json only
-    private JSONArray getAllResource() {
+    // display all resource titles and select an input
+    private String selectResourceTitle(int selectedWeek) {
+        String classroomId = getClassroomId();
+        JSONArray allResource = loadResource();
+        int extraIndex = 0;
+        for (int i = 0; i < allResource.length(); i++) {
+            if (classroomId.equals(allResource.getJSONObject(i).getString("classroomId"))) {
+                for (int j = 0; j < allResource.getJSONObject(i).getJSONArray("resources").length(); j++) {
+                    if (j == selectedWeek) {
+                        for (int k = 0; k < allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").length(); k++) {
+                            if (allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("status").equals("active")) {
+                                System.out.println(allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("title"));
+                            } else {
+                                extraIndex++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        String selectedTitle = Menu.prompt("select a title: ");
+        int finalIndex = Integer.parseInt(selectedTitle) + extraIndex;
+        return Integer.toString(finalIndex);
+    }
+
+    //print previous info of a resource
+    private void previousResourceInfo(int selectedWeek, int selectedTitle) {
+        JSONArray allResource = loadResource();
+        for (int i = 0; i < allResource.length(); i++) {
+            if (getClassroomId().equals(allResource.getJSONObject(i).getString("classroomId"))) {
+                for (int j = 0; j < allResource.getJSONObject(i).getJSONArray("resources").length(); j++) {
+                    if (j == selectedWeek) {
+                        for (int k = 0; k < allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").length(); k++) {
+                            if (k == selectedTitle) {
+                                System.out.println(allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("title"));
+                                System.out.println(allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("description"));
+                                System.out.println(allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("attachment"));
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // get Resource array within a week from resource.json only
+    private JSONArray getAllResource(String resourceId) {
         JSONArray allResource = loadResource();
         String classroomId = getClassroomId();
         for (int i = 0; i < allResource.length(); i++) {
             if (classroomId.equals(allResource.getJSONObject(i).getString("classroomId"))) {
-                return allResource.getJSONObject(i).getJSONArray("resources");
+                for (int j = 0; j < allResource.getJSONObject(i).getJSONArray("resources").length(); j++) {
+                    if (resourceId.equals(allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getString("resourceId"))) {
+                        return allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents");
+                    }
+                }
             }
         }
         return null;
     }
 
-    private void saveToResource() {
-        String classroomId = getClassroomId();
+    private void saveToResource(JSONObject weekResources, JSONObject newResource, String resourceId, String contentId) {
         JSONArray allResource = loadResource();
+        String classroomId = getClassroomId();
+        boolean isClassroomIdFound = false;
         for (int i = 0; i < allResource.length(); i++) {
-            if (classroomId.equals(allResource.getJSONObject(i).get))
+            if (classroomId.equals(allResource.getJSONObject(i).getString("classroomId"))) {
+                isClassroomIdFound = true;
+                boolean isResourceIdFound = false;
+                for (int j = 0; j < allResource.getJSONObject(i).getJSONArray("resources").length(); j++) {
+                    if (resourceId.equals(allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getString("resourceId"))) {
+                        isResourceIdFound = true;
+                        boolean isContentIdFound = false;
+                        for (int k = 0; k < allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").length(); k++) {
+                            if (contentId.equals(allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("id"))) {
+                                allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").put(k, newResource);
+                                isContentIdFound = true;
+                                break;
+                            }
+                        }
+                        if (!isContentIdFound) {
+                            allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").put(newResource);
+                        }
+                    }
+                }
+                if (!isResourceIdFound) {
+                    allResource.getJSONObject(i).getJSONArray("resources").put(weekResources);
+                }
+            }
         }
+        if (!isClassroomIdFound) {
+            JSONObject resourceObject = new JSONObject();
+            resourceObject.put("classroomId", getClassroomId());
+            JSONArray resources = new JSONArray();
+            resources.put(weekResources);
+            resourceObject.put("resources", resources);
+            allResource.put(resourceObject);
+        }
+        saveResource(allResource);
     }
+
+
+
+// --------------------------------------------------------------------------------------------------------------------------
+
 
 
     // Quizz Manager
@@ -452,6 +603,11 @@ public class ClassroomManager implements classroomManagementInterface{
 
     }
 
+
+
+// ----------------------------------------------------------------------------------------------------------------------------
+
+
     // save all classrooms
     private void saveClassrooms(JSONArray allClass) {
         try (FileWriter file = new FileWriter("shared/data/classroom.json")) {
@@ -474,7 +630,7 @@ public class ClassroomManager implements classroomManagementInterface{
 
     // save all resource
     private void saveResource(JSONArray allResource) {
-        try (FileWriter file = new FileWriter("shared/data/progress.json")) {
+        try (FileWriter file = new FileWriter("shared/data/resource.json")) {
             file.write(allResource.toString(4)); // Pretty-print with 4 spaces
             file.flush();
         } catch (IOException e) {

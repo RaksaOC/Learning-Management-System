@@ -485,7 +485,6 @@ public class ClassroomManager implements classroomManagementInterface {
     }
 
     private Map<String, Object> returnQuiz(int quizIndex, String classID) {
-        System.out.println(classIdToEdit);
         try {
             String content = new String(Files.readAllBytes(Paths.get("shared/data/progress.json")));
             JSONArray contentToEdit = new JSONArray(content);
@@ -493,7 +492,7 @@ public class ClassroomManager implements classroomManagementInterface {
             String quizIdToReturn = "";
             if (!content.isEmpty()) {
                 for (int i = 0; i < contentToEdit.length(); i++) {
-                    if (contentToEdit.getJSONObject(i).getString("classroomId").equals("GEN10-CS-SE-G1-OOP")) {
+                    if (contentToEdit.getJSONObject(i).getString("classroomId").equals(classID)) {
                         for (int j = 0; j < contentToEdit.getJSONObject(i).getJSONArray("quizzes").length(); j++) {
                             if (contentToEdit.getJSONObject(i).getJSONArray("quizzes").getJSONObject(j).getInt("score") == -1) {
                                 quizzesID.add(contentToEdit.getJSONObject(i).getJSONArray("quizzes").getJSONObject(j).getString("id"));
@@ -520,7 +519,6 @@ public class ClassroomManager implements classroomManagementInterface {
                                 System.out.println("------------------------------------------------------");
                                 System.out.println("Id: " + quiz.getString("id"));
                                 System.out.println("Title: " + quiz.getString("title"));
-
                                 System.out.println("------------------------------------------------------");
                             }
                         }
@@ -569,18 +567,18 @@ public class ClassroomManager implements classroomManagementInterface {
         JSONArray questions;
 
         if (questionsObject instanceof JSONArray) {
-            questions = (JSONArray) questionsObject;  // Safe cast ✅
+            questions = (JSONArray) questionsObject;
         } else if (questionsObject instanceof String) {
             try {
-                questions = new JSONArray((String) questionsObject);  // Convert JSON string to JSONArray ✅
+                questions = new JSONArray((String) questionsObject);
             } catch (Exception e) {
                 System.err.println("Error: 'questions' is not a valid JSON string.");
                 e.printStackTrace();
-                return;  // Exit to prevent further errors
+                return;
             }
         } else {
             System.err.println("Error: 'questions' is not a JSONArray or a String.");
-            return;  // Exit if type is incorrect
+            return;
         }
 
         String ID = (String) questionsAndID.get("Id");

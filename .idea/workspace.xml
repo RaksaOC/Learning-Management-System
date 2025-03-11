@@ -8,6 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS/src/utils/controller/ClassroomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/controller/ClassroomController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS/src/utils/manager/ClassroomManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/manager/ClassroomManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/classroom.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/classroom.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/data/history.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/history.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/data/progress.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/progress.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/data/quiz.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/quiz.json" afterDir="false" />

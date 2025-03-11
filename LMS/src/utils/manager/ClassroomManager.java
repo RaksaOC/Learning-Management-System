@@ -46,11 +46,11 @@ interface classroomManagementInterface {
 
     void manageAddQuizz(String classroomID, String title, String createdBy, JSONArray questions);
 
-    void manageEditQuizz(String title, JSONArray questionJson, String id, String classID);
+    void manageEditQuizz(String title, JSONArray questionJson, String id);
 
     void manageDeleteQuizz(String id, String classID);
 
-    void manageViewQuizz(String id, String classID);
+    void manageViewQuizz(String id);
 
     void manageDoQuiz(int quizIndex, String[] answers, String classID);
 
@@ -225,9 +225,9 @@ public class ClassroomManager implements classroomManagementInterface {
         String id = "Q0000";
         try {
             String content = new String(Files.readAllBytes(Paths.get("shared/data/quiz.json")));
-            JSONObject quizWriteToFile = new JSONObject(content);
-            if (!quizWriteToFile.getJSONArray("GEN10-CS-SE-G1-OOP").isEmpty()) {
-                String getIDToUpdate = quizWriteToFile.getJSONArray("GEN10-CS-SE-G1-OOP").getJSONObject(quizWriteToFile.getJSONArray("GEN10-CS-SE-G1-OOP").length() - 1).getString("id");
+            JSONArray quizWriteToFile = new JSONArray(content);
+            if (!quizWriteToFile.isEmpty()) {
+                String getIDToUpdate = quizWriteToFile.getJSONObject(quizWriteToFile.length() - 1).getString("id");
                 int updateID = Integer.parseInt(getIDToUpdate.substring(1)) + 1;
                 id = "Q" + String.format("%04d", updateID);
             }
@@ -236,7 +236,7 @@ public class ClassroomManager implements classroomManagementInterface {
             quiz.put("title", title);
             quiz.put("createdBy", createdBy);
             quiz.put("questions", questions);
-            quizWriteToFile.getJSONArray("GEN10-CS-SE-G1-OOP").put(quiz);
+            quizWriteToFile.put(quiz);
             try (FileWriter file = new FileWriter("shared/data/quiz.json")) {
                 file.write(quizWriteToFile.toString(4));
             } catch (IOException e) {
@@ -288,16 +288,15 @@ public class ClassroomManager implements classroomManagementInterface {
 
     }
 
-    public void manageEditQuizz(String title, JSONArray questionJson, String id, String classID) {
+    public void manageEditQuizz(String title, JSONArray questionJson, String id) {
         try {
             String content = new String(Files.readAllBytes(Paths.get("shared/data/quiz.json")));
-            JSONObject contentArray = new JSONObject(content);
-            if (!contentArray.getJSONArray(classID).isEmpty()) {
+            JSONArray contentArray = new JSONArray(content);
+            if (!contentArray.isEmpty()) {
                 for (int i = 0; i < contentArray.length(); i++) {
-                    if (contentArray.getJSONArray(classID).getJSONObject(i).getString("id").equals(id)) {
-
-                        contentArray.getJSONArray(classID).getJSONObject(i).put("title", title);
-                        contentArray.getJSONArray(classID).getJSONObject(i).put("questions", questionJson);
+                    if (contentArray.getJSONObject(i).getString("id").equals(id)) {
+                        contentArray.getJSONObject(i).put("title", title);
+                        contentArray.getJSONObject(i).put("questions", questionJson);
                         try (FileWriter file = new FileWriter("shared/data/quiz.json")) {
                             file.write(contentArray.toString(4));
                         } catch (IOException e) {
@@ -315,11 +314,11 @@ public class ClassroomManager implements classroomManagementInterface {
     public void manageDeleteQuizz(String idToDelete, String classID) {
         try {
             String content = new String(Files.readAllBytes(Paths.get("shared/data/quiz.json")));
-            JSONObject quizWriteToFile = new JSONObject(content);
-            if (!quizWriteToFile.getJSONArray(classID).isEmpty()) {
-                for (int i = 0; i < quizWriteToFile.getJSONArray(classID).length(); i++) {
-                    if (quizWriteToFile.getJSONArray(classID).getJSONObject(i).getString("id").equals(idToDelete)) {
-                        quizWriteToFile.getJSONArray(classID).remove(i);
+            JSONArray quizWriteToFile = new JSONArray(content);
+            if (!quizWriteToFile.isEmpty()) {
+                for (int i = 0; i < quizWriteToFile.length(); i++) {
+                    if (quizWriteToFile.getJSONObject(i).getString("id").equals(idToDelete)) {
+                        quizWriteToFile.remove(i);
                     }
                 }
             }
@@ -337,10 +336,12 @@ public class ClassroomManager implements classroomManagementInterface {
             JSONArray contentToEdit = new JSONArray(content);
             if (!content.isEmpty()) {
                 for (int i = 0; i < contentToEdit.length(); i++) {
-                    for (int j = 0; j < contentToEdit.getJSONObject(i).getJSONArray("quizzes").length(); j++) {
-                        if (contentToEdit.getJSONObject(i).getJSONArray("quizzes").getString(j).equals(idToDelete)) {
-                            contentToEdit.getJSONObject(i).getJSONArray("quizzes").remove(j);
-                            break;
+                    if (contentToEdit.getJSONObject(i).getString("id").equals(classID)) {
+                        for (int j = 0; j < contentToEdit.getJSONObject(i).getJSONArray("quizzes").length(); j++) {
+                            if (contentToEdit.getJSONObject(i).getJSONArray("quizzes").getString(j).equals(idToDelete)) {
+                                contentToEdit.getJSONObject(i).getJSONArray("quizzes").remove(j);
+                                break;
+                            }
                         }
                     }
                 }
@@ -359,10 +360,12 @@ public class ClassroomManager implements classroomManagementInterface {
             JSONArray contentToEdit = new JSONArray(content);
             if (!content.isEmpty()) {
                 for (int i = 0; i < contentToEdit.length(); i++) {
-                    for (int j = 0; j < contentToEdit.getJSONObject(i).getJSONArray("quizzes").length(); j++) {
-                        if (contentToEdit.getJSONObject(i).getJSONArray("quizzes").getJSONObject(j).getString("id").equals(idToDelete)) {
-                            contentToEdit.getJSONObject(i).getJSONArray("quizzes").remove(j);
-                            break;
+                    if (contentToEdit.getJSONObject(i).getString("id").equals(classID)) {
+                        for (int j = 0; j < contentToEdit.getJSONObject(i).getJSONArray("quizzes").length(); j++) {
+                            if (contentToEdit.getJSONObject(i).getJSONArray("quizzes").getString(j).equals(idToDelete)) {
+                                contentToEdit.getJSONObject(i).getJSONArray("quizzes").remove(j);
+                                break;
+                            }
                         }
                     }
                 }
@@ -377,17 +380,36 @@ public class ClassroomManager implements classroomManagementInterface {
         }
     }
 
-    public void manageViewQuizz(String id, String classID) {
+    public void manageViewQuizz(String id) {
         try {
             String content = new String(Files.readAllBytes(Paths.get("shared/data/quiz.json")));
-            JSONObject jsonContent = new JSONObject(content);
-            if (!jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").isEmpty()) {
-                if (id.isEmpty()) {
-                    for (int i = 0; i < jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").length(); i++) {
-                        JSONObject quiz = jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").getJSONObject(i);
+            JSONArray jsonContent = new JSONArray(content);
+            if (id.isEmpty()) {
+                for (int i = 0; i < jsonContent.length(); i++) {
+                    JSONObject quiz = jsonContent.getJSONObject(i);
+                    JSONArray questions = quiz.getJSONArray("questions");
+                    System.out.println("------------------------------------------------------");
+                    System.out.println("Id: " + quiz.getString("id"));
+                    System.out.println("Title: " + quiz.getString("title"));
+                    System.out.println("Created by: " + quiz.getString("createdBy"));
+                    for (int j = 0; j < questions.length(); j++) {
+                        JSONObject question = (questions.getJSONObject(j));
+                        JSONArray choices = (question.getJSONArray("choices"));
+                        System.out.println("Question " + (j + 1) + ": " + question.getString("questionTitle"));
+                        System.out.println("choices: ");
+                        for (int k = 0; k < choices.length(); k++) {
+                            System.out.println((k + 1) + ". " + choices.getString(k));
+                        }
+                        System.out.println("Answer: " + question.getString("answer"));
+                    }
+                    System.out.println("------------------------------------------------------");
+                }
+            } else {
+                for (int i = 0; i < jsonContent.length(); i++) {
+                    if (jsonContent.getJSONObject(i).getString("id").equals(id)) {
+                        JSONObject quiz = jsonContent.getJSONObject(i);
                         JSONArray questions = quiz.getJSONArray("questions");
                         System.out.println("------------------------------------------------------");
-                        System.out.println("Class ID: " + classID);
                         System.out.println("Id: " + quiz.getString("id"));
                         System.out.println("Title: " + quiz.getString("title"));
                         System.out.println("Created by: " + quiz.getString("createdBy"));
@@ -402,29 +424,6 @@ public class ClassroomManager implements classroomManagementInterface {
                             System.out.println("Answer: " + question.getString("answer"));
                         }
                         System.out.println("------------------------------------------------------");
-                    }
-                } else {
-                    for (int i = 0; i < jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").length(); i++) {
-                        if (jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").getJSONObject(i).getString("id").equals(id)) {
-                            JSONObject quiz = jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").getJSONObject(i);
-                            JSONArray questions = quiz.getJSONArray("questions");
-                            System.out.println("------------------------------------------------------");
-                            System.out.println("Class ID: " + classID);
-                            System.out.println("Id: " + quiz.getString("id"));
-                            System.out.println("Title: " + quiz.getString("title"));
-                            System.out.println("Created by: " + quiz.getString("createdBy"));
-                            for (int j = 0; j < questions.length(); j++) {
-                                JSONObject question = (questions.getJSONObject(j));
-                                JSONArray choices = (question.getJSONArray("choices"));
-                                System.out.println("Question " + (j + 1) + ": " + question.getString("questionTitle"));
-                                System.out.println("choices: ");
-                                for (int k = 0; k < choices.length(); k++) {
-                                    System.out.println((k + 1) + ". " + choices.getString(k));
-                                }
-                                System.out.println("Answer: " + question.getString("answer"));
-                            }
-                            System.out.println("------------------------------------------------------");
-                        }
                     }
                 }
             }
@@ -477,12 +476,12 @@ public class ClassroomManager implements classroomManagementInterface {
     //student side quiz
     public void manageDoQuiz(int quizIndex, String[] answers, String classID) {
         Map<String, Object> getQuizFromFile = returnQuiz(quizIndex, classID);
-        if(getQuizFromFile==null){
+        if (getQuizFromFile == null) {
             System.out.println("You have done all the quizzes");
             return;
         }
         checkAnswer(getQuizFromFile, answers);
-        System.out.println("The score is: "+getQuizScore("S000001"));
+        System.out.println("The score is: " + getQuizScore("S000001"));
     }
 
     private Map<String, Object> returnQuiz(int quizIndex, String classID) {
@@ -502,19 +501,18 @@ public class ClassroomManager implements classroomManagementInterface {
                         }
                     }
                 }
-                if(quizzesID==null){
+                if (quizzesID == null) {
                     return null;
                 }
                 try {
                     String contentQuiz = new String(Files.readAllBytes(Paths.get("shared/data/quiz.json")));
                     JSONArray questions = null;
-                    JSONObject jsonContent = new JSONObject(contentQuiz);
-                    if (!jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").isEmpty()) {
+                    JSONArray jsonContent = new JSONArray(contentQuiz);
                         int index = 0;
-                        for (int i = 0; i < jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").length(); i++) {
-                            if (jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").getJSONObject(i).getString("id").equals(quizzesID.get(index))) {
+                        for (int i = 0; i < jsonContent.length(); i++) {
+                            if (jsonContent.getJSONObject(i).getString("id").equals(quizzesID.get(index))) {
                                 index++;
-                                JSONObject quiz = jsonContent.getJSONArray("GEN10-CS-SE-G1-OOP").getJSONObject(i);
+                                JSONObject quiz = jsonContent.getJSONObject(i);
                                 if (quiz.getString("id").equals(quizzesID.get(quizIndex - 1))) {
                                     quizIdToReturn = quizzesID.get(quizIndex - 1);
                                     questions = quiz.getJSONArray("questions");
@@ -526,7 +524,6 @@ public class ClassroomManager implements classroomManagementInterface {
                                 System.out.println("------------------------------------------------------");
                             }
                         }
-                    }
                     Map<String, Object> result = new HashMap<>();
                     result.put("questions", questions);
                     result.put("Id", quizIdToReturn);
@@ -557,8 +554,6 @@ public class ClassroomManager implements classroomManagementInterface {
                             }
                         }
                     }
-
-
                 }
             }
             return score;

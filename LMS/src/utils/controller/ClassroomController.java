@@ -94,13 +94,13 @@ public class ClassroomController {
         String questions = "[{\"questionTitle\":\"How zesty is the teacher?\", \"choices\": [\"straight\", \"lemony\", \"holy zesty\", \"gay\"], \"answer\": \"gay\"}, {\"questionTitle\":\"How zesty is the teacher?\", \"choices\": [\"straight\", \"lemony\", \"holy zesty\", \"gay\"], \"answer\": \"gay\"}, {\"questionTitle\":\"How zesty is the teacher?\", \"choices\": [\"straight\", \"lemony\", \"holy zesty\", \"gay\"], \"answer\": \"gay\"}]";
         JSONArray questionsJson=new JSONArray(questions);
         String idToEdit="Q0001";
-        classroomManager.manageEditQuizz(title, questionsJson, idToEdit, id);
+        classroomManager.manageEditQuizz(title, questionsJson, idToEdit);
     }
 
     public void deleteQuizz() {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
         // sample data
-        String idToDelete = "Q0000";
+        String idToDelete = "Q0001";
         String classID="GEN10-CS-SE-G1-OOP";
         classroomManager.manageDeleteQuizz(idToDelete, classID);
     }
@@ -109,7 +109,7 @@ public class ClassroomController {
         ClassroomManager classroomManager = new ClassroomManager(classIdToEdit);
         String id = "Q0001";
         String classID="GEN10-CS-SE-G1-OOP";
-        classroomManager.manageViewQuizz(id, classID);
+        classroomManager.manageViewQuizz(id);
     }
 
     public void goToDoQuiz(){

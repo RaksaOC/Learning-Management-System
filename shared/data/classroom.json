@@ -1,56 +1,111 @@
-[{
-    "teacherId": "T0001",
-    "assignments": [
-        {
-            "description": "Name three diddies",
-            "title": "diddyHomework",
-            "deadline": {
-                "date": "2025-02-19",
-                "time": "11:59PM"
+[
+    {
+        "teacherId": "T0001",
+        "assignments": [
+            {
+                "description": "Name three diddies",
+                "title": "diddyHomework",
+                "deadline": {
+                    "date": "2025-02-19",
+                    "time": "11:59PM"
+                },
+                "status": "active"
             },
-            "status": "active"
-        },
-        {
-            "description": "A person sitting at a table with a sign saying, \u201cHomework is just legalized torture. Change my mind.",
-            "title": "Change My Mind",
-            "deadline": {
-                "date": "2025-03-01",
-                "time": "11:59PM"
+            {
+                "description": "A person sitting at a table with a sign saying, \u201cHomework is just legalized torture. Change my mind.",
+                "title": "Change My Mind",
+                "deadline": {
+                    "date": "2025-03-01",
+                    "time": "11:59PM"
+                },
+                "status": "active"
             },
-            "status": "active"
-        },
-        {
-            "description": "A dog sitting in a burning room, often used to depict a student calmly ignoring looming deadlines.",
-            "title": "This is fine",
-            "deadline": {
-                "date": "2025-03-05",
-                "time": "11:59PM"
+            {
+                "description": "A dog sitting in a burning room, often used to depict a student calmly ignoring looming deadlines.",
+                "title": "This is fine",
+                "deadline": {
+                    "date": "2025-03-05",
+                    "time": "11:59PM"
+                },
+                "status": "active"
             },
-            "status": "active"
-        },
-        {
-            "description": "He lost his family, and his last daughter, to violent terrorism. He'll stop at nothing for the day of reckoning.",
-            "title": "SpongeBob SquarePants",
-            "deadline": {
-                "date": "2025-03-08",
-                "time": "11:59PM"
+            {
+                "description": "He lost his family, and his last daughter, to violent terrorism. He'll stop at nothing for the day of reckoning.",
+                "title": "SpongeBob SquarePants",
+                "deadline": {
+                    "date": "2025-03-08",
+                    "time": "11:59PM"
+                },
+                "status": "active"
+            }
+        ],
+        "students": [
+            "S000001",
+            "S000002",
+            "S000003",
+            "S000004"
+        ],
+        "resources": [],
+        "id": "GEN10-CS-SE-G1-OOP",
+        "quizzes": [
+            "Q0002",
+            "Q0003",
+            "Q0004",
+            "Q0005"
+        ],
+        "courseId": "",
+        "status": "active"
+    },
+    {
+        "teacherId": "T0001",
+        "assignments": [
+            {
+                "description": "Name three diddies",
+                "title": "diddyHomework",
+                "deadline": {
+                    "date": "2025-02-19",
+                    "time": "11:59PM"
+                },
+                "status": "active"
             },
-            "status": "active"
-        }
-    ],
-    "students": [
-        "S000001",
-        "S000002",
-        "S000003",
-        "S000004"
-    ],
-    "resources": [],
-    "id": "GEN10-CS-SE-G1-OOP",
-    "quizzes": [
-        "Q0001",
-        "Q0002",
-        "Q0003"
-    ],
-    "courseId": "",
-    "status": "active"
-}]
+            {
+                "description": "A person sitting at a table with a sign saying, \u201cHomework is just legalized torture. Change my mind.",
+                "title": "Change My Mind",
+                "deadline": {
+                    "date": "2025-03-01",
+                    "time": "11:59PM"
+                },
+                "status": "active"
+            },
+            {
+                "description": "A dog sitting in a burning room, often used to depict a student calmly ignoring looming deadlines.",
+                "title": "This is fine",
+                "deadline": {
+                    "date": "2025-03-05",
+                    "time": "11:59PM"
+                },
+                "status": "active"
+            },
+            {
+                "description": "He lost his family, and his last daughter, to violent terrorism. He'll stop at nothing for the day of reckoning.",
+                "title": "SpongeBob SquarePants",
+                "deadline": {
+                    "date": "2025-03-08",
+                    "time": "11:59PM"
+                },
+                "status": "active"
+            }
+        ],
+        "students": [
+            "S000001",
+            "S000002",
+            "S000003",
+            "S000004"
+        ],
+        "resources": [],
+        "id": "GEN10-CS-SE-G1-ASS",
+        "quizzes": [],
+        "courseId": "",
+        "status": "active"
+    }
+]

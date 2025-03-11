@@ -232,7 +232,6 @@ public class ClassroomManager implements classroomManagementInterface{
         return null;
     }
 
-
     // display only the assignment's titles from classroom and select an input
     private String selectAssignmentTitle() {
         JSONArray allAssignments = getClassroomAssignments();
@@ -458,7 +457,7 @@ public class ClassroomManager implements classroomManagementInterface{
                         System.out.println("    Title: " + allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("title"));
                         System.out.println("    Description: " + allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("description"));
                         System.out.println("    Attachment: " + allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("attachment"));
-                        System.out.println("-".repeat(200)); // separates each content
+                        System.out.println("    -".repeat(200)); // separates each content
                     }
                 }
             }
@@ -508,9 +507,9 @@ public class ClassroomManager implements classroomManagementInterface{
                     if (j == selectedWeek) {
                         for (int k = 0; k < allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").length(); k++) {
                             if (k == selectedTitle) {
-                                System.out.println(allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("title"));
-                                System.out.println(allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("description"));
-                                System.out.println(allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("attachment"));
+                                System.out.println("Title: " + allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("title"));
+                                System.out.println("Description: " + allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("description"));
+                                System.out.println("Attachment: " + allResource.getJSONObject(i).getJSONArray("resources").getJSONObject(j).getJSONArray("contents").getJSONObject(k).getString("attachment"));
                                 break;
                             }
                         }

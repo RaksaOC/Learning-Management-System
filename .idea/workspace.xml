@@ -5,15 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="816c4d4f-796b-4ab7-98a7-72a49b87cc0e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mariadb_java_client_3_5_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/mariadb-java-client-3.5.1.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin/LMS-Admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/LMS-Admin.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/componentsController/AssignmentCardsWrapperController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/componentsController/AssignmentCardsWrapperController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/Assignments.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/Assignments.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/Dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/Dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/teacherSide/Dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/teacherSide/Dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/admin.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/admin.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/data/history.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/history.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/data/student.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/student.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/data/teacher.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/teacher.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/shared.iml" beforeDir="false" afterPath="$PROJECT_DIR$/shared/shared.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,34 +49,34 @@
     <option name="showLibraryContents" value="true" />
     <option name="showScratchesAndConsoles" value="false" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.Run LMS-Admin-GUI.executor": "Run",
-    "Application.Run LMS-Admin.executor": "Run",
-    "Application.Run LMS-GUI.executor": "Run",
-    "Application.Run LMS.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ToolWindow.Run.ShowToolbar": "false",
-    "dart.analysis.tool.window.visible": "false",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "Merging test2",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/raksa/School/Year 2/Term 2/OOP/Project/Learning-Management-System/shared/data",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.JavaFX",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Run LMS-Admin-GUI.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Run LMS-Admin.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Run LMS-GUI.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Run LMS.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ToolWindow.Run.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;sql-migrate&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/raksa/School/Year 2/Term 2/OOP/Project/Learning-Management-System/shared/data&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/shared/data" />
@@ -98,7 +98,7 @@
       <recent name="main.java.com.lmsadmin.managers" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Run LMS-Admin">
+  <component name="RunManager" selected="Application.Run LMS-Admin-GUI">
     <configuration name="Run LMS-Admin-GUI" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="LMS-Admin-GUI" />
@@ -165,6 +165,8 @@
       <workItem from="1740621430399" duration="5806000" />
       <workItem from="1740633038889" duration="34094000" />
       <workItem from="1740720438200" duration="32748000" />
+      <workItem from="1741374545862" duration="6017000" />
+      <workItem from="1741700933783" duration="7162000" />
     </task>
     <servers />
   </component>

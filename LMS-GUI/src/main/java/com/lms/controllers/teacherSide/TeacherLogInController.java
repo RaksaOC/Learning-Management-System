@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import main.AppSession;
 import main.SceneManager;
 import main.java.com.lms.controllers.TeacherMainFrameController;
-import main.java.com.lms.managers.studentSide.AuthenticationManager;
+import main.java.com.lms.managers.AuthenticationManager;
 
 public class TeacherLogInController {
     @FXML

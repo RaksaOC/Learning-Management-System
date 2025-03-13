@@ -6,10 +6,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import main.SceneManager;
-import main.java.com.lms.managers.studentSide.AuthenticationManager;
+import main.java.com.lms.managers.AuthenticationManager;
 
 import java.util.ArrayList;
 import java.util.Optional;

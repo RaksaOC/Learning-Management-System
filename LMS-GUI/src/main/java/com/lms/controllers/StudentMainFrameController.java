@@ -10,7 +10,7 @@ import javafx.scene.text.Text;
 import main.SceneManager;
 
 import javafx.scene.image.ImageView;
-import main.java.com.lms.managers.studentSide.AuthenticationManager;
+import main.java.com.lms.managers.AuthenticationManager;
 
 import java.util.ArrayList;
 import java.util.Optional;

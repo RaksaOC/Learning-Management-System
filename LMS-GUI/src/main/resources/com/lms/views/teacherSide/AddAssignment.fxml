@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -37,12 +38,12 @@
             <children>
                 <AnchorPane>
                     <children>
-                        <Text layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assignment Titile: " AnchorPane.leftAnchor="0.0">
+                        <Text layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assignment Title: " AnchorPane.leftAnchor="0.0" >
                             <font>
                                 <Font name="AppleGothic Regular" size="18.0" />
                             </font>
                         </Text>
-                        <TextField layoutX="86.0" layoutY="1.0" prefHeight="26.0" prefWidth="333.0" AnchorPane.leftAnchor="165.0" />
+                        <TextField layoutX="86.0" layoutY="1.0" prefHeight="26.0" prefWidth="333.0" AnchorPane.leftAnchor="165.0" fx:id="assignmentTitle"/>
                     </children>
                     <VBox.margin>
                         <Insets top="10.0" />
@@ -59,7 +60,7 @@
                                 <Font name="AppleGothic Regular" size="18.0" />
                             </font>
                         </Text>
-                        <TextArea prefHeight="150.0" prefWidth="979.0" AnchorPane.leftAnchor="165.0" />
+                        <TextArea prefHeight="150.0" prefWidth="979.0" AnchorPane.leftAnchor="165.0" fx:id="assignmentDescription"/>
                     </children>
                     <VBox.margin>
                         <Insets top="10.0" />
@@ -70,6 +71,37 @@
                 <Insets top="20.0" />
             </VBox.margin>
         </VBox>
+      <VBox prefHeight="80.0" prefWidth="1144.0">
+         <children>
+            <AnchorPane>
+               <children>
+                  <Text layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" AnchorPane.leftAnchor="0.0">
+                     <font>
+                        <Font name="AppleGothic Regular" size="18.0" />
+                     </font>
+                  </Text>
+                  <DatePicker layoutX="270.0" layoutY="1.0" AnchorPane.leftAnchor="165.0" fx:id="assignmentDueDate"/>
+               </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <VBox prefHeight="40.0" prefWidth="1144.0">
+         <children>
+            <AnchorPane>
+               <children>
+                  <Text layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" AnchorPane.leftAnchor="0.0">
+                     <font>
+                        <Font name="AppleGothic Regular" size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField layoutX="86.0" layoutY="1.0" prefHeight="26.0" prefWidth="333.0" promptText="DD/MM/YYYY" AnchorPane.leftAnchor="165.0" fx:id="assignmentDueTime"/>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
         <VBox prefHeight="118.0" prefWidth="1144.0">
             <children>
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reference Material">
@@ -89,7 +121,7 @@
         </VBox>
         <HBox prefHeight="19.0" prefWidth="1144.0" spacing="20.0">
             <children>
-                <Button mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 30; -fx-border-color: black; -fx-border-radius: 30;" text="+ Add">
+                <Button mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 30; -fx-border-color: black; -fx-border-radius: 30;" text="+ Add" fx:id="addReferenceMaterial">
                <font>
                   <Font size="15.0" />
                </font></Button>
@@ -100,7 +132,7 @@
         </HBox>
         <HBox alignment="CENTER">
             <children>
-                <Button mnemonicParsing="false" style="-fx-background-color: #2F92BC; -fx-background-radius: 30;" text="Finish">
+                <Button mnemonicParsing="false" style="-fx-background-color: #2F92BC; -fx-background-radius: 30;" text="Finish" fx:id="finishButton">
                <font>
                   <Font size="20.0" />
                </font>

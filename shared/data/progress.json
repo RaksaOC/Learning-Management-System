@@ -1,10 +1,30 @@
-[
-    {
-        "studentId": "S000001",
-        "classroomId": "GEN10-CS-SE-G1-DBMS",
-        "assignments": ["A00001", "B", "C", "A00001", "B", "C", "A00001", "B", "C", "A00001", "B", "C", "A00001", "B", "C", "A00001", "B", "C"],
-        "resources": ["a", "b", "c"],
-        "quizzes": ["a", "b", "c", "a", "b", "c"],
-        "id": "P000001"
-    }
-]
+[{
+    "studentId": "S000001",
+    "assignments": [
+        {
+            "feedback": "Good Job",
+            "pending": "(Ongoing)",
+            "id": "A001",
+            "status": "active"
+        },
+        {
+            "pending": "(Ongoing)",
+            "id": "A002",
+            "status": "active"
+        },
+        {
+            "pending": "(Ongoing)",
+            "id": "A003",
+            "status": "active"
+        },
+        {
+            "pending": "(Ongoing)",
+            "id": "A004",
+            "status": "active"
+        }
+    ],
+    "resources": [],
+    "classroomId": "GEN10-CS-SE-G1-OOP",
+    "quizzes": [],
+    "id": "P000001"
+}]

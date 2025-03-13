@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import main.AppSession;
 import main.SceneManager;
-import main.java.com.lms.managers.studentSide.AuthenticationManager;
+import main.java.com.lms.managers.AuthenticationManager;
 
 public class UserTypeController {
     @FXML

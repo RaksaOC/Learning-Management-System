@@ -1,42 +1,61 @@
-[
+[{
+    "teacherId": "T0001",
+    "assignments": ["A0001", "A0002"],
+    "students": ["S000001"],
+    "resources": [],
+    "id": "GEN10-CS-SE-G1-OOP",
+    "quizzes": [],
+    "courseId": "",
+    "status": "active"
+},
     {
         "teacherId": "T0001",
-        "assignments": ["A00001", "A000002", "A000002", "A000002", "A00001", "A000002", "A000002", "A000002", "A00001", "A000002", "A000002", "A000002"],
+        "assignments": [
+            {
+                "description": "Write an Arduino script to display a countdown timer on an OLED screen and trigger a buzzer when it reaches zero.",
+                "id": "A001",
+                "title": "Embedded Systems Task",
+                "deadline": {
+                    "date": "2025-03-05",
+                    "time": "23:59"
+                },
+                "status": "active"
+            },
+            {
+                "description": "Use CSS Grid and Flexbox to design a responsive webpage layout with a header, sidebar, main content area, and footer.",
+                "id": "A002",
+                "title": "Web Layout Design",
+                "deadline": {
+                    "date": "2025-03-02",
+                    "time": "23:59"
+                },
+                "status": "active"
+            },
+            {
+                "description": "Create a linked list that stores book titles and allows users to add, remove, and search for books.",
+                "id": "A003",
+                "title": "Data Structure Explorer",
+                "deadline": {
+                    "date": "2025-02-20",
+                    "time": "23:59"
+                },
+                "status": "active"
+            },
+            {
+                "description": "Implement a program that sorts a list of student grades using at least two different sorting algorithms (e.g., Bubble Sort and Quick Sort).",
+                "id": "A004",
+                "title": "Algorithm Challenge",
+                "deadline": {
+                    "date": "2025-02-19",
+                    "time": "23:59"
+                },
+                "status": "active"
+            }
+        ],
         "students": ["S000001"],
-        "resources": ["R0001", "R0002"],
-        "id": "GEN10-CS-SE-G1-DBMS",
-        "quizzes": ["Q001", "Q002"],
-        "courseId": "VA",
-        "status": "active"
-    },
-    {
-        "teacherId": "",
-        "assignments": [],
-        "students": [],
         "resources": [],
-        "id": "GEN10-CS-SE-G4-OOP",
+        "id": "Operating System",
         "quizzes": [],
-        "courseId": "IL",
+        "courseId": "",
         "status": "active"
-    },
-    {
-        "teacherId": "",
-        "assignments": [],
-        "students": [],
-        "resources": [],
-        "id": "GEN10-CS-SE-G4-OOP",
-        "quizzes": [],
-        "courseId": "DBMS",
-        "status": "active"
-    },
-    {
-        "teacherId": "",
-        "assignments": [],
-        "students": [],
-        "resources": [],
-        "id": "GEN10-CS-SE-G4-OOP",
-        "quizzes": [],
-        "courseId": "OOP",
-        "status": "active"
-    }
-]
+    }]

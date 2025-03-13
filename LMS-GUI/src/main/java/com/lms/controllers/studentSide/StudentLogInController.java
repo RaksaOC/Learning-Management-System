@@ -9,7 +9,7 @@ import lib.Hasher;
 import main.AppSession;
 import main.SceneManager;
 import main.java.com.lms.controllers.StudentMainFrameController;
-import main.java.com.lms.managers.studentSide.AuthenticationManager;
+import main.java.com.lms.managers.AuthenticationManager;
 
 public class StudentLogInController {
     @FXML

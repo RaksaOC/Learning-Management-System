@@ -1,0 +1,40 @@
+[{
+    "resourceId": "R00001",
+    "classroomId": "GEN10-CS-SE-G1-OOP",
+    "resources": [
+        {
+             "id": "Week01",
+             "contents": [
+               {
+                 "id": "",
+                 "title": "",
+                 "description": "",
+                 "attachment": ""
+               },
+               {
+                 "id": "",
+                 "title": "",
+                 "description": "",
+                 "attachment": ""
+               }
+             ]
+        },
+      {
+        "id": "Week02",
+        "items": [
+          {
+            "id": "",
+            "title": "",
+            "description": "",
+            "attachment": ""
+          },
+          {
+            "id": "",
+            "title": "",
+            "description": "",
+            "attachment": ""
+          }
+        ]
+      }
+    ]
+}]

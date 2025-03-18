@@ -29,6 +29,173 @@ public class EditAdminManager extends EditEntityManager {
         loadEntityDataToEdit(); // this would load the entire file too
     }
 
+    public String getOldFirstNameSql() {
+        String query = "SELECT first_name FROM admin WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, idToEdit);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getString("first_name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getOldLastNameSql() {
+        String query = "SELECT last_name FROM admin WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, idToEdit);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getString("last_name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public String getOldDobSql() {
+        String query = "SELECT dob FROM admin WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, idToEdit);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getString("dob");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getOldNameSql() {
+        String query = "SELECT CONCAT(first_name, last_name) AS name FROM admin WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, idToEdit);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getString("name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;  // Return null if no result
+    }
+
+    public String getOldEmailSql() {
+        String query = "SELECT email FROM admin WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, idToEdit);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getString("email");  // Return the current email
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;  // Return null if no result
+    }
+
+    public String getOldGenderSql() {
+        String query = "SELECT gender FROM admin WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, idToEdit);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getString("gender");  // Return the current gender
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;  // Return null if no result
+    }
+
+    public String getOldPhoneSql() {
+        String query = "SELECT phone_number FROM admin WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, idToEdit);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getString("phone_number");  // Return the current phone number
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;  // Return null if no result
+    }
+
+    public void manageEditDOBSql(String newDob) {
+        String query = "UPDATE admin SET dob=? WHERE id=?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, newDob);
+            statement.setString(2, idToEdit);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void manageEditNameSql(String fName, String lName) {
+        String query = "UPDATE admin SET first_name=?, last_name=? WHERE id=?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, fName);
+            statement.setString(2, lName);
+            statement.setString(3, idToEdit);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void manageEditEmailSql(String newEmail) {
+        String query = "UPDATE admin SET email=? WHERE id=?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, newEmail);
+            statement.setString(2, idToEdit);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void manageEditGenderSql(String newGender) {
+        String query = "UPDATE admin SET gender=? WHERE id=?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, newGender);
+            statement.setString(2, idToEdit);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void manageEditPhoneSql(String newPhone) {
+        String query = "UPDATE admin SET phone_number=? WHERE id=?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, newPhone);
+            statement.setString(2, idToEdit);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void manageEditPasswordSql(String newPas) {
+        String query = "UPDATE admin SET password=? WHERE id=?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, Hasher.hash(newPas)); // Hashing the password before updating
+            statement.setString(2, idToEdit);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     // Make changes to file -------------------------------------------------------------------------
 
     public void manageEditDOB(String newDob) {
@@ -54,6 +221,20 @@ public class EditAdminManager extends EditEntityManager {
 
     public boolean isOldPasswordMatched(String oldPas) {
         return entityDataToEdit.getString("password").equals(Hasher.hash(oldPas));
+    }
+
+    public boolean isOldPasswordMatchedSql(String oldPas) {
+        String query = "SELECT password FROM admin WHERE id=?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, idToEdit);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getString("password").equals(Hasher.hash(oldPas));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public void manageEditPassword(String newPas) {

@@ -27,14 +27,14 @@ public class EditStudentEmailController extends MainFrameController {
         newTextField.setDisable(true);
         manager = new EditStudentManager(idComboBox.getValue());
         idComboBox.setOnAction(event -> {
-            curTextField.setText(manager.getOldEmail());
+            curTextField.setText(manager.getOldEmailSql());
             newTextField.setDisable(false);
         });
     }
 
     @FXML
     public void handleEdit(){
-        manager.manageEditDOB(newTextField.getText());
+        manager.manageEditDoBSql(newTextField.getText());
         loadSuccess("editStudentEmail");
         clearFields();
     }

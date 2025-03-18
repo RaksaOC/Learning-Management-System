@@ -27,7 +27,7 @@ public class EditStudentPhoneNumberController extends MainFrameController {
         newTextField.setDisable(true);
         manager = new EditStudentManager(idComboBox.getValue());
         idComboBox.setOnAction(event -> {
-            curTextField.setText(manager.getOldPhone());
+            curTextField.setText(manager.getOldPhoneSql());
             newTextField.setDisable(false);
         });
     }
@@ -35,6 +35,7 @@ public class EditStudentPhoneNumberController extends MainFrameController {
     @FXML
     public void handleEdit(){
         manager.manageEditPhone(newTextField.getText());
+        manager.manageEditPhoneSql(newTextField.getText());
         loadSuccess("editStudentPhoneNumber");
         clearFields();
     }

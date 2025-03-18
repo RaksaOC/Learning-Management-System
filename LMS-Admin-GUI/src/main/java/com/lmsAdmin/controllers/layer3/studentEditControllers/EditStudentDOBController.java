@@ -28,7 +28,7 @@ public class EditStudentDOBController extends MainFrameController {
         newDatePicker.setDisable(true);
         manager = new EditStudentManager(idComboBox.getValue());
         idComboBox.setOnAction(event -> {
-            curTextField.setText(manager.getOldDoB());
+            curTextField.setText(manager.getOldDoBSql());
             newDatePicker.setDisable(false);
         });
     }
@@ -36,6 +36,7 @@ public class EditStudentDOBController extends MainFrameController {
     @FXML
     public void handleEdit(){
         manager.manageEditDOB(newDatePicker.getValue().toString());
+        manager.manageEditDoBSql(newDatePicker.getValue().toString());
         loadSuccess("editStudentDOB");
         clearFields();
     }

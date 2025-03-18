@@ -27,14 +27,14 @@ public class EditGenerationNameController extends MainFrameController {
         idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
         idComboBox.setOnAction(event -> {
             manager = new EditGenerationManager(idComboBox.getValue());
-            curTextField.setText(idComboBox.getValue());
+            curTextField.setText(manager.getOldNameSql());
             newTextField.setDisable(false);
         });
     }
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditName(newTextField.getText());
+        manager.manageEditNameSql(newTextField.getText());
         loadSuccess("editGenerationName");
         clearFields();
     }

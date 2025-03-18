@@ -27,7 +27,7 @@ public class EditAdminEmailController extends MainFrameController {
         idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
         idComboBox.setOnAction(event -> {
             manager = new EditAdminManager(idComboBox.getValue());
-            curTextField.setText(manager.getOldDOB());
+            curTextField.setText(manager.getOldEmailSql());
             newTextField.setDisable(false);
         });
     }
@@ -35,6 +35,8 @@ public class EditAdminEmailController extends MainFrameController {
     @FXML
     private void handleEdit(MouseEvent event) {
         manager.manageEditEmail(newTextField.getText());
+        manager.manageEditEmailSql(newTextField.getText());
+
         loadSuccess("editAdminEmail");
         clearFields();
     }

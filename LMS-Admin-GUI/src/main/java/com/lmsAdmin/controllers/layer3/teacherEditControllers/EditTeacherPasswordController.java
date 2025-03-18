@@ -44,7 +44,7 @@ public class EditTeacherPasswordController extends MainFrameController {
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditPassword(newTextField.getText());
+        manager.manageEditPasswordSql(newTextField.getText());
         loadSuccess("editTeacherPassword");
         clearFields();
     }

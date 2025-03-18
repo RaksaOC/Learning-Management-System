@@ -27,7 +27,7 @@ public class EditStudentSpecializationController extends MainFrameController {
         newComboBox.setDisable(true);
         manager = new EditStudentManager(idComboBox.getValue());
         idComboBox.setOnAction(event -> {
-            curTextField.setText(manager.getOldDepartment());
+            curTextField.setText(manager.getOldSpecializationSql());
             EditSpecializationManager speManager = new EditSpecializationManager();
             newComboBox.getItems().addAll(speManager.loadIdsAndNameJSON());
             newComboBox.setDisable(false);
@@ -37,6 +37,7 @@ public class EditStudentSpecializationController extends MainFrameController {
     @FXML
     public void handleEdit(){
         manager.manageEditSpecialization(newComboBox.getSelectionModel().getSelectedItem());
+        manager.manageEditSpecializationSql(newComboBox.getSelectionModel().getSelectedItem());
         loadSuccess("editStudentSpecialization");
         clearFields();
     }

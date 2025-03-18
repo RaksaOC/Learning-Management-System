@@ -27,14 +27,14 @@ public class EditDepartmentNameController extends MainFrameController {
         idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
         idComboBox.setOnAction(event -> {
             manager = new EditDepartmentManager(idComboBox.getValue());
-            curTextField.setText(manager.getOldName());
+            curTextField.setText(manager.getOldNameSql());
             newTextField.setDisable(false);
         });
     }
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditName(newTextField.getText());
+        manager.manageEditNameSql(newTextField.getText());
         loadSuccess("editDepartmentName");
         clearFields();
     }

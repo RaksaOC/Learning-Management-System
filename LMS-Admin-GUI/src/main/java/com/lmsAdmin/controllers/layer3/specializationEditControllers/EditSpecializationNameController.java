@@ -34,7 +34,7 @@ public class EditSpecializationNameController extends MainFrameController {
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditName(newTextField.getText());
+        manager.manageEditNameSql(newTextField.getText());
         loadSuccess("editSpecializationName");
         clearFields();
     }

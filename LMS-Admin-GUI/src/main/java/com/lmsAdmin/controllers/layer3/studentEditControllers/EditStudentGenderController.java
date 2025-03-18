@@ -28,7 +28,7 @@ public class EditStudentGenderController extends MainFrameController {
         editButton.setDisable(true);
         manager = new EditStudentManager(idComboBox.getValue());
         idComboBox.setOnAction(event -> {
-            curTextField.setText(manager.getOldEmail());
+            curTextField.setText(manager.getOldGenderSql());
             newComboBox.setDisable(false);
         });
     }
@@ -36,6 +36,7 @@ public class EditStudentGenderController extends MainFrameController {
     @FXML
     public void handleEdit(){
         manager.manageEditGender(newComboBox.getSelectionModel().getSelectedItem().toString());
+        manager.manageEditGenderSql(newComboBox.getSelectionModel().getSelectedItem().toString());
         loadSuccess("editStudentGender");
         clearFields();
     }

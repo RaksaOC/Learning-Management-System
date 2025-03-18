@@ -28,6 +28,28 @@ public class EditCourseManager extends EditEntityManager {
 
     }
 
+    public void manageEditIdSql(String newID) {
+        String query = "UPDATE course SET id=? WHERE id=?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, newID);
+            statement.setString(2, idToEdit);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void manageEditNameSql(String newName) {
+        String query = "UPDATE course SET name=? WHERE id=?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, newName);
+            statement.setString(2, idToEdit);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void manageEditId(String newID) {
         this.entityDataToEdit.put("id", newID);
         super.saveEntityData();
@@ -40,6 +62,34 @@ public class EditCourseManager extends EditEntityManager {
 
     public String getOldID(){
         return entityDataToEdit.getString("id");
+    }
+
+    public String getOldIdSql() {
+        String query = "SELECT id FROM course WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, idToEdit);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getString("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getOldNameSql() {
+        String query = "SELECT name FROM course WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, idToEdit);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getString("name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public ArrayList<String> loadIds() {

@@ -31,6 +31,57 @@ public class EditGenerationManager extends EditEntityManager {
         this.loadEntityDataToEdit();
     }
 
+    public String getOldIdSql() {
+        String query = "SELECT id FROM generation WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, idToEdit);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getString("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getOldNameSql() {
+        String query = "SELECT name FROM generation WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, idToEdit);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getString("name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void manageEditIdSql(String newId) {
+        String query = "UPDATE generation SET id=? WHERE id=?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, newId);
+            statement.setString(2, idToEdit);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void manageEditNameSql(String newName) {
+        String query = "UPDATE generation SET name=? WHERE id=?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, newName);
+            statement.setString(2, idToEdit);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public void manageEditId(String newId) {
         JSONArray department = entityData_Obj.getJSONArray("departments");
         for (int i = 0; i < department.length(); i++) {

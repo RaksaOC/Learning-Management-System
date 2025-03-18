@@ -47,10 +47,10 @@ public class EditStudentGuardianController extends MainFrameController {
 
         idComboBox.setOnAction(event -> {
             manager = new EditStudentManager(idComboBox.getValue());
-            curGFirstNameTextField.setText(manager.getOldGuardianFirstName());
-            curGLastNameTextField.setText(manager.getOldGuardianLastName());
-            curGGenderTextField.setText(manager.getOldGuardianGender());
-            curGPhoneTextField.setText(manager.getOldGuardianPhone());
+            curGFirstNameTextField.setText(manager.getOldGuardianFirstNameSql());
+            curGLastNameTextField.setText(manager.getOldGuardianLastNameSql());
+            curGGenderTextField.setText(manager.getOldGuardianGenderSql());
+            curGPhoneTextField.setText(manager.getOldGuardianPhoneSql());
 
             // Enable province selection and populate it
             newGFirstNameTextField.setDisable(false);
@@ -70,6 +70,7 @@ public class EditStudentGuardianController extends MainFrameController {
         name.put("lastName", curGLastNameTextField.getText());
         newGuardian.put("name", name);
         manager.manageEditGuardian(newGuardian);
+        manager.manageEditGuardianSql(newGFirstNameTextField.getText(), newGFirstNameTextField.getText(), newGGenderComboBox.getSelectionModel().getSelectedItem(), newGPhoneTextField.getText());
         loadSuccess("editStudentGuardian");
         clearFields();
     }

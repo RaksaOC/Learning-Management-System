@@ -21,6 +21,21 @@ public class AddGenerationController extends MainFrameController {
 
     @FXML
     private void handleAdd(MouseEvent event) {
+        handleAddJSON();
+        handleAddSql();
+        playSuccessScene();
+    }
+
+    private void handleAddSql(){
+        ManageGenerationManager manager = new ManageGenerationManager();
+        manager.manageAddEntitySql(
+                id.getText(),
+                name.getText(),
+                "active"
+        );
+    }
+
+    private void handleAddJSON(){
         ManageGenerationManager manageGenerationManager = new ManageGenerationManager();
         String n = this.name.getText();
         String ID = this.id.getText();
@@ -29,7 +44,9 @@ public class AddGenerationController extends MainFrameController {
         newEntity.put("id", ID);
         manageGenerationManager.manageAddEntity(newEntity);
         System.out.println("Generation added successfully");
+    }
 
+    public void playSuccessScene(){
         SceneManager.setScene("success");
         PauseTransition delay = new PauseTransition(Duration.seconds(2));
         delay.setOnFinished(ev -> {

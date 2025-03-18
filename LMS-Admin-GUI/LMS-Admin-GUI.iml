@@ -18,5 +18,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" exported="" name="lib" level="project" />
+    <orderEntry type="library" exported="" name="mysql-connector-j-8.0.33" level="project" />
   </component>
 </module>

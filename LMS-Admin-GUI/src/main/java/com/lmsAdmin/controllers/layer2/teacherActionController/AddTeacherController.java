@@ -37,6 +37,12 @@ public class AddTeacherController extends MainFrameController {
 
     @FXML
     private void handleAdd(MouseEvent event) {
+        handleAddSql();
+        handleAddJSON();
+
+    }
+
+    private void handleAddJSON(){
         if(isPasswordSame(password.getText(), confirmPassword.getText())){
             String fName = firstName.getText();
             String lName = lastName.getText();
@@ -99,7 +105,54 @@ public class AddTeacherController extends MainFrameController {
             alert.showAndWait();
             resetPassFields();
         }
+    }
 
+    private void handleAddSql(){
+        if(isPasswordSame(password.getText(), confirmPassword.getText())){
+            String fName = firstName.getText();
+            String lName = lastName.getText();
+            String dateOfBirth = dob.getValue().toString();
+            String gen = gender.getSelectionModel().getSelectedItem().toString();
+            String phone = phoneNumber.getText();
+            String password = confirmPassword.getText();
+            String em = email.getText();
+
+            ManageTeacherManager manageTeacherManager = new ManageTeacherManager();
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            String formattedDate = now.format(formatter);
+
+            manageTeacherManager.manageAddEntitySql(
+                    fName,
+                    lName,
+                    gen,
+                    dateOfBirth,
+                    phone,
+                    em,
+                    "active",
+                    formattedDate,
+                    null,
+                    password
+            );
+
+            SceneManager.setScene("success");
+            PauseTransition delay = new PauseTransition(Duration.seconds(2));
+            delay.setOnFinished(ev -> {
+                SceneManager.setScene("addTeacher");
+                resetAllFields();
+            });
+
+            delay.play();
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Password do not match");
+            alert.setHeaderText(null);
+            alert.setContentText("Password do not match");
+            alert.showAndWait();
+            resetPassFields();
+        }
     }
 
     private boolean isPasswordSame(String password, String confirmPassword) {

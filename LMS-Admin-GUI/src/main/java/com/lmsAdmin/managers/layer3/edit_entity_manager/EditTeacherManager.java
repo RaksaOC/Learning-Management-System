@@ -1,10 +1,17 @@
 package main.java.com.lmsAdmin.managers.layer3.edit_entity_manager;
 
+import main.DatabaseConnection;
 import org.json.JSONObject;
 
+import javax.xml.crypto.Data;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class EditTeacherManager extends EditEntityManager {
+    private Connection conn = DatabaseConnection.getInstance().getConnection();
+
     public EditTeacherManager(String idToEdit) {
         super(idToEdit);
         setFilePath("shared/data/teacher.json");
@@ -31,6 +38,7 @@ public class EditTeacherManager extends EditEntityManager {
     public String getOldFirstName() {
         return this.entityDataToEdit.getJSONObject("name").getString("firstname");
     }
+
     public String getOldLastName() {
         return this.entityDataToEdit.getJSONObject("name").getString("lastname");
     }
@@ -72,11 +80,28 @@ public class EditTeacherManager extends EditEntityManager {
         saveEntityData();
     }
 
-    public ArrayList<String> loadIds() {
+    public ArrayList<String> loadIdsAndNameJSON() {
         ArrayList<String> ids = new ArrayList<>();
-        for (int i = 0; i < entityData_Arr.length(); i++){
-            ids.add(entityData_Arr.getJSONObject(i).getString("id"));
+        for (int i = 0; i < entityData_Arr.length(); i++) {
+            ids.add(entityData_Arr.getJSONObject(i).getString("id") + entityData_Arr.getJSONObject(i).getJSONObject("name").getString("firstName") + entityData_Arr.getJSONObject(i).getJSONObject("name").getString("lastName"));
         }
         return ids;
     }
+
+    public ArrayList<String> loadIdsAndNameSql() {
+        ArrayList<String> ids = new ArrayList<>();
+        String query = "SELECT id, CONCAT(first_name, last_name ) as name FROM teacher";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                ids.add(rs.getString("id") + " - " + rs.getString("name"));
+            }
+            return ids;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }

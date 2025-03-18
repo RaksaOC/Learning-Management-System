@@ -22,7 +22,7 @@ public class EditStudentGenderController extends MainFrameController {
 
     @FXML
     public void initialize() {
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
         curTextField.setDisable(true);
         curTextField.setDisable(true);
         editButton.setDisable(true);

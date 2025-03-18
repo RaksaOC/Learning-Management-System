@@ -24,7 +24,7 @@ public class EditAdminEmailController extends MainFrameController {
     @FXML
     private void initialize() {
         editButton.setDisable(true);
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
         idComboBox.setOnAction(event -> {
             manager = new EditAdminManager(idComboBox.getValue());
             curTextField.setText(manager.getOldDOB());

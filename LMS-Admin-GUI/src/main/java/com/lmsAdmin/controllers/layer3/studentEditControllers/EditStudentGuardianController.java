@@ -43,7 +43,7 @@ public class EditStudentGuardianController extends MainFrameController {
         newGGenderComboBox.setDisable(true);
         newGPhoneTextField.setDisable(true);
 
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
 
         idComboBox.setOnAction(event -> {
             manager = new EditStudentManager(idComboBox.getValue());

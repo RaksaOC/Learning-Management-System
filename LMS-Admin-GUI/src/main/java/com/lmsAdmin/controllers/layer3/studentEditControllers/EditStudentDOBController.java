@@ -23,7 +23,7 @@ public class EditStudentDOBController extends MainFrameController {
 
     @FXML
     public void initialize() {
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
         curTextField.setDisable(true);
         newDatePicker.setDisable(true);
         manager = new EditStudentManager(idComboBox.getValue());

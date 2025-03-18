@@ -24,7 +24,7 @@ public class EditDepartmentNameController extends MainFrameController {
     @FXML
     private void initialize() {
         editButton.setDisable(true);
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
         idComboBox.setOnAction(event -> {
             manager = new EditDepartmentManager(idComboBox.getValue());
             curTextField.setText(manager.getOldName());

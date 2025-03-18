@@ -27,7 +27,7 @@ public class EditStudentNameController extends MainFrameController {
 
     @FXML
     public void initialize() {
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
         curFirstNameTextField.setDisable(true);
         curLastNameTextField.setDisable(true);
         newFirstNameTextField.setDisable(true);

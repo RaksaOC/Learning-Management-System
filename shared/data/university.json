@@ -1,192 +1,297 @@
 {
-    "universityName": "CADT",
-    "courses": [
+  "universityName": "CADT",
+  "courses": [
+    {
+      "level": "",
+      "name": "IT Essentials",
+      "description": "",
+      "id": "L0001",
+      "credit": "",
+      "status": "active"
+    },
+    {
+      "level": "",
+      "name": "Visual Art",
+      "description": "",
+      "id": "L0002",
+      "credit": "",
+      "status": "active"
+    },
+    {
+      "level": "Female",
+      "name": "info literacy",
+      "description": "jaskdfjolasdjfoksdjafkajfioasdjdf",
+      "id": "il",
+      "credit": "Female",
+      "status": "active"
+    },
+    {
+      "level": "Female",
+      "name": "asdfasdf",
+      "description": "asdfasdfasdf",
+      "id": "asdfasfd",
+      "credit": "Female",
+      "status": "active"
+    },
+    {
+      "level": "Female",
+      "name": "asdasd",
+      "description": "sadfasfasdf",
+      "id": "asdasads",
+      "credit": "Male",
+      "status": "active"
+    },
+    {
+      "level": "Undergraduate",
+      "name": "blah",
+      "description": "THis is blah blah blah ble ble ble blu blu blu",
+      "id": "bllah",
+      "credit": "2",
+      "status": "active"
+    },
+    {
+      "level": "Undergraduate",
+      "name": "asdasdasd",
+      "description": "asdasdasdas",
+      "id": "asdadas",
+      "credit": "2",
+      "status": "active"
+    },
+    {
+      "level": "Postgraduate",
+      "name": "adasdasd",
+      "description": "asdfasddfasdfasdf",
+      "id": "asdasd",
+      "credit": "3",
+      "status": "active"
+    },
+    {
+      "level": "Postgraduate",
+      "name": "asdfasdf",
+      "description": "asas",
+      "id": "asdfasdf",
+      "credit": "2",
+      "status": "active"
+    },
+    {
+      "level": "Undergraduate",
+      "name": "asd",
+      "description": "asdasd",
+      "id": "ad",
+      "credit": "1",
+      "status": "active"
+    },
+    {
+      "level": "Postgraduate",
+      "name": "sdfdsf",
+      "description": "sdfdsfsdfsddsfsdfdsf",
+      "id": "erwrew",
+      "credit": "2",
+      "status": "inactive"
+    }
+  ],
+  "departments": [
+    {
+      "specializations": [
         {
-            "level": "",
-            "name": "IT Essentials",
-            "description": "",
-            "id": "L0001",
-            "credit": "",
-            "status": "active"
-        },
-        {
-            "level": "",
-            "name": "Visual Art",
-            "description": "",
-            "id": "L0002",
-            "credit": "",
-            "status": "active"
-        },
-        {
-            "level": "Female",
-            "name": "info literacy",
-            "description": "jaskdfjolasdjfoksdjafkajfioasdjdf",
-            "id": "il",
-            "credit": "Female",
-            "status": "active"
-        },
-        {
-            "level": "Female",
-            "name": "asdfasdf",
-            "description": "asdfasdfasdf",
-            "id": "asdfasfd",
-            "credit": "Female",
-            "status": "active"
-        },
-        {
-            "level": "Female",
-            "name": "asdasd",
-            "description": "sadfasfasdf",
-            "id": "asdasads",
-            "credit": "Male",
-            "status": "active"
-        }
-    ],
-    "departments": [
-        {
-            "specializations": [
+          "generations": [
+            {
+              "name": "Generation 10",
+              "groups": [
                 {
-                    "generations": [
-                        {
-                            "name": "Generation 10",
-                            "groups": [
-                                {
-                                    "students": [
-                                        "S000001",
-                                        "S000001",
-                                        "S000002",
-                                        "S000001",
-                                        "S000002",
-                                        "S000001",
-                                        "S000002"
-                                    ],
-                                    "id": "GEN10-CS-SE-G1",
-                                    "classrooms": ["GEN10-CS-SE-G1-OOP"],
-                                    "status": "active"
-                                },
-                                {
-                                    "students": [
-                                        "S000001",
-                                        "S000002"
-                                    ],
-                                    "id": "GEN10-CS-SE-G4",
-                                    "classrooms": ["GEN10-CS-SE-G4-OOP"],
-                                    "status": "active"
-                                }
-                            ],
-                            "id": "GEN10",
-                            "status": "active"
-                        },
-                        {
-                            "name": "Generation 12",
-                            "groups": [],
-                            "id": "GEN12",
-                            "status": "active"
-                        }
-                    ],
-                    "name": "Software Engineering",
-                    "id": "CS-SE",
-                    "status": "active"
+                  "students": [
+                    "S000001",
+                    "S000001",
+                    "S000002",
+                    "S000001",
+                    "S000002",
+                    "S000001",
+                    "S000002"
+                  ],
+                  "id": "GEN10-CS-SE-G1",
+                  "classrooms": [
+                    "GEN10-CS-SE-G1-OOP"
+                  ],
+                  "status": "active"
                 },
                 {
-                    "generations": [
-                        {
-                            "groups": [],
-                            "id": "GEN10",
-                            "status": "active"
-                        },
-                        {
-                            "name": "Generation 12",
-                            "groups": [],
-                            "id": "GEN12",
-                            "status": "active"
-                        }
-                    ],
-                    "name": "Data Science",
-                    "id": "CS-DS",
-                    "status": "active"
+                  "students": [
+                    "S000001",
+                    "S000002"
+                  ],
+                  "id": "GEN10-CS-SE-G4",
+                  "classrooms": [
+                    "GEN10-CS-SE-G4-OOP"
+                  ],
+                  "status": "active"
                 }
-            ],
-            "name": "Computer Science",
-            "id": "CS",
-            "status": "active"
+              ],
+              "id": "GEN10",
+              "status": "active"
+            },
+            {
+              "name": "Generation 12",
+              "groups": [],
+              "id": "GEN12",
+              "status": "active"
+            },
+            {
+              "name": "Genration 20",
+              "groups": [],
+              "id": "GEN20",
+              "status": "inactive"
+            }
+          ],
+          "name": "Software Engineering",
+          "id": "CS-SE",
+          "status": "active"
         },
         {
-            "specializations": [
-                {
-                    "generations": [
-                        {
-                            "groups": [],
-                            "id": "GEN10",
-                            "status": "active"
-                        },
-                        {
-                            "name": "Generation 12",
-                            "groups": [],
-                            "id": "GEN12",
-                            "status": "active"
-                        }
-                    ],
-                    "name": "Cybersecurity",
-                    "id": "TN-CBS",
-                    "status": "active"
-                },
-                {
-                    "generations": [
-                        {
-                            "groups": [],
-                            "id": "GEN10",
-                            "status": "active"
-                        },
-                        {
-                            "name": "Generation 12",
-                            "groups": [],
-                            "id": "GEN12",
-                            "status": "active"
-                        }
-                    ],
-                    "name": "Telecommunication & Networking",
-                    "id": "TN-TN",
-                    "status": "active"
-                }
-            ],
-            "name": "Telecommunication & Networking",
-            "id": "TN",
-            "status": "active"
-        },
-        {
-            "specializations": [{
-                "generations": [
-                    {
-                        "groups": [],
-                        "id": "GEN10",
-                        "status": "active"
-                    },
-                    {
-                        "name": "Generation 12",
-                        "groups": [],
-                        "id": "GEN12",
-                        "status": "active"
-                    }
-                ],
-                "name": "E-Commerce",
-                "id": "DB-EC",
-                "status": "active"
-            }],
-            "name": "Digital Business",
-            "id": "DB",
-            "status": "active"
-        },
-        {
-            "specializations": [{
-                "generations": [],
-                "name": "Urban Planning",
-                "id": "ARC-UP",
-                "status": "active"
-            }],
-            "name": "Architechture",
-            "id": "ARC",
-            "status": "active"
+          "generations": [
+            {
+              "groups": [],
+              "id": "GEN10",
+              "status": "active"
+            },
+            {
+              "name": "Generation 12",
+              "groups": [],
+              "id": "GEN12",
+              "status": "active"
+            },
+            {
+              "name": "Genration 20",
+              "groups": [],
+              "id": "GEN20",
+              "status": "inactive"
+            }
+          ],
+          "name": "Data Science",
+          "id": "CS-DS",
+          "status": "active"
         }
-    ]
+      ],
+      "name": "Computer Science",
+      "id": "CS",
+      "status": "active"
+    },
+    {
+      "specializations": [
+        {
+          "generations": [
+            {
+              "groups": [],
+              "id": "GEN10",
+              "status": "active"
+            },
+            {
+              "name": "Generation 12",
+              "groups": [],
+              "id": "GEN12",
+              "status": "active"
+            },
+            {
+              "name": "Genration 20",
+              "groups": [],
+              "id": "GEN20",
+              "status": "inactive"
+            }
+          ],
+          "name": "Cybersecurity",
+          "id": "TN-CBS",
+          "status": "active"
+        },
+        {
+          "generations": [
+            {
+              "groups": [],
+              "id": "GEN10",
+              "status": "active"
+            },
+            {
+              "name": "Generation 12",
+              "groups": [],
+              "id": "GEN12",
+              "status": "active"
+            },
+            {
+              "name": "Genration 20",
+              "groups": [],
+              "id": "GEN20",
+              "status": "inactive"
+            }
+          ],
+          "name": "Telecommunication & Networking",
+          "id": "TN-TN",
+          "status": "active"
+        }
+      ],
+      "name": "Telecommunication & Networking",
+      "id": "TN",
+      "status": "active"
+    },
+    {
+      "specializations": [
+        {
+          "generations": [
+            {
+              "groups": [],
+              "id": "GEN10",
+              "status": "active"
+            },
+            {
+              "name": "Generation 12",
+              "groups": [],
+              "id": "GEN12",
+              "status": "active"
+            },
+            {
+              "name": "Genration 20",
+              "groups": [],
+              "id": "GEN20",
+              "status": "inactive"
+            }
+          ],
+          "name": "E-Commerce",
+          "id": "DB-EC",
+          "status": "active"
+        }
+      ],
+      "name": "Digital Business",
+      "id": "DB",
+      "status": "active"
+    },
+    {
+      "specializations": [
+        {
+          "generations": [
+            {
+              "name": "Genration 20",
+              "groups": [],
+              "id": "GEN20",
+              "status": "inactive"
+            }
+          ],
+          "name": "Urban Planning",
+          "id": "ARC-UP",
+          "status": "active"
+        }
+      ],
+      "name": "Architechture",
+      "id": "ARC",
+      "status": "active"
+    },
+    {
+      "specializations": [],
+      "name": "blah",
+      "id": "blah-01",
+      "status": "active"
+    },
+    {
+      "specializations": [],
+      "name": "engineering",
+      "id": "EN",
+      "status": "active"
+    }
+  ]
 }

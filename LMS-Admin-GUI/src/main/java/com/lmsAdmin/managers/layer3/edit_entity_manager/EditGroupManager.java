@@ -1,5 +1,6 @@
 package main.java.com.lmsAdmin.managers.layer3.edit_entity_manager;
 
+import main.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -7,9 +8,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class EditGroupManager extends EditEntityManager {
+
+    private Connection conn = DatabaseConnection.getInstance().getConnection();
     // idToEdit = old ID
     public EditGroupManager(String groupID) {
         //                           ^
@@ -84,7 +90,7 @@ public class EditGroupManager extends EditEntityManager {
         }
     }
 
-    public ArrayList<String> loadIds(){
+    public ArrayList<String> loadIdsAndName(){
         ArrayList<String> ids = new ArrayList<>();
         JSONArray departments = entityData_Obj.getJSONArray("departments");
         for (int i = 0; i < departments.length(); i++) {
@@ -98,6 +104,21 @@ public class EditGroupManager extends EditEntityManager {
                     }
                 }
             }
+        }
+        return ids;
+    }
+
+    public ArrayList<String> loadIdsAndNameSql(){
+        ArrayList<String> ids = new ArrayList<>();
+        String query = "SELECT id FROM student_group";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()){
+                ids.add(rs.getString("id"));
+            }
+            return ids;
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return ids;
     }

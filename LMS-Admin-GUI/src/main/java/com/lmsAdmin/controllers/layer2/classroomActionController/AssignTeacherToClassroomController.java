@@ -22,7 +22,7 @@ public class AssignTeacherToClassroomController extends MainFrameController {
     public void initialize() {
         assignButton.setDisable(true);
         classroomIDComboBox.setDisable(true);
-        teacherIDComboBox.getItems().addAll(teacherIDLoader.loadIds());
+        teacherIDComboBox.getItems().addAll(teacherIDLoader.loadIdsAndNameJSON());
         teacherIDComboBox.setOnAction(event -> {
             classroomIDComboBox.setDisable(false);
             classroomIDComboBox.getItems().addAll(classroomIDLoader.loadIds());

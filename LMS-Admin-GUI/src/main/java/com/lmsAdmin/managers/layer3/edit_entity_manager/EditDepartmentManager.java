@@ -1,5 +1,6 @@
 package main.java.com.lmsAdmin.managers.layer3.edit_entity_manager;
 
+import main.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -7,11 +8,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class EditDepartmentManager extends EditEntityManager {
 
     JSONArray departments;
+    Connection conn = DatabaseConnection.getInstance().getConnection();
 
     public EditDepartmentManager(String idToEdit) {
         super(idToEdit);
@@ -40,12 +48,30 @@ public class EditDepartmentManager extends EditEntityManager {
         return entityDataToEdit.getString("id");
     }
 
-    public ArrayList<String> loadIds() {
-        ArrayList<String> ids = new ArrayList<>();
-        for(int i = 0; i < departments.length(); i++) {
-            ids.add(departments.getJSONObject(i).getString("id"));
+    public ArrayList<String> loadIdsAndNameJSON() {
+        ArrayList<String> idsAndName = new ArrayList<>();
+        for (int i = 0; i < departments.length(); i++) {
+            idsAndName.add(departments.getJSONObject(i).getString("id") + " - " + departments.getJSONObject(i).getString("name"));
         }
-        return ids;
+        Collections.sort(idsAndName, Comparator.comparing(s -> s.substring(s.indexOf("-") + 2)));
+        return idsAndName;
+    }
+
+    public ArrayList<String> loadIdsAndNameSql() {
+        ArrayList<String> idsAndName = new ArrayList<>();
+        String query = "SELECT id, name FROM department";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.execute();
+            ResultSet resultSet = statement.getResultSet();
+            while (resultSet.next()) {
+                idsAndName.add(resultSet.getString("id") + " - " + resultSet.getString("name"));
+            }
+            Collections.sort(idsAndName, Comparator.comparing(s -> s.substring(s.indexOf("-" ) + 2)));
+            return idsAndName;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return idsAndName;
     }
 
     @Override

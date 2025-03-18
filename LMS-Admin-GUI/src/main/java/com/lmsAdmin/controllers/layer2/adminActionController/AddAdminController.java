@@ -67,6 +67,19 @@ public class AddAdminController extends MainFrameController {
             newAdmin.put("lastLogin", "");
             newAdmin.put("status", "active");
 
+            manageAdminManager.manageAddEntitySQL(
+                    fName,
+                    lName,
+                    formattedDate,
+                    null,
+                    password,
+                    phone,
+                    gen,
+                    dateOfBirth,
+                    em,
+                    "active"
+            );
+
             manageAdminManager.manageAddEntity(newAdmin);
 
             System.out.println("Contents to be added");

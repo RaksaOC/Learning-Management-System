@@ -22,7 +22,7 @@ public class EditStudentPasswordController extends MainFrameController {
     @FXML
     private void initialize() {
         editButton.setDisable(true);
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
         idComboBox.setOnAction(event -> {
             manager = new EditStudentManager(idComboBox.getValue());
             newTextField.setDisable(true);

@@ -1,10 +1,19 @@
 package main.java.com.lmsAdmin.managers.layer3.edit_entity_manager;
 
+import com.mysql.cj.jdbc.result.UpdatableResultSet;
+import main.DatabaseConnection;
 import org.json.JSONObject;
 
+import javax.xml.crypto.Data;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class EditStudentManager extends EditEntityManager {
+
+    private Connection conn = DatabaseConnection.getInstance().getConnection();
 
     public EditStudentManager(String idToEdit) {
         super(idToEdit);
@@ -119,13 +128,6 @@ public class EditStudentManager extends EditEntityManager {
         return this.entityDataToEdit.getString("password").equals(oldPassword);
     }
 
-    public ArrayList<String> loadIds() {
-        ArrayList<String> ids = new ArrayList<>();
-        for (int i = 0; i < this.entityData_Arr.length(); i++) {
-            ids.add(this.entityData_Arr.getJSONObject(i).getString("id"));
-        }
-        return ids;
-    }
 
     public String getOldCommune() {
         return this.entityDataToEdit.getJSONObject("address").getString("commune");
@@ -138,4 +140,29 @@ public class EditStudentManager extends EditEntityManager {
     public String getOldProvince() {
         return this.entityDataToEdit.getJSONObject("address").getString("province");
     }
+
+    public ArrayList<String> loadIdsAndNameJSON() {
+        ArrayList<String> ids = new ArrayList<>();
+        for (int i = 0; i < this.entityData_Arr.length(); i++) {
+            ids.add(this.entityData_Arr.getJSONObject(i).getString("id"));
+        }
+        return ids;
+    }
+
+    public ArrayList<String> loadIdsAndNameSql() {
+        ArrayList<String> ids = new ArrayList<>();
+        String query = "SELECT id, CONCAT(first_name, last_name) as name FROM student";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.execute();
+            ResultSet rs = statement.getResultSet();
+            while (rs.next()) {
+                ids.add(rs.getString("id") + " - " + rs.getString("name"));
+            }
+            return ids;
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ids;
+    }
+
 }

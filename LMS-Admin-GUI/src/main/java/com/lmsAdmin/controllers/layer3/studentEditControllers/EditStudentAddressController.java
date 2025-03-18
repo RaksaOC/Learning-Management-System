@@ -47,7 +47,7 @@ public class EditStudentAddressController extends MainFrameController {
         newDistrictComboBox.setDisable(true);
         newProvinceComboBox.setDisable(true);
 
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
 
         idComboBox.setOnAction(event -> {
             manager = new EditStudentManager(idComboBox.getValue());

@@ -26,8 +26,20 @@ public class AddCourseController extends MainFrameController {
     @FXML
     private TextField description;
 
+    public void initialize() {
+        credit.getItems().clear();
+        credit.getItems().addAll("1", "2", "3", "4", "5");
+        level.getItems().clear();
+        level.getItems().addAll("Undergraduate", "Postgraduate", "Doctorate");
+    }
+
     @FXML
     private void handleAdd(MouseEvent event) {
+        handleAddSql();
+        handleAddJSON();
+    }
+
+    private void handleAddJSON(){
         String n = name.getText();
         String ID = id.getText();
         String cre = credit.getSelectionModel().getSelectedItem().toString();
@@ -61,6 +73,28 @@ public class AddCourseController extends MainFrameController {
         System.out.println(desc);
         System.out.println(newEntity);
         System.out.println("content added successfully");
+    }
+
+    private void handleAddSql(){
+        ManageCourseManager manageCourseManager = new ManageCourseManager();
+
+        manageCourseManager.manageAddEntitySql(
+                id.getText(),
+                name.getText(),
+                credit.getSelectionModel().getSelectedItem().toString().trim(),
+                level.getSelectionModel().getSelectedItem().toString().trim(),
+                description.getText(),
+                "active"
+        );
+        System.out.println("content added successfully with Sql");
+        SceneManager.setScene("success");
+        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+        delay.setOnFinished(ev -> {
+            SceneManager.setScene("addCourse");
+            resetAllFields();
+        });
+
+        delay.play();
     }
 
     private void resetAllFields() {

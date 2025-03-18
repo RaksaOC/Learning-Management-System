@@ -49,42 +49,41 @@ public class StudentController {
     // Assignment Controller
     public void handleViewAssignment(String classroomId) {
         StudentManager studentManager = new StudentManager(student);
-        System.out.println(studentManager.selectAssignmentTitle(classroomId)); // Pass IDs to filter assignments
+        // Step 1: Get the assignment ID selected by the user
+        String assignmentId = studentManager.selectAssignmentTitle(classroomId);
+        if (assignmentId == null) {
+            System.out.println("No assignment selected.");
+            return;
+        }
+        // Step 2: Retrieve the assignment details
+        JSONObject assignment = studentManager.getAssignmentDetails(classroomId, assignmentId);
+        // Step 3: Display the assignment details
+        if (assignment != null) {
+            studentManager.displayAssignmentDetails(assignment);
+        } else {
+            System.out.println("Assignment not found.");
+        }
+    }
+
+    public void handleDoAssignment(String classroomId) {
+        StudentManager studentManager = new StudentManager(student);
+        String assignmentId = studentManager.selectAssignmentTitle(classroomId);
+
+        if (assignmentId != null) {
+            studentManager.editAssignment(student.getId(), assignmentId, classroomId);
+        }
+    }
+
+    public void handleViewSubmittedAssignment(){
+        StudentManager studentManager = new StudentManager(student);
+        studentManager.viewSubmittedAssignments(student.getId());
+    }
+
+    public void handleViewGradeAndComments(){
 
     }
 
-
-    public void submitAssignment(){
-        // handles the actions of submitting an assignment
-        // getting input like link to the finished work of the student
-
-//        Scanner sc = new Scanner(System.in);
-//        System.out.println("link ");
-//
-//        // submitted
-//        assignment  = student.getAssingment();
-//        assingment.add(newAssignment);
-//
-//        StudentManager studentManager = new StudentManager(student);
-//        studentManager.manageViewAssignment();
-
-        // call to manager to manage the submission of the assignment (write to file (to where....))
-
-        // example use:
-        // String assignmentLInk = sc.nextLine();
-        // manager.manageSubmitAssignment(assignmentLink)
-    }
-
-    public void viewAssignment(){
-        // works like the submit assignment just call to manager to read the file that contains the assignment
-        // the controller can take the raw json data from the manager and organize it to look pretty
-
-        // example:
-        // JSONArray assignments = manager.manageViewAssignment();
-        // logic to make the the data look nice i.e. into a table...
-
-    }
-
+//    View Profile method
     public void viewProfile(){
         StudentManager studentManager = new StudentManager(student);
         String profileDetails = studentManager.manageViewProfile();
@@ -95,19 +94,6 @@ public class StudentController {
         // JSONArray profile = manager.manageViewProfile();
         // logic to make the data look nice i.e. into a table...
     }
-
-//    public void viewClassroom(){
-//        StudentManager studentManager = new StudentManager(student);
-//        String classDetails = studentManager.manageViewClassroom();
-//        System.out.println(UI.TextColor.addColor((classDetails), UI.TextColor.BLUE));
-//    }
-
-
-    // more methods/functionalities to be added
-
-    // helper methods goes here
-
-
 
 
 }

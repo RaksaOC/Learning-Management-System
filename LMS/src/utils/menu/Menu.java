@@ -84,9 +84,8 @@ public class Menu {
             menu = """
                     [1]. View Assignment
                     [2]. Do Assignment
-                    [3]. Submit Assignment
-                    [4]. View Submitted Assignments
-                    [5]. View Grades & Comments
+                    [3]. View Submitted Assignments
+                    [4]. View Grades & Comments
                     """;
             printMenu();
             this.choice = sc.nextLine();

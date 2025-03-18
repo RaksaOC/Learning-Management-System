@@ -3,6 +3,7 @@ package main;
 import entities.Student;
 import entities.Teacher;
 import entities.User;
+import org.json.JSONObject;
 import ui.UI;
 import utils.controller.AuthenticationController;
 import utils.controller.ClassroomController;
@@ -19,6 +20,7 @@ public class MainController {
     private String indexOfClass;
     private String classrromId;
     private String progressId;
+    private String studentId;
 
     public MainController() {
     }
@@ -111,7 +113,7 @@ public class MainController {
         while (true) {
             switch(choice) {
                 case "1":
-                    showAssignment(classrromId);
+                    showAssignment(classrromId, studentId);
                     break;
                 case "2":
 
@@ -128,7 +130,7 @@ public class MainController {
         }
     }
 
-    public void showAssignment(String classrromId){
+    public void showAssignment(String classrromId, String studentId){
         StudentController studentController = new StudentController(student);
         Menu menu = new Menu();
         String choice = menu.showAssignment();
@@ -138,22 +140,13 @@ public class MainController {
                     studentController.handleViewAssignment(classrromId);
                     break;
                 case "2":
-//                    studentController.handleEditAssignment();
+                    studentController.handleDoAssignment(classrromId);
                     break;
                 case "3":
-//                    studentController.handleDeleteAssignment();
+                    studentController.handleViewSubmittedAssignment();
                     break;
                 case "4":
-//                    studentController.handleGradeStudentAssignment();
-                    break;
-                case "5":
-//                    studentController.handleCommentStudentAssignment();
-                    break;
-                case "6":
-//                    studentController.handleViewStudentAssignment();
-                    break;
-                case "7":
-//                    studentController.handleViewAllStudentAssignment();
+                    studentController.handleViewGradeAndComments();
                     break;
                 case "-b":
                     return;

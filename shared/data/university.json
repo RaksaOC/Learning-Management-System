@@ -40,6 +40,54 @@
       "id": "asdasads",
       "credit": "Male",
       "status": "active"
+    },
+    {
+      "level": "Undergraduate",
+      "name": "blah",
+      "description": "THis is blah blah blah ble ble ble blu blu blu",
+      "id": "bllah",
+      "credit": "2",
+      "status": "active"
+    },
+    {
+      "level": "Undergraduate",
+      "name": "asdasdasd",
+      "description": "asdasdasdas",
+      "id": "asdadas",
+      "credit": "2",
+      "status": "active"
+    },
+    {
+      "level": "Postgraduate",
+      "name": "adasdasd",
+      "description": "asdfasddfasdfasdf",
+      "id": "asdasd",
+      "credit": "3",
+      "status": "active"
+    },
+    {
+      "level": "Postgraduate",
+      "name": "asdfasdf",
+      "description": "asas",
+      "id": "asdfasdf",
+      "credit": "2",
+      "status": "active"
+    },
+    {
+      "level": "Undergraduate",
+      "name": "asd",
+      "description": "asdasd",
+      "id": "ad",
+      "credit": "1",
+      "status": "active"
+    },
+    {
+      "level": "Postgraduate",
+      "name": "sdfdsf",
+      "description": "sdfdsfsdfsddsfsdfdsf",
+      "id": "erwrew",
+      "credit": "2",
+      "status": "inactive"
     }
   ],
   "departments": [
@@ -86,6 +134,12 @@
               "groups": [],
               "id": "GEN12",
               "status": "active"
+            },
+            {
+              "name": "Genration 20",
+              "groups": [],
+              "id": "GEN20",
+              "status": "inactive"
             }
           ],
           "name": "Software Engineering",
@@ -104,6 +158,12 @@
               "groups": [],
               "id": "GEN12",
               "status": "active"
+            },
+            {
+              "name": "Genration 20",
+              "groups": [],
+              "id": "GEN20",
+              "status": "inactive"
             }
           ],
           "name": "Data Science",
@@ -129,6 +189,12 @@
               "groups": [],
               "id": "GEN12",
               "status": "active"
+            },
+            {
+              "name": "Genration 20",
+              "groups": [],
+              "id": "GEN20",
+              "status": "inactive"
             }
           ],
           "name": "Cybersecurity",
@@ -147,6 +213,12 @@
               "groups": [],
               "id": "GEN12",
               "status": "active"
+            },
+            {
+              "name": "Genration 20",
+              "groups": [],
+              "id": "GEN20",
+              "status": "inactive"
             }
           ],
           "name": "Telecommunication & Networking",
@@ -172,6 +244,12 @@
               "groups": [],
               "id": "GEN12",
               "status": "active"
+            },
+            {
+              "name": "Genration 20",
+              "groups": [],
+              "id": "GEN20",
+              "status": "inactive"
             }
           ],
           "name": "E-Commerce",
@@ -186,7 +264,14 @@
     {
       "specializations": [
         {
-          "generations": [],
+          "generations": [
+            {
+              "name": "Genration 20",
+              "groups": [],
+              "id": "GEN20",
+              "status": "inactive"
+            }
+          ],
           "name": "Urban Planning",
           "id": "ARC-UP",
           "status": "active"
@@ -194,6 +279,18 @@
       ],
       "name": "Architechture",
       "id": "ARC",
+      "status": "active"
+    },
+    {
+      "specializations": [],
+      "name": "blah",
+      "id": "blah-01",
+      "status": "active"
+    },
+    {
+      "specializations": [],
+      "name": "engineering",
+      "id": "EN",
       "status": "active"
     }
   ]

@@ -75,7 +75,6 @@ public class AssignmentCardsWrapperController {
         ArrayList<HBox> rows = new ArrayList<>();
         HBox row = new HBox();
         row.setSpacing(10); // Space between cards
-        row.setStyle("-fx-background-color: green");
 
         for (int i = 0; i < assignmentsList.size(); i++) {
             if (i % 5 == 0 && i != 0) {
@@ -92,7 +91,6 @@ public class AssignmentCardsWrapperController {
         }
         assignmentsWrapper.getChildren().addAll(rows);
         assignmentsWrapper.setPadding(new Insets(20, 15, 15, 15));
-        assignmentsWrapper.setStyle("-fx-background-color: red");
         return assignmentsWrapper;
     }
 

@@ -21,16 +21,19 @@ public class AddStudentToGroupController extends MainFrameController{
     @FXML
     private Button addStudentToGroupButton;
 
+    private String selectedGroupID;
+    private String selectedStudentID;
+
     public void initialize(){
         studentIDComboBox.setPromptText("Select Student ID");
         groupIDComboBox.setPromptText("Select Group ID");
         studentIDComboBox.setDisable(true);
         addStudentToGroupButton.setDisable(true);
 
-        groupIDComboBox.getItems().addAll(groupIDLoader.loadIds());
+        groupIDComboBox.getItems().addAll(groupIDLoader.loadIdsAndName());
         groupIDComboBox.setOnAction(event -> {
             studentIDComboBox.setDisable(false);
-            studentIDComboBox.getItems().addAll(studentIDLoader.loadIds());
+            studentIDComboBox.getItems().addAll(studentIDLoader.loadIdsAndNameJSON());
         });
 
         studentIDComboBox.setOnAction(event -> {
@@ -41,10 +44,28 @@ public class AddStudentToGroupController extends MainFrameController{
 
     @FXML
     private void handleAddToGroup(MouseEvent event) {
+        handleAddSql();
+        handleAddJSON();
+    }
+
+    private void handleAddJSON(){
+        selectedGroupID = groupIDComboBox.getSelectionModel().getSelectedItem().toString().substring(0, groupIDComboBox.getSelectionModel().getSelectedItem().toString().indexOf(" "));
+        selectedStudentID = studentIDComboBox.getSelectionModel().getSelectedItem().toString().substring(0, studentIDComboBox.getSelectionModel().getSelectedItem().toString().indexOf(" "));
         ManageGroupManager manageGroupManager = new ManageGroupManager();
         ArrayList<String> studentIDs  = new ArrayList<>(studentIDComboBox.getItems());
 
         manageGroupManager.manageAddStudentToGroup(groupIDComboBox.getSelectionModel().getSelectedItem(), studentIDs);
+
+        loadSuccess("addStudentToGroup");
+        clearFields();
+    }
+
+    private void handleAddSql(){
+        selectedGroupID = groupIDComboBox.getSelectionModel().getSelectedItem().toString().substring(0, groupIDComboBox.getSelectionModel().getSelectedItem().toString().indexOf(" "));
+        selectedStudentID = studentIDComboBox.getSelectionModel().getSelectedItem().toString().substring(0, studentIDComboBox.getSelectionModel().getSelectedItem().toString().indexOf(" "));
+        ManageGroupManager manageGroupManager = new ManageGroupManager();
+
+        manageGroupManager.manageAddStudentToGroupSql(selectedStudentID, selectedGroupID);
 
         loadSuccess("addStudentToGroup");
         clearFields();

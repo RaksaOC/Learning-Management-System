@@ -1,5 +1,7 @@
 package main.java.com.lmsAdmin.managers.layer3.edit_entity_manager;
 
+import javafx.fxml.FXML;
+import main.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -7,12 +9,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class EditSpecializationManager extends EditEntityManager {
     private JSONArray departments;
     private JSONArray specializations;
     private String depID;
+
+    private Connection conn = DatabaseConnection.getInstance().getConnection();
 
     public EditSpecializationManager(String idToEdit) {
         super(idToEdit);
@@ -36,11 +44,6 @@ public class EditSpecializationManager extends EditEntityManager {
     }
 
 
-    public void setNewID(String newID) {
-        this.entityDataToEdit.put("id", newID);
-        saveEntityData(depID);
-    }
-
     public void setNewName(String newName) {
         this.entityDataToEdit.put("name", newName);
         saveEntityData(depID);
@@ -48,6 +51,34 @@ public class EditSpecializationManager extends EditEntityManager {
 
     public String getOldID() {
         return entityDataToEdit.getString("id");
+    }
+
+    public String getOldIdSql() {
+        String query = "SELECT id FROM specialization WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, idToEdit);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getString("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getOldNameSql() {
+        String query = "SELECT name FROM specialization WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, idToEdit);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getString("name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void getEntityData(String dep_id) {
@@ -101,7 +132,7 @@ public class EditSpecializationManager extends EditEntityManager {
             this.content = new String(Files.readAllBytes(Paths.get(this.filePath)));
             this.entityData_Obj = new JSONObject(content);
             JSONArray departments = this.entityData_Obj.getJSONArray("departments");
-
+            entityData_Arr = new JSONArray();
             for (int i = 0; i < departments.length(); i++) {
                 entityData_Arr.put(departments.getJSONObject(i).getJSONArray("specializations"));
             }
@@ -110,12 +141,49 @@ public class EditSpecializationManager extends EditEntityManager {
         }
     }
 
-    public ArrayList<String> loadIds() {
+    public ArrayList<String> loadIdsAndNameJSON() {
         ArrayList<String> ids = new ArrayList<>();
         for(int i = 0; i < entityData_Arr.length(); i++) {
-            ids.add(entityData_Arr.getJSONObject(i).getString("id"));
+            ids.add(entityData_Arr.getJSONObject(i).getString("id") + " - " + entityData_Arr.getJSONObject(i).getString("name"));
         }
         return ids;
+    }
+
+    public ArrayList<String> loadIdsAndNameSql(){
+        ArrayList<String> ids = new ArrayList<>();
+        String query = "SELECT id, name FROM specialization";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()) {
+                ids.add(rs.getString("id") + " - " + rs.getString("name"));
+            }
+            return ids;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return ids;
+    }
+
+    public void manageEditIdSql(String newId){
+        String query = "UPDATE specialization SET id = ? WHERE id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, newId);
+            statement.setString(2, idToEdit);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void manageEditNameSql(String newId){
+        String query = "UPDATE specialization SET name = ? WHERE id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, newId);
+            statement.setString(2, idToEdit);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     public void manageEditId(String newId){

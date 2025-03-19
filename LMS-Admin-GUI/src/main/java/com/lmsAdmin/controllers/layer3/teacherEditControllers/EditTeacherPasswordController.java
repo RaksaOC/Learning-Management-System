@@ -24,7 +24,7 @@ public class EditTeacherPasswordController extends MainFrameController {
     @FXML
     private void initialize() {
         editButton.setDisable(true);
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
         idComboBox.setOnAction(event -> {
             manager = new EditTeacherManager(idComboBox.getValue());
             newTextField.setDisable(true);
@@ -44,7 +44,7 @@ public class EditTeacherPasswordController extends MainFrameController {
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditPassword(newTextField.getText());
+        manager.manageEditPasswordSql(newTextField.getText());
         loadSuccess("editTeacherPassword");
         clearFields();
     }

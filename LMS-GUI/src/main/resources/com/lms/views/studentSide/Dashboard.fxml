@@ -2,10 +2,10 @@
 
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1078.0" spacing="20.0" style="-fx-background-color: yellow;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1078.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: black;" VBox.vgrow="ALWAYS" />
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: black;" VBox.vgrow="ALWAYS" />
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: black;" VBox.vgrow="ALWAYS" />
+      <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
+      <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
+      <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
    </children>
 </VBox>

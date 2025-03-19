@@ -24,10 +24,10 @@ public class EditTeacherEmailController extends MainFrameController {
     @FXML
     private void initialize() {
         editButton.setDisable(true);
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
         idComboBox.setOnAction(event -> {
             manager = new EditTeacherManager(idComboBox.getValue());
-            curTextField.setText(manager.getOldEmail());
+            curTextField.setText(manager.getOldEmailSql());
             newTextField.setDisable(false);
         });
     }
@@ -35,6 +35,7 @@ public class EditTeacherEmailController extends MainFrameController {
     @FXML
     private void handleEdit(MouseEvent event) {
         manager.manageEditEmail(newTextField.getText());
+        manager.manageEditEmailSql(newTextField.getText());
         loadSuccess("editTeacherEmail");
         clearFields();
     }

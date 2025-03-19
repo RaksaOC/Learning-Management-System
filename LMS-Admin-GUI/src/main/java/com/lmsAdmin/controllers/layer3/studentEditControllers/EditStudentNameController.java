@@ -27,7 +27,7 @@ public class EditStudentNameController extends MainFrameController {
 
     @FXML
     public void initialize() {
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
         curFirstNameTextField.setDisable(true);
         curLastNameTextField.setDisable(true);
         newFirstNameTextField.setDisable(true);
@@ -35,8 +35,8 @@ public class EditStudentNameController extends MainFrameController {
         editButton.setDisable(true);
         manager = new EditStudentManager(idComboBox.getValue());
         idComboBox.setOnAction(event -> {
-            curFirstNameTextField.setText(manager.getOldFirstName());
-            curLastNameTextField.setText(manager.getOldLastName());
+            curFirstNameTextField.setText(manager.getOldFirstNameSql());
+            curLastNameTextField.setText(manager.getOldLastNameSql());
 
             newFirstNameTextField.setDisable(false);
             newLastNameTextField.setDisable(false);
@@ -49,6 +49,7 @@ public class EditStudentNameController extends MainFrameController {
         newName.put("firstName", newFirstNameTextField.getText());
         newName.put("lastName", newLastNameTextField.getText());
         manager.manageEditName(newName);
+        manager.manageEditNameSql(newFirstNameTextField.getText(), newLastNameTextField.getText());
         loadSuccess("editStudentName");
         clearFields();
     }

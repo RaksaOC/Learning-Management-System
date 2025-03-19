@@ -27,6 +27,8 @@ public class SceneManager extends Application {
         primaryStage.show();
     }
 
+
+
     private void loadScene(String name, String fxmlPath) {
         try {
             URL resource = getClass().getResource(fxmlPath);

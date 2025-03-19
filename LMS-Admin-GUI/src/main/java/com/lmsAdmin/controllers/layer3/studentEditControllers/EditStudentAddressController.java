@@ -47,13 +47,13 @@ public class EditStudentAddressController extends MainFrameController {
         newDistrictComboBox.setDisable(true);
         newProvinceComboBox.setDisable(true);
 
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
 
         idComboBox.setOnAction(event -> {
             manager = new EditStudentManager(idComboBox.getValue());
-            curCommuneTextField.setText(manager.getOldCommune());
-            curDistrictTextField.setText(manager.getOldDistrict());
-            curProvinceTextField.setText(manager.getOldProvince());
+            curCommuneTextField.setText(manager.getOldCommuneSql());
+            curDistrictTextField.setText(manager.getOldDistrictSql());
+            curProvinceTextField.setText(manager.getOldProvinceSql());
 
             // Enable province selection and populate it
             newProvinceComboBox.setDisable(false);
@@ -94,6 +94,7 @@ public class EditStudentAddressController extends MainFrameController {
         newAddress.put("district", newDistrictComboBox.getValue());
         newAddress.put("province", newProvinceComboBox.getValue());
         manager.manageEditAddress(newAddress);
+        manager.manageEditAddressSql(newCommuneComboBox.getSelectionModel().getSelectedItem(), newDistrictComboBox.getSelectionModel().getSelectedItem(), newProvinceComboBox.getSelectionModel().getSelectedItem());
         loadSuccess("editStudentAddress");
         clearFields();
     }

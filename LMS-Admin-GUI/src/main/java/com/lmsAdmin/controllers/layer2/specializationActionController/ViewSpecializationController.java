@@ -1,5 +1,6 @@
 package main.java.com.lmsAdmin.controllers.layer2.specializationActionController;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,88 +18,65 @@ import main.java.com.lmsAdmin.managers.layer2.manage_entity_manager.ManageSpecia
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Map;
+
 
 public class ViewSpecializationController extends MainFrameController {
 
     @FXML
-    private TextField idField;
+    private TableView<Map<String, String>> tableView;
     @FXML
-    private Button searchButton;
+    private TableColumn<Map<String, String>, String> idColumn;
+    @FXML
+    private TableColumn<Map<String, String>, String> dep_idColumn;
+    @FXML
+    private TableColumn<Map<String, String>, String> nameColumn;
 
-    @FXML
-    private TableView<JSONObject> tableView;
-    @FXML
-    private TableColumn<JSONObject, String> idColumn;
-    @FXML
-    private TableColumn<JSONObject, String> nameColumn;
-    @FXML
-    private VBox detailsVBox;
+//    @FXML
+//    private TableView<JSONObject> tableView;
+//    @FXML
+//    private TableColumn<JSONObject, String> idColumn;
+//    @FXML
+//    private TableColumn<JSONObject, String> dep_idColumn;
+//    @FXML
+//    private TableColumn<JSONObject, String> nameColumn;
+//    @FXML
+//    private VBox detailsVBox;
 
     @FXML
     public void initialize() {
-        ManageSpecializationManager mangeSpecializationManager = new ManageSpecializationManager();
-        JSONArray all = mangeSpecializationManager.getAllDetails();
+        initTableViewSql();
+    }
 
-        // Convert JSON data to ObservableList
-        ObservableList<JSONObject> data = FXCollections.observableArrayList();
-        for (int i = 0; i < all.length(); i++) {
-            data.add(all.getJSONObject(i));
-        }
+//    private void initTableViewJSON(){
+//        ManageSpecializationManager mangeSpecializationManager = new ManageSpecializationManager();
+//        JSONArray all = mangeSpecializationManager.getAllDetails();
+//
+//        // Convert JSON data to ObservableList
+//        ObservableList<JSONObject> data = FXCollections.observableArrayList();
+//        for (int i = 0; i < all.length(); i++) {
+//            data.add(all.getJSONObject(i));
+//        }
+//
+//        // Set up column cell value factories
+//        idColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "id"));
+//        nameColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "name"));
+//
+//        // Set data to table
+//        tableView.setItems(data);
+//    }
 
-        // Set up column cell value factories
-        idColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "id"));
-        nameColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "name"));
+    private void initTableViewSql() {
+        ManageSpecializationManager manager = new ManageSpecializationManager();
+        ObservableList<Map<String, String>> data = manager.getAllDetailsSql();
 
-        // Set data to table
+        idColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get("id")));
+        nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get("name")));
+        dep_idColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get("department_id")));
         tableView.setItems(data);
     }
 
-    @FXML
-    private void handleSearch(MouseEvent event) {
-        createDetails();
-    }
-
-    private void createDetails() {
-        String idToSearch = idField.getText();
-        ManageSpecializationManager mangeSpecializationManager = new ManageSpecializationManager();
-        JSONObject details = mangeSpecializationManager.getDetails(idToSearch);
-
-        detailsVBox.getChildren().clear();
-        detailsVBox.setStyle("-fx-background-color: #ebebeb");
-        Pos center_left = Pos.CENTER_LEFT;
-        detailsVBox.setAlignment(center_left);
-        detailsVBox.setSpacing(10);
-        String id = details.getString("id");
-        String name  = details.getString("name");
-
-        StringBuilder gps = new StringBuilder();
-        JSONArray gen = details.getJSONArray("generations");
-        for (int i = 0; i < gen.length(); i++) {
-            JSONArray groups = gen.getJSONObject(i).getJSONArray("groups");
-            for (int j = 0; j < groups.length(); j++) {
-                 gps.append(groups.getJSONObject(j).getString("id"));
-                 if (j != groups.length() - 1) {
-                     gps.append(", ");
-                 }
-            }
-        }
-
-        Font textFont = Font.font("Gill Sans", 25);
-
-        Text idText = new Text("ID: " + id);
-        Text nameText = new Text("Name: " + name);
-        Text gpsText = new Text("Groups: " + gps.toString());
-
-        Text[] textNodes = {idText, nameText, gpsText};
-        for (Text text : textNodes) {
-            text.setFont(textFont);
-        }
-
-        detailsVBox.getChildren().addAll(textNodes);
-    }
-
-
-    private javafx.beans.property.SimpleStringProperty getJSONValue(JSONObject obj, String key) {
-        return new javafx.beans.property.SimpleStringProperty(obj.optString(key, "N/A"));
-    }
+//    private javafx.beans.property.SimpleStringProperty getJSONValue(JSONObject obj, String key) {
+//        return new javafx.beans.property.SimpleStringProperty(obj.optString(key, "N/A"));
+//    }
 }

@@ -22,6 +22,20 @@ public class AddDepartmentController extends MainFrameController {
 
     @FXML
     private void handleAdd(MouseEvent event) {
+        // keep both for now
+        handleAddJSON();
+        handleAddSql();
+        playSuccessScene();
+    }
+
+    private void handleAddSql(){
+        String n = this.name.getText();
+        String ID = this.id.getText();
+        ManageDepartmentManager manageDepartmentManager = new ManageDepartmentManager();
+        manageDepartmentManager.manageAddEntitySql(n, id.getText());
+    }
+
+    private void handleAddJSON(){
         ManageDepartmentManager manageDepartmentManager = new ManageDepartmentManager();
         String n = this.name.getText();
         String ID = this.id.getText();
@@ -29,7 +43,14 @@ public class AddDepartmentController extends MainFrameController {
         newDepartment.put("name", n);
         newDepartment.put("id", ID);
         manageDepartmentManager.manageAddEntity(newDepartment);
+    }
 
+    private void resetAllFields() {
+        name.clear();
+        id.clear();
+    }
+
+    private void playSuccessScene(){
         SceneManager.setScene("success");
         PauseTransition delay = new PauseTransition(Duration.seconds(2));
         delay.setOnFinished(ev -> {
@@ -38,10 +59,5 @@ public class AddDepartmentController extends MainFrameController {
         });
 
         delay.play();
-    }
-
-    private void resetAllFields() {
-        name.clear();
-        id.clear();
     }
 }

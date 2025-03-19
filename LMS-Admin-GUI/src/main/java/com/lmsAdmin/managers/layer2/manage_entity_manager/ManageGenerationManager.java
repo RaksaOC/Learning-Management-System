@@ -1,5 +1,8 @@
 package main.java.com.lmsAdmin.managers.layer2.manage_entity_manager;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import main.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -7,13 +10,80 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ManageGenerationManager extends ManageEntityManager {
+    private Connection conn = DatabaseConnection.getInstance().getConnection();
 
     public ManageGenerationManager() {
         super();
         setEntityFilePath("shared/data/university.json");
         loadEntity();
+    }
+
+    public void manageAddEntitySql(String id, String name, String status) {
+        String query = "INSERT INTO generation(id, name, status) VALUES (?,?,?)";
+        try (PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, id);
+            statement.setString(2, name);
+            statement.setString(3, status);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void manageDeleteEntitySql(String id) {
+        String query = "UPDATE generation SET status = ? WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, "inactive");
+            statement.setString(2, id);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public ObservableList<Map<String, String>> getAllDetailsSql(){
+        ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
+        String query = "SELECT * FROM generation";
+        try (PreparedStatement statement = conn.prepareStatement(query)){
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                Map<String, String> map = new HashMap<>();
+                map.put("id", rs.getString("id"));
+                map.put("name", rs.getString("name"));
+                map.put("status", rs.getString("status"));
+                data.add(map);
+            }
+            return data;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    public Map<String, String> getDetailsSql(String id) {
+        Map<String, String> map = new HashMap<>();
+        String query = "SELECT * FROM generation WHERE id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, id);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                map.put("id", rs.getString("id"));
+                map.put("name", rs.getString("name"));
+                map.put("status", rs.getString("status"));
+            }
+            return map;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return map;
     }
 
     @Override

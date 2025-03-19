@@ -3,6 +3,7 @@ package main.java.com.lmsAdmin.controllers.layer2.generationActionController;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -10,28 +11,33 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer2.manage_entity_manager.ManageGenerationManager;
+import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditGenerationManager;
 import org.json.JSONArray;
 
 public class DeleteGenerationController extends MainFrameController{
     @FXML
-    private TextField idField;
-    @FXML
-    private Button searchButton;
-    @FXML
-    private Button deleteButton;
-    @FXML
-    private VBox detailsVBox;
+    private ComboBox<String> idComboBox;
 
     @FXML
-    private void handleSearch(MouseEvent event) {
-        createDetails();
+    private Button deleteButton;
+
+    private String selectedId;
+
+    public void initialize() {
+        idComboBox.getItems().addAll(new EditGenerationManager().loadIdsAndNameSql());
     }
 
     @FXML
     private void handleDelete(MouseEvent event) {
+        handleDeleteSql();
+        handleDeleteJSON();
+    }
+
+    private void handleDeleteSql(){
+        selectedId = idComboBox.getSelectionModel().getSelectedItem().toString().substring(0, idComboBox.getSelectionModel().getSelectedItem().toString().indexOf(" "));
         if(isConfirmed()){
             ManageGenerationManager manageGenerationManager = new ManageGenerationManager();
-            manageGenerationManager.manageDeleteEntity(idField.getText());
+            manageGenerationManager.manageDeleteEntitySql(selectedId);
 
             loadSuccess("deleteGeneration");
             clearDetails();
@@ -41,49 +47,22 @@ public class DeleteGenerationController extends MainFrameController{
         }
     }
 
-    private void createDetails(){
-        String idToSearch = idField.getText();
-        ManageGenerationManager manageGenerationManager = new ManageGenerationManager();
-        JSONArray details = manageGenerationManager.getDetails(idToSearch);
+    private void handleDeleteJSON(){
+        if(isConfirmed()){
+            ManageGenerationManager manageGenerationManager = new ManageGenerationManager();
+            manageGenerationManager.manageDeleteEntity(selectedId);
 
-        detailsVBox.getChildren().clear();
-        detailsVBox.setStyle("-fx-background-color: #ebebeb");
-        Pos center_left = Pos.CENTER_LEFT;
-        detailsVBox.setAlignment(center_left);
-        detailsVBox.setSpacing(10);
-
-        StringBuilder groupsStringBuilder = new StringBuilder();
-        for (int i = 0; i < details.length(); i++) {
-            JSONArray groups = details.getJSONObject(i).getJSONArray("groups");
-            for (int j = 0; j < groups.length(); j++) {
-                groupsStringBuilder.append(groups.getJSONObject(i).getString("id"));
-                if (j != groups.length() - 1) {
-                    groupsStringBuilder.append(", ");
-                }
-            }
+            loadSuccess("deleteGeneration");
+            clearDetails();
         }
-
-        String gps = groupsStringBuilder.toString();
-
-        String id = idToSearch;
-        String name = details.getJSONObject(0).getString("name");
-
-        Font textFont = Font.font("Gill Sans", 25);
-
-        Text idText = new Text("Generation ID: " + id);
-        Text nameText = new Text("Generation Name: " + name);
-        Text gpsText = new Text("Generation Groups: " + gps);
-
-        Text[] textNodes = {idText, nameText, gpsText};
-        for (Text text : textNodes) {
-            text.setFont(textFont);
+        else{
+            clearDetails();
         }
-
-        detailsVBox.getChildren().addAll(textNodes);
     }
 
+
+
     private void clearDetails(){
-        idField.clear();
-        detailsVBox.getChildren().clear();
+        idComboBox.getSelectionModel().clearSelection();
     }
 }

@@ -27,7 +27,7 @@ public class EditClassroomIDController extends MainFrameController {
         idComboBox.getItems().addAll(idLoader.loadIds());
         idComboBox.setOnAction(event -> {
             manager = new EditClassroomManager(idComboBox.getValue());
-            curTextField.setText(manager.getOldID());
+            curTextField.setText(manager.getOldIdSql());
             newTextField.setDisable(false);
             newTextField.setText(cutString());
         });
@@ -35,7 +35,7 @@ public class EditClassroomIDController extends MainFrameController {
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditId(newTextField.getText());
+        manager.manageEditIdSql(newTextField.getText());
         loadSuccess("editClassroomID");
         clearFields();
     }

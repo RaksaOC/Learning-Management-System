@@ -22,12 +22,12 @@ public class EditAdminPasswordController extends MainFrameController {
     @FXML
     private void initialize() {
         editButton.setDisable(true);
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
         idComboBox.setOnAction(event -> {
             manager = new EditAdminManager(idComboBox.getValue());
             newTextField.setDisable(true);
             curTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-                if (manager.isOldPasswordMatched(newValue)) {
+                if (manager.isOldPasswordMatchedSql(newValue)) {
                     newTextField.setDisable(false);
                     editButton.setDisable(false);
                     curTextField.setStyle("-fx-border-color: green");
@@ -52,7 +52,7 @@ public class EditAdminPasswordController extends MainFrameController {
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditPassword(newTextField.getText());
+        manager.manageEditPasswordSql(newTextField.getText());
         loadSuccess("editAdminPassword");
         clearFields();
     }

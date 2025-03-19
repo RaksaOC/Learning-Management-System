@@ -9,6 +9,7 @@ import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditTeacherManager;
 
 public class EditTeacherPhoneController extends MainFrameController {
+
     EditTeacherManager idLoader = new EditTeacherManager();
     EditTeacherManager manager;
 
@@ -24,17 +25,17 @@ public class EditTeacherPhoneController extends MainFrameController {
     @FXML
     private void initialize() {
         editButton.setDisable(true);
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
         idComboBox.setOnAction(event -> {
             manager = new EditTeacherManager(idComboBox.getValue());
-            curTextField.setText(manager.getOldPhone());
+            curTextField.setText(manager.getOldPhoneSql());
             newTextField.setDisable(false);
         });
     }
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditPhone(newTextField.getText());
+        manager.manageEditPhoneSql(newTextField.getText());
         loadSuccess("editTeacherPhoneNumber");
         clearFields();
     }

@@ -1,61 +1,111 @@
-[{
-    "teacherId": "T0001",
-    "assignments": ["A0001", "A0002"],
-    "students": ["S000001"],
-    "resources": [],
-    "id": "GEN10-CS-SE-G1-OOP",
-    "quizzes": [],
-    "courseId": "",
-    "status": "active"
-},
+[
     {
         "teacherId": "T0001",
         "assignments": [
             {
-                "description": "Write an Arduino script to display a countdown timer on an OLED screen and trigger a buzzer when it reaches zero.",
-                "id": "A001",
-                "title": "Embedded Systems Task",
-                "deadline": {
-                    "date": "2025-03-05",
-                    "time": "23:59"
-                },
-                "status": "active"
-            },
-            {
-                "description": "Use CSS Grid and Flexbox to design a responsive webpage layout with a header, sidebar, main content area, and footer.",
-                "id": "A002",
-                "title": "Web Layout Design",
-                "deadline": {
-                    "date": "2025-03-02",
-                    "time": "23:59"
-                },
-                "status": "active"
-            },
-            {
-                "description": "Create a linked list that stores book titles and allows users to add, remove, and search for books.",
-                "id": "A003",
-                "title": "Data Structure Explorer",
-                "deadline": {
-                    "date": "2025-02-20",
-                    "time": "23:59"
-                },
-                "status": "active"
-            },
-            {
-                "description": "Implement a program that sorts a list of student grades using at least two different sorting algorithms (e.g., Bubble Sort and Quick Sort).",
-                "id": "A004",
-                "title": "Algorithm Challenge",
+                "description": "Name three diddies",
+                "title": "diddyHomework",
                 "deadline": {
                     "date": "2025-02-19",
-                    "time": "23:59"
+                    "time": "11:59PM"
+                },
+                "status": "active"
+            },
+            {
+                "description": "A person sitting at a table with a sign saying, \u201cHomework is just legalized torture. Change my mind.",
+                "title": "Change My Mind",
+                "deadline": {
+                    "date": "2025-03-01",
+                    "time": "11:59PM"
+                },
+                "status": "active"
+            },
+            {
+                "description": "A dog sitting in a burning room, often used to depict a student calmly ignoring looming deadlines.",
+                "title": "This is fine",
+                "deadline": {
+                    "date": "2025-03-05",
+                    "time": "11:59PM"
+                },
+                "status": "active"
+            },
+            {
+                "description": "He lost his family, and his last daughter, to violent terrorism. He'll stop at nothing for the day of reckoning.",
+                "title": "SpongeBob SquarePants",
+                "deadline": {
+                    "date": "2025-03-08",
+                    "time": "11:59PM"
                 },
                 "status": "active"
             }
         ],
-        "students": ["S000001"],
+        "students": [
+            "S000001",
+            "S000002",
+            "S000003",
+            "S000004"
+        ],
         "resources": [],
-        "id": "Operating System",
+        "id": "GEN10-CS-SE-G1-OOP",
+        "quizzes": [
+            "Q0002",
+            "Q0003",
+            "Q0004",
+            "Q0005"
+        ],
+        "courseId": "",
+        "status": "active"
+    },
+    {
+        "teacherId": "T0001",
+        "assignments": [
+            {
+                "description": "Name three diddies",
+                "title": "diddyHomework",
+                "deadline": {
+                    "date": "2025-02-19",
+                    "time": "11:59PM"
+                },
+                "status": "active"
+            },
+            {
+                "description": "A person sitting at a table with a sign saying, \u201cHomework is just legalized torture. Change my mind.",
+                "title": "Change My Mind",
+                "deadline": {
+                    "date": "2025-03-01",
+                    "time": "11:59PM"
+                },
+                "status": "active"
+            },
+            {
+                "description": "A dog sitting in a burning room, often used to depict a student calmly ignoring looming deadlines.",
+                "title": "This is fine",
+                "deadline": {
+                    "date": "2025-03-05",
+                    "time": "11:59PM"
+                },
+                "status": "active"
+            },
+            {
+                "description": "He lost his family, and his last daughter, to violent terrorism. He'll stop at nothing for the day of reckoning.",
+                "title": "SpongeBob SquarePants",
+                "deadline": {
+                    "date": "2025-03-08",
+                    "time": "11:59PM"
+                },
+                "status": "active"
+            }
+        ],
+        "students": [
+            "S000001",
+            "S000002",
+            "S000003",
+            "S000004"
+        ],
+        "resources": [],
+        "id": "GEN10-CS-SE-G1-ASS",
         "quizzes": [],
         "courseId": "",
         "status": "active"
-    }]
+    }
+]

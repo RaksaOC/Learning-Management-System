@@ -3,19 +3,30 @@ package utils.controller;
 import entities.Student;
 import entities.Teacher;
 import ui.UI;
+import utils.manager.ClassroomManager;
 import utils.manager.StudentManager;
+import utils.menu.Menu;
 
 import java.util.Scanner;
 
 public class StudentController {
     Student student;
+    String indexOfClass;
     public StudentController(Student s) {
 //                              ^
 //            takes in the student object from the authentication controller
-
         this.student = s;
     }
+    public StudentController(Student student ,String indexOfClass) {
+        this.indexOfClass  = indexOfClass;
+    }
 
+    public String selectClassroom(){
+        StudentManager studentManager = new StudentManager(student);
+        System.out.println(studentManager.printClassrooms(student.getClassrooms()));
+        String choice = Menu.prompt("Select a Classroom: ");
+        return Integer.toString(Integer.parseInt(choice) - 1);
+    }
     public void submitAssignment(){
         // handles the actions of submitting an assignment
         // getting input like link to the finished work of the student
@@ -58,10 +69,26 @@ public class StudentController {
         // logic to make the data look nice i.e. into a table...
     }
 
+//    public String selectProgress() {
+//        StudentManager studentManager = new StudentManager(student);
+//        System.out.println(studentManager.printClassrooms(student.getProgress()));
+//        String choice = Menu.prompt("Select a Progress: ");
+//        return Integer.toString(Integer.parseInt(choice) - 1);
+//    }
+
+    public void viewClassroom(){
+        StudentManager studentManager = new StudentManager(student);
+        String classDetails = studentManager.manageViewClassroom();
+        System.out.println(UI.TextColor.addColor((classDetails), UI.TextColor.BLUE));
+    }
+
+    public void doQuiz(){
+        ClassroomController classroomController = new ClassroomController(indexOfClass);
+        classroomController.goToDoQuiz();
+    }
+
+
     // more methods/functionalities to be added
-
-
-
 
     // helper methods goes here
 

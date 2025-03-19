@@ -79,7 +79,7 @@ public class Menu {
 
     public String showAssignment(){
         UI.showLoadingBar(10);
-        System.out.println("Student View Assignment: ");
+        System.out.println("Student Side View Assignment: ");
         do {
             menu = """
                     [1]. View Assignment
@@ -89,8 +89,26 @@ public class Menu {
                     """;
             printMenu();
             this.choice = sc.nextLine();
-            if (!(isChoiceValid("1", "5", choice))) System.out.println(invalidChoice);
-        } while (!isChoiceValid("1", "5", choice));
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
+        return choice;
+    }
+
+    public String showResource(){
+        UI.showLoadingBar(10);
+        System.out.println("Student Side View Resource: ");
+        do {
+            menu = """
+                    [1]. View Resource
+                    [2]. Do Assignment
+                    [3]. View Submitted Assignments
+                    [4]. View Grades & Comments
+                    """;
+            printMenu();
+            this.choice = sc.nextLine();
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        }while (!isChoiceValid("1", "4", choice));
         this.clearScreen();
         return choice;
     }

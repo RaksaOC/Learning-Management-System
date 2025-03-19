@@ -12,11 +12,7 @@ import utils.menu.Menu;
 
 public class StudentManager {
     Student studentToEdit;
-    private String classIdToEdit;
 
-    public StudentManager (String ClassIdToEdit) {
-        this.classIdToEdit = ClassIdToEdit; // this holds only the user's input
-    }
     public StudentManager(Student student){
         //                  ^
         //      the constructor takes in the student object to get the changed data in its fields to write back to file
@@ -231,6 +227,9 @@ public class StudentManager {
     public void viewGradesAndComments(String studentId){
 //        JSONArray feedback =
     }
+
+    //  Part of Resource
+    public void
 
     //    2. View profile side
     public String manageViewProfile() {

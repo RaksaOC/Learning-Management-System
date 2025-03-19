@@ -83,6 +83,9 @@ public class StudentController {
 
     }
 
+//    Part of Resource
+    public
+
 //    View Profile method
     public void viewProfile(){
         StudentManager studentManager = new StudentManager(student);

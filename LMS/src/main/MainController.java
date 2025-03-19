@@ -116,7 +116,7 @@ public class MainController {
                     showAssignment(classrromId, studentId);
                     break;
                 case "2":
-
+                    showResource();
                     break;
                 case "3":
 
@@ -130,6 +130,7 @@ public class MainController {
         }
     }
 
+    // Part of Assignment
     public void showAssignment(String classrromId, String studentId){
         StudentController studentController = new StudentController(student);
         Menu menu = new Menu();
@@ -154,6 +155,18 @@ public class MainController {
                     break;
             }
             choice = menu.showAssignment();
+        }
+    }
+
+    //Part of Resource
+    public void showResource(){
+        StudentController studentController = new StudentController(student);
+        Menu menu = new Menu();
+        String choice = menu.showResource();
+        while (true) {
+            switch (choice) {
+
+            }
         }
     }
 

@@ -2,7 +2,6 @@ package utils.manager;
 
 import entities.Student;
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class StudentManager {
     Student studentToEdit;

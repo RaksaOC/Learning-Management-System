@@ -22,7 +22,7 @@ public class EditStudentEmailController extends MainFrameController {
 
     @FXML
     public void initialize() {
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         curTextField.setDisable(true);
         newTextField.setDisable(true);
         manager = new EditStudentManager(idComboBox.getValue());
@@ -34,7 +34,7 @@ public class EditStudentEmailController extends MainFrameController {
 
     @FXML
     public void handleEdit(){
-        manager.manageEditDOB(newTextField.getText());
+        manager.manageEditDoB(newTextField.getText());
         loadSuccess("editStudentEmail");
         clearFields();
     }

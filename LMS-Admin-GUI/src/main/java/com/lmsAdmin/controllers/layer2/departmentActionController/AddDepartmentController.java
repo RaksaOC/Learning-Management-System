@@ -22,22 +22,12 @@ public class AddDepartmentController extends MainFrameController {
 
     @FXML
     private void handleAdd(MouseEvent event) {
-        ManageDepartmentManager manageDepartmentManager = new ManageDepartmentManager();
         String n = this.name.getText();
         String ID = this.id.getText();
-        JSONObject newDepartment = new JSONObject();
-        newDepartment.put("name", n);
-        newDepartment.put("id", ID);
-        manageDepartmentManager.manageAddEntity(newDepartment);
-
-        SceneManager.setScene("success");
-        PauseTransition delay = new PauseTransition(Duration.seconds(2));
-        delay.setOnFinished(ev -> {
-            SceneManager.setScene("addDepartment");
-            resetAllFields();
-        });
-
-        delay.play();
+        ManageDepartmentManager manageDepartmentManager = new ManageDepartmentManager();
+        manageDepartmentManager.manageAddDepartment(n, id.getText());
+        loadSuccess("addDepartment");
+        resetAllFields();
     }
 
     private void resetAllFields() {

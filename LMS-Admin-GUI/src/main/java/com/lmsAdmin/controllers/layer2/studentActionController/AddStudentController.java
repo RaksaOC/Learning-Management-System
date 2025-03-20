@@ -9,6 +9,8 @@ import lib.Hasher;
 import main.SceneManager;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer2.manage_entity_manager.ManageStudentManager;
+import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditDepartmentManager;
+import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditGenerationManager;
 import org.json.JSONObject;
 
 import java.time.LocalDateTime;
@@ -22,7 +24,7 @@ public class AddStudentController extends MainFrameController {
     @FXML
     private DatePicker dob;
     @FXML
-    private ComboBox gender;
+    private ComboBox<String> gender;
     @FXML
     private TextField phoneNumber;
     @FXML
@@ -30,21 +32,21 @@ public class AddStudentController extends MainFrameController {
     @FXML
     private TextField guardianLastName;
     @FXML
-    private ComboBox guardianGender;
+    private ComboBox<String> guardianGender;
     @FXML
     private TextField guardianPhoneNumber;
     @FXML
-    private ComboBox commune;
+    private ComboBox<String> commune;
     @FXML
-    private ComboBox district;
+    private ComboBox<String> district;
     @FXML
-    private ComboBox province;
+    private ComboBox<String> province;
     @FXML
-    private ComboBox generation;
+    private ComboBox<String> generation;
     @FXML
-    private ComboBox department;
+    private ComboBox<String> department;
     @FXML
-    private ComboBox specialization;
+    private ComboBox<String> specialization;
     @FXML
     private TextField email;
     @FXML
@@ -53,6 +55,12 @@ public class AddStudentController extends MainFrameController {
     private TextField confirmPassword;
     @FXML
     private Button addButton;
+
+    public void initialize() {
+        department.getItems().addAll(new EditDepartmentManager().loadIdsAndName());
+        specialization.setEditable(true); // TO CHANGE
+        generation.getItems().addAll(new EditGenerationManager().loadIdsAndName());
+    }
 
     @FXML
     private void handleAdd(MouseEvent event) {
@@ -81,54 +89,29 @@ public class AddStudentController extends MainFrameController {
             LocalDateTime now = LocalDateTime.now();
             String formattedDate = now.format(formatter);
 
-            JSONObject newStudent = new JSONObject();
-
-            JSONObject name = new JSONObject();
-            JSONObject guardian = new JSONObject();
-            JSONObject gName = new JSONObject();
-            JSONObject address = new JSONObject();
-
-            name.put("firstName", fName);
-            name.put("lastName", lName);
-            newStudent.put("name", name);
-            newStudent.put("dob", dateOfBirth);
-            newStudent.put("gender", gen);
-            newStudent.put("phoneNumber", phone);
-
-            gName.put("firstName", gFName);
-            gName.put("lastName", gLName);
-            guardian.put("name", gName);
-            guardian.put("gender", gGender);
-            guardian.put("phoneNumber", gPhone);
-            newStudent.put("guardian", guardian);
-
-            address.put("commune", com);
-            address.put("district", dis);
-            address.put("province", pro);
-            newStudent.put("address", address);
-
-            newStudent.put("generation", gener);
-            newStudent.put("department", dep);
-            newStudent.put("specialization", spec);
-            newStudent.put("email", em);
-            newStudent.put("password", Hasher.hash(password));
-            newStudent.put("createdAt", formattedDate);
-            newStudent.put("lastLogin", "");
-            newStudent.put("progress", new JSONObject());
-            newStudent.put("status", "active");
-
-            manageStudentManager.manageAddEntity(newStudent);
-
-            System.out.println("Contents to be added");
-            System.out.println(fName);
-            System.out.println(lName);
-            System.out.println(dateOfBirth);
-            System.out.println(gen);
-            System.out.println(phone);
-            System.out.println(em);
-            System.out.println(password);
-            System.out.println(newStudent);
-            System.out.println("Added Successfully");
+            // missing address
+            manageStudentManager.manageAddStudent(
+                    fName,
+                    lName,
+                    gen,
+                    dateOfBirth,
+                    phone,
+                    em,
+                    password,
+                    com,
+                    dis,
+                    pro,
+                    "active",
+                    formattedDate,
+                    null,
+                    dep,
+                    spec,
+                    gener,
+                    gFName,
+                    gLName,
+                    gPhone,
+                    gGender
+            );
 
             SceneManager.setScene("success");
             PauseTransition delay = new PauseTransition(Duration.seconds(2));
@@ -147,7 +130,6 @@ public class AddStudentController extends MainFrameController {
             alert.showAndWait();
             resetFields();
         }
-
     }
 
     private boolean isPasswordSame(String password, String confirmPassword) {

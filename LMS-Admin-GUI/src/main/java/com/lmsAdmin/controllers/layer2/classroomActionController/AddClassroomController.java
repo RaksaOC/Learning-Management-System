@@ -15,33 +15,34 @@ public class AddClassroomController extends MainFrameController {
     @FXML
     private TextField classID;
     @FXML
-    private ComboBox groupID;
+    private ComboBox<String> groupID;
     @FXML
     private Button addButton;
 
+    // TODO: add functionalities
 
     @FXML
     private void handleAdd(MouseEvent event) {
-        String classId = classID.getText();
-        String gId = groupID.getSelectionModel().getSelectedItem().toString();
-        ManageClassroomManager manageClassroomManager = new ManageClassroomManager();
-        manageClassroomManager.manageAddEntity(gId, classId);
-
-        System.out.println("Content");
-        System.out.println(classId);
-        System.out.println(gId);
-        System.out.println("Added Successfully");
-
-        SceneManager.setScene("success");
-        PauseTransition delay = new PauseTransition(Duration.seconds(2));
-        delay.setOnFinished(ev -> {
-            SceneManager.setScene("addClassroom");
-            resetAllFields();
-        });
-
-        delay.play();
+//        String classId = classID.getText();
+//        String gId = groupID.getSelectionModel().getSelectedItem().toString();
+//        ManageClassroomManager manageClassroomManager = new ManageClassroomManager();
+//        manageClassroomManager(gId, classId);
+//
+//        System.out.println("Content");
+//        System.out.println(classId);
+//        System.out.println(gId);
+//        System.out.println("Added Successfully");
+//
+//        SceneManager.setScene("success");
+//        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+//        delay.setOnFinished(ev -> {
+//            SceneManager.setScene("addClassroom");
+//            resetAllFields();
+//        });
+//
+//        delay.play();
     }
-
+//
     private void resetAllFields() {
         classID.clear();
         groupID.getSelectionModel().clearSelection();

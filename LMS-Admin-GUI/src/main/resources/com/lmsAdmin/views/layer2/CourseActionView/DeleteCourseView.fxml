@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.*?>
 <?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsAdmin.controllers.layer2.courseActionController.DeleteCourseController">
     <left>
         <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
@@ -304,29 +297,14 @@
                                         <Font name="Gill Sans Bold" size="19.0" />
                                     </font>
                                 </Label>
-                                <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Course ID" fx:id="idField">
-                                    <font>
-                                        <Font size="17.0" />
-                                    </font>
-                                </TextField>
+                        <ComboBox fx:id="idComboBox" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Select an ID" />
                             </children>
                         </VBox>
                     </children>
                 </HBox>
-                <Button mnemonicParsing="false" text="Search" onMouseClicked="#handleSearch">
-                    <font>
-                        <Font name="Gill Sans" size="20.0" />
-                    </font>
-                </Button>
             <VBox alignment="TOP_CENTER" prefHeight="382.0" prefWidth="1118.0" spacing="40.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Course Info">
-                     <font>
-                        <Font name="Gill Sans Bold" size="19.0" />
-                     </font>
-                  </Text>
-                  <VBox prefHeight="268.0" prefWidth="1118.0" fx:id="detailsVBox" />
-                  <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Delete" fx:id="deleteButton" onMouseClicked="#handleDelete">
+                  <Button fx:id="deleteButton" mnemonicParsing="false" style="-fx-background-color: red;" text="Delete">
                      <font>
                         <Font name="Gill Sans" size="20.0" />
                      </font>

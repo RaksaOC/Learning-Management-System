@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsAdmin.controllers.layer2.specializationActionController.AddSpecializationController" >
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../../styles/mainFrame.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsAdmin.controllers.layer2.specializationActionController.AddSpecializationController">
     <left>
         <VBox prefHeight="896.0" prefWidth="232.0" style="-fx-background-color: #2B2D30;" BorderPane.alignment="CENTER">
             <children>
@@ -310,7 +310,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                         <ComboBox fx:id="departmentId" editable="true" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="457.0" promptText="Select a department" visibleRowCount="3" >
+                         <ComboBox fx:id="departmentId" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="457.0" promptText="Select a department" visibleRowCount="3">
                              <items>
                                  <FXCollections fx:factory="observableArrayList">
                                      <String fx:value="Male" />
@@ -328,7 +328,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="48.0" prefWidth="501.0" promptText="Enter Specialization ID" fx:id="id">
+                        <TextField fx:id="id" prefHeight="48.0" prefWidth="501.0" promptText="Enter Specialization ID">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -342,7 +342,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Specialization Name" fx:id="name">
+                        <TextField fx:id="name" prefHeight="48.0" prefWidth="502.0" promptText="Enter Specialization Name">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -351,7 +351,7 @@
                   </VBox>
                </children>
             </VBox>
-            <Button mnemonicParsing="false" text="Add Specialization" fx:id="addButton" onMouseClicked="#handleAdd">
+            <Button fx:id="addButton" mnemonicParsing="false" onMouseClicked="#handleAdd" text="Add Specialization">
                <font>
                   <Font name="Gill Sans" size="20.0" />
                </font>

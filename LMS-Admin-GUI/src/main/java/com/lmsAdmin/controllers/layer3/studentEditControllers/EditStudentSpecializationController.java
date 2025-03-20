@@ -22,14 +22,14 @@ public class EditStudentSpecializationController extends MainFrameController {
 
     @FXML
     public void initialize() {
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         curTextField.setDisable(true);
         newComboBox.setDisable(true);
         manager = new EditStudentManager(idComboBox.getValue());
         idComboBox.setOnAction(event -> {
-            curTextField.setText(manager.getOldDepartment());
+            curTextField.setText(manager.getOldSpecialization());
             EditSpecializationManager speManager = new EditSpecializationManager();
-            newComboBox.getItems().addAll(speManager.loadIds());
+            newComboBox.getItems().addAll(speManager.loadIdsAndName());
             newComboBox.setDisable(false);
         });
     }

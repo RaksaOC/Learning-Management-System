@@ -1,159 +1,83 @@
 package main.java.com.lmsAdmin.managers.layer3.edit_entity_manager;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class EditSpecializationManager extends EditEntityManager {
-    private JSONArray departments;
-    private JSONArray specializations;
-    private String depID;
 
     public EditSpecializationManager(String idToEdit) {
         super(idToEdit);
-        setFilePath("shared/data/university.json");
         setIdToEdit(idToEdit);
-        loadEntityDataToEdit();
     }
 
     public EditSpecializationManager() {
-        setFilePath("shared/data/university.json");
-        setIdToEdit("");
-        loadEntityDataToEdit();
     }
 
-    public EditSpecializationManager(String dep_id, String spec_id) {
-        super(dep_id);
-        setFilePath("shared/data/university.json");
-        // this for using to find the specific data, the specific specialization within the array of specializations
-        setIdToEdit(spec_id);
-        getEntityData(dep_id);
-    }
-
-
-    public void setNewID(String newID) {
-        this.entityDataToEdit.put("id", newID);
-        saveEntityData(depID);
-    }
-
-    public void setNewName(String newName) {
-        this.entityDataToEdit.put("name", newName);
-        saveEntityData(depID);
-    }
-
-    public String getOldID() {
-        return entityDataToEdit.getString("id");
-    }
-
-    public void getEntityData(String dep_id) {
-        this.depID = dep_id;
-        try {
-            this.content = new String(Files.readAllBytes(Paths.get(this.filePath)));
-            this.entityData_Obj = new JSONObject(content);
-            departments = this.entityData_Obj.getJSONArray("departments");
-
-            for (int i = 0; i < departments.length(); i++) {
-                if (departments.getJSONObject(i).getString("id").equals(this.depID)) {
-                    specializations = departments.getJSONObject(i).getJSONArray("specializations");
-                }
-            }
-            for (int i = 0; i < specializations.length(); i++) {
-                // means traversing until we find the specific specialization (idToEdit)
-                if (specializations.getJSONObject(i).getString("id").equals(idToEdit)) {
-                    entityDataToEdit = specializations.getJSONObject(i);
-                }
-            }
-        } catch (IOException e) {
+    public void manageEditId(String newId){
+        String query = "UPDATE specialization SET id = ? WHERE id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, newId);
+            statement.setString(2, idToEdit);
+            statement.executeUpdate();
+        }catch (SQLException e){
             e.printStackTrace();
         }
     }
 
-    public void saveEntityData(String dep_id) {
-        try (FileWriter writer = new FileWriter(filePath)) {
-            // put the specific spec to the correct place
-            for (int i = 0; i < specializations.length(); i++) {
-                if (specializations.getJSONObject(i).getString("id").equals(idToEdit)) {
-                    specializations.put(i, entityDataToEdit);
-                    break;
-                }
-            }
-            // put the hole spec to the correct department
-            for (int i = 0; i < departments.length(); i++) {
-                if (departments.getJSONObject(i).getString("id").equals(dep_id)) {
-                    departments.getJSONObject(i).put("specializations", specializations);
-                }
-            }
-            this.entityData_Obj.put("departments", departments);
-            writer.write(entityData_Obj.toString(4));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public void loadEntityDataToEdit() {
-        try {
-            this.content = new String(Files.readAllBytes(Paths.get(this.filePath)));
-            this.entityData_Obj = new JSONObject(content);
-            JSONArray departments = this.entityData_Obj.getJSONArray("departments");
-
-            for (int i = 0; i < departments.length(); i++) {
-                entityData_Arr.put(departments.getJSONObject(i).getJSONArray("specializations"));
-            }
-        } catch (IOException e) {
+    public void manageEditName(String newId){
+        String query = "UPDATE specialization SET name = ? WHERE id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, newId);
+            statement.setString(2, idToEdit);
+            statement.executeUpdate();
+        }catch (SQLException e){
             e.printStackTrace();
         }
     }
 
-    public ArrayList<String> loadIds() {
+    public ArrayList<String> loadIdsAndName(){
         ArrayList<String> ids = new ArrayList<>();
-        for(int i = 0; i < entityData_Arr.length(); i++) {
-            ids.add(entityData_Arr.getJSONObject(i).getString("id"));
+        String query = "SELECT id, name FROM specialization";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()) {
+                ids.add(rs.getString("id") + " - " + rs.getString("name"));
+            }
+            return ids;
+        }catch (SQLException e){
+            e.printStackTrace();
         }
         return ids;
     }
 
-    public void manageEditId(String newId){
-        for (int i = 0; i < entityData_Arr.length(); i++) {
-            if (entityData_Arr.getJSONObject(i).getString("id").equals(newId)) {
-                entityData_Arr.getJSONObject(i).put("id", newId);
-                break;
+    public String getOldId() {
+        String query = "SELECT id FROM specialization WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, idToEdit);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getString("id");
             }
-        }
-        saveEntityData();
-    }
-
-    public void manageEditName(String newName){
-        for (int i = 0; i < entityData_Arr.length(); i++) {
-            if (entityData_Arr.getJSONObject(i).getString("id").equals(idToEdit)) {
-                entityData_Arr.getJSONObject(i).put("name", newName);
-                break;
-            }
-        }
-        saveEntityData();
-    }
-
-    public String getOldName(){
-        for (int i = 0; i < entityData_Arr.length(); i++) {
-            if (entityData_Arr.getJSONObject(i).getString("id").equals(idToEdit)) {
-                return entityData_Arr.getJSONObject(i).getString("name");
-            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
 
-    @Override
-    public void saveEntityData(){
-        entityData_Obj.getJSONArray("specializations").put(entityData_Arr);
-        try (FileWriter writer = new FileWriter(filePath)) {
-            writer.write(entityData_Obj.toString(4));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public String getOldName() {
+        String query = "SELECT name FROM specialization WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, idToEdit);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getString("name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return null;
     }
+
 }

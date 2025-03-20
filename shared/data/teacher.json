@@ -1,7 +1,7 @@
 [
     {
         "createdAt": "2025-02-04 22:42:52",
-        "lastLogin": "2025-03-04 22:55:37",
+        "lastLogin": "2025-03-11 09:53:46",
         "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
         "phoneNumber": "011554049",
         "gender": "Male",
@@ -33,5 +33,37 @@
         "classrooms": [],
         "email": "asp'dkfj",
         "status": "active"
+    },
+    {
+        "createdAt": "2025-03-17 14:38:50",
+        "lastLogin": "",
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "phoneNumber": "sadfasf",
+        "gender": "Female",
+        "dob": "2025-03-03",
+        "name": {
+            "firstName": "jasl;fasjf",
+            "lastName": "asdfasdf"
+        },
+        "id": "T0003",
+        "classrooms": [],
+        "email": "asdfasf",
+        "status": "active"
+    },
+    {
+        "createdAt": "2025-03-17 14:46:17",
+        "lastLogin": "",
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "phoneNumber": "sadfasfd",
+        "gender": "Male",
+        "dob": "2025-03-12",
+        "name": {
+            "firstName": "asdfasdf",
+            "lastName": "asdfasdf"
+        },
+        "id": "T0004",
+        "classrooms": [],
+        "email": "asdfasdf",
+        "status": "inactive"
     }
 ]

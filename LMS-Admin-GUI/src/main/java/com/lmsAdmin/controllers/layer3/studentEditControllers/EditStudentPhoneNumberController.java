@@ -22,7 +22,7 @@ public class EditStudentPhoneNumberController extends MainFrameController {
 
     @FXML
     public void initialize() {
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         curTextField.setDisable(true);
         newTextField.setDisable(true);
         manager = new EditStudentManager(idComboBox.getValue());
@@ -34,6 +34,7 @@ public class EditStudentPhoneNumberController extends MainFrameController {
 
     @FXML
     public void handleEdit(){
+        manager.manageEditPhone(newTextField.getText());
         manager.manageEditPhone(newTextField.getText());
         loadSuccess("editStudentPhoneNumber");
         clearFields();

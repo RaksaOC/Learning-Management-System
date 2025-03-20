@@ -7,7 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditStudentManager;
-import org.json.JSONObject;
 
 public class EditStudentGuardianController extends MainFrameController {
     EditStudentManager idLoader = new EditStudentManager();
@@ -43,7 +42,7 @@ public class EditStudentGuardianController extends MainFrameController {
         newGGenderComboBox.setDisable(true);
         newGPhoneTextField.setDisable(true);
 
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
 
         idComboBox.setOnAction(event -> {
             manager = new EditStudentManager(idComboBox.getValue());
@@ -62,14 +61,7 @@ public class EditStudentGuardianController extends MainFrameController {
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        JSONObject newGuardian = new JSONObject();
-        newGuardian.put("gender", newGGenderComboBox.getValue());
-        newGuardian.put("phone", newGPhoneTextField.getText());
-        JSONObject name = new JSONObject();
-        name.put("firstName", curGFirstNameTextField.getText());
-        name.put("lastName", curGLastNameTextField.getText());
-        newGuardian.put("name", name);
-        manager.manageEditGuardian(newGuardian);
+        manager.manageEditGuardian(newGFirstNameTextField.getText(), newGFirstNameTextField.getText(), newGGenderComboBox.getSelectionModel().getSelectedItem(), newGPhoneTextField.getText());
         loadSuccess("editStudentGuardian");
         clearFields();
     }

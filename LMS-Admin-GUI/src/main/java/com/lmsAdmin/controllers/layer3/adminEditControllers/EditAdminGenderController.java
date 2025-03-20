@@ -24,7 +24,7 @@ public class EditAdminGenderController extends MainFrameController {
     @FXML
     private void initialize() {
         editButton.setDisable(true);
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         idComboBox.setOnAction(event -> {
             manager = new EditAdminManager(idComboBox.getValue());
             curTextField.setText(manager.getOldGender());
@@ -34,7 +34,7 @@ public class EditAdminGenderController extends MainFrameController {
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditEmail(newGenderComboBox.getSelectionModel().getSelectedItem());
+        manager.manageEditGender(newGenderComboBox.getValue().toString());
         loadSuccess("editAdminGender");
         clearFields();
     }

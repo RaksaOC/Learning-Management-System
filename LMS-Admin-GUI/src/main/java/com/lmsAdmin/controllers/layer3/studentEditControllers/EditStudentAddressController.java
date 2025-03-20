@@ -8,7 +8,6 @@ import javafx.scene.input.MouseEvent;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditStudentManager;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.utils.CambodiaAdministrative;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -47,7 +46,7 @@ public class EditStudentAddressController extends MainFrameController {
         newDistrictComboBox.setDisable(true);
         newProvinceComboBox.setDisable(true);
 
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
 
         idComboBox.setOnAction(event -> {
             manager = new EditStudentManager(idComboBox.getValue());
@@ -89,11 +88,7 @@ public class EditStudentAddressController extends MainFrameController {
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        JSONObject newAddress = new JSONObject();
-        newAddress.put("commune", newCommuneComboBox.getValue());
-        newAddress.put("district", newDistrictComboBox.getValue());
-        newAddress.put("province", newProvinceComboBox.getValue());
-        manager.manageEditAddress(newAddress);
+        manager.manageEditAddress(newCommuneComboBox.getSelectionModel().getSelectedItem(), newDistrictComboBox.getSelectionModel().getSelectedItem(), newProvinceComboBox.getSelectionModel().getSelectedItem());
         loadSuccess("editStudentAddress");
         clearFields();
     }

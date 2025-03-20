@@ -25,10 +25,10 @@ public class EditAdminDOBController extends MainFrameController {
     @FXML
     private void initialize() {
         editButton.setDisable(true);
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         idComboBox.setOnAction(event -> {
             manager = new EditAdminManager(idComboBox.getValue());
-            curDOBTextField.setText(manager.getOldDOB());
+            curDOBTextField.setText(manager.getOldDob());
             newDOBDatePicker.setDisable(false);
         });
     }

@@ -19,21 +19,17 @@ public class ManageGenerationController extends MainFrameController {
     @FXML
     private void handleAdd(MouseEvent actionEvent) {
         SceneManager.setScene("addGeneration");
-        System.out.println("At addGeneration scene");
     }
     @FXML
     private void handleEdit(MouseEvent actionEvent) {
         SceneManager.setScene("editGeneration");
-        System.out.println("At editGeneration scene");
     }
     @FXML
     private void handleDelete(MouseEvent actionEvent) {
         SceneManager.setScene("deleteGeneration");
-        System.out.println("At deleteGeneration scene");
     }
     @FXML
     private void handleView(MouseEvent actionEvent) {
         SceneManager.setScene("viewGeneration");
-        System.out.println("At viewGeneration scene");
     }
 }

@@ -24,10 +24,10 @@ public class EditSpecializationIDController extends MainFrameController {
     @FXML
     private void initialize() {
         editButton.setDisable(true);
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         idComboBox.setOnAction(event -> {
             manager = new EditSpecializationManager(idComboBox.getValue());
-            curTextField.setText(idComboBox.getValue());
+            curTextField.setText(manager.getOldId());
             newTextField.setDisable(false);
             newTextField.setText(cutString());
         });

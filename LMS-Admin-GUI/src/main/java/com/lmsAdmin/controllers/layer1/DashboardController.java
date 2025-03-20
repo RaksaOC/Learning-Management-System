@@ -13,6 +13,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class DashboardController extends MainFrameController {
+
+    // TODO: change these to SQL
+
     private DashboardManager dashboardManager = new DashboardManager();
 
     @FXML

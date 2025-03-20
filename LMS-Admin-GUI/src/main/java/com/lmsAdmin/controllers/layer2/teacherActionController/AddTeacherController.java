@@ -23,7 +23,7 @@ public class AddTeacherController extends MainFrameController {
     @FXML
     private DatePicker dob;
     @FXML
-    private ComboBox gender;
+    private ComboBox<String> gender;
     @FXML
     private TextField phoneNumber;
     @FXML
@@ -52,35 +52,18 @@ public class AddTeacherController extends MainFrameController {
             LocalDateTime now = LocalDateTime.now();
             String formattedDate = now.format(formatter);
 
-            JSONObject newTeacher = new JSONObject();
-
-            JSONObject name = new JSONObject();
-
-            name.put("firstName", fName);
-            name.put("lastName", lName);
-            newTeacher.put("name", name);
-            newTeacher.put("dob", dateOfBirth);
-            newTeacher.put("gender", gen);
-            newTeacher.put("phoneNumber", phone);
-            newTeacher.put("email", em);
-            newTeacher.put("password", Hasher.hash(password));
-            newTeacher.put("createdAt", formattedDate);
-            newTeacher.put("lastLogin", "");
-            newTeacher.put("classrooms", new JSONArray());
-            newTeacher.put("status", "active");
-
-            manageTeacherManager.manageAddEntity(newTeacher);
-
-            System.out.println("Contents to be added");
-            System.out.println(fName);
-            System.out.println(lName);
-            System.out.println(dateOfBirth);
-            System.out.println(gen);
-            System.out.println(phone);
-            System.out.println(em);
-            System.out.println(password);
-            System.out.println(newTeacher);
-            System.out.println("Added Successfully");
+            manageTeacherManager.manageAddTeacher(
+                    fName,
+                    lName,
+                    gen,
+                    dateOfBirth,
+                    phone,
+                    em,
+                    "active",
+                    formattedDate,
+                    null,
+                    password
+            );
 
             SceneManager.setScene("success");
             PauseTransition delay = new PauseTransition(Duration.seconds(2));

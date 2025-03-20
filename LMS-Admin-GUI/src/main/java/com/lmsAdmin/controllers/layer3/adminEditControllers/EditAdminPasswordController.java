@@ -22,7 +22,7 @@ public class EditAdminPasswordController extends MainFrameController {
     @FXML
     private void initialize() {
         editButton.setDisable(true);
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         idComboBox.setOnAction(event -> {
             manager = new EditAdminManager(idComboBox.getValue());
             newTextField.setDisable(true);
@@ -36,16 +36,6 @@ public class EditAdminPasswordController extends MainFrameController {
                     editButton.setDisable(true);
                     curTextField.setStyle("-fx-border-color: red");
                 }
-//                else {
-//                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//                    alert.setTitle("Confirmation");
-//                    alert.setHeaderText(null);
-//                    alert.setContentText("Password does not match");
-//                    Optional<ButtonType> result = alert.showAndWait();
-//                    if (result.get() == ButtonType.OK) {
-//                        clearFields();
-//                    }
-//                }
             });
         });
     }

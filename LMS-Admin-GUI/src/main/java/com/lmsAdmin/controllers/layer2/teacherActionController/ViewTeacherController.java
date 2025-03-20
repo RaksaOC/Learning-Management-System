@@ -1,113 +1,98 @@
 package main.java.com.lmsAdmin.controllers.layer2.teacherActionController;
 
-import javafx.collections.FXCollections;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer2.manage_entity_manager.ManageTeacherManager;
+import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditTeacherManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.Map;
 
 public class ViewTeacherController extends MainFrameController {
 
     @FXML
-    private TextField idField;
+    private ComboBox<String> idComboBox;
     @FXML
     private Button searchButton;
 
     @FXML
-    private TableView<JSONObject> tableView;
+    private TableView<Map<String, String>> tableView;
     @FXML
-    private TableColumn<JSONObject, String> idColumn;
+    private TableColumn<Map<String, String>, String> idColumn;
     @FXML
-    private TableColumn<JSONObject, String> firstNameColumn;
+    private TableColumn<Map<String, String>, String> firstNameColumn;
     @FXML
-    private TableColumn<JSONObject, String> lastNameColumn;
+    private TableColumn<Map<String, String>, String> lastNameColumn;
     @FXML
-    private TableColumn<JSONObject, String> genderColumn;
+    private TableColumn<Map<String, String>, String> genderColumn;
     @FXML
-    private TableColumn<JSONObject, String> dobColumn;
+    private TableColumn<Map<String, String>, String> dobColumn;
     @FXML
-    private TableColumn<JSONObject, String> phoneColumn;
+    private TableColumn<Map<String, String>, String> phoneColumn;
     @FXML
-    private TableColumn<JSONObject, String> emailColumn;
-    @FXML
-    private TableColumn<JSONObject, String> createdAtColumn;
-    @FXML
-    private TableColumn<JSONObject, String> lastLoginColumn;
+    private TableColumn<Map<String, String>, String> emailColumn;
 
     @FXML
     private VBox detailsVBox;
 
+    private String selectedId;
+
     @FXML
     public void initialize() {
+        idComboBox.getItems().addAll(new EditTeacherManager().loadIdsAndName());
+        initTableView();
+    }
+
+    private void initTableView() {
         ManageTeacherManager manageTeacherManager = new ManageTeacherManager();
-        JSONArray all = manageTeacherManager.getAllDetails();
+        ObservableList<Map<String, String>> data = manageTeacherManager.getAllTeacherDetails();
 
-        // Convert JSON data to ObservableList
-        ObservableList<JSONObject> data = FXCollections.observableArrayList();
-        for (int i = 0; i < all.length(); i++) {
-            data.add(all.getJSONObject(i));
-        }
+        idColumn.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().get("id").toString()));
+        firstNameColumn.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().get("first_name").toString()));
+        lastNameColumn.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().get("last_name").toString()));
+        genderColumn.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().get("gender").toString()));
+        dobColumn.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().get("dob").toString()));
+        phoneColumn.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().get("phone_number").toString()));
+        emailColumn.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().get("email").toString()));
 
-        // Set up column cell value factories
-        idColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "id"));
-        firstNameColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "firstName"));
-        lastNameColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "lastName"));
-        genderColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "gender"));
-        dobColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "dob"));
-        phoneColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "phoneNumber"));
-        emailColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "email"));
-        createdAtColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "createdAt"));
-        lastLoginColumn.setCellValueFactory(cellData -> getJSONValue(cellData.getValue(), "lastLogin"));
-
-        // Set data to table
         tableView.setItems(data);
     }
 
     @FXML
     private void handleSearch(MouseEvent event) {
+        selectedId = idComboBox.getSelectionModel().getSelectedItem().toString().substring(0, idComboBox.getSelectionModel().getSelectedItem().indexOf(" "));
         createDetails();
     }
 
+
     private void createDetails(){
-        String idToSearch = idField.getText();
+        String idToSearch = selectedId;
         ManageTeacherManager manageTeacherManager = new ManageTeacherManager();
-        JSONObject details = manageTeacherManager.getDetails(idToSearch);
+        Map<String, String> details = manageTeacherManager.getTeacherDetails(idToSearch);
         detailsVBox.getChildren().clear();
         detailsVBox.setStyle("-fx-background-color: #ebebeb");
         Pos center_left = Pos.CENTER_LEFT;
         detailsVBox.setAlignment(center_left);
         detailsVBox.setSpacing(10);
-        String id = details.getString("id");
-        String firstName = details.getJSONObject("name").getString("firstName");
-        String lastName = details.getJSONObject("name").getString("lastName");
+        String id = details.get("id");
+        String firstName = details.get("first_name");
+        String lastName = details.get("last_name");
         String name = firstName + " " + lastName;
-        String gender = details.getString("gender");
-        String dateOfBirth = details.getString("dob");
-        String phone = details.getString("phoneNumber");
-        String email = details.getString("email");
-        String createdAt = details.getString("createdAt");
-        String lastLog = details.getString("lastLogin");
-
-        JSONArray classroomsArray = details.getJSONArray("classrooms");
-        StringBuilder classroomsText = new StringBuilder();
-        for (int i = 0; i < classroomsArray.length(); i++) {
-            classroomsText.append(classroomsArray.getString(i));
-            if (i < classroomsArray.length() - 1) {
-                classroomsText.append(", ");
-            }
-        }
-        String classrooms = classroomsText.toString();
+        String gender = details.get("gender");
+        String dateOfBirth = details.get("dob");
+        String phone = details.get("phone_number");
+        String email = details.get("email");
+        String createdAt = details.get("created_at");
+        String lastLog = details.get("last_login");
 
         Font textFont = Font.font("Gill Sans", 25);
 
@@ -117,26 +102,14 @@ public class ViewTeacherController extends MainFrameController {
         Text dob = new Text("DOB: " + dateOfBirth);
         Text phoneText = new Text("Phone: " + phone);
         Text emailText = new Text("Email: " + email);
-        Text classroomText = new Text("Classrooms: " + classrooms);
         Text createdAtText = new Text("Created At: " + createdAt);
         Text lastLogText = new Text("Last Login: " + lastLog);
 
-        Text[] textNodes = {idText, nameText, genderText, dob, phoneText, classroomText, emailText, createdAtText, lastLogText};
+        Text[] textNodes = {idText, nameText, genderText, dob, phoneText, emailText, createdAtText, lastLogText};
         for (Text text : textNodes) {
             text.setFont(textFont);
         }
 
         detailsVBox.getChildren().addAll(textNodes);
-    }
-
-
-    private javafx.beans.property.SimpleStringProperty getJSONValue(JSONObject obj, String key) {
-        return switch (key) {
-            case "firstName" ->
-                    new javafx.beans.property.SimpleStringProperty(obj.optJSONObject("name").optString("firstName", "N/A"));
-            case "lastName" ->
-                    new javafx.beans.property.SimpleStringProperty(obj.optJSONObject("name").optString("lastName", "N/A"));
-            default -> new javafx.beans.property.SimpleStringProperty(obj.optString(key, "N/A"));
-        };
     }
 }

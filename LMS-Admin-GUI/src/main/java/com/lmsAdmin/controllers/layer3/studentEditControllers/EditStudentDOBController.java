@@ -23,7 +23,7 @@ public class EditStudentDOBController extends MainFrameController {
 
     @FXML
     public void initialize() {
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         curTextField.setDisable(true);
         newDatePicker.setDisable(true);
         manager = new EditStudentManager(idComboBox.getValue());
@@ -35,7 +35,7 @@ public class EditStudentDOBController extends MainFrameController {
 
     @FXML
     public void handleEdit(){
-        manager.manageEditDOB(newDatePicker.getValue().toString());
+        manager.manageEditDoB(newDatePicker.getValue().toString());
         loadSuccess("editStudentDOB");
         clearFields();
     }

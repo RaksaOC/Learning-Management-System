@@ -20,6 +20,44 @@ public class ResourcesManager {
         this.student = session.getStudent();
     }
 
+    // ========================================
+    // SQL-RELATED METHODS (TO BE IMPLEMENTED)
+    // ========================================
+
+    // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ========================================
+    // JSON-RELATED METHODS
+    // ========================================
+
     public HashMap<String, String> getAllResources(){
         JSONObject progress = student.getProgress();
 

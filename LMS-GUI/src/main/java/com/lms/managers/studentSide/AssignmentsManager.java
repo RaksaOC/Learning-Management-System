@@ -20,6 +20,42 @@ public class AssignmentsManager {
         this.student = session.getStudent();
     }
 
+    // ========================================
+    // SQL-RELATED METHODS
+    // ========================================
+
+    // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ========================================
+    // JSON-RELATED METHODS
+    // ========================================
+
     public HashMap<String, String> getAllAssignments(){
         JSONObject progress = student.getProgress();
 

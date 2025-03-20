@@ -13,10 +13,42 @@ import java.util.*;
 
 public class QuizzesManager {
     private Student student;
+
     public QuizzesManager() {
         AppSession session = AppSession.getInstance();
         this.student = session.getStudent();
     }
+
+    // ========================================
+    // SQL-RELATED METHODS (TO BE IMPLEMENTED)
+    // ========================================
+
+    // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ========================================
+    // JSON-RELATED METHODS
+    // ========================================
 
     public void manageDoQuiz(int quizIndex, String[] answers, String classID) {
         Map<String, Object> getQuizFromFile = returnQuiz(quizIndex, classID);
@@ -105,7 +137,6 @@ public class QuizzesManager {
         return 0;
     }
 
-
     private void checkAnswer(Map<String, Object> questionsAndID, String[] answers) {
         int result = 0;
         Object questionsObject = questionsAndID.get("questions");
@@ -156,7 +187,7 @@ public class QuizzesManager {
         }
     }
 
-    public HashMap<String, String> getAllQuizzes(){
+    public HashMap<String, String> getAllQuizzes() {
         JSONObject progress = student.getProgress();
 
         ArrayList<String> progressIds = new ArrayList<>();
@@ -176,7 +207,7 @@ public class QuizzesManager {
         return allQuizzes;
     }
 
-    private JSONArray getAllStudentProgress(List<String> progressIds){
+    private JSONArray getAllStudentProgress(List<String> progressIds) {
         JSONArray allProgress = loadProgress();
         JSONArray studentProgress = new JSONArray();
         for (int i = 0; i < progressIds.size(); i++) {
@@ -189,11 +220,11 @@ public class QuizzesManager {
         return studentProgress;
     }
 
-    private JSONArray loadProgress(){
-        try{
+    private JSONArray loadProgress() {
+        try {
             String content = new String(Files.readAllBytes(Paths.get("shared/data/progress.json")));
             return new JSONArray(content);
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return null;

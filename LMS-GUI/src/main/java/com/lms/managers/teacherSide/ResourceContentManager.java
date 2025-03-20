@@ -9,14 +9,59 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class ResourceContentManager extends ClassroomContentManager {
-    private String classIdToEdit = AppSession.getInstance().getSelectedClassroom();
 
-    // TODO: Might remove later
     public ResourceContentManager(String classIdToEdit) {
         super(classIdToEdit);
-        this.classIdToEdit = classIdToEdit;
     }
+
+    // ========================================
+    // SQL-RELATED METHODS
+    // ========================================
+
+
+    // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ========================================
+    // JSON-RELATED METHODS
+    // ========================================
     // load all resource
+
     private JSONArray loadResource() {
         try {
             String contents = new String(Files.readAllBytes(Paths.get("shared/data/resource.json")));

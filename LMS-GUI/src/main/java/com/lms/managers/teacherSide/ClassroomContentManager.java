@@ -39,11 +39,13 @@ import java.nio.file.Paths;
 
 public class ClassroomContentManager {
 
-    private final String classIdToEdit;
+    protected final String classIdToEdit;
 
     public ClassroomContentManager(String ClassIdToEdit) {
         this.classIdToEdit = ClassIdToEdit; // this holds only the user's input
     }
+
+
 
     public void manageAddAssignment(String title, String description, String date, String time) {
 //        String title = Menu.prompt("Enter Assignment Title: ");

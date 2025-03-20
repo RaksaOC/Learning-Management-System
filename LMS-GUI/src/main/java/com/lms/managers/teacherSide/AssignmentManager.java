@@ -9,8 +9,51 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class AssignmentManager {
-    private String classIdToEdit = AppSession.getInstance().getSelectedClassroom();
+public class AssignmentManager extends ClassroomContentManager {
+    public AssignmentManager(String classId) {
+        super(classId);
+    }
+
+    // ========================================
+    // SQL-RELATED METHODS
+    // ========================================
+
+    // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ========================================
+    // JSON-RELATED METHODS
+    // ========================================
 
     public void manageAddAssignment(String title, String description, String date, String time) {
 //        String title = Menu.prompt("Enter Assignment Title: ");
@@ -153,17 +196,17 @@ public class AssignmentManager {
     }
 
     // get a specific classroomId id Ex: "GEN10-CS-SE-G1-OOP"
-    private String getClassroomId() {
-        int indexOfClass = Integer.parseInt(classIdToEdit);
-        JSONArray allClass = loadClassroom();
-        for (int i = 0; i < allClass.length(); i++) {
-            if (i == indexOfClass) {
-                JSONObject classToEdit = allClass.getJSONObject(i);
-                return classToEdit.getString("id");
-            }
-        }
-        return null;
-    }
+//    private String getClassroomId() {
+//        int indexOfClass = Integer.parseInt(classIdToEdit);
+//        JSONArray allClass = loadClassroom();
+//        for (int i = 0; i < allClass.length(); i++) {
+//            if (i == indexOfClass) {
+//                JSONObject classToEdit = allClass.getJSONObject(i);
+//                return classToEdit.getString("id");
+//            }
+//        }
+//        return null;
+//    }
 
     // get only assignments from classroom.json
     private JSONArray getClassroomAssignments() {
@@ -310,17 +353,17 @@ public class AssignmentManager {
     }
 
 
-    private String idGenerator(JSONArray objects, String baseId) { // baseId receives Ex: "A000"
-        String numberPart = baseId.replaceAll("[^0-9]", ""); // extract number part "000"
-        int numberLength = numberPart.length();
-        int nextIdNumber;
-        if (objects != null) {
-            nextIdNumber = objects.length() + 1; // find next available id
-        } else {
-            nextIdNumber = 1;
-        }
-        String formattedNumber = String.format("%0" + numberLength + "d", nextIdNumber); // %03d
-        String prefixChar = baseId.replaceAll("[0-9]", ""); // extract the non-numeric part "A"
-        return prefixChar + formattedNumber;
-    }
+//    private String idGenerator(JSONArray objects, String baseId) { // baseId receives Ex: "A000"
+//        String numberPart = baseId.replaceAll("[^0-9]", ""); // extract number part "000"
+//        int numberLength = numberPart.length();
+//        int nextIdNumber;
+//        if (objects != null) {
+//            nextIdNumber = objects.length() + 1; // find next available id
+//        } else {
+//            nextIdNumber = 1;
+//        }
+//        String formattedNumber = String.format("%0" + numberLength + "d", nextIdNumber); // %03d
+//        String prefixChar = baseId.replaceAll("[0-9]", ""); // extract the non-numeric part "A"
+//        return prefixChar + formattedNumber;
+//    }
 }

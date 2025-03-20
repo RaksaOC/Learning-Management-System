@@ -12,13 +12,63 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class QuizManager extends ClassroomContentManager{
-    private String classIdToEdit = AppSession.getInstance().getSelectedClassroom();
+public class QuizManager extends ClassroomContentManager {
 
-    // TO CHANGE: later
     public QuizManager(String classIdToEdit) {
         super(classIdToEdit);
     }
+
+    // ========================================
+    // SQL-RELATED METHODS
+    // ========================================
+
+    // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ========================================
+    // JSON-RELATED METHODS
+    // ========================================
 
     public void manageAddQuizz(String classroomID, String title, String createdBy, JSONArray questions) {
         String id = "Q0000";

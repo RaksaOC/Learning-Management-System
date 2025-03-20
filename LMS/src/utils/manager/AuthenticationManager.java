@@ -234,7 +234,7 @@ public class AuthenticationManager {
 
     private JSONArray loadTeachers() {
         try {
-            String content = new String(Files.readAllBytes(Paths.get("shared/data/teachers.json")));
+            String content = new String(Files.readAllBytes(Paths.get("shared/data/teacher.json")));
             JSONArray teachers = new JSONArray(content);
             return teachers;
         } catch (Exception e) {

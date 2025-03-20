@@ -4,6 +4,7 @@ package main.java.com.lmsAdmin.managers.layer2.manage_entity_manager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import lib.Hasher;
 import main.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -44,7 +45,7 @@ public class ManageAdminManager extends ManageEntityManager {
             stmt.setString(3, last_name);
             stmt.setTimestamp(4, Timestamp.valueOf(created_at)); // Convert string to Timestamp
             stmt.setNull(5, java.sql.Types.TIMESTAMP);
-            stmt.setString(6, password);
+            stmt.setString(6, Hasher.hash(password));
             stmt.setString(7, phone_number);
             stmt.setString(8, gender);
             stmt.setString(9, dob);

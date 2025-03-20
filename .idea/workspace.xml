@@ -5,16 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="816c4d4f-796b-4ab7-98a7-72a49b87cc0e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_25_2025_1_14_PM_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_25_2025_1_14_PM_[Changes]1/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_25_2025_1_14_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LMS-GUI/src/main/DatabaseConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS/src/utils/manager/ClassroomManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/manager/ClassroomManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/classroom.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/classroom.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/progress.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/progress.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/resource.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/resource.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/teachers.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/teachers.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/controllers/layer0/LogInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/controllers/layer0/LogInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer0/authentication_manager/AuthManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer0/authentication_manager/AuthManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer2/manage_entity_manager/ManageAdminManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer2/manage_entity_manager/ManageAdminManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/ThemeManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/StudentProfileSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/StudentProfileSettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/studentSide/QuizzesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/studentSide/QuizzesManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/teacherSide/ClassroomContentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/teacherSide/ClassroomContentManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/teacherSide/QuizManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/teacherSide/QuizManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS/src/utils/manager/AuthenticationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS/src/utils/manager/AuthenticationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/history.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/history.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/student.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/student.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/teachers.json" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/teacher.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +67,7 @@
     "ToolWindow.Run.ShowToolbar": "false",
     "dart.analysis.tool.window.visible": "false",
     "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "Merging test-merge-user-gui-2-sql",
+    "git-widget-placeholder": "test-merge-user-gui-2-sql",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/raksa/School/Year 2/Term 2/OOP/Project/Learning-Management-System/LMS-GUI/src/main/java/com/lms/managers/teacherSide",
     "node.js.detected.package.eslint": "true",
@@ -94,12 +98,13 @@
       <recent name="$PROJECT_DIR$/LMS-Admin-GUI/src/main/resources/com/lmsadmin/views/layer2/StudentActionView" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="main" />
       <recent name="main.java.com.lms.managers" />
       <recent name="main.java.com.lmsadmin.controllers" />
       <recent name="main.java.com.lmsadmin.managers" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Run LMS-Admin">
+  <component name="RunManager" selected="Application.Run LMS-Admin-GUI">
     <configuration name="Run LMS-Admin-GUI" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="LMS-Admin-GUI" />

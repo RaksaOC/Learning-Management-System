@@ -517,7 +517,7 @@ public class ClassroomContentManager {
         return null;
     }
 
-    // changed from private to protected cuz of inheritence
+    // changed from private to protected cuz of inheritence for only this thing
 
     protected String idGenerator(JSONArray objects, String baseId) { // baseId receives Ex: "A000"
         String numberPart = baseId.replaceAll("[^0-9]", ""); // extract number part "000"

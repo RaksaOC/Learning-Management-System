@@ -24,17 +24,17 @@ public class EditCourseNameController extends MainFrameController {
     @FXML
     private void initialize() {
         editButton.setDisable(true);
-        idComboBox.getItems().addAll(idLoader.loadIds());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         idComboBox.setOnAction(event -> {
             manager = new EditCourseManager(idComboBox.getValue());
-            curTextField.setText(manager.getOldNameSql());
+            curTextField.setText(manager.getOldName());
             newTextField.setDisable(false);
         });
     }
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditNameSql(newTextField.getText());
+        manager.manageEditName(newTextField.getText());
         loadSuccess("editCourseName");
         clearFields();
     }

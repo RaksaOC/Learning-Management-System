@@ -3,15 +3,9 @@ package main.java.com.lmsAdmin.controllers.layer2.courseActionController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer2.manage_entity_manager.ManageCourseManager;
-import org.json.JSONObject;
 
 import java.util.Map;
 
@@ -53,7 +47,7 @@ public class ViewCourseController extends MainFrameController {
     }
     private void initTableViewSql(){
         ManageCourseManager manager = new ManageCourseManager();
-        ObservableList<Map<String, String>> details = manager.getAllDetailsSql();
+        ObservableList<Map<String, String>> details = manager.getAllCourseDetails();
 
         idColumn.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().get("id")));
         nameColumn.setCellValueFactory(cellData-> new SimpleStringProperty(cellData.getValue().get("name")));

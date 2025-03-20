@@ -4,13 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import main.DatabaseConnection;
 import org.json.JSONArray;
-import org.json.JSONObject;
-import ui.UI;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,24 +13,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ManageCourseManager extends ManageEntityManager{
-    Connection conn = DatabaseConnection.getInstance().getConnection();
     JSONArray courses;
 
     public ManageCourseManager() {
         super();
-        setEntityFilePath("shared/data/university.json");
-        loadEntity();
-        courses = entityData_Obj.getJSONArray("courses");
     }
 
-    @Override
-    public void manageAddEntity(JSONObject newCourse) {
-        courses.put(newCourse);
-        entityData_Obj.put("courses", courses);
-        saveEntity();
-    }
-
-    public void manageAddEntitySql(
+    public void manageAddCourse(
             String id,
             String name,
             String credit,
@@ -58,18 +41,7 @@ public class ManageCourseManager extends ManageEntityManager{
         }
     }
 
-    @Override
-    public void manageDeleteEntity(String id) {
-        for (int i = 0; i < courses.length(); i++) {
-            if (courses.getJSONObject(i).getString("id").equals(id)) {
-                courses.getJSONObject(i).put("status", "inactive");
-                break;
-            }
-        }
-        saveEntity();
-    }
-
-    public void manageDeleteEntitySql(String id) {
+    public void manageDeleteCourse(String id) {
         String query = "UPDATE course SET status = ? WHERE id = ?";
         try(PreparedStatement statement = conn.prepareStatement(query)){
             statement.setString(1, "inactive");
@@ -80,44 +52,17 @@ public class ManageCourseManager extends ManageEntityManager{
         }
     }
 
-    @Override
-    public void manageViewEntity() {
-        System.out.println("Printed departments");
-        System.out.println(UI.TextColor.addColor(courses.toString(4), UI.TextColor.BLUE));
-    }
+//    public boolean isCourseIdExist(String id) {
+//        JSONArray courses = entityData_Obj.getJSONArray("courses");
+//        for (int i = 0; i < courses.length(); i++) {
+//            if (courses.getJSONObject(i).getString("id").equals(id)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
-    @Override
-    public void loadEntity() {
-        // override for the loading of entity because university is object not array
-        try {
-            content = new String(Files.readAllBytes(Paths.get(filePath)));
-            entityData_Obj = new JSONObject(content);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void saveEntity() {
-        try (FileWriter file = new FileWriter(filePath)) {
-            file.write(entityData_Obj.toString(4)); // Pretty-print with 4 spaces
-            file.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public boolean isCourseIdExist(String id) {
-        JSONArray courses = entityData_Obj.getJSONArray("courses");
-        for (int i = 0; i < courses.length(); i++) {
-            if (courses.getJSONObject(i).getString("id").equals(id)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public ObservableList<Map<String, String>> getAllDetailsSql(){
+    public ObservableList<Map<String, String>> getAllCourseDetails(){
         String query = "SELECT * FROM course";
         ObservableList<Map<String, String>> courses = FXCollections.observableArrayList();
         try {
@@ -140,7 +85,7 @@ public class ManageCourseManager extends ManageEntityManager{
         return null;
     }
 
-    public Map<String, String> getDetailsSQL(String id) {
+    public Map<String, String> getCourseDetails(String id) {
         String query = "SELECT * FROM course WHERE id = ?";
         Map<String, String> details = new HashMap<>();
         try (PreparedStatement statement = conn.prepareStatement(query)){
@@ -159,20 +104,6 @@ public class ManageCourseManager extends ManageEntityManager{
             e.printStackTrace();
         }
         return null;
-    }
-
-    public JSONObject getDetailsJSON(String id) {
-        JSONArray courses = entityData_Obj.getJSONArray("courses");
-        for (int i = 0; i < courses.length(); i++) {
-            if (courses.getJSONObject(i).getString("id").equals(id)) {
-                return courses.getJSONObject(i);
-            }
-        }
-        return null;
-    }
-
-    public JSONArray getAllDetailsJSON(){
-        return entityData_Obj.getJSONArray("courses");
     }
 }
 

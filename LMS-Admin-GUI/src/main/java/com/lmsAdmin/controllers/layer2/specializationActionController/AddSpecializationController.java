@@ -27,51 +27,20 @@ public class AddSpecializationController extends MainFrameController {
 
     public void initialize() {
         departmentId.getItems().clear();
-        departmentId.getItems().addAll(new EditDepartmentManager().loadIdsAndNameSql());
+        departmentId.getItems().addAll(new EditDepartmentManager().loadIdsAndName());
     }
 
     @FXML
     private void handleAdd(MouseEvent event) {
-        handleAddSql();
-       handleAddJSON();
-    }
-
-    private void handleAddJSON(){
-
-        String n = name.getText();
-        String ID = id.getText();
-        JSONObject newSpec = new JSONObject();
-        newSpec.put("id", ID);
-        newSpec.put("name", n);
-        ManageSpecializationManager manageSpecializationManager = new ManageSpecializationManager();
-        manageSpecializationManager.manageAddEntity(depId, newSpec);
-
-        SceneManager.setScene("success");
-        PauseTransition delay = new PauseTransition(Duration.seconds(2));
-        delay.setOnFinished(ev -> {
-            SceneManager.setScene("addSpecialization");
-            resetAllFields();
-        });
-
-        delay.play();
-    }
-
-    private void handleAddSql(){
         depId = departmentId.getSelectionModel().getSelectedItem().toString().substring(0, departmentId.getSelectionModel().getSelectedItem().toString().indexOf(" "));
         String n = name.getText();
         String ID = id.getText();
 
         ManageSpecializationManager manageSpecializationManager = new ManageSpecializationManager();
-        manageSpecializationManager.manageAddEntitySql(ID, depId, n, "active");
+        manageSpecializationManager.manageAddSpecialization(ID, depId, n, "active");
 
-        SceneManager.setScene("success");
-        PauseTransition delay = new PauseTransition(Duration.seconds(2));
-        delay.setOnFinished(ev -> {
-            SceneManager.setScene("addSpecialization");
-            resetAllFields();
-        });
-
-        delay.play();
+        loadSuccess("addSpecialization");
+        resetAllFields();
     }
 
     private void resetAllFields() {

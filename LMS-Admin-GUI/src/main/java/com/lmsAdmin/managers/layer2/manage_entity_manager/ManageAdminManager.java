@@ -3,55 +3,47 @@ package main.java.com.lmsAdmin.managers.layer2.manage_entity_manager;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import main.DatabaseConnection;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ManageAdminManager extends ManageEntityManager {
-    private final Connection conn = DatabaseConnection.getInstance().getConnection();
 
     public ManageAdminManager() {
-        setEntityFilePath("shared/data/admin.json");
-        loadEntity();
         this.baseID = "A000";
     }
 
-    public void manageAddEntitySQL(String first_name,
-                                   String last_name,
-                                   String created_at,
-                                   String last_login,
-                                   String password,
-                                   String phone_number,
-                                   String gender,
-                                   String dob,
-                                   String email,
-                                   String status) {
+    public void manageAddAdmin(String first_name,
+                               String last_name,
+                               String created_at,
+                               String last_login,
+                               String password,
+                               String phone_number,
+                               String gender,
+                               String dob,
+                               String email,
+                               String status) {
 
 
         String addAdminQuery = "INSERT INTO admin (id, first_name, last_name, created_at, last_login, password, " +
                 "phone_number, gender, dob, email, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try (PreparedStatement stmt = conn.prepareStatement(addAdminQuery)) {
-            stmt.setString(1, generateNewID());
-            stmt.setString(2, first_name);
-            stmt.setString(3, last_name);
-            stmt.setTimestamp(4, Timestamp.valueOf(created_at)); // Convert string to Timestamp
-            stmt.setNull(5, java.sql.Types.TIMESTAMP);
-            stmt.setString(6, password);
-            stmt.setString(7, phone_number);
-            stmt.setString(8, gender);
-            stmt.setString(9, dob);
-            stmt.setString(10, email);
-            stmt.setString(11, status);
+        try (PreparedStatement statement = conn.prepareStatement(addAdminQuery)) {
+            statement.setString(1, generateNewID("admin"));
+            statement.setString(2, first_name);
+            statement.setString(3, last_name);
+            statement.setTimestamp(4, Timestamp.valueOf(created_at)); // Convert string to Timestamp
+            statement.setNull(5, java.sql.Types.TIMESTAMP);
+            statement.setString(6, password);
+            statement.setString(7, phone_number);
+            statement.setString(8, gender);
+            statement.setString(9, dob);
+            statement.setString(10, email);
+            statement.setString(11, status);
 
-            int rowsInserted = stmt.executeUpdate();
+            int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println("Entity added successfully!");
             }
@@ -60,7 +52,7 @@ public class ManageAdminManager extends ManageEntityManager {
         }
     }
 
-    public void manageDeleteEntitySQL(String idToDelete) {
+    public void manageDeleteAdmin(String idToDelete) {
         String deleteAdminQuery = "UPDATE admin SET status = ? WHERE id = ?";
         try (PreparedStatement statement = conn.prepareStatement(deleteAdminQuery)) {
             statement.setString(1, "inactive");
@@ -74,7 +66,7 @@ public class ManageAdminManager extends ManageEntityManager {
         }
     }
 
-    public ObservableList<Map<String, String>> getAllDetailsSQL(){
+    public ObservableList<Map<String, String>> getAllAdminDetails(){
         ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
         String viewAdminQuery = "SELECT * FROM admin";
 
@@ -98,17 +90,7 @@ public class ManageAdminManager extends ManageEntityManager {
         return data;
     }
 
-
-    public JSONObject getDetails(String id) {
-        for (int i = 0; i < entityData_Arr.length(); i++) {
-            if (entityData_Arr.getJSONObject(i).getString("id").equals(id)) {
-                return entityData_Arr.getJSONObject(i);
-            }
-        }
-        return null;
-    }
-
-    public Map<String, String> getDetailsSQL(String id) {
+    public Map<String, String> getAdminDetails(String id) {
         Map<String, String> data = new HashMap<>();
 
         String getAdminQuery = "SELECT * FROM admin WHERE id = ?";
@@ -128,10 +110,4 @@ public class ManageAdminManager extends ManageEntityManager {
         }
         return null;
     }
-
-    public JSONArray getAllDetails() {
-        return entityData_Arr;
-    }
-
-
 }

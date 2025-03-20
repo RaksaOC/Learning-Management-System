@@ -27,7 +27,7 @@ public class EditGroupIDController extends MainFrameController {
         idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         idComboBox.setOnAction(event -> {
             manager = new EditGroupManager(idComboBox.getValue());
-            curTextField.setText(manager.getOldIdSql());
+            curTextField.setText(manager.getOldId());
             newTextField.setDisable(false);
             newTextField.setText(cutString());
         });
@@ -35,7 +35,7 @@ public class EditGroupIDController extends MainFrameController {
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditIdSql(newTextField.getText());
+        manager.manageEditId(newTextField.getText());
         loadSuccess("editGroupID");
         clearFields();
     }

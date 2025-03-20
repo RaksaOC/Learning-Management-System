@@ -25,17 +25,17 @@ public class EditTeacherPhoneController extends MainFrameController {
     @FXML
     private void initialize() {
         editButton.setDisable(true);
-        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         idComboBox.setOnAction(event -> {
             manager = new EditTeacherManager(idComboBox.getValue());
-            curTextField.setText(manager.getOldPhoneSql());
+            curTextField.setText(manager.getOldPhone());
             newTextField.setDisable(false);
         });
     }
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditPhoneSql(newTextField.getText());
+        manager.manageEditPhone(newTextField.getText());
         loadSuccess("editTeacherPhoneNumber");
         clearFields();
     }

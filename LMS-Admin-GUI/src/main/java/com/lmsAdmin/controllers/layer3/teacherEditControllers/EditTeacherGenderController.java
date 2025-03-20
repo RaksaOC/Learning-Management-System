@@ -24,10 +24,10 @@ public class EditTeacherGenderController extends MainFrameController {
     @FXML
     private void initialize() {
         editButton.setDisable(true);
-        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         idComboBox.setOnAction(event -> {
             manager = new EditTeacherManager(idComboBox.getValue());
-            curTextField.setText(manager.getOldGenderSql());
+            curTextField.setText(manager.getOldGender());
             newGenderComboBox.setDisable(false);
         });
     }
@@ -35,7 +35,6 @@ public class EditTeacherGenderController extends MainFrameController {
     @FXML
     private void handleEdit(MouseEvent event) {
         manager.manageEditEmail(newGenderComboBox.getSelectionModel().getSelectedItem());
-        manager.manageEditEmailSql(newGenderComboBox.getSelectionModel().getSelectedItem());
         loadSuccess("editTeacherGender");
         clearFields();
     }

@@ -15,6 +15,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class AddAdminController extends MainFrameController {
+    private final ManageAdminManager manageAdminManager = new ManageAdminManager();
+
     @FXML
     private TextField firstName;
     @FXML
@@ -22,7 +24,7 @@ public class AddAdminController extends MainFrameController {
     @FXML
     private DatePicker dob;
     @FXML
-    private ComboBox gender;
+    private ComboBox<String> gender;
     @FXML
     private TextField phoneNumber;
     @FXML
@@ -45,29 +47,11 @@ public class AddAdminController extends MainFrameController {
             String password = confirmPassword.getText();
             String em = email.getText();
 
-            ManageAdminManager manageAdminManager = new ManageAdminManager();
-
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
             String formattedDate = now.format(formatter);
 
-            JSONObject newAdmin = new JSONObject();
-
-            JSONObject name = new JSONObject();
-
-            name.put("firstName", fName);
-            name.put("lastName", lName);
-            newAdmin.put("name", name);
-            newAdmin.put("dob", dateOfBirth);
-            newAdmin.put("gender", gen);
-            newAdmin.put("phoneNumber", phone);
-            newAdmin.put("email", em);
-            newAdmin.put("password", Hasher.hash(password));
-            newAdmin.put("createdAt", formattedDate);
-            newAdmin.put("lastLogin", "");
-            newAdmin.put("status", "active");
-
-            manageAdminManager.manageAddEntitySQL(
+            manageAdminManager.manageAddAdmin(
                     fName,
                     lName,
                     formattedDate,
@@ -79,28 +63,7 @@ public class AddAdminController extends MainFrameController {
                     em,
                     "active"
             );
-
-            manageAdminManager.manageAddEntity(newAdmin);
-
-            System.out.println("Contents to be added");
-            System.out.println(fName);
-            System.out.println(lName);
-            System.out.println(dateOfBirth);
-            System.out.println(gen);
-            System.out.println(phone);
-            System.out.println(em);
-            System.out.println(password);
-            System.out.println(newAdmin.toString());
-            System.out.println("Added Admin Successfully");
-
-            SceneManager.setScene("success"); // Show success screen
-            PauseTransition delay = new PauseTransition(Duration.seconds(2)); // 2-second delay
-            delay.setOnFinished(ev -> {
-                SceneManager.setScene("addAdmin"); // Return to addAdmin scene
-                resetAllFields(); // Clear input fields
-            });
-
-            delay.play(); // Start the delay
+            loadSuccess("addAdmin");
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Password do not match");

@@ -22,14 +22,14 @@ public class EditStudentDepartmentController extends MainFrameController {
 
     @FXML
     public void initialize() {
-        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         curTextField.setDisable(true);
         newComboBox.setDisable(true);
         manager = new EditStudentManager(idComboBox.getValue());
         idComboBox.setOnAction(event -> {
-            curTextField.setText(manager.getOldDepartmentSql());
+            curTextField.setText(manager.getOldDepartment());
             EditDepartmentManager depManager = new EditDepartmentManager();
-            newComboBox.getItems().addAll(depManager.loadIdsAndNameJSON());
+            newComboBox.getItems().addAll(depManager.loadIdsAndName());
             newComboBox.setDisable(false);
         });
     }
@@ -37,7 +37,7 @@ public class EditStudentDepartmentController extends MainFrameController {
     @FXML
     public void handleEdit(){
         manager.manageEditDepartment(newComboBox.getSelectionModel().getSelectedItem());
-        manager.manageEditDepartmentSql(newComboBox.getSelectionModel().getSelectedItem());
+        manager.manageEditDepartment(newComboBox.getSelectionModel().getSelectedItem());
         loadSuccess("editStudentDepartment");
         clearFields();
     }

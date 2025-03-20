@@ -22,7 +22,7 @@ public class AssignCourseToClassroomController extends MainFrameController {
     public void initialize() {
         assignButton.setDisable(true);
         classroomIDComboBox.setDisable(true);
-        courseIDComboBox.getItems().addAll(courseIDLoader.loadIds());
+        courseIDComboBox.getItems().addAll(courseIDLoader.loadIdsAndName());
         courseIDComboBox.setOnAction(event -> {
             classroomIDComboBox.setDisable(false);
             classroomIDComboBox.getItems().addAll(classroomIDLoader.loadIds());
@@ -36,7 +36,7 @@ public class AssignCourseToClassroomController extends MainFrameController {
     @FXML
     private void handleAssign(MouseEvent event) {
         ManageClassroomManager manageClassroomManager = new ManageClassroomManager();
-        manageClassroomManager.manageAssignTeacherToClassroom(classroomIDComboBox.getValue(), courseIDComboBox.getValue());
+//        manageClassroomManager.manageAssignTeacherToClassroom(classroomIDComboBox.getValue(), courseIDComboBox.getValue());
 
         loadSuccess("assignCourseToClassroom");
         clearFields();

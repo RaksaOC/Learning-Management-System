@@ -32,98 +32,33 @@ public class DeleteTeacherController extends MainFrameController{
     private String selectedId;
 
     public void initialize() {
-        idComboBox.getItems().addAll(new EditTeacherManager().loadIdsAndNameSql());
+        idComboBox.getItems().addAll(new EditTeacherManager().loadIdsAndName());
 
     }
 
     @FXML
     private void handleSearch(MouseEvent event) {
-        // createDetailsJSON();
-        createDetailsSql();
+        createDetails();
     }
 
     @FXML
     private void handleDelete(MouseEvent event) {
         selectedId = idComboBox.getSelectionModel().getSelectedItem().toString().substring(0, idComboBox.getSelectionModel().getSelectedItem().toString().indexOf(" "));
-        handleDeleteSql();
-        handleDeleteJSON();
-        playSuccessScene();
-    }
-
-    private void handleDeleteJSON(){
-        if(showDeleteConfirmation()){
+        if(isConfirmed()){
             ManageTeacherManager manageTeacherManager = new ManageTeacherManager();
-            manageTeacherManager.manageDeleteEntity(selectedId);
+            manageTeacherManager.manageDeleteTeacher(selectedId);
         }
         else{
             clearDetails();
         }
+        loadSuccess("deleteTeacher");
     }
 
-    private void handleDeleteSql(){
-        if(showDeleteConfirmation()){
-            ManageTeacherManager manageTeacherManager = new ManageTeacherManager();
-            manageTeacherManager.manageDeleteEntitySql(selectedId);
-        }
-        else{
-            clearDetails();
-        }
-    }
 
-    private void createDetailsJSON(){
+    private void createDetails(){
         String idToSearch = selectedId;
         ManageTeacherManager manageTeacherManager = new ManageTeacherManager();
-        JSONObject details = manageTeacherManager.getDetails(idToSearch);
-        detailsVBox.getChildren().clear();
-        detailsVBox.setStyle("-fx-background-color: #ebebeb");
-        Pos center_left = Pos.CENTER_LEFT;
-        detailsVBox.setAlignment(center_left);
-        detailsVBox.setSpacing(10);
-        String id = details.getString("id");
-        String firstName = details.getJSONObject("name").getString("firstName");
-        String lastName = details.getJSONObject("name").getString("lastName");
-        String name = firstName + " " + lastName;
-        String gender = details.getString("gender");
-        String dateOfBirth = details.getString("dob");
-        String phone = details.getString("phoneNumber");
-        String email = details.getString("email");
-        String createdAt = details.getString("createdAt");
-        String lastLog = details.getString("lastLogin");
-
-        JSONArray classroomsArray = details.getJSONArray("classrooms");
-        StringBuilder classroomsText = new StringBuilder();
-        for (int i = 0; i < classroomsArray.length(); i++) {
-            classroomsText.append(classroomsArray.getString(i));
-            if (i < classroomsArray.length() - 1) {
-                classroomsText.append(", ");
-            }
-        }
-        String classrooms = classroomsText.toString();
-
-        Font textFont = Font.font("Gill Sans", 25);
-
-        Text idText = new Text("ID: " + id);
-        Text nameText = new Text("Name: " + name);
-        Text genderText = new Text("Gender: " + gender);
-        Text dob = new Text("DOB: " + dateOfBirth);
-        Text phoneText = new Text("Phone: " + phone);
-        Text emailText = new Text("Email: " + email);
-        Text classroomText = new Text("Classrooms: " + classrooms);
-        Text createdAtText = new Text("Created At: " + createdAt);
-        Text lastLogText = new Text("Last Login: " + lastLog);
-
-        Text[] textNodes = {idText, nameText, genderText, dob, phoneText, classroomText, emailText, createdAtText, lastLogText};
-        for (Text text : textNodes) {
-            text.setFont(textFont);
-        }
-
-        detailsVBox.getChildren().addAll(textNodes);
-    }
-
-    private void createDetailsSql(){
-        String idToSearch = selectedId;
-        ManageTeacherManager manageTeacherManager = new ManageTeacherManager();
-        Map<String, String> details = manageTeacherManager.getDetailsSql(idToSearch);
+        Map<String, String> details = manageTeacherManager.getTeacherDetails(idToSearch);
         detailsVBox.getChildren().clear();
         detailsVBox.setStyle("-fx-background-color: #ebebeb");
         Pos center_left = Pos.CENTER_LEFT;
@@ -159,31 +94,8 @@ public class DeleteTeacherController extends MainFrameController{
         detailsVBox.getChildren().addAll(textNodes);
     }
 
-    private boolean showDeleteConfirmation(){
-        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmation.setTitle("Confirmation");
-        confirmation.setHeaderText(null);
-        confirmation.setContentText("Are you sure you want to delete?");
-        Optional<ButtonType> result = confirmation.showAndWait();
-        if (result.get() == ButtonType.OK){
-            return true;
-        }
-        return false;
-    }
-
     private void clearDetails(){
         idComboBox.getSelectionModel().clearSelection();
         detailsVBox.getChildren().clear();
-    }
-
-    public void playSuccessScene(){
-        SceneManager.setScene("success");
-        PauseTransition delay = new PauseTransition(Duration.seconds(2));
-        delay.setOnFinished(ev -> {
-            SceneManager.setScene("addGeneration");
-            clearDetails();
-        });
-
-        delay.play();
     }
 }

@@ -24,7 +24,7 @@ public class EditSpecializationNameController extends MainFrameController {
     @FXML
     private void initialize() {
         editButton.setDisable(true);
-        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         idComboBox.setOnAction(event -> {
             manager = new EditSpecializationManager(idComboBox.getValue());
             curTextField.setText(manager.getOldName());
@@ -34,7 +34,7 @@ public class EditSpecializationNameController extends MainFrameController {
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditNameSql(newTextField.getText());
+        manager.manageEditName(newTextField.getText());
         loadSuccess("editSpecializationName");
         clearFields();
     }

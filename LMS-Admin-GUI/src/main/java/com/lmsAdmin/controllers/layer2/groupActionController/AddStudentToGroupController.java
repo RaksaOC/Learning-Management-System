@@ -33,7 +33,7 @@ public class AddStudentToGroupController extends MainFrameController{
         groupIDComboBox.getItems().addAll(groupIDLoader.loadIdsAndName());
         groupIDComboBox.setOnAction(event -> {
             studentIDComboBox.setDisable(false);
-            studentIDComboBox.getItems().addAll(studentIDLoader.loadIdsAndNameJSON());
+            studentIDComboBox.getItems().addAll(studentIDLoader.loadIdsAndName());
         });
 
         studentIDComboBox.setOnAction(event -> {
@@ -44,28 +44,11 @@ public class AddStudentToGroupController extends MainFrameController{
 
     @FXML
     private void handleAddToGroup(MouseEvent event) {
-        handleAddSql();
-        handleAddJSON();
-    }
-
-    private void handleAddJSON(){
-        selectedGroupID = groupIDComboBox.getSelectionModel().getSelectedItem().toString().substring(0, groupIDComboBox.getSelectionModel().getSelectedItem().toString().indexOf(" "));
-        selectedStudentID = studentIDComboBox.getSelectionModel().getSelectedItem().toString().substring(0, studentIDComboBox.getSelectionModel().getSelectedItem().toString().indexOf(" "));
-        ManageGroupManager manageGroupManager = new ManageGroupManager();
-        ArrayList<String> studentIDs  = new ArrayList<>(studentIDComboBox.getItems());
-
-        manageGroupManager.manageAddStudentToGroup(groupIDComboBox.getSelectionModel().getSelectedItem(), studentIDs);
-
-        loadSuccess("addStudentToGroup");
-        clearFields();
-    }
-
-    private void handleAddSql(){
         selectedGroupID = groupIDComboBox.getSelectionModel().getSelectedItem().toString().substring(0, groupIDComboBox.getSelectionModel().getSelectedItem().toString().indexOf(" "));
         selectedStudentID = studentIDComboBox.getSelectionModel().getSelectedItem().toString().substring(0, studentIDComboBox.getSelectionModel().getSelectedItem().toString().indexOf(" "));
         ManageGroupManager manageGroupManager = new ManageGroupManager();
 
-        manageGroupManager.manageAddStudentToGroupSql(selectedStudentID, selectedGroupID);
+        manageGroupManager.manageAddStudentToGroup(selectedStudentID, selectedGroupID);
 
         loadSuccess("addStudentToGroup");
         clearFields();

@@ -25,17 +25,16 @@ public class EditTeacherDOBController extends MainFrameController {
     @FXML
     private void initialize() {
         editButton.setDisable(true);
-        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         idComboBox.setOnAction(event -> {
             manager = new EditTeacherManager(idComboBox.getValue());
-            curDOBTextField.setText(manager.getOldDOBSql());
+            curDOBTextField.setText(manager.getOldDOB());
             newDOBDatePicker.setDisable(false);
         });
     }
     @FXML
     private void handleEdit(MouseEvent event) {
         manager.manageEditDOB(newDOBDatePicker.getValue().toString());
-        manager.manageEditDOBSql(newDOBDatePicker.getValue().toString());
         loadSuccess("editTeacherDOB");
         clearFields();
     }

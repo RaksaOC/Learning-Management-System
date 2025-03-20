@@ -17,34 +17,16 @@ public class DeleteSpecializationController extends MainFrameController{
     private String selectedId;
 
     public void initialize() {
-        idComboBox.getItems().addAll(new EditSpecializationManager().loadIdsAndNameSql());
+        idComboBox.getItems().addAll(new EditSpecializationManager().loadIdsAndName());
     }
 
 
     @FXML
     private void handleDelete(MouseEvent event) {
         selectedId = idComboBox.getSelectionModel().getSelectedItem().toString().substring(0, idComboBox.getSelectionModel().getSelectedItem().toString().indexOf(" "));
-        handleDeleteJSON();
-        handleDeleteSql();
-    }
-
-    private void handleDeleteJSON(){
         if(isConfirmed()){
             ManageSpecializationManager manageSpecializationManager = new ManageSpecializationManager();
-            manageSpecializationManager.manageDeleteEntity(selectedId);
-
-            loadSuccess("deleteSpecialization");
-            clearDetails();
-        }
-        else{
-            clearDetails();
-        }
-    }
-
-    private void handleDeleteSql(){
-        if(isConfirmed()){
-            ManageSpecializationManager manageSpecializationManager = new ManageSpecializationManager();
-            manageSpecializationManager.manageDeleteEntitySql(selectedId);
+            manageSpecializationManager.manageDeleteSpecialization(selectedId);
 
             loadSuccess("deleteSpecialization");
             clearDetails();

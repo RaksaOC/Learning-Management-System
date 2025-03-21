@@ -1,62 +1,62 @@
 [{
-    "classroomId": "GEN10-CS-SE-G1-OOP",
-    "resources": [
+  "classroomId": "GEN10-CS-SE-G1-OOP",
+  "resources": [
+    {
+      "resourceId": "Week01",
+      "contents": [
         {
-            "resourceId": "Week01",
-            "contents": [
-                {
-                    "attachment": "https://www.khanacademy.org/",
-                    "description": "This lesson introduces students to the basics of digital literacy, including internet safety, responsible online behavior, and how to evaluate online information.",
-                    "id": "R00001",
-                    "title": "Digital Literacy: Understanding the Online World.",
-                    "status": "active"
-                },
-                {
-                    "attachment": "https://ed.ted.com/",
-                    "description": "An introduction to block-based coding using Scratch, helping students learn programming concepts through interactive animations and games.",
-                    "id": "R00002",
-                    "title": "Basic Coding with Scratch.",
-                    "status": "active"
-                }
-            ]
+          "attachment": "https://www.khanacademy.org/",
+          "description": "This lesson introduces students to the basics of digital literacy, including internet safety, responsible online behavior, and how to evaluate online information.",
+          "id": "R00001",
+          "title": "Digital Literacy: Understanding the Online World.",
+          "status": "active"
         },
         {
-            "resourceId": "Week02",
-            "contents": [
-                {
-                    "attachment": "https://code.org/",
-                    "description": "Students learn the basics of budgeting, saving, and smart spending to develop financial responsibility.",
-                    "id": "R00001",
-                    "title": "The Importance of Financial Literacy.",
-                    "status": "active"
-                },
-                {
-                    "attachment": "https://www.commonsense.org/education/",
-                    "description": "This lesson explores the causes and effects of climate change, along with practical ways students can contribute to environmental sustainability.",
-                    "id": "R00002",
-                    "title": "The Science of Climate Change.",
-                    "status": "active"
-                }
-            ]
-        },
-        {
-            "resourceId": "Week03",
-            "contents": [
-                {
-                    "attachment": "https://www.pbslearningmedia.org/",
-                    "description": "A beginner-friendly lesson on AI, including real-life applications and ethical considerations.",
-                    "id": "R00001",
-                    "title": "Introduction to Artificial Intelligence.",
-                    "status": "active"
-                },
-                {
-                    "attachment": "https://education.nationalgeographic.org/",
-                    "description": "Helps students develop confidence in public speaking and effective communication through engaging activities.",
-                    "id": "R00002",
-                    "title": "Public Speaking and Presentation Skills.",
-                    "status": "active"
-                }
-            ]
+          "attachment": "https://ed.ted.com/",
+          "description": "An introduction to block-based coding using Scratch, helping students learn programming concepts through interactive animations and games.",
+          "id": "R00002",
+          "title": "Basic Coding with Scratch.",
+          "status": "active"
         }
-    ]
+      ]
+    },
+    {
+      "resourceId": "Week02",
+      "contents": [
+        {
+          "attachment": "https://code.org/",
+          "description": "Students learn the basics of budgeting, saving, and smart spending to develop financial responsibility.",
+          "id": "R00001",
+          "title": "The Importance of Financial Literacy.",
+          "status": "active"
+        },
+        {
+          "attachment": "https://www.commonsense.org/education/",
+          "description": "This lesson explores the causes and effects of climate change, along with practical ways students can contribute to environmental sustainability.",
+          "id": "R00002",
+          "title": "The Science of Climate Change.",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "resourceId": "Week03",
+      "contents": [
+        {
+          "attachment": "https://www.pbslearningmedia.org/",
+          "description": "A beginner-friendly lesson on AI, including real-life applications and ethical considerations.",
+          "id": "R00001",
+          "title": "Introduction to Artificial Intelligence.",
+          "status": "active"
+        },
+        {
+          "attachment": "https://education.nationalgeographic.org/",
+          "description": "Helps students develop confidence in public speaking and effective communication through engaging activities.",
+          "id": "R00002",
+          "title": "Public Speaking and Presentation Skills.",
+          "status": "active"
+        }
+      ]
+    }
+  ]
 }]

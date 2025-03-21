@@ -60,19 +60,52 @@ public class Menu {
         return choice;
     }
 
-    public String showStudentViewClassroom(){
+    public String showStudentViewEachProgress(){
         UI.showLoadingBar(10);
         System.out.println("Student Manage Classroom: ");
         do{
             menu = """
-                    [1] Do Assignment
-                    [2] Do Resources
-                    [3] Do Quizzes
+                    [1] Show Assignment
+                    [2] Show Resources
+                    [3] Show Quizzes
+                    """;
+            printMenu();
+            this.choice = sc.nextLine();
+            if (!(isChoiceValid("1", "3", choice))) System.out.println(invalidChoice);
+        } while (!isChoiceValid("1", "3", choice));
+        this.clearScreen();
+        return choice;
+    }
+
+    public String showAssignment(){
+        UI.showLoadingBar(10);
+        System.out.println("Student Side View Assignment: ");
+        do {
+            menu = """
+                    [1]. View Assignment
+                    [2]. Do Assignment
+                    [3]. View Submitted Assignments
+                    [4]. View Grades & Comments
                     """;
             printMenu();
             this.choice = sc.nextLine();
             if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
         } while (!isChoiceValid("1", "4", choice));
+        this.clearScreen();
+        return choice;
+    }
+
+    public String showResource(){
+        UI.showLoadingBar(10);
+        System.out.println("Student Side View Resource: ");
+        do {
+            menu = """
+                    [1]. View Resource
+                    """;
+            printMenu();
+            this.choice = sc.nextLine();
+            if (!(isChoiceValid("1", "4", choice))) System.out.println(invalidChoice);
+        }while (!isChoiceValid("1", "4", choice));
         this.clearScreen();
         return choice;
     }

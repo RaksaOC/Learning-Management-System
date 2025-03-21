@@ -3,6 +3,7 @@ package main;
 import entities.Student;
 import entities.Teacher;
 import entities.User;
+import org.json.JSONObject;
 import ui.UI;
 import utils.controller.AuthenticationController;
 import utils.controller.ClassroomController;
@@ -17,6 +18,10 @@ public class MainController {
     private Student student;
     private Teacher teacher;
     private String indexOfClass;
+    private String classrromId;
+    private String progressId;
+    private String studentId;
+    private String resourceId;
 
     public MainController() {
     }
@@ -52,13 +57,13 @@ public class MainController {
                     handleStudentViewClassroom();
                     break;
                 case "2":
-//                    handleStudentViewProfile();
+                    handleStudentViewProfile();
                     break;
                 case "3":
-//                    handleStudentLogOut();
+                    handleStudentLogOut();
                     return;
                 case "4":
-//                    handleExit();
+                    handleExit();
                     break;
                 case "-b":
                     return;
@@ -102,16 +107,18 @@ public class MainController {
 
     private void handleStudentViewClassroom() {
         StudentController studentController = new StudentController(student);
-        this.indexOfClass = studentController.selectClassroom();
+        classrromId= studentController.selectClassroom();
+        progressId = studentController.selectProgress();
+
         Menu menu = new Menu();
-        String choice = menu.showStudentViewClassroom();
+        String choice = menu.showStudentViewEachProgress();
         while (true) {
             switch(choice) {
                 case "1":
-
+                    showAssignment(classrromId, studentId);
                     break;
                 case "2":
-
+                    showResource(classrromId);
                     break;
                 case "3":
                     studentController.doQuiz();
@@ -121,9 +128,56 @@ public class MainController {
                 default:
                     break;
             }
-            choice = menu.showStudentViewClassroom();
+            choice = menu.showStudentViewEachProgress();
+        }
+    }
+
+    // Part of Assignment
+    public void showAssignment(String classrromId, String studentId){
+        StudentController studentController = new StudentController(student);
+        Menu menu = new Menu();
+        String choice = menu.showAssignment();
+        while (true) {
+            switch (choice) {
+                case "1":
+                    studentController.handleViewAssignment(classrromId);
+                    break;
+                case "2":
+                    studentController.handleDoAssignment(classrromId);
+                    break;
+                case "3":
+                    studentController.handleViewSubmittedAssignment();
+                    break;
+                case "4":
+                    studentController.handleViewGradeAndComments();
+                    break;
+                case "-b":
+                    return;
+                default:
+                    break;
+            }
+            choice = menu.showAssignment();
+        }
+    }
+
+    //Part of Resource
+    public void showResource(String classrromId){
+        StudentController studentController = new StudentController(student);
+        Menu menu = new Menu();
+        String choice = menu.showResource();
+        while (true) {
+            switch (choice) {
+                case "1":
+                    studentController.handleViewResource(classrromId);
             }
         }
+    }
+
+//    public void showResource(String classroomId) {
+//        StudentController studentController = new StudentController(student);
+//        studentController.handleViewResource(classroomId);
+//    }
+
 
     private void handleStudentViewProfile() {
         StudentController studentController = new StudentController(student);

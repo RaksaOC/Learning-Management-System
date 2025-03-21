@@ -2,6 +2,7 @@ package entities;
 
 
 public abstract class User {
+    // TODO: change this to accept values from Sql
     protected String firstName;
     protected String lastName;
     protected String email;

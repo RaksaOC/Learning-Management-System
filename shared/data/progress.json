@@ -1,41 +1,34 @@
-[{
-    "studentId": "S000001",
-    "assignments": [
-        {
-            "feedback": "Good Job",
-            "pending": "(Ongoing)",
-            "id": "A001",
-            "status": "active"
-        },
-        {
-            "pending": "(Ongoing)",
-            "id": "A002",
-            "status": "active"
-        },
-        {
-            "pending": "(Ongoing)",
-            "id": "A003",
-            "status": "inactive"
-        },
-        {
-            "pending": "(Ongoing)",
-            "id": "A004",
-            "status": "active"
-        }
-    ],
-    "resources": [
-        "Week01",
-        "Week02",
-        "Week03",
-        "Week04",
-        "Week05",
-        "Week06",
-        "Week07",
-        "Week08",
-        "Week09",
-        "Week10"
-    ],
-    "classroomId": "GEN10-CS-SE-G1-OOP",
-    "quizzes": [],
-    "id": "P000001"
-}]
+[
+    {
+        "studentId": "S000001",
+        "classroomId": "GEN10-CS-SE-G1-OOP",
+        "assignmentId": "A001",
+        "submissionText": "yoo i already done",
+        "status": "resubmitted",
+        "timestamp": 1742523497757
+    },
+    {
+        "studentId": "S000001",
+        "classroomId": "GEN10-CS-SE-G1-OOP",
+        "assignmentId": "A002",
+        "submissionText": "We use grid layout.....",
+        "status": "resubmitted",
+        "timestamp": 1741651606720
+    },
+    {
+        "studentId": "S000001",
+        "classroomId": "GEN10-CS-SE-G1-OOP",
+        "assignmentId": "A003",
+        "submissionText": "I gonna be done also...",
+        "status": "submitted",
+        "timestamp": 1742264866784
+    },
+    {
+        "studentId": "S000001",
+        "classroomId": "GEN10-CS-SE-G1-OOP",
+        "assignmentId": "A004",
+        "submissionText": "write json file to .....",
+        "status": "submitted",
+        "timestamp": 1742269651782
+    }
+]

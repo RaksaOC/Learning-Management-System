@@ -13,6 +13,8 @@ public class Teacher extends User {
     private final String lastLogin;
 
     public Teacher(JSONObject teacher) throws JSONException {
+        // TODO: change this to accept values from Sql
+
         super(teacher.getJSONObject("name").getString("firstName"),
                 teacher.getJSONObject("name").getString("lastName"),
                 teacher.getString("email"),

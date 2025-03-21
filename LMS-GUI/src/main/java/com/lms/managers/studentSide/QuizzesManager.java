@@ -207,6 +207,8 @@ public class QuizzesManager {
         return allQuizzes;
     }
 
+    // Rasa Front end related functions -----------------------------------------------------------------------------------------------
+
     private JSONArray getAllStudentProgress(List<String> progressIds) {
         JSONArray allProgress = loadProgress();
         JSONArray studentProgress = new JSONArray();

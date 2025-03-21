@@ -101,9 +101,6 @@ public class Menu {
         do {
             menu = """
                     [1]. View Resource
-                    [2]. Do Assignment
-                    [3]. View Submitted Assignments
-                    [4]. View Grades & Comments
                     """;
             printMenu();
             this.choice = sc.nextLine();

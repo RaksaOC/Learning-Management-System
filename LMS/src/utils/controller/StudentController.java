@@ -84,9 +84,12 @@ public class StudentController {
     }
 
 //    Part of Resource
-    public
+    public void handleViewResource(String classroomId) {
+        StudentManager studentManager = new StudentManager(student);
+        studentManager.displayResourcesByWeek(classroomId);
+    }
 
-//    View Profile method
+    //    View Profile method
     public void viewProfile(){
         StudentManager studentManager = new StudentManager(student);
         String profileDetails = studentManager.manageViewProfile();

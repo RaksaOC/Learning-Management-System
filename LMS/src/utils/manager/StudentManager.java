@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Scanner;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import utils.menu.Menu;
@@ -81,7 +83,7 @@ public class StudentManager {
             System.out.println(assignment.getString("id") + " - " + assignment.getString("title")); // Show ID & title
         }
 
-        return Menu.prompt("Enter Assignment ID to select: "); // Ask user to enter ID instead of index
+        return Menu.prompt("Enter Assignment ID to select: ");
     }
 
     // To get each Assignment details after selected
@@ -228,8 +230,117 @@ public class StudentManager {
 //        JSONArray feedback =
     }
 
-    //  Part of Resource
-    public void
+//  Part of Resource
+    // Load resources from file
+    public JSONArray loadResource() {
+        try {
+            String filePath = "shared/data/resource.json";
+            String contents = new String(Files.readAllBytes(Paths.get(filePath)));
+            JSONArray resources = new JSONArray(contents);
+            return resources;
+        } catch (IOException e) {
+            System.err.println("Error loading resource: " + e.getMessage());
+            return new JSONArray();  // Return empty array instead of null
+        }
+    }
+
+    public void displayResourcesByWeek(String classroomId) {
+        JSONArray allClasses = loadResource(); // Load all resources
+
+        if (allClasses.length() == 0) {
+            System.out.println("No resources available.");
+            return;
+        }
+
+        System.out.println("\nAvailable Resource Weeks:");
+
+        for (int i = 0; i < allClasses.length(); i++) {
+            JSONObject classroom = allClasses.getJSONObject(i);
+
+            // Ensure classroomId matches
+            if (classroom.has("classroomId") && classroom.getString("classroomId").equals(classroomId)) {
+                JSONArray resources = classroom.getJSONArray("resources"); // Get resources array
+
+                for (int j = 0; j < resources.length(); j++) {
+                    JSONObject resource = resources.getJSONObject(j);
+
+                    // Check if resourceId exists before accessing it
+                    if (resource.has("resourceId")) {
+                        System.out.println((j + 1) + ". " + resource.getString("resourceId"));
+                    } else {
+                        System.out.println("Warning: A resource is missing 'resourceId'. Skipping...");
+                    }
+                }
+            }
+        }
+
+        // Select a week
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("\nEnter Resource Week ID to view contents: ");
+        String selectedWeekId = scanner.nextLine().trim();
+
+        // Display resources for selected week
+        displayContentsByWeek(classroomId, selectedWeekId);
+    }
+
+
+    public void displayContentsByWeek(String classroomId, String selectedWeekId) {
+        JSONArray allClasses = loadResource(); // Load all resources
+
+        for (int i = 0; i < allClasses.length(); i++) {
+            JSONObject classroom = allClasses.getJSONObject(i);
+
+            // Check if classroomId matches
+            if (classroom.has("classroomId") && classroom.getString("classroomId").equals(classroomId)) {
+                JSONArray resources = classroom.getJSONArray("resources"); // Get resources array
+
+                for (int j = 0; j < resources.length(); j++) {
+                    JSONObject resource = resources.getJSONObject(j);
+
+                    // Check if resourceId exists and matches the selected week
+                    if (resource.has("resourceId") && resource.getString("resourceId").equals(selectedWeekId)) {
+                        JSONArray contents = resource.getJSONArray("contents");
+
+                        if (contents.length() == 0) {
+                            System.out.println("No resources found for " + selectedWeekId);
+                            return;
+                        }
+
+                        System.out.println("\nContents for " + selectedWeekId + ":");
+                        for (int k = 0; k < contents.length(); k++) {
+                            JSONObject content = contents.getJSONObject(k);
+                            System.out.println((k + 1) + ". " + content.getString("title") + " (ID: " + content.getString("id") + ")");
+                        }
+
+                        // Allow user to select a resource to view details
+                        Scanner scanner = new Scanner(System.in);
+                        System.out.print("\nEnter Resource ID to view details: ");
+                        String selectedResourceId = scanner.nextLine().trim();
+
+                        // Display details of the selected resource
+                        for (int k = 0; k < contents.length(); k++) {
+                            JSONObject content = contents.getJSONObject(k);
+                            if (content.getString("id").equals(selectedResourceId)) {
+                                System.out.println("\nTitle: " + content.getString("title"));
+                                System.out.println("Description: " + content.getString("description"));
+                                System.out.println("Attachment: " + content.getString("attachment"));
+                                return;
+                            }
+                        }
+
+                        System.out.println("Invalid Resource ID. Returning to menu...");
+                        return;
+                    }
+                }
+
+                System.out.println("Invalid Week ID. Please try again.");
+                return;
+            }
+        }
+
+        System.out.println("Classroom ID not found.");
+    }
+
 
     //    2. View profile side
     public String manageViewProfile() {

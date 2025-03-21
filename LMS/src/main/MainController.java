@@ -21,6 +21,7 @@ public class MainController {
     private String classrromId;
     private String progressId;
     private String studentId;
+    private String resourceId;
 
     public MainController() {
     }
@@ -108,6 +109,7 @@ public class MainController {
         StudentController studentController = new StudentController(student);
         classrromId= studentController.selectClassroom();
         progressId = studentController.selectProgress();
+
         Menu menu = new Menu();
         String choice = menu.showStudentViewEachProgress();
         while (true) {
@@ -116,7 +118,7 @@ public class MainController {
                     showAssignment(classrromId, studentId);
                     break;
                 case "2":
-                    showResource();
+                    showResource(classrromId);
                     break;
                 case "3":
 
@@ -159,16 +161,23 @@ public class MainController {
     }
 
     //Part of Resource
-    public void showResource(){
+    public void showResource(String classrromId){
         StudentController studentController = new StudentController(student);
         Menu menu = new Menu();
         String choice = menu.showResource();
         while (true) {
             switch (choice) {
-
+                case "1":
+                    studentController.handleViewResource(classrromId);
             }
         }
     }
+
+//    public void showResource(String classroomId) {
+//        StudentController studentController = new StudentController(student);
+//        studentController.handleViewResource(classroomId);
+//    }
+
 
     private void handleStudentViewProfile() {
         StudentController studentController = new StudentController(student);

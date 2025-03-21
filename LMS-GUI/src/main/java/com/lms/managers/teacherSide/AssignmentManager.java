@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 import java.sql.*;
 
 public class AssignmentManager extends ClassroomContentManager {
-    private Connection conn = DatabaseConnection.getInstance().getConnection();
+
     public AssignmentManager(String classId) {
         super(classId);
     }

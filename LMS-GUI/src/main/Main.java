@@ -33,7 +33,7 @@ public class Main {
 
     }
 
-    private static ArrayList<Map<String, Object>> getMaps() {
+//    private static ArrayList<Map<String, Object>> getMaps() {
 //        Map<String, Object> choice1= new HashMap<>();
 //        choice1.put("choice_text", "0cm");
 //        choice1.put("isCorrect", false);

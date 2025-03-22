@@ -1,37 +1,29 @@
 package main.java.com.lmsAdmin.managers.layer3.edit_entity_manager;
 
-import main.DatabaseConnection;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class EditGenerationManager extends EditEntityManager {
-    // idToEdit = oldID;
-    // idToEdit = oldID
-    private Connection conn = DatabaseConnection.getInstance().getConnection();
+
     public EditGenerationManager(String idToEdit) {
         super(idToEdit);
-        setFilePath("shared/data/university.json");
         setIdToEdit(idToEdit);
-        this.loadEntityDataToEdit();
     }
 
     public EditGenerationManager() {
-        setFilePath("shared/data/university.json");
-        setIdToEdit("");
-        this.loadEntityDataToEdit();
     }
 
-    public String getOldIdSql() {
+    public String getOldId() {
         String query = "SELECT id FROM generation WHERE id = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, idToEdit);
@@ -45,7 +37,7 @@ public class EditGenerationManager extends EditEntityManager {
         return null;
     }
 
-    public String getOldNameSql() {
+    public String getOldName() {
         String query = "SELECT name FROM generation WHERE id = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, idToEdit);
@@ -59,7 +51,7 @@ public class EditGenerationManager extends EditEntityManager {
         return null;
     }
 
-    public void manageEditIdSql(String newId) {
+    public void manageEditId(String newId) {
         String query = "UPDATE generation SET id=? WHERE id=?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, newId);
@@ -70,7 +62,7 @@ public class EditGenerationManager extends EditEntityManager {
         }
     }
 
-    public void manageEditNameSql(String newName) {
+    public void manageEditName(String newName) {
         String query = "UPDATE generation SET name=? WHERE id=?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, newName);
@@ -81,53 +73,7 @@ public class EditGenerationManager extends EditEntityManager {
         }
     }
 
-
-    public void manageEditId(String newId) {
-        JSONArray department = entityData_Obj.getJSONArray("departments");
-        for (int i = 0; i < department.length(); i++) {
-            for (int j = 0; j < department.getJSONObject(i).getJSONArray("specializations").length(); j++) {
-                for (int k = 0; k < department.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
-                    if (department.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getString("id").equals(idToEdit)) {
-                        department.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).put("id", newId);
-                    }
-                }
-            }
-        }
-        entityData_Obj.put("department", department);
-        saveEntityData();
-    }
-
-    public void manageEditName(String newName) {
-        JSONArray department = entityData_Obj.getJSONArray("departments");
-        for (int i = 0; i < department.length(); i++) {
-            for (int j = 0; j < department.getJSONObject(i).getJSONArray("specializations").length(); j++) {
-                for (int k = 0; k < department.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
-                    if (department.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getString("name").equals(idToEdit)) {
-                        department.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).put("name", newName);
-                    }
-                }
-            }
-        }
-        entityData_Obj.put("department", department);
-        saveEntityData();
-    }
-
-    public ArrayList<String> loadIdsAndNameJSON() {
-        ArrayList<String> idsAndName= new ArrayList<>();
-//        JSONArray department = entityData_Obj.getJSONArray("departments");
-//        for (int i = 0; i < department.length(); i++) {
-//            JSONArray specializations = department.getJSONObject(i).getJSONArray("specializations");
-//            for (int j = 0; j < specializations.length(); j++) {
-//                JSONArray generations = specializations.getJSONObject(j).getJSONArray("generations");
-//                for (int k = 0; k < generations.length(); k++) {
-//                    idsAndName.add(generations.getJSONObject(k).getString("id") + " - " + generations.getJSONObject(k).getString("name"));
-//                }
-//            }
-//        }
-        return idsAndName;
-    }
-
-    public ArrayList<String> loadIdsAndNameSql() {
+    public ArrayList<String> loadIdsAndName() {
         ArrayList<String> idsAndName= new ArrayList<>();
         String query = "select id, name from generation";
         try(PreparedStatement statement = (conn.prepareStatement(query))){
@@ -136,29 +82,11 @@ public class EditGenerationManager extends EditEntityManager {
             while (resultSet.next()) {
                 idsAndName.add(resultSet.getString("id") + " - " + resultSet.getString("name"));
             }
+            Collections.sort(idsAndName, Comparator.comparing(s -> s.substring(0, s.indexOf("-") + 2)));
             return idsAndName;
         }catch (SQLException e){
             e.printStackTrace();
         }
         return idsAndName;
     }
-
-    public void loadEntityDataToEdit() {
-        try {
-            this.content = new String(Files.readAllBytes(Paths.get(this.filePath)));
-            this.entityData_Obj = new JSONObject(content);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void saveEntityData() {
-        try (FileWriter writer = new FileWriter(filePath)) {
-            writer.write(entityData_Obj.toString(4));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    ;
 }

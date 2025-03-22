@@ -2,7 +2,6 @@ package main.java.com.lmsAdmin.managers.layer2.manage_entity_manager;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import main.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -11,14 +10,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ManageTeacherManager extends ManageEntityManager {
-    private Connection conn = DatabaseConnection.getInstance().getConnection();
+
     public ManageTeacherManager() {
-        setEntityFilePath("shared/data/teacher.json");
-        loadEntity();
         this.baseID = "T0000";
     }
 
-    public void manageAddEntitySql(
+    public void manageAddTeacher(
             String first_name,
             String last_name,
             String gender,
@@ -32,7 +29,7 @@ public class ManageTeacherManager extends ManageEntityManager {
     ) {
         String query = "INSERT INTO teacher (id, first_name, last_name, gender, dob, phone_number, email, status, created_at, last_login, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try(PreparedStatement statement = conn.prepareStatement(query)){
-            statement.setString(1, generateNewID());
+            statement.setString(1, generateNewID("teacher"));
             statement.setString(2, first_name);
             statement.setString(3, last_name);
             statement.setString(4, gender);
@@ -49,7 +46,7 @@ public class ManageTeacherManager extends ManageEntityManager {
         }
     }
 
-    public void manageDeleteEntitySql(String id) {
+    public void manageDeleteTeacher(String id) {
         String query = "UPDATE teacher SET status = ? WHERE id = ?";
         try(PreparedStatement statement = conn.prepareStatement(query)){
             statement.setString(1, "inactive");
@@ -60,7 +57,7 @@ public class ManageTeacherManager extends ManageEntityManager {
         }
     }
 
-    public ObservableList<Map<String, String>> getAllDetailsSql(){
+    public ObservableList<Map<String, String>> getAllTeacherDetails(){
         String query = "SELECT * FROM teacher";
         ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
         try(PreparedStatement statement = conn.prepareStatement(query)){
@@ -86,7 +83,7 @@ public class ManageTeacherManager extends ManageEntityManager {
         return data;
     }
 
-    public Map<String, String> getDetailsSql(String id) {
+    public Map<String, String> getTeacherDetails(String id) {
         Map<String, String> map = new HashMap<>();
         String query = "SELECT * FROM teacher WHERE id = ?";
         try(PreparedStatement statement= conn.prepareStatement(query)){
@@ -110,28 +107,4 @@ public class ManageTeacherManager extends ManageEntityManager {
         }
         return null;
     }
-
-    public boolean isTeacherIdExist(String teacherId) {
-        for (int i = 0; i < entityData_Arr.length(); i++) {
-            if (entityData_Arr.getJSONObject(i).getString("id").equals(teacherId)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public JSONObject getDetails(String id) {
-        for (int i = 0; i < entityData_Arr.length(); i++){
-            if(entityData_Arr.getJSONObject(i).getString("id").equals(id)){
-                return entityData_Arr.getJSONObject(i);
-            }
-        }
-        return null;
-    }
-
-    public JSONArray getAllDetails(){
-        return entityData_Arr;
-    }
-
-
 }

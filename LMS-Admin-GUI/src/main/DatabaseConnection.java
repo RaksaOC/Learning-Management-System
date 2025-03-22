@@ -8,7 +8,7 @@ public class DatabaseConnection {
     private static DatabaseConnection instance;
     private Connection connection;
 
-    private static final String URL = "jdbc:mysql://nozomi.proxy.rlwy.net:18242/lms_test";
+    private static final String URL = "jdbc:mysql://nozomi.proxy.rlwy.net:18242/LMS";
     private static final String USER = "root";
     private static final String PASSWORD = "nHwDRPgvyTQdMsrFUMPPcDSWDmIjvUWP";
 

@@ -25,14 +25,14 @@ public class DeleteClassroomController extends MainFrameController{
 
     @FXML
     private void handleSearch(MouseEvent event) {
-        createDetails();
+//        createDetails();
     }
 
     @FXML
     private void handleDelete(MouseEvent event) {
         if(isConfirmed()){
             ManageClassroomManager manageClassroomManager = new ManageClassroomManager();
-            manageClassroomManager.manageDeleteEntity(idField.getText());
+//            manageClassroomManager.manageDeleteEntity(idField.getText());
 
             loadSuccess("deleteClassroom");
             clearDetails();
@@ -42,44 +42,44 @@ public class DeleteClassroomController extends MainFrameController{
         }
     }
 
-    private void createDetails(){
-        String idToSearch = idField.getText();
-        ManageClassroomManager manageClassroomManager = new ManageClassroomManager();
-        JSONObject details = manageClassroomManager.getDetails(idToSearch);
-        detailsVBox.getChildren().clear();
-        detailsVBox.setStyle("-fx-background-color: #ebebeb");
-        Pos center_left = Pos.CENTER_LEFT;
-        detailsVBox.setAlignment(center_left);
-        detailsVBox.setSpacing(10);
-        String id = details.getString("id");
-        String teacher = details.getString("teacherId");
-        String course = details.getString("courseId");
-
-        JSONArray students = details.getJSONArray("students");
-
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < students.length(); i++) {
-            stringBuilder.append(students.getString(i));
-            if(i != students.length()-1){
-                stringBuilder.append(",");
-            }
-        }
-        String studentsString = stringBuilder.toString();
-
-        Font textFont = Font.font("Gill Sans", 25);
-
-        Text idText = new Text("ID: " + id);
-        Text teacherText = new Text("TeacherId: " + teacher);
-        Text courseText = new Text("CourseId: " + course);
-        Text studentText = new Text("Students: " + studentsString);
-
-        Text[] textNodes = {idText, teacherText, courseText, studentText};
-        for (Text text : textNodes) {
-            text.setFont(textFont);
-        }
-
-        detailsVBox.getChildren().addAll(textNodes);
-    }
+//    private void createDetails(){
+//        String idToSearch = idField.getText();
+//        ManageClassroomManager manageClassroomManager = new ManageClassroomManager();
+////        JSONObject details = manageClassroomManager.getDetails(idToSearch);
+//        detailsVBox.getChildren().clear();
+//        detailsVBox.setStyle("-fx-background-color: #ebebeb");
+//        Pos center_left = Pos.CENTER_LEFT;
+//        detailsVBox.setAlignment(center_left);
+//        detailsVBox.setSpacing(10);
+//        String id = details.getString("id");
+//        String teacher = details.getString("teacherId");
+//        String course = details.getString("courseId");
+//
+//        JSONArray students = details.getJSONArray("students");
+//
+//        StringBuilder stringBuilder = new StringBuilder();
+//        for (int i = 0; i < students.length(); i++) {
+//            stringBuilder.append(students.getString(i));
+//            if(i != students.length()-1){
+//                stringBuilder.append(",");
+//            }
+//        }
+//        String studentsString = stringBuilder.toString();
+//
+//        Font textFont = Font.font("Gill Sans", 25);
+//
+//        Text idText = new Text("ID: " + id);
+//        Text teacherText = new Text("TeacherId: " + teacher);
+//        Text courseText = new Text("CourseId: " + course);
+//        Text studentText = new Text("Students: " + studentsString);
+//
+//        Text[] textNodes = {idText, teacherText, courseText, studentText};
+//        for (Text text : textNodes) {
+//            text.setFont(textFont);
+//        }
+//
+//        detailsVBox.getChildren().addAll(textNodes);
+//    }
 
     private void clearDetails(){
         idField.clear();

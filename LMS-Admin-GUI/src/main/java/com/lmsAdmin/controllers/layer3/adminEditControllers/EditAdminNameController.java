@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import main.SceneManager;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditAdminManager;
 
@@ -28,20 +29,22 @@ public class EditAdminNameController extends MainFrameController {
     @FXML
     private void initialize() {
         editButton.setDisable(true);
-        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         idComboBox.setOnAction(event -> {
-            manager = new EditAdminManager(idComboBox.getValue());
-            curFirstNameTextField.setText(manager.getOldFirstNameSql());
-            curLastNameTextField.setText(manager.getOldLastNameSql());
+            manager = new EditAdminManager(extractId(idComboBox.getSelectionModel().getSelectedItem()));
+            curFirstNameTextField.setText(manager.getOldFirstName());
+            curLastNameTextField.setText(manager.getOldLastName());
         });
     }
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditName(newFirstNameTextField.getText(), newLastNameTextField.getText());
-        manager.manageEditNameSql(newFirstNameTextField.getText(), newLastNameTextField.getText());
-        loadSuccess("editAdminName");
-        clearFields();
+        if (isConfirmed()) {
+            manager.manageEditName(newFirstNameTextField.getText(), newLastNameTextField.getText());
+            loadSuccess("editAdminName");
+            SceneManager.refreshScenes();
+            clearFields();
+        }
     }
 
     private void clearFields() {

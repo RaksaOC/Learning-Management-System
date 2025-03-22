@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import main.SceneManager;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditStudentManager;
 
@@ -22,22 +23,24 @@ public class EditStudentPhoneNumberController extends MainFrameController {
 
     @FXML
     public void initialize() {
-        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         curTextField.setDisable(true);
         newTextField.setDisable(true);
-        manager = new EditStudentManager(idComboBox.getValue());
+        manager = new EditStudentManager(extractId(idComboBox.getItems().getFirst()));
         idComboBox.setOnAction(event -> {
-            curTextField.setText(manager.getOldPhoneSql());
+            curTextField.setText(manager.getOldPhone());
             newTextField.setDisable(false);
         });
     }
 
     @FXML
     public void handleEdit(){
-        manager.manageEditPhone(newTextField.getText());
-        manager.manageEditPhoneSql(newTextField.getText());
-        loadSuccess("editStudentPhoneNumber");
-        clearFields();
+        if (isConfirmed()) {
+            manager.manageEditPhone(newTextField.getText());
+            loadSuccess("editStudentPhoneNumber");
+            SceneManager.refreshScenes();
+            clearFields();
+        }
     }
 
     private void clearFields(){

@@ -2,7 +2,6 @@ package main.java.com.lmsAdmin.managers.layer2.manage_entity_manager;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import main.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -11,41 +10,38 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ManageStudentManager extends ManageEntityManager {
-    private Connection conn = DatabaseConnection.getInstance().getConnection();
 
     public ManageStudentManager() {
-        setEntityFilePath("shared/data/student.json");
-        loadEntity();
         this.baseID = "S000000";
     }
 
-    public void manageAddEntitySql(String first_name,
-                                   String last_name,
-                                   String gender,
-                                   String dob,
-                                   String phone_number,
-                                   String email,
-                                   String password,
-                                   String commune,
-                                   String district,
-                                   String province,
-                                   String status,
-                                   String created_at,
-                                   String last_login,
-                                   String department_id,
-                                   String specialization_id,
-                                   String generation_id,
-                                   String guardian_first_name,
-                                   String guardian_last_name,
-                                   String guardian_phone_number,
-                                   String guardian_gender) {
+    public void manageAddStudent(String first_name,
+                                 String last_name,
+                                 String gender,
+                                 String dob,
+                                 String phone_number,
+                                 String email,
+                                 String password,
+                                 String commune,
+                                 String district,
+                                 String province,
+                                 String status,
+                                 String created_at,
+                                 String last_login,
+                                 String department_id,
+                                 String specialization_id,
+                                 String generation_id,
+                                 String guardian_first_name,
+                                 String guardian_last_name,
+                                 String guardian_phone_number,
+                                 String guardian_gender) {
         String query = "INSERT INTO student (id, first_name, last_name, gender, dob, phone_number, email, password, commune, district, province, status, " +
                 "created_at, last_login, department_id, specialization_id, generation_id, " +
                 "guardian_first_name, guardian_last_name, guardian_phone_number, guardian_gender) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setString(1, generateNewID());
+            statement.setString(1, generateNewID("student"));
             statement.setString(2, first_name);
             statement.setString(3, last_name);
             statement.setString(4, gender);
@@ -75,7 +71,7 @@ public class ManageStudentManager extends ManageEntityManager {
         }
     }
 
-    public void manageDeleteEntitySql(String id) {
+    public void manageDeleteStudent(String id) {
         System.out.println("id to delete: " + id);
         String query = "UPDATE student SET status = ? WHERE id = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
@@ -87,7 +83,7 @@ public class ManageStudentManager extends ManageEntityManager {
         }
     }
 
-    public ObservableList<Map<String, String>> getAllDetailsSql() {
+    public ObservableList<Map<String, String>> getAllStudentDetails() {
         ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
         String query = "SELECT * FROM student";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
@@ -124,7 +120,7 @@ public class ManageStudentManager extends ManageEntityManager {
         return data;
     }
 
-    public Map<String, String> getDetailsSql(String id) {
+    public Map<String, String> getStudentDetails(String id) {
         String query = "SELECT * FROM student WHERE id = ?";
         Map<String, String> map = new HashMap<>();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
@@ -158,26 +154,5 @@ public class ManageStudentManager extends ManageEntityManager {
             e.printStackTrace();
         }
         return map;
-    }
-
-    @Override
-    public void manageAddEntity(JSONObject newObj) {
-        newObj.put("id", generateNewID());
-        newObj.put("progress", new JSONObject()); // adds an empty json object
-        entityData_Arr.put(newObj);
-        saveEntity();
-    }
-
-    public JSONObject getDetails(String id) {
-        for (int i = 0; i < entityData_Arr.length(); i++) {
-            if (entityData_Arr.getJSONObject(i).getString("id").equals(id)) {
-                return entityData_Arr.getJSONObject(i);
-            }
-        }
-        return null;
-    }
-
-    public JSONArray getAllDetails() {
-        return entityData_Arr;
     }
 }

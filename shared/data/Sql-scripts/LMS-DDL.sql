@@ -246,3 +246,23 @@ CREATE TABLE classroom_material (
     FOREIGN KEY (class_id) REFERENCES classroom(id) ON UPDATE CASCADE,
     FOREIGN KEY (material_id) REFERENCES material(id) ON UPDATE CASCADE
 );
+
+CREATE TABLE administrative(
+	commune VARCHAR(100),
+    commune_code VARCHAR(20),
+    commune_ref VARCHAR(100),
+    commune_alt VARCHAR(100),
+    commune_alt2 VARCHAR(100),
+    commune_sqm DECIMAL,
+    
+    district VARCHAR(100),
+    district_code VARCHAR(15),
+    
+    province VARCHAR(100),
+    province_code VARCHAR(10),
+    
+    country VARCHAR(100),
+    country_code VARCHAR(5)
+);
+
+select * from administrative;

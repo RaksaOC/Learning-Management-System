@@ -1,14 +1,7 @@
 package main.java.com.lmsAdmin.managers.layer3.edit_entity_manager;
 
-import main.DatabaseConnection;
 import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,25 +9,15 @@ import java.util.ArrayList;
 
 public class EditGroupManager extends EditEntityManager {
 
-    private Connection conn = DatabaseConnection.getInstance().getConnection();
-
     // idToEdit = old ID
     public EditGroupManager(String groupID) {
-        //                           ^
-        //                   old Group id for noe
         super(groupID);
-        setFilePath("shared/data/university.json");
-        setIdToEdit(groupID); // entuty id to search for is the old groupID
-        loadEntityDataToEdit();
+        setIdToEdit(groupID);
     }
 
-    public EditGroupManager() {
-        setFilePath("shared/data/university.json");
-        setIdToEdit("");
-        loadEntityDataToEdit();
-    }
+    public EditGroupManager() {}
 
-    public String getOldIdSql() {
+    public String getOldId() {
         String query = "SELECT id FROM student_group WHERE id = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, idToEdit);
@@ -48,7 +31,7 @@ public class EditGroupManager extends EditEntityManager {
         return null;
     }
 
-    public void manageEditIdSql(String newId) {
+    public void manageEditId(String newId) {
         String query = "UPDATE student_group SET id = ? WHERE id = ?";
         try(PreparedStatement statement = conn.prepareStatement(query)){
             statement.setString(1, newId);
@@ -58,83 +41,7 @@ public class EditGroupManager extends EditEntityManager {
         }
     }
 
-    public void manageEditId(String newID) {
-        this.entityDataToEdit.put("id", newID);
-        this.saveEntityData();
-    }
-
-    public void loadEntityDataToEdit() {
-        try {
-            this.content = new String(Files.readAllBytes(Paths.get(this.filePath)));
-            this.entityData_Obj = new JSONObject(content);
-            JSONArray departments = this.entityData_Obj.getJSONArray("departments");
-
-            for (int i = 0; i < departments.length(); i++) {
-                JSONArray specializations = departments.getJSONObject(i).getJSONArray("specializations");
-                for (int j = 0; j < specializations.length(); j++) {
-                    JSONArray generations = specializations.getJSONObject(j).getJSONArray("generations");
-                    for (int k = 0; k < generations.length(); k++) {
-                        JSONArray groups = generations.getJSONObject(k).getJSONArray("groups");
-                        for (int l = 0; l < groups.length(); l++) {
-                            JSONObject group = groups.getJSONObject(l);
-                            if (group.getString("id").equals(idToEdit)) {
-                                this.entityDataToEdit = group;
-                            }
-                        }
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void saveEntityData() {
-        try (FileWriter writer = new FileWriter(filePath)) {
-            JSONArray departments = entityData_Obj.getJSONArray("departments");
-
-            for (int i = 0; i < departments.length(); i++) {
-                for (int j = 0; j < departments.getJSONObject(i).getJSONArray("specializations").length(); j++) {
-                    for (int k = 0; k < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
-                        for (int l = 0; l < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").length(); l++) {
-                            if (departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).getString("id").equals(idToEdit)) {
-                                departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").put(l, entityDataToEdit);
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Save updated departments back to main object
-            entityData_Obj.put("departments", departments);
-
-            // Write JSON back to file
-            writer.write(entityData_Obj.toString(4));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public ArrayList<String> loadIdsAndName() {
-        ArrayList<String> ids = new ArrayList<>();
-        JSONArray departments = entityData_Obj.getJSONArray("departments");
-        for (int i = 0; i < departments.length(); i++) {
-            JSONArray specializations = departments.getJSONObject(i).getJSONArray("specializations");
-            for (int j = 0; j < specializations.length(); j++) {
-                JSONArray generations = specializations.getJSONObject(j).getJSONArray("generations");
-                for (int k = 0; k < generations.length(); k++) {
-                    JSONArray groups = generations.getJSONObject(k).getJSONArray("groups");
-                    for (int l = 0; l < groups.length(); l++) {
-                        ids.add(groups.getJSONObject(l).getString("id"));
-                    }
-                }
-            }
-        }
-        return ids;
-    }
-
-    public ArrayList<String> loadIdsAndNameSql() {
         ArrayList<String> ids = new ArrayList<>();
         String query = "SELECT id FROM student_group";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
@@ -148,26 +55,5 @@ public class EditGroupManager extends EditEntityManager {
         }
         return ids;
     }
-
-    public ArrayList<String> loadStudentsInGroup() {
-        ArrayList<String> ids = new ArrayList<>();
-        JSONArray departments = entityData_Obj.getJSONArray("departments");
-        for (int i = 0; i < departments.length(); i++) {
-            JSONArray specializations = departments.getJSONObject(i).getJSONArray("specializations");
-            for (int j = 0; j < specializations.length(); j++) {
-                JSONArray generations = specializations.getJSONObject(j).getJSONArray("generations");
-                for (int k = 0; k < generations.length(); k++) {
-                    JSONArray groups = generations.getJSONObject(k).getJSONArray("groups");
-                    for (int l = 0; l < groups.length(); l++) {
-                        if (groups.getJSONObject(l).getString("id").equals(idToEdit)) {
-                            ids.add(groups.getJSONObject(l).getString("id"));
-                        }
-                    }
-                }
-            }
-        }
-        return ids;
-    }
-
 
 }

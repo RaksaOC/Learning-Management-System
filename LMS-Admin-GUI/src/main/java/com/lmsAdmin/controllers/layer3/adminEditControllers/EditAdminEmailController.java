@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import main.SceneManager;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditAdminManager;
 
@@ -24,21 +25,22 @@ public class EditAdminEmailController extends MainFrameController {
     @FXML
     private void initialize() {
         editButton.setDisable(true);
-        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         idComboBox.setOnAction(event -> {
-            manager = new EditAdminManager(idComboBox.getValue());
-            curTextField.setText(manager.getOldEmailSql());
+            manager = new EditAdminManager(extractId(idComboBox.getSelectionModel().getSelectedItem()));
+            curTextField.setText(manager.getOldEmail());
             newTextField.setDisable(false);
         });
     }
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditEmail(newTextField.getText());
-        manager.manageEditEmailSql(newTextField.getText());
-
-        loadSuccess("editAdminEmail");
-        clearFields();
+        if (isConfirmed()) {
+            manager.manageEditEmail(newTextField.getText());
+            loadSuccess("editAdminEmail");
+            SceneManager.refreshScenes();
+            clearFields();
+        }
     }
 
     private void clearFields() {

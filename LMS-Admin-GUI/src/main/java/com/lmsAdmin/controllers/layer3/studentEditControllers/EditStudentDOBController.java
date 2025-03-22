@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import main.SceneManager;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditStudentManager;
 
@@ -23,22 +24,24 @@ public class EditStudentDOBController extends MainFrameController {
 
     @FXML
     public void initialize() {
-        idComboBox.getItems().addAll(idLoader.loadIdsAndNameJSON());
+        idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         curTextField.setDisable(true);
         newDatePicker.setDisable(true);
-        manager = new EditStudentManager(idComboBox.getValue());
+        manager = new EditStudentManager(extractId(idComboBox.getItems().getFirst()));
         idComboBox.setOnAction(event -> {
-            curTextField.setText(manager.getOldDoBSql());
+            curTextField.setText(manager.getOldDoB());
             newDatePicker.setDisable(false);
         });
     }
 
     @FXML
     public void handleEdit(){
-        manager.manageEditDOB(newDatePicker.getValue().toString());
-        manager.manageEditDoBSql(newDatePicker.getValue().toString());
-        loadSuccess("editStudentDOB");
-        clearFields();
+        if (isConfirmed()) {
+            manager.manageEditDoB(newDatePicker.getValue().toString());
+            loadSuccess("editStudentDOB");
+            SceneManager.refreshScenes();
+            clearFields();
+        }
     }
 
     private void clearFields(){

@@ -1,28 +1,22 @@
 package main.java.com.lmsAdmin.controllers.layer2.courseActionController;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import main.SceneManager;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer2.manage_entity_manager.ManageCourseManager;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditCourseManager;
-import org.json.JSONObject;
 import ui.UI;
-
-import java.util.Map;
 
 public class DeleteCourseController extends MainFrameController{
     @FXML
-    private ComboBox idComboBox;
+    private ComboBox<String> idComboBox;
     @FXML
     private Button deleteButton;
 
-    private String selectedId;
+    private String selectedLongId;
 
     public void initialize() {
         EditCourseManager editCourseManager = new EditCourseManager();
@@ -32,14 +26,14 @@ public class DeleteCourseController extends MainFrameController{
         });
     }
     private void handleDelete() {
-        selectedId = idComboBox.getSelectionModel().getSelectedItem().toString().substring(0 , idComboBox.getSelectionModel().getSelectedItem().toString().indexOf(" "));
-        System.out.println(UI.TextColor.addColor(selectedId, UI.TextColor.RED));
+        selectedLongId = idComboBox.getSelectionModel().getSelectedItem();
+
         if(isConfirmed()){
             ManageCourseManager manageCourseManager = new ManageCourseManager();
-            manageCourseManager.manageDeleteEntity(selectedId);
-            manageCourseManager.manageDeleteEntitySql(selectedId);
+            manageCourseManager.manageDeleteCourse(extractId(selectedLongId));
 
             loadSuccess("deleteCourse");
+            SceneManager.refreshScenes();
             clearDetails();
         }
         else{

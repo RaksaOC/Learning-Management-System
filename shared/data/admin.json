@@ -1,7 +1,7 @@
 [
     {
         "createdAt": "2025-01-25T12:00:00Z",
-        "lastLogin": "2025-03-14 13:22:09",
+        "lastLogin": "2025-03-18 22:27:41",
         "password": "2744ccd10c7533bd736ad890f9dd5cab2adb27b07d500b9493f29cdc420cb2e0",
         "phoneNumber": "+1234567890",
         "gender": "Male",
@@ -103,5 +103,35 @@
         "id": "A007",
         "email": "asdfasdf",
         "status": "active"
+    },
+    {
+        "createdAt": "2025-03-16 11:40:46",
+        "lastLogin": "",
+        "password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "phoneNumber": "123123123",
+        "gender": "Female",
+        "dob": "2025-03-13",
+        "name": {
+            "firstName": "blah",
+            "lastName": "blah"
+        },
+        "id": "A008",
+        "email": "dslfjas;dlkflk;asfj",
+        "status": "active"
+    },
+    {
+        "createdAt": "2025-03-16 12:11:57",
+        "lastLogin": "",
+        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+        "phoneNumber": "asdfasdf",
+        "gender": "Female",
+        "dob": "2025-03-13",
+        "name": {
+            "firstName": "sadfsdaf",
+            "lastName": "asdfasdf"
+        },
+        "id": "A009",
+        "email": "asdfasdf",
+        "status": "inactive"
     }
 ]

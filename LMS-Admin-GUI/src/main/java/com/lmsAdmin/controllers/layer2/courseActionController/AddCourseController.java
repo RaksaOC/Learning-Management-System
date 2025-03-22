@@ -2,6 +2,7 @@ package main.java.com.lmsAdmin.controllers.layer2.courseActionController;
 
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -20,9 +21,9 @@ public class AddCourseController extends MainFrameController {
     @FXML
     private TextField id;
     @FXML
-    private ComboBox credit;
+    private ComboBox<String> credit;
     @FXML
-    private ComboBox level;
+    private ComboBox<String> level;
     @FXML
     private TextField description;
 
@@ -35,66 +36,30 @@ public class AddCourseController extends MainFrameController {
 
     @FXML
     private void handleAdd(MouseEvent event) {
-        handleAddSql();
-        handleAddJSON();
-    }
-
-    private void handleAddJSON(){
-        String n = name.getText();
-        String ID = id.getText();
-        String cre = credit.getSelectionModel().getSelectedItem().toString();
-        String le = level.getSelectionModel().getSelectedItem().toString();
-        String desc = description.getText();
-
-        JSONObject newEntity = new JSONObject();
-        newEntity.put("name", n);
-        newEntity.put("id", ID);
-        newEntity.put("credit", cre);
-        newEntity.put("level", le);
-        newEntity.put("description", desc);
-        newEntity.put("status", "active");
-        ManageCourseManager manageCourseManager = new ManageCourseManager();
-        manageCourseManager.manageAddEntity(newEntity);
-
-        SceneManager.setScene("success");
-        PauseTransition delay = new PauseTransition(Duration.seconds(2));
-        delay.setOnFinished(ev -> {
-            SceneManager.setScene("addCourse");
-            resetAllFields();
-        });
-
-        delay.play();
-
-        System.out.println("Content added");
-        System.out.println(n);
-        System.out.println(ID);
-        System.out.println(cre);
-        System.out.println(le);
-        System.out.println(desc);
-        System.out.println(newEntity);
-        System.out.println("content added successfully");
-    }
-
-    private void handleAddSql(){
         ManageCourseManager manageCourseManager = new ManageCourseManager();
 
-        manageCourseManager.manageAddEntitySql(
-                id.getText(),
-                name.getText(),
-                credit.getSelectionModel().getSelectedItem().toString().trim(),
-                level.getSelectionModel().getSelectedItem().toString().trim(),
-                description.getText(),
-                "active"
-        );
-        System.out.println("content added successfully with Sql");
-        SceneManager.setScene("success");
-        PauseTransition delay = new PauseTransition(Duration.seconds(2));
-        delay.setOnFinished(ev -> {
-            SceneManager.setScene("addCourse");
-            resetAllFields();
-        });
-
-        delay.play();
+        if (!manageCourseManager.isCourseIdTaken(id.getText())) {
+            if (isConfirmed()) {
+                manageCourseManager.manageAddCourse(
+                        id.getText(),
+                        name.getText(),
+                        credit.getSelectionModel().getSelectedItem().toString().trim(),
+                        level.getSelectionModel().getSelectedItem().toString().trim(),
+                        description.getText(),
+                        "active"
+                );
+                loadSuccess("addCourse");
+                resetAllFields();
+                SceneManager.refreshScenes();
+            }
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Course ID already exists");
+            alert.showAndWait();
+        }
     }
 
     private void resetAllFields() {

@@ -2,7 +2,6 @@ package main.java.com.lmsAdmin.managers.layer2.manage_entity_manager;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import main.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -10,7 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,15 +16,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ManageGenerationManager extends ManageEntityManager {
-    private Connection conn = DatabaseConnection.getInstance().getConnection();
 
     public ManageGenerationManager() {
         super();
-        setEntityFilePath("shared/data/university.json");
-        loadEntity();
     }
 
-    public void manageAddEntitySql(String id, String name, String status) {
+    public void manageAddGeneration(String id, String name, String status) {
         String query = "INSERT INTO generation(id, name, status) VALUES (?,?,?)";
         try (PreparedStatement statement = conn.prepareStatement(query)){
             statement.setString(1, id);
@@ -38,7 +33,8 @@ public class ManageGenerationManager extends ManageEntityManager {
         }
     }
 
-    public void manageDeleteEntitySql(String id) {
+    public void manageDeleteGeneration(String id) {
+        // TODO: add deletion prevention logic
         String query = "UPDATE generation SET status = ? WHERE id = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)){
             statement.setString(1, "inactive");
@@ -49,7 +45,7 @@ public class ManageGenerationManager extends ManageEntityManager {
         }
     }
 
-    public ObservableList<Map<String, String>> getAllDetailsSql(){
+    public ObservableList<Map<String, String>> getAllGenerationDetails(){
         ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
         String query = "SELECT * FROM generation";
         try (PreparedStatement statement = conn.prepareStatement(query)){
@@ -68,7 +64,7 @@ public class ManageGenerationManager extends ManageEntityManager {
         return data;
     }
 
-    public Map<String, String> getDetailsSql(String id) {
+    public Map<String, String> getGenerationDetails(String id) {
         Map<String, String> map = new HashMap<>();
         String query = "SELECT * FROM generation WHERE id = ?";
         try(PreparedStatement statement = conn.prepareStatement(query)){
@@ -86,138 +82,15 @@ public class ManageGenerationManager extends ManageEntityManager {
         return map;
     }
 
-    @Override
-    public void manageAddEntity(JSONObject newGeneration) {
-        JSONArray departments = entityData_Obj.getJSONArray("departments");
-        newGeneration.put("groups", new JSONArray());
-        newGeneration.put("status", "active");
-        for (int i = 0; i < departments.length(); i++) {
-            // j for specialization
-            for (int j = 0; j < departments.getJSONObject(i).getJSONArray("specializations").length(); j++) {
-                departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").put(newGeneration);
-            }
-        }
-
-        entityData_Obj.put("departments", departments);
-        saveEntity();
-    }
-
-    @Override
-    public void manageDeleteEntity(String genID) {
-        // can only delete if the generation has no students/group
-        JSONArray departments = entityData_Obj.getJSONArray("departments");
-        boolean canDelete = false;
-        for (int i = 0; i < departments.length(); i++) {
-            for (int j = 0; j < departments.getJSONObject(i).getJSONArray("specializations").length(); j++) {
-                for (int k = 0; k < departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
-                    if (departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getString("id").equals(genID)) {
-                        int groupLength = departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").length();
-                        if (groupLength == 0) {
-                            departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).put("status", "inactive");
-                            canDelete = true;
-                            continue;
-                        }
-                        for (int l = 0; l < groupLength; l++) {
-                            if (!(departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).getJSONArray("students").isEmpty())) {
-                                departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).put("status", "inactive");
-                                canDelete = true;
-                                continue;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (!canDelete) {
-            System.out.println("Cannot delete the generation because it has groups with students in it");
-            return;
-        }
-        ;
-
-        entityData_Obj.put("departments", departments);
-        saveEntity();
-    }
-
-    @Override
-    public void manageViewEntity() {
-        JSONArray departments = entityData_Obj.getJSONArray("departments");
-        for (int i = 0; i < departments.length(); i++) {
-            for (int j = 0; j < departments.getJSONObject(i).getJSONArray("specializations").length(); j++) {
-                JSONArray generations = departments.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations");
-                System.out.println(generations.toString(4));  // Print once per specialization
-            }
-        }
-
-    }
-
-    @Override
-    public void loadEntity() {
-        // override for the loading of entity because university is object not array
-        try {
-            content = new String(Files.readAllBytes(Paths.get(filePath)));
-            entityData_Obj = new JSONObject(content);
-        } catch (IOException e) {
+    public boolean isGenerationIdTaken(String id) {
+        String query = "SELECT 1 FROM generation WHERE id = ? LIMIT 1";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next();  // Returns true if at least one row exists
+        } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void saveEntity() {
-        try (FileWriter file = new FileWriter(filePath)) {
-            file.write(entityData_Obj.toString(4)); // Pretty-print with 4 spaces
-            file.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public boolean isGenerationIdExist(String genID) {
-        JSONArray departments = entityData_Obj.getJSONArray("departments");
-        for (int i = 0; i < departments.length(); i++) {
-            JSONArray specializations = departments.getJSONObject(i).getJSONArray("specializations");
-            for (int j = 0; j < specializations.length(); j++) {
-                JSONArray generations = specializations.getJSONObject(j).getJSONArray("generations");
-                for (int k = 0; k < generations.length(); k++) {
-                    if (generations.getJSONObject(k).getString("id").equals(genID)) {
-                        return true;
-                    }
-                }
-            }
         }
         return false;
     }
-
-    public JSONArray getDetails(String genID) {
-        JSONArray genDetails = new JSONArray();
-        JSONArray departments = entityData_Obj.getJSONArray("departments");
-        for (int i = 0; i < departments.length(); i++) {
-            JSONArray specializations = departments.getJSONObject(i).getJSONArray("specializations");
-            for (int j = 0; j < specializations.length(); j++) {
-                JSONArray generations = specializations.getJSONObject(j).getJSONArray("generations");
-                for (int k = 0; k < generations.length(); k++) {
-                    if (generations.getJSONObject(k).getString("id").equals(genID)) {
-                        genDetails.put(generations.getJSONObject(k));
-                        break;
-                    }
-                }
-            }
-        }
-        return genDetails;
-    }
-
-    public JSONArray getAllDetails() {
-        JSONArray genDetails = new JSONArray();
-        JSONArray departments = entityData_Obj.getJSONArray("departments");
-        for (int i = 0; i < departments.length(); i++) {
-            JSONArray specializations = departments.getJSONObject(i).getJSONArray("specializations");
-            for (int j = 0; j < specializations.length(); j++) {
-                JSONArray generations = specializations.getJSONObject(j).getJSONArray("generations");
-                for (int k = 0; k < generations.length(); k++) {
-                    genDetails.put(generations.getJSONObject(k));
-                }
-            }
-        }
-        return genDetails;
-    }
-
 }

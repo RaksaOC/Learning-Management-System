@@ -1,105 +1,62 @@
 package main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.utils;
 
+import main.DatabaseConnection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CambodiaAdministrative {
-    // stores data for edits and stuff
-
-    private ArrayList<String> provinces = new ArrayList<>();
-    private Map<String, ArrayList<String>> districts = new HashMap<>();
-    private Map<String, ArrayList<String>> communes = new HashMap<>();
-
-    public void fillAddressData() {
-        // Provinces
-        provinces.add("Phnom Penh");
-        provinces.add("Siem Reap");
-        provinces.add("Battambang");
-        provinces.add("Kampong Cham");
-        provinces.add("Kampot");
-        provinces.add("Preah Sihanouk");
-        provinces.add("Takeo");
-        provinces.add("Kandal");
-        provinces.add("Koh Kong");
-        provinces.add("Kratie");
-        provinces.add("Mondulkiri");
-        provinces.add("Ratanakiri");
-        provinces.add("Stung Treng");
-        provinces.add("Svay Rieng");
-        provinces.add("Tboung Khmum");
-        provinces.add("Oddar Meanchey");
-        provinces.add("Pailin");
-        provinces.add("Pursat");
-        provinces.add("Prey Veng");
-        provinces.add("Kampong Thom");
-        provinces.add("Kampong Speu");
-        provinces.add("Battambang");
-        provinces.add("Banteay Meanchey");
-
-        districts.put("Phnom Penh", new ArrayList<>(java.util.Arrays.asList(
-                "Chamkar Mon",
-                "Daun Penh",
-                "Toul Kork",
-                "Sen Sok",
-                "Meanchey",
-                "Por Sen Chey",
-                "Russey Keo",
-                "Chbar Ampov",
-                "Kamboul",
-                "Dangkor",
-                "Prek Pnov"
-        )));
-
-        // Districts for Siem Reap
-        districts.put("Siem Reap", new ArrayList<>(java.util.Arrays.asList(
-                "Siem Reap",
-                "Banteay Srei",
-                "Pouk",
-                "Srei Snam",
-                "Angkor",
-                "Chong Kneas",
-                "Kouk Chak",
-                "Sala Kamraeuk",
-                "Svay Dangkum",
-                "Tonle Sap"
-        )));
-
-        // Districts for Battambang
-        districts.put("Battambang", new ArrayList<>(java.util.Arrays.asList(
-                "Battambang",
-                "Thmar Koul",
-                "Bavel",
-                "Rattanak Mondol",
-                "Moung Russey",
-                "Sangke",
-                "Kampong Luong",
-                "Pailin",
-                "Samlot",
-                "Kamrieng"
-        )));
-
-
-//        // Districts
-//        districts.put("Phnom Penh", new ArrayList<>(java.util.Arrays.asList("Chamkar Mon", "Daun Penh", "Toul Kork", "Sen Sok")));
-//        districts.put("Siem Reap", new ArrayList<>(java.util.Arrays.asList("Siem Reap", "Banteay Srei", "Pouk", "Srei Snam")));
-//        districts.put("Battambang", new ArrayList<>(java.util.Arrays.asList("Battambang", "Thmar Koul", "Bavel", "Rattanak Mondol")));
-//        districts.put("Kandal", new ArrayList<>(java.util.Arrays.asList("Takhmao", "Kien Svay", "Sa’ang")));
-//
-//        // Communes
-//        communes.put("Chamkar Mon", new ArrayList<>(java.util.Arrays.asList("Boeung Keng Kang", "Tonle Bassac", "Toul Tompong")));
-//        communes.put("Daun Penh", new ArrayList<>(java.util.Arrays.asList("Phsar Thmei", "Wat Phnom", "Srah Chak")));
-//        communes.put("Siem Reap", new ArrayList<>(java.util.Arrays.asList("Svay Dangkum", "Sala Kamraeuk", "Kouk Chak")));
-//        communes.put("Takhmao", new ArrayList<>(java.util.Arrays.asList("Koh Dach", "Prek Ho", "Dei Edth")));
-    }
+    Connection conn = DatabaseConnection.getInstance().getConnection();
+    private ArrayList<String> provinces;
+    private ArrayList<String> districts;
+    private ArrayList<String> communes;
 
     public ArrayList<String> getProvinces() {
+        String query = "SELECT province FROM administrative";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            ResultSet rs = statement.executeQuery();
+            provinces = new ArrayList<>();
+            while(rs.next()){
+                provinces.add(rs.getString("province"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return provinces;
     }
-    public Map<String, ArrayList<String>> getDistricts() {
+
+    public ArrayList<String> getDistricts(String province) {
+        String query = "SELECT district FROM administrative where province = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, province);
+            ResultSet rs = statement.executeQuery();
+            districts = new ArrayList<>();
+            while(rs.next()){
+                districts.add(rs.getString("district"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return districts;
     }
-    public Map<String, ArrayList<String>> getCommunes() {
+
+    public ArrayList<String> getCommunes(String district, String province) {
+        String query = "SELECT commune FROM administrative WHERE district = ? AND province = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, district);
+            statement.setString(2, province);
+            ResultSet rs = statement.executeQuery();
+            communes = new ArrayList<>();
+            while(rs.next()){
+                communes.add(rs.getString("commune"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return communes;
     }
 }

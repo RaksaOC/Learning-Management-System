@@ -476,9 +476,10 @@
                               </Text>
                               <TableView fx:id="activeClassroomTableView" prefWidth="512.0">
                                  <columns>
-                                    <TableColumn fx:id="activeClassroomClassIDTableColumn" maxWidth="1.7976931348623157E308" prefWidth="163.0" text="Classroom ID" />
-                                    <TableColumn fx:id="activeClassroomCourseTableColumn" maxWidth="1.7976931348623157E308" prefWidth="118.0" text="Course" />
-                                    <TableColumn fx:id="activeClassroomTeacherTableColumn" maxWidth="1.7976931348623157E308" prefWidth="237.0" text="Teacher" />
+                                    <TableColumn fx:id="activeClassroomClassIDTableColumn" maxWidth="1.7976931348623157E308" prefWidth="111.0" text="Classroom ID" />
+                                    <TableColumn fx:id="activeClassroomCourseTableColumn" maxWidth="1.7976931348623157E308" prefWidth="101.0" text="Course" />
+                                    <TableColumn fx:id="activeClassroomTeacherTableColumn" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="151.0" text="Teacher" />
+                                    <TableColumn fx:id="activeClassroomGroupTableColumn" prefWidth="140.4390869140625" text="Group" />
                                  </columns>
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />

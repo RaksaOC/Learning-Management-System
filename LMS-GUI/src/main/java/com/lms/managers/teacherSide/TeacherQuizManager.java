@@ -1,28 +1,173 @@
 package main.java.com.lms.managers.teacherSide;
 
-import main.AppSession;
+import main.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PipedReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class QuizManager extends ClassroomContentManager {
-
-    public QuizManager(String classIdToEdit) {
+public class TeacherQuizManager extends ClassroomContentManager {
+    private static final Connection conn= DatabaseConnection.getInstance().getConnection();
+    public TeacherQuizManager(String classIdToEdit) {
         super(classIdToEdit);
     }
-
     // ========================================
     // SQL-RELATED METHODS
     // ========================================
 
     // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
+    public void manageAddQuizSql(String title, String description, ArrayList<Map<String, Object>> quizList, String status){
+        ArrayList<String> titles=new ArrayList<>();
+        ArrayList<ArrayList<Map<String, Object>>> choicesList=new ArrayList<>();
+        String quizID= generateNewID("quiz", "Q0000");
+
+        for(Map<String, Object> quiz:quizList){
+            titles.add((String) quiz.get("title"));
+            choicesList.add((ArrayList<Map<String, Object>>) quiz.get("choices"));
+        }
+        insertToQuiz(quizID, title, description, status);
+        for(int i=0;i<quizList.size();i++){
+            String questionID= generateNewID("question", "QU0000");
+            String choice_text="";
+            boolean isCorrect=false;
+            ArrayList<Map<String, Object>> currentChoiceList=choicesList.get(i);
+            insertToQuestion(questionID, quizID, titles.get(i));
+            for(int j=0;j<currentChoiceList.size();j++){
+                String choiceID= generateNewID("choice", "CH0000");
+                choice_text=(String) currentChoiceList.get(j).get("choice_text");
+                isCorrect= (boolean) currentChoiceList.get(j).get("isCorrect");
+                insertToChoice(choiceID, questionID, choice_text, isCorrect);
+            }
+        }
+        insertToProgressQuiz("P0001", quizID, 0.00);
+        insertToClassroomQuiz(this.classIdToEdit, quizID);
+        System.out.println("finished");
+    }
+
+    public void manageEditQuizSql(){
+
+    }
+
+    public void manageDeleteQuizSql(){
+
+    }
+
+    public void manageViewQuiz(){
+
+    }
+
+    private static void insertToQuiz(String id, String title, String description, String status){
+        String quarry = "INSERT INTO quiz (id, title, description, status) VALUES ( ?, ?, ?, ?)";
+        try(PreparedStatement statement = conn.prepareStatement(quarry)){
+            statement.setString(1, id);
+            statement.setString(2, title);
+            statement.setString(3, description);
+            statement.setString(4, status);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private static void insertToQuestion(String id, String quiz_id, String title){
+        String quarry = "INSERT INTO question (id, quiz_id, title) VALUES ( ?, ?, ?)";
+        try(PreparedStatement statement = conn.prepareStatement(quarry)){
+            statement.setString(1, id);
+            statement.setString(2, quiz_id);
+            statement.setString(3, title);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private static void insertToChoice(String id, String question_id, String choice_text, Boolean isCorrect){
+        String quarry = "INSERT INTO choice (id, question_id, choice_text, isCorrect) VALUES ( ?, ?, ?, ?)";
+        try(PreparedStatement statement = conn.prepareStatement(quarry)){
+            statement.setString(1, id);
+            statement.setString(2, question_id);
+            statement.setString(3, choice_text);
+            statement.setBoolean(4, isCorrect);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private static void insertToProgressQuiz(String progress_id, String quiz_id, double score){
+        String quarry = "INSERT INTO progress_quiz (progress_id, quiz_id, score) VALUES (?, ?, ?)";
+        try(PreparedStatement statement = conn.prepareStatement(quarry)){
+            statement.setString(1, progress_id);
+            statement.setString(2, quiz_id);
+            statement.setDouble(3, score);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+    private static void insertToClassroomQuiz(String classIdToEdit,String quiz_id){
+        String quarry = "INSERT INTO classroom_quiz (class_id, quiz_id) VALUES ( ?, ?)";
+        try(PreparedStatement statement = conn.prepareStatement(quarry)){
+            statement.setString(1, classIdToEdit);
+            statement.setString(2, quiz_id);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+    protected String generateNewID(String tableName, String baseID) {
+        try {
+            // Query to get the count of rows in the table
+            String query = "SELECT COUNT(id) as last_id FROM " + tableName;
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+
+            // Initialize the new ID as 1 if no rows are found
+            int newID = 1;
+            if (rs.next()) {
+                newID = rs.getInt("last_id") + 1;  // Increment last_id for the new ID
+            }
+
+            // Convert the new ID to a string and calculate how many digits it has
+            String newID_String = String.valueOf(newID);
+
+            // Calculate how many characters of the baseID need to be replaced
+            int start = baseID.length() - newID_String.length();
+
+            // Create a StringBuilder to modify the base ID
+            StringBuilder baseIDBuilder = new StringBuilder(baseID);
+
+            // Replace the numeric part of baseID with the new ID
+            for (int i = start, j = 0; i < baseID.length(); i++, j++) {
+                if (j < newID_String.length()) {
+                    baseIDBuilder.setCharAt(i, newID_String.charAt(j)); // Replace characters
+                }
+            }
+
+            // Return the newly generated ID
+            return baseIDBuilder.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 
 
 

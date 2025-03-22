@@ -2,6 +2,7 @@ package main.java.com.lms.managers.studentSide;
 
 import entities.Student;
 import main.AppSession;
+import main.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -9,12 +10,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.*;
 
-public class QuizzesManager {
+public class studentQuizzesManager {
     private Student student;
-
-    public QuizzesManager() {
+    public studentQuizzesManager() {
         AppSession session = AppSession.getInstance();
         this.student = session.getStudent();
     }
@@ -24,7 +26,21 @@ public class QuizzesManager {
     // ========================================
 
     // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
+    public void manageDoQuizSql(){
 
+    }
+
+    private void returnQuizSql(){
+
+    }
+
+    public int getAllQuizScoreSql(){
+        return 0;
+    }
+
+    private void checkAnswerSql(){
+
+    }
 
 
 

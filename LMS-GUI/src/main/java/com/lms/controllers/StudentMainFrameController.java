@@ -7,6 +7,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import main.AppSession;
 import main.SceneManager;
 
 import javafx.scene.image.ImageView;
@@ -34,6 +35,8 @@ public class StudentMainFrameController {
     private HBox settingsLink;
     @FXML
     private HBox logoutLink;
+    @FXML
+    private HBox switchUserLink;
     @FXML
     private ImageView profile;
 
@@ -111,10 +114,23 @@ public class StudentMainFrameController {
             alert.setContentText("Are you sure you want to logout?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
-                AuthenticationManager authenticationManager = new AuthenticationManager();
-                authenticationManager.markLastLoggedOut("student");
+                AuthenticationManager authenticationManager = new AuthenticationManager("student");
+                authenticationManager.createNewLogOutSql(AppSession.getInstance().getStudent().getId());
+
                 SceneManager.loadFullView("studentLogIn", "resources/com/lms/views/studentSide/LogIn.fxml");
                 SceneManager.setFullView("studentLogIn");
+            }
+        });
+
+        switchUserLink.setOnMouseClicked(event -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Logout");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to switch user?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                SceneManager.loadFullView("userType", "resources/com/lms/views/UserType.fxml");
+                SceneManager.setFullView("userType");
             }
         });
         profile.setOnMouseClicked(event -> {

@@ -188,7 +188,8 @@ public class QuizzesManager {
     }
 
     public HashMap<String, String> getAllQuizzes() {
-        JSONObject progress = student.getProgress();
+//        JSONObject progress = student.getProgress();
+        JSONObject progress = new JSONObject();
 
         ArrayList<String> progressIds = new ArrayList<>();
         Iterator<String> iterator = progress.keys();

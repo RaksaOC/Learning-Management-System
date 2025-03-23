@@ -169,7 +169,8 @@ public class ResourcesManager {
     // Rasa Front end related functions -----------------------------------------------------------------------------------------------
 
     public HashMap<String, String> getAllResources(){
-        JSONObject progress = student.getProgress();
+//        JSONObject progress = student.getProgress();
+        JSONObject progress = new JSONObject();
 
         ArrayList<String> progressIds = new ArrayList<>();
         Iterator<String> iterator = progress.keys();

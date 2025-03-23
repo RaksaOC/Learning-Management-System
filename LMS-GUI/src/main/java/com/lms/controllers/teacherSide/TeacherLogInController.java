@@ -25,7 +25,7 @@ public class TeacherLogInController {
 
             AuthenticationManager manager = new AuthenticationManager("teacher", email, password);
 
-            if (email.isEmpty() || password.isEmpty() || !manager.isUser()) {
+            if (email.isEmpty() || password.isEmpty() || !manager.isUserSql()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText(null);
@@ -33,14 +33,16 @@ public class TeacherLogInController {
                 alert.showAndWait();
             }
             else {
-                Teacher teacher = (Teacher) manager.getAuthenticatedUser();
-                manager.createNewLogIn("teacher", teacher.getId());
+                Teacher teacher = (Teacher) manager.getAuthenticatedUserSql();
+                manager.createNewLogInSql(teacher.getId());
 
                 AppSession session = AppSession.getInstance();
                 session.setTeacher(teacher);
 
-                TeacherMainFrameController teacherMainFrameController = SceneManager.loadMainFrame("student");
-                teacherMainFrameController.setNameText(session.getTeacher().getFullName());
+                TeacherMainFrameController teacherMainFrameController = SceneManager.loadMainFrame("teacher");
+                teacherMainFrameController.setNameText(session.getTeacher().getFirstName() + " " + session.getTeacher().getLastName());
+
+                SceneManager.loadCenterView("teacherDashboard", "resources/com/lms/views/teacherSide/Dashboard.fxml");
                 SceneManager.setCenterView("teacherDashboard");
             }
         });

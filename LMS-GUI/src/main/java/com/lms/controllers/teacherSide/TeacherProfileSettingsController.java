@@ -26,7 +26,7 @@ public class TeacherProfileSettingsController {
 
     public void initialize() {
         AppSession session = AppSession.getInstance();
-        this.name.setText(session.getTeacher().getFullName());
+        this.name.setText(session.getTeacher().getFirstName() + " " + session.getTeacher().getLastName());
         this.teacherID.setText("Teacher ID: " + session.getTeacher().getId());
         this.gender.setText("Gender: "+ session.getTeacher().getGender());
         this.email.setText("Email: " + session.getTeacher().getEmail());

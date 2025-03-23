@@ -40,7 +40,7 @@ public class AddClassroomController extends MainFrameController {
     private void handleAdd(MouseEvent event) {
         ManageClassroomManager manageClassroomManager = new ManageClassroomManager();
 
-        manageClassroomManager.manageAddClassroom(classID.getText(),
+        manageClassroomManager.manageAddClassroom(classID.getText(), 
                 extractId(teacherId.getSelectionModel().getSelectedItem()),
                 extractId(courseID.getSelectionModel().getSelectedItem()),
                 groupID.getSelectionModel().getSelectedItem(),

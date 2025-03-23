@@ -31,7 +31,8 @@ public class ClassroomCardsWrapperController {
     private ScrollPane scrollPane;
 
     private AppSession session = AppSession.getInstance();
-    private JSONObject progress = session.getStudent().getProgress();
+//    private JSONObject progress = session.getStudent().getProgress();
+    private JSONObject progress = new JSONObject();
     private ArrayList<String> classroomIds = new ArrayList<>();
 
     public void initialize() {

@@ -28,14 +28,14 @@ public abstract class ManageEntityManager {
             String newID_String = newID + "";
             int start = baseID.length() - newID_String.length();
 
-            StringBuilder baseIDBuilder = new StringBuilder(baseID); // Convert to StringBuilder
+            StringBuilder baseIDBuilder = new StringBuilder(baseID);
             StringBuilder newIDBuilder = new StringBuilder(newID_String);
             int j = 0;
             for (int i = start; i < baseID.length(); i++) {
-                baseIDBuilder.setCharAt(i, newIDBuilder.charAt(j)); // Set the character at index i
+                baseIDBuilder.setCharAt(i, newIDBuilder.charAt(j));
                 j++;
             }
-            baseID = baseIDBuilder.toString(); // Convert back to string
+            baseID = baseIDBuilder.toString();
             return baseID;
         } catch (Exception e) {
             e.printStackTrace();

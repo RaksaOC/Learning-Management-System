@@ -25,26 +25,24 @@ public class StudentLogInController {
             String password = passwordTextField.getText();
 
             AuthenticationManager manager = new AuthenticationManager("student", email, password);
-            System.out.println("email" + email);
-            System.out.println("raw pass"+password);
-            System.out.println("hashed pass"+ Hasher.hash(password));
-            if (email.isEmpty() || password.isEmpty() || !manager.isUser()) {
+            if (email.isEmpty() || password.isEmpty() || !manager.isUserSql()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText(null);
                 alert.setContentText("Please enter valid details");
                 alert.showAndWait();
             } else {
-                Student student = (Student) manager.getAuthenticatedUser();
-                manager.createNewLogIn("student", student.getId());
+                Student student = (Student) manager.getAuthenticatedUserSql();
+                manager.createNewLogInSql(student.getId());
 
                 AppSession session = AppSession.getInstance();
                 session.setStudent(student);
 
                 // The main frame loading begins here and other main frames should be in the sceneManager because appsession student entity is no longer null
                 StudentMainFrameController studentMainFrameController = SceneManager.loadMainFrame("student");
-                studentMainFrameController.setNameText(session.getStudent().getFullName());
+                studentMainFrameController.setNameText(session.getStudent().getFirstName() + " " + session.getStudent().getLastName());
 
+                SceneManager.loadCenterView("studentDashboard", "resources/com/lms/views/studentSide/Dashboard.fxml");
                 SceneManager.setCenterView("studentDashboard");
             }
         });

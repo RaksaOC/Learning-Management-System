@@ -57,7 +57,7 @@ public class StudentProfileSettingsController {
 
     private void initPersonalInfo(){
         AppSession session = AppSession.getInstance();
-        this.name.setText(session.getStudent().getFullName());
+        this.name.setText(session.getStudent().getFirstName() + " " + session.getStudent().getLastName());
         this.studentID.setText("Student ID: " + session.getStudent().getId());
         this.generation.setText("Generation: " + session.getStudent().getGeneration());
         this.department.setText("Department: " + session.getStudent().getDepartment());

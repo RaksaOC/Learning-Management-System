@@ -121,6 +121,29 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </HBox>
+                              <HBox fx:id="switchUserLink" alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="241.0" spacing="25.0">
+                                 <children>
+                                    <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/switch-user.png" />
+                                       </image>
+                                       <effect>
+                                          <ColorAdjust brightness="-1.0" />
+                                       </effect>
+                                    </ImageView>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Switch User">
+                                       <font>
+                                          <Font name="AppleGothic Regular" size="18.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </HBox>
                            </children>
                         </VBox>
                      </children>

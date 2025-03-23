@@ -18,7 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.AppSession;
-import main.java.com.lms.managers.studentSide.studentQuizzesManager;
+import main.java.com.lms.managers.studentSide.StudentQuizzesManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -68,7 +68,7 @@ public class QuizCardsWrapperController {
         QuizzesWrapper.setPrefHeight(Double.MAX_VALUE);
         QuizzesWrapper.setSpacing(40);
 
-        studentQuizzesManager QuizzesManager = new studentQuizzesManager();
+        StudentQuizzesManager QuizzesManager = new StudentQuizzesManager();
         quiz_classroom = QuizzesManager.getAllQuizzes();
 
         quizzesList = new ArrayList<>(quiz_classroom.keySet());

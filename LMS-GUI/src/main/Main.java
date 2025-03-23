@@ -1,5 +1,7 @@
 package main;
 
+import entities.Student;
+import main.java.com.lms.managers.studentSide.StudentQuizzesManager;
 import main.java.com.lms.managers.teacherSide.TeacherQuizManager;
 
 import java.util.ArrayList;
@@ -10,6 +12,53 @@ public class Main {
     public static void main(String[] args) {
         DatabaseConnection.getInstance().getConnection();
 //        SceneManager.launch(SceneManager.class, args);
+        StudentQuizzesManager k= new StudentQuizzesManager();
+        ArrayList<Integer> answerList= new ArrayList<>();
+        answerList.add(1);
+        answerList.add(4);
+        answerList.add(3);
+        answerList.add(4);
+        k.manageDoQuizSql("S000001", 1, answerList);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //        TeacherQuizManager k= new TeacherQuizManager("GEN10-CS-SE-G1-OOP");
 //        ArrayList<Map<String, Object>> choices = getMaps();
 //        Map<String, Object> question1= new HashMap<>();

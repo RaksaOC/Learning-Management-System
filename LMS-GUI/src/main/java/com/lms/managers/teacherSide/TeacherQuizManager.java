@@ -6,7 +6,6 @@ import org.json.JSONObject;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PipedReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
@@ -14,8 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 public class TeacherQuizManager extends ClassroomContentManager {
@@ -51,7 +48,7 @@ public class TeacherQuizManager extends ClassroomContentManager {
                 insertToChoice(choiceID, questionID, choice_text, isCorrect);
             }
         }
-        insertToProgressQuiz("P0001", quizID, 0.00);
+        insertToProgressQuiz("P0001", quizID, null);
         insertToClassroomQuiz(this.classIdToEdit, quizID);
         System.out.println("finished");
     }
@@ -106,7 +103,7 @@ public class TeacherQuizManager extends ClassroomContentManager {
         }
     }
 
-    private static void insertToProgressQuiz(String progress_id, String quiz_id, double score){
+    private static void insertToProgressQuiz(String progress_id, String quiz_id, Double score){
         String quarry = "INSERT INTO progress_quiz (progress_id, quiz_id, score) VALUES (?, ?, ?)";
         try(PreparedStatement statement = conn.prepareStatement(quarry)){
             statement.setString(1, progress_id);

@@ -28,6 +28,17 @@ public class AddGroupController extends MainFrameController {
     public void initialize() {
         generation.getItems().addAll(new EditGenerationManager().loadIdsAndName());
         specialization.getItems().addAll(new EditSpecializationManager().loadIdsAndName());
+        groupId.setText(generation.getItems().get(0) + "-" + specialization.getItems().get(0));
+        generation.setOnMouseClicked(mouseEvent -> {
+            if (generation.getSelectionModel().getSelectedItem() != null) {
+                groupId.setText(generation.getSelectionModel().getSelectedItem() + "-" + specialization.getSelectionModel().getSelectedItem());
+            }
+        });
+        specialization.setOnMouseClicked(mouseEvent -> {
+            if (specialization.getSelectionModel().getSelectedItem() != null) {
+                groupId.setText(generation.getSelectionModel().getSelectedItem() + "-" + specialization.getSelectionModel().getSelectedItem());
+            }
+        });
     }
 
     @FXML
@@ -44,8 +55,7 @@ public class AddGroupController extends MainFrameController {
                 SceneManager.refreshScenes();
                 resetAllFields();
             }
-        }
-        else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText(null);

@@ -11,11 +11,13 @@ import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer2.manage_entity_manager.ManageStudentManager;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditDepartmentManager;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditGenerationManager;
+import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditSpecializationManager;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.utils.CambodiaAdministrative;
 import org.json.JSONObject;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class AddStudentController extends MainFrameController {
     @FXML
@@ -64,6 +66,8 @@ public class AddStudentController extends MainFrameController {
         commune.getItems().clear();
         province.setDisable(false);
         province.getItems().clear();
+        specialization.setDisable(false);
+        specialization.getItems().clear();
 
         province.setVisibleRowCount(4);
         district.setVisibleRowCount(6);
@@ -71,9 +75,21 @@ public class AddStudentController extends MainFrameController {
 
         CambodiaAdministrative cambodia = new CambodiaAdministrative();
 
-        department.getItems().addAll(new EditDepartmentManager().loadIdsAndName());
-        specialization.setEditable(true);
         generation.getItems().addAll(new EditGenerationManager().loadIdsAndName());
+        department.getItems().addAll(new EditDepartmentManager().loadIdsAndName());
+
+        department.setOnAction(e -> {
+            if (department.getSelectionModel().getSelectedItem()!= null) {
+                specialization.getItems().clear();
+                ArrayList<String> filteredSpec = (ArrayList<String>) new EditSpecializationManager().loadIdsAndName()
+                        .stream()
+                        .filter(spec -> spec.split(" ")[0]
+                                .equals(extractId(department.getSelectionModel().getSelectedItem())))
+                        .toList();
+                specialization.getItems().addAll(filteredSpec);
+            }
+        });
+
         province.getItems().addAll(cambodia.getProvinces());
 
         province.setOnAction(event -> {
@@ -113,8 +129,8 @@ public class AddStudentController extends MainFrameController {
             String dis = district.getSelectionModel().getSelectedItem().toString();
             String pro = province.getSelectionModel().getSelectedItem().toString();
             String gener = generation.getSelectionModel().getSelectedItem().toString();
-            String dep = department.getSelectionModel().getSelectedItem().toString();
-            String spec = specialization.getSelectionModel().getSelectedItem().toString();
+            String dep = extractId(department.getSelectionModel().getSelectedItem().toString());
+            String spec = extractId(specialization.getSelectionModel().getSelectedItem().toString());
             String password = confirmPassword.getText();
             String em = email.getText();
 

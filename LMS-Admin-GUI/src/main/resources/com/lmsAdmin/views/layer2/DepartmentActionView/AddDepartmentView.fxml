@@ -24,7 +24,7 @@
                     <children>
                         <ImageView fitHeight="53.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../../../../../out/production/LMS-Admin-GUI/main/resources/com/lmsAdmin/images/menu.png" />
+                                <Image url="@../../../images/menu.png" />
                             </image>
                             <cursor>
                                 <Cursor fx:constant="HAND" />
@@ -38,7 +38,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../../../../../out/production/LMS-Admin-GUI/main/resources/com/lmsAdmin/images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Home">
@@ -61,7 +61,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../../../../../out/production/LMS-Admin-GUI/main/resources/com/lmsAdmin/images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Dashboard">
@@ -85,7 +85,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../../../../../out/production/LMS-Admin-GUI/main/resources/com/lmsAdmin/images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Student">
@@ -111,7 +111,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../../../../../out/production/LMS-Admin-GUI/main/resources/com/lmsAdmin/images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Teacher">
@@ -135,7 +135,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../../../../../out/production/LMS-Admin-GUI/main/resources/com/lmsAdmin/images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Department">
@@ -158,7 +158,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../../../../../out/production/LMS-Admin-GUI/main/resources/com/lmsAdmin/images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Specialization">
@@ -178,7 +178,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../../../../../out/production/LMS-Admin-GUI/main/resources/com/lmsAdmin/images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Generation">
@@ -198,7 +198,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../../../../../out/production/LMS-Admin-GUI/main/resources/com/lmsAdmin/images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Group">
@@ -218,7 +218,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../../../../../out/production/LMS-Admin-GUI/main/resources/com/lmsAdmin/images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Course">
@@ -241,7 +241,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../../../../../out/production/LMS-Admin-GUI/main/resources/com/lmsAdmin/images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Classroom">
@@ -262,7 +262,7 @@
                     <children>
                         <ImageView fitHeight="39.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../../../../../../../out/production/LMS-Admin-GUI/main/resources/com/lmsAdmin/images/Home-icon.png" />
+                                <Image url="@../../../images/Home-icon.png" />
                             </image>
                         </ImageView>
                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Admin">
@@ -336,7 +336,6 @@
                </font>
             </Button>
          </children>
-
         </VBox>
     </center>
     <top>
@@ -346,7 +345,7 @@
                     <children>
                         <ImageView fitHeight="119.0" fitWidth="238.0" layoutX="-1.0" pickOnBounds="true">
                             <image>
-                                <Image url="@../../../../../../../../../out/production/LMS-Admin-GUI/main/resources/com/lmsAdmin/images/banner.png" />
+                                <Image url="@../../../images/banner.png" />
                             </image>
                         </ImageView>
                     </children></Pane>
@@ -354,7 +353,7 @@
                     <children>
                         <ImageView fitHeight="50.0" fitWidth="52.0" layoutX="1017.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="101.0">
                             <image>
-                                <Image url="@../../../../../../../../../out/production/LMS-Admin-GUI/main/resources/com/lmsAdmin/images/avatar.png" />
+                                <Image url="@../../../images/avatar.png" />
                             </image>
                             <effect>
                                 <ColorAdjust brightness="-1.0" />
@@ -365,7 +364,7 @@
                         </ImageView>
                         <ImageView fitHeight="40.0" fitWidth="51.0" layoutX="1090.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="38.0">
                             <image>
-                                <Image url="@../../../../../../../../../out/production/LMS-Admin-GUI/main/resources/com/lmsAdmin/images/logout.png" />
+                                <Image url="@../../../images/logout.png" />
                             </image>
                             <effect>
                                 <ColorAdjust brightness="-1.0" />

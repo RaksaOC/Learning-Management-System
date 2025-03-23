@@ -29,12 +29,18 @@ public class AddSpecializationController extends MainFrameController {
     public void initialize() {
         departmentId.getItems().clear();
         departmentId.getItems().addAll(new EditDepartmentManager().loadIdsAndName());
+        id.setText(departmentId.getItems().getFirst() + "-");
+        departmentId.setOnMouseClicked(e -> {
+            if (departmentId.getSelectionModel().getSelectedItem() != null) {
+                id.setText(departmentId.getSelectionModel().getSelectedItem() + "-");
+            }
+        });
     }
 
     @FXML
     private void handleAdd(MouseEvent event) {
         ManageSpecializationManager manageSpecializationManager = new ManageSpecializationManager();
-        depId = departmentId.getSelectionModel().getSelectedItem().toString().substring(0, departmentId.getSelectionModel().getSelectedItem().toString().indexOf(" "));
+        depId = extractId(departmentId.getSelectionModel().getSelectedItem());
         String n = name.getText();
         String ID = id.getText();
 

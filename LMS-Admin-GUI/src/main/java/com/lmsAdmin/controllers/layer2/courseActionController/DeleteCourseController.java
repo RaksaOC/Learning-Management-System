@@ -1,6 +1,7 @@
 package main.java.com.lmsAdmin.controllers.layer2.courseActionController;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
@@ -10,7 +11,7 @@ import main.java.com.lmsAdmin.managers.layer2.manage_entity_manager.ManageCourse
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditCourseManager;
 import ui.UI;
 
-public class DeleteCourseController extends MainFrameController{
+public class DeleteCourseController extends MainFrameController {
     @FXML
     private ComboBox<String> idComboBox;
     @FXML
@@ -25,23 +26,30 @@ public class DeleteCourseController extends MainFrameController{
             handleDelete();
         });
     }
+
     private void handleDelete() {
+        ManageCourseManager manageCourseManager = new ManageCourseManager();
         selectedLongId = idComboBox.getSelectionModel().getSelectedItem();
+        if (manageCourseManager.isCourseDeletable(extractId(selectedLongId))) {
+            if (isConfirmed()) {
+                manageCourseManager.manageDeleteCourse(extractId(selectedLongId));
 
-        if(isConfirmed()){
-            ManageCourseManager manageCourseManager = new ManageCourseManager();
-            manageCourseManager.manageDeleteCourse(extractId(selectedLongId));
-
-            loadSuccess("deleteCourse");
-            SceneManager.refreshScenes();
-            clearDetails();
-        }
-        else{
-            clearDetails();
+                loadSuccess("deleteCourse");
+                SceneManager.refreshScenes();
+                clearDetails();
+            } else {
+                clearDetails();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("You are not allowed to delete this course");
+            alert.showAndWait();
         }
     }
 
-    private void clearDetails(){
+    private void clearDetails() {
         idComboBox.getSelectionModel().clearSelection();
     }
 }

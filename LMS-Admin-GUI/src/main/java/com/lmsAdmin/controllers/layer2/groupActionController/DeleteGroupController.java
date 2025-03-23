@@ -17,9 +17,10 @@ public class DeleteGroupController extends MainFrameController {
     private String selectedLongId;
     @FXML
     private void handleDelete(MouseEvent event) {
-        selectedLongId = idComboBox.getSelectionModel().getSelectedItem();
-        if (isConfirmed()) {
             ManageGroupManager manageGroupManager = new ManageGroupManager();
+        selectedLongId = idComboBox.getSelectionModel().getSelectedItem();
+        if(manageGroupManager.isGroupDeletable(selectedLongId)){}
+        if (isConfirmed()) {
             manageGroupManager.manageDeleteGroup(selectedLongId);
 
             loadSuccess("deleteGroup");

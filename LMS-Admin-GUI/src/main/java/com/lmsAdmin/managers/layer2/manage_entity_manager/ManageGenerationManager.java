@@ -23,12 +23,12 @@ public class ManageGenerationManager extends ManageEntityManager {
 
     public void manageAddGeneration(String id, String name, String status) {
         String query = "INSERT INTO generation(id, name, status) VALUES (?,?,?)";
-        try (PreparedStatement statement = conn.prepareStatement(query)){
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, id);
             statement.setString(2, name);
             statement.setString(3, status);
             statement.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -36,21 +36,21 @@ public class ManageGenerationManager extends ManageEntityManager {
     public void manageDeleteGeneration(String id) {
         // TODO: add deletion prevention logic
         String query = "UPDATE generation SET status = ? WHERE id = ?";
-        try (PreparedStatement statement = conn.prepareStatement(query)){
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, "inactive");
             statement.setString(2, id);
             statement.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public ObservableList<Map<String, String>> getAllGenerationDetails(){
+    public ObservableList<Map<String, String>> getAllGenerationDetails() {
         ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
         String query = "SELECT * FROM generation";
-        try (PreparedStatement statement = conn.prepareStatement(query)){
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
             ResultSet rs = statement.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 Map<String, String> map = new HashMap<>();
                 map.put("id", rs.getString("id"));
                 map.put("name", rs.getString("name"));
@@ -58,7 +58,7 @@ public class ManageGenerationManager extends ManageEntityManager {
                 data.add(map);
             }
             return data;
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return data;
@@ -67,16 +67,16 @@ public class ManageGenerationManager extends ManageEntityManager {
     public Map<String, String> getGenerationDetails(String id) {
         Map<String, String> map = new HashMap<>();
         String query = "SELECT * FROM generation WHERE id = ?";
-        try(PreparedStatement statement = conn.prepareStatement(query)){
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, id);
             ResultSet rs = statement.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 map.put("id", rs.getString("id"));
                 map.put("name", rs.getString("name"));
                 map.put("status", rs.getString("status"));
             }
             return map;
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return map;
@@ -92,5 +92,23 @@ public class ManageGenerationManager extends ManageEntityManager {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public boolean isGenerationDeletable(String id) {
+        String query = "SELECT COUNT(*) FROM student WHERE generation_id = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, id);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    int count = rs.getInt(1); // Get the count
+                    return count == 0; // Deletable if no students exist
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // Default to false in case of an exception
     }
 }

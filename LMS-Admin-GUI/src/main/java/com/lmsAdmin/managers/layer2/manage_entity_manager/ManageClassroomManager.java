@@ -31,7 +31,6 @@ public class ManageClassroomManager extends ManageEntityManager {
     }
 
     public void manageDeleteClassroom(String id) {
-        // TODO: add cannot delete logic
         String query = "UPDATE classroom SET status = 'inactive' WHERE id = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, id);
@@ -134,4 +133,26 @@ public class ManageClassroomManager extends ManageEntityManager {
             }
         }
     }
+
+    public boolean isClassroomDeletable(String id) {
+        String query = "SELECT COUNT(*) FROM student AS s " +
+                "JOIN student_group AS sg ON s.group_id = sg.id " +
+                "JOIN classroom AS c ON c.group_id = s.group_id " +
+                "WHERE c.id = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, id);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    int count = rs.getInt(1);
+                    return count == 0;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

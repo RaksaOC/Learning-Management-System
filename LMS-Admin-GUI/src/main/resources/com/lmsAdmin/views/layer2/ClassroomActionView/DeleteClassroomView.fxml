@@ -3,8 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -304,27 +304,12 @@
                                         <Font name="Gill Sans Bold" size="19.0" />
                                     </font>
                                 </Label>
-                                <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Classroom ID" fx:id="idField">
-                                    <font>
-                                        <Font size="17.0" />
-                                    </font>
-                                </TextField>
+                        <ComboBox fx:id="idComboBox" maxWidth="1.7976931348623157E308" prefHeight="38.0" prefWidth="1118.0" promptText="Select an ID" />
                             </children>
                         </VBox>
                     </children>
                 </HBox>
-                <Button mnemonicParsing="false" text="Search" fx:id="searchButton" onMouseClicked="#handleSearch">
-                    <font>
-                        <Font name="Gill Sans" size="20.0" />
-                    </font>
-                </Button>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Classroom Info">
-               <font>
-                  <Font name="Gill Sans Bold" size="20.0" />
-               </font>
-            </Text>
-            <VBox prefHeight="200.0" prefWidth="100.0" fx:id="detailsVBox"/>
-            <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Delete" fx:id="deleteButton" onMouseClicked="#handleDelete"/>
+            <Button fx:id="deleteButton" mnemonicParsing="false" onMouseClicked="#handleDelete" style="-fx-background-color: red;" text="Delete" />
             </children>
         </VBox>
     </center>

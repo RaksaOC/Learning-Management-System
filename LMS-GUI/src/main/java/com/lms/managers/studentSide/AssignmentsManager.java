@@ -2,6 +2,7 @@ package main.java.com.lms.managers.studentSide;
 
 import entities.Student;
 import main.AppSession;
+import main.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import ui.UI;
@@ -9,10 +10,15 @@ import ui.UI;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;import java.util.*;
 
 public class AssignmentsManager {
     private Student student;
+    private Connection conn = DatabaseConnection.getInstance().getConnection();
     public AssignmentsManager() {
         AppSession session = AppSession.getInstance();
         this.student = session.getStudent();
@@ -304,4 +310,5 @@ public class AssignmentsManager {
         }
         return null;
     }
+
 }

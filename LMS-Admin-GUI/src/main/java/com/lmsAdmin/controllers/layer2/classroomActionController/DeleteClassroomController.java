@@ -2,7 +2,9 @@ package main.java.com.lmsAdmin.controllers.layer2.classroomActionController;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -10,79 +12,42 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer2.manage_entity_manager.ManageClassroomManager;
+import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditClassroomManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class DeleteClassroomController extends MainFrameController{
+public class DeleteClassroomController extends MainFrameController {
     @FXML
-    private TextField idField;
-    @FXML
-    private Button searchButton;
+    private ComboBox<String> idComboBox;
     @FXML
     private Button deleteButton;
-    @FXML
-    private VBox detailsVBox;
 
-    @FXML
-    private void handleSearch(MouseEvent event) {
-//        createDetails();
+    public void initialize() {
+        idComboBox.getItems().addAll(new EditClassroomManager().loadIds());
     }
 
     @FXML
     private void handleDelete(MouseEvent event) {
-        if(isConfirmed()){
-            ManageClassroomManager manageClassroomManager = new ManageClassroomManager();
-//            manageClassroomManager.manageDeleteEntity(idField.getText());
-
-            loadSuccess("deleteClassroom");
-            clearDetails();
+        ManageClassroomManager manageClassroomManager = new ManageClassroomManager();
+        if (manageClassroomManager.isClassroomDeletable(idComboBox.getValue())) {
+            if (isConfirmed()) {
+                manageClassroomManager.manageDeleteClassroom(idComboBox.getValue());
+                loadSuccess("deleteClassroom");
+                clearDetails();
+            } else {
+                clearDetails();
+            }
         }
         else{
-            clearDetails();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("You are not allowed to delete this classroom");
+            alert.showAndWait();
         }
     }
 
-//    private void createDetails(){
-//        String idToSearch = idField.getText();
-//        ManageClassroomManager manageClassroomManager = new ManageClassroomManager();
-////        JSONObject details = manageClassroomManager.getDetails(idToSearch);
-//        detailsVBox.getChildren().clear();
-//        detailsVBox.setStyle("-fx-background-color: #ebebeb");
-//        Pos center_left = Pos.CENTER_LEFT;
-//        detailsVBox.setAlignment(center_left);
-//        detailsVBox.setSpacing(10);
-//        String id = details.getString("id");
-//        String teacher = details.getString("teacherId");
-//        String course = details.getString("courseId");
-//
-//        JSONArray students = details.getJSONArray("students");
-//
-//        StringBuilder stringBuilder = new StringBuilder();
-//        for (int i = 0; i < students.length(); i++) {
-//            stringBuilder.append(students.getString(i));
-//            if(i != students.length()-1){
-//                stringBuilder.append(",");
-//            }
-//        }
-//        String studentsString = stringBuilder.toString();
-//
-//        Font textFont = Font.font("Gill Sans", 25);
-//
-//        Text idText = new Text("ID: " + id);
-//        Text teacherText = new Text("TeacherId: " + teacher);
-//        Text courseText = new Text("CourseId: " + course);
-//        Text studentText = new Text("Students: " + studentsString);
-//
-//        Text[] textNodes = {idText, teacherText, courseText, studentText};
-//        for (Text text : textNodes) {
-//            text.setFont(textFont);
-//        }
-//
-//        detailsVBox.getChildren().addAll(textNodes);
-//    }
-
-    private void clearDetails(){
-        idField.clear();
-        detailsVBox.getChildren().clear();
+    private void clearDetails() {
+        idComboBox.getSelectionModel().clearSelection();
     }
 }

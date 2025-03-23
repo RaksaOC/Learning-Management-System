@@ -1,6 +1,7 @@
 package main.java.com.lmsAdmin.controllers.layer2.generationActionController;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
@@ -24,18 +25,28 @@ public class DeleteGenerationController extends MainFrameController{
 
     @FXML
     private void handleDelete(MouseEvent event) {
-        selectedLongId = idComboBox.getSelectionModel().getSelectedItem();
-        if(isConfirmed()){
             ManageGenerationManager manageGenerationManager = new ManageGenerationManager();
-            manageGenerationManager.manageDeleteGeneration(extractId(selectedLongId));
+        selectedLongId = idComboBox.getSelectionModel().getSelectedItem();
+        if (manageGenerationManager.isGenerationDeletable(extractId(selectedLongId))) {
+            if(isConfirmed()){
+                manageGenerationManager.manageDeleteGeneration(extractId(selectedLongId));
 
-            loadSuccess("deleteGeneration");
-            SceneManager.refreshScenes();
-            clearDetails();
+                loadSuccess("deleteGeneration");
+                SceneManager.refreshScenes();
+                clearDetails();
+            }
+            else{
+                clearDetails();
+            }
         }
         else{
-            clearDetails();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText(null);
+            alert.setContentText("You are not allowed to delete this generation");
+            alert.showAndWait();
         }
+
     }
 
     private void clearDetails(){

@@ -98,4 +98,23 @@ public class ManageSpecializationManager extends ManageEntityManager {
         return false;
     }
 
+    public boolean isSpecializationDeletable(String id) {
+        String query = "SELECT COUNT(*) FROM student WHERE specialization_id = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, id);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    int count = rs.getInt(1); // Get the count
+                    return count == 0; // Deletable if no students exist
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // Default to false in case of an exception
+
+    }
+
 }

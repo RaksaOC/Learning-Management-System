@@ -308,7 +308,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter First Name" fx:id="firstName">
+                        <TextField fx:id="firstName" prefHeight="48.0" prefWidth="502.0" promptText="Enter First Name">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -322,7 +322,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="48.0" prefWidth="501.0" promptText="Enter Last Name" fx:id="lastName">
+                        <TextField fx:id="lastName" prefHeight="48.0" prefWidth="501.0" promptText="Enter Last Name">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -340,7 +340,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <DatePicker editable="false" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" fx:id="dob"/>
+                        <DatePicker fx:id="dob" editable="false" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" />
                      </children>
                   </VBox>
                    <VBox prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
@@ -350,7 +350,7 @@
                                    <Font name="Gill Sans Bold" size="19.0" />
                                </font>
                            </Label>
-                           <ComboBox maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Gender" visibleRowCount="3" fx:id="gender">
+                           <ComboBox fx:id="gender" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Gender" visibleRowCount="3">
                                <items>
                                    <FXCollections fx:factory="observableArrayList">
                                        <String fx:value="Male" />
@@ -368,7 +368,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="48.0" prefWidth="501.0" promptText="Enter Phone Number" fx:id="phoneNumber">
+                        <TextField fx:id="phoneNumber" prefHeight="48.0" prefWidth="501.0" promptText="Enter Phone Number">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -386,7 +386,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter First Name" fx:id="guardianFirstName">
+                        <TextField fx:id="guardianFirstName" prefHeight="48.0" prefWidth="502.0" promptText="Enter First Name">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -400,7 +400,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Last Name" fx:id="guardianLastName">
+                        <TextField fx:id="guardianLastName" prefHeight="48.0" prefWidth="502.0" promptText="Enter Last Name">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -414,7 +414,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <ComboBox maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Gender" visibleRowCount="3" fx:id="guardianGender">
+                        <ComboBox fx:id="guardianGender" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Gender" visibleRowCount="3">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Male" />
@@ -432,7 +432,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="48.0" prefWidth="501.0" promptText="Enter Phone Number" fx:id="guardianPhoneNumber">
+                        <TextField fx:id="guardianPhoneNumber" prefHeight="48.0" prefWidth="501.0" promptText="Enter Phone Number">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -443,14 +443,14 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <VBox prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                  <VBox prefHeight="100.0" prefWidth="500.0" spacing="20.0">
                      <children>
-                        <Label text="Commune">
+                        <Label text="Province/City">
                            <font>
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <ComboBox editable="true" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Commune" visibleRowCount="3" fx:id="commune">
+                        <ComboBox fx:id="province" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a province/city" visibleRowCount="3">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Male" />
@@ -468,7 +468,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <ComboBox editable="true" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a district" visibleRowCount="3" fx:id="district">
+                        <ComboBox fx:id="district" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a district" visibleRowCount="3">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Male" />
@@ -479,14 +479,14 @@
                         </ComboBox>
                      </children>
                   </VBox>
-                  <VBox prefHeight="100.0" prefWidth="500.0" spacing="20.0">
+                  <VBox prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label text="Province/City">
+                        <Label text="Commune">
                            <font>
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <ComboBox editable="true" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a province/city" visibleRowCount="3" fx:id="province">
+                        <ComboBox fx:id="commune" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Commune" visibleRowCount="3">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Male" />
@@ -508,7 +508,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <ComboBox maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Generation" fx:id="generation">
+                        <ComboBox fx:id="generation" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Generation">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Male" />
@@ -526,7 +526,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <ComboBox maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Department" fx:id="department">
+                        <ComboBox fx:id="department" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Department">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Male" />
@@ -544,7 +544,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <ComboBox maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Specialization" fx:id="specialization">
+                        <ComboBox fx:id="specialization" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Specialization">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Male" />
@@ -566,7 +566,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Email" fx:id="email">
+                        <TextField fx:id="email" prefHeight="48.0" prefWidth="502.0" promptText="Enter Email">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -580,7 +580,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="48.0" prefWidth="502.0" promptText="Enter Password" fx:id="password">
+                        <TextField fx:id="password" prefHeight="48.0" prefWidth="502.0" promptText="Enter Password">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -594,7 +594,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="48.0" prefWidth="501.0" promptText="Enter Password Confirm" fx:id="confirmPassword">
+                        <TextField fx:id="confirmPassword" prefHeight="48.0" prefWidth="501.0" promptText="Enter Password Confirm">
                            <font>
                               <Font size="17.0" />
                            </font>
@@ -603,7 +603,7 @@
                   </VBox>
                </children>
             </HBox>
-            <Button mnemonicParsing="false" text="Add Student" onMouseClicked="#handleAdd" fx:id="addButton">
+            <Button fx:id="addButton" mnemonicParsing="false" onMouseClicked="#handleAdd" text="Add Student">
                <font>
                   <Font name="Gill Sans" size="20.0" />
                </font>

@@ -93,11 +93,13 @@ CREATE TABLE progress (
     FOREIGN KEY (classroom_id) REFERENCES classroom(id) ON DELETE CASCADE
 );
 
+
 CREATE TABLE progress_assignment (
     progress_id VARCHAR(10),
     assignment_id VARCHAR(10),
     score DECIMAL CHECK (score >= 0 AND score <= 100),
     sub_attachment VARCHAR(500),
+    status ENUM('active', 'inactive') NOT NULL,
     FOREIGN KEY (progress_id) REFERENCES progress(id) ON UPDATE CASCADE,
     FOREIGN KEY (assignment_id) REFERENCES assignment(id) ON UPDATE CASCADE
 );
@@ -105,6 +107,7 @@ CREATE TABLE progress_assignment (
 CREATE TABLE progress_material (
     progress_id VARCHAR(10),
     material_id VARCHAR(10),
+    status ENUM('active', 'inactive') NOT NULL,
     FOREIGN KEY (progress_id) REFERENCES progress(id) ON UPDATE CASCADE,
     FOREIGN KEY (material_id) REFERENCES material(id) ON UPDATE CASCADE
 );
@@ -112,6 +115,7 @@ CREATE TABLE progress_material (
 CREATE TABLE progress_quiz (
     progress_id VARCHAR(10),
     quiz_id VARCHAR(10),
+    status ENUM('active', 'inactive') NOT NULL,
     FOREIGN KEY (progress_id) REFERENCES progress(id) ON UPDATE CASCADE,
     FOREIGN KEY (quiz_id) REFERENCES quiz(id) ON UPDATE CASCADE
 );

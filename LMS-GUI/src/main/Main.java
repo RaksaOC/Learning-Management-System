@@ -18,7 +18,9 @@ public class Main {
         answerList.add(4);
         answerList.add(3);
         answerList.add(4);
-        k.manageDoQuizSql("S000001", 1, answerList);
+        System.out.println(k.manageDisplayQuizSql("S000001"));
+        System.out.println(k.displayChosenQuiz(1,"S000001"));
+        k.submitAndCheckAnswer(k.displayChosenQuiz(1,"S000001"), "S000001", 1,answerList);
 
 
 

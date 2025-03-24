@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class TeacherQuizManager extends ClassroomContentManager {
@@ -63,6 +64,147 @@ public class TeacherQuizManager extends ClassroomContentManager {
 
     public void manageViewQuiz(){
 
+    }
+
+    private ArrayList<Map<String, String>> returnQuizSql() {
+        String progressQuery = "SELECT id, title, description FROM quiz";
+        ArrayList<String> progressIDList = new ArrayList<>();
+
+        try (PreparedStatement statement = conn.prepareStatement(progressQuery)) {
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) { // Fetch all progress IDs
+                progressIDList.add(rs.getString("id"));
+            }
+
+            if (progressIDList.isEmpty()) {
+                System.out.println("No progress found for student.");
+                return new ArrayList<>();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+
+        return null;
+    }
+
+    private ArrayList<ArrayList<Map<String, String>>> returnTitleAndDescriptionForStudentToChoose(ArrayList<String> quizIDList) {
+        ArrayList<ArrayList<Map<String, String>>> titleAndDescriptionList = new ArrayList<>();
+        StringBuilder quizQuery = new StringBuilder("SELECT title, description FROM quiz WHERE id IN (");
+        for (int i = 0; i < quizIDList.size(); i++) {
+            quizQuery.append("?");
+            if (i < quizIDList.size() - 1) {
+                quizQuery.append(", ");
+            }
+        }
+        quizQuery.append(")");
+
+        try (PreparedStatement statement = conn.prepareStatement(quizQuery.toString())) {
+            for (int i = 0; i < quizIDList.size(); i++) {
+                statement.setString(i + 1, quizIDList.get(i)); // Set each progress_id
+            }
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                Map<String, String> titleOrDescription = new HashMap<>();
+                ArrayList<Map<String, String>> titleAndDescription = new ArrayList<>();
+                titleOrDescription.put("title", rs.getString("title"));
+                titleOrDescription.put("description", rs.getString("description"));
+                titleAndDescription.add(titleOrDescription);
+                titleAndDescriptionList.add(titleAndDescription);
+            }
+
+            if (titleAndDescriptionList.isEmpty()) {
+                System.out.println("No data from title and description");
+            } else {
+                return titleAndDescriptionList;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private ArrayList<Map<String, Object>> returnQuestionsAndItsChoices(String chosenQuizID) {
+        ArrayList<Map<String, Object>> questionsAndItsChoicesList = new ArrayList<>();
+        String questionQuery = "select title, id from question where quiz_id=?";
+        ArrayList<String> questionList = new ArrayList<>();
+        ArrayList<String> idList = new ArrayList<>();
+
+        try (PreparedStatement statement = conn.prepareStatement(questionQuery)) {
+            statement.setString(1, chosenQuizID);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                questionList.add(rs.getString("title"));
+                idList.add(rs.getString("id"));
+            }
+
+            if (questionList.isEmpty() || idList.isEmpty()) {
+                System.out.println("No id and title");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        StringBuilder choiceQuery = new StringBuilder("SELECT question_id, choice_text, isCorrect FROM choice WHERE question_id IN (");
+        for (int i = 0; i < idList.size(); i++) {
+            choiceQuery.append("?");
+            if (i < idList.size() - 1) {
+                choiceQuery.append(", ");
+            }
+        }
+        choiceQuery.append(")");
+
+        ArrayList<ArrayList<Map<String, Object>>> choicesList = new ArrayList<>();
+        ArrayList<Map<String, Object>> choicesWithValue = new ArrayList<>();
+        String currentID = idList.get(0);  // Initialize currentID to the first element in the list
+
+        try (PreparedStatement statement = conn.prepareStatement(choiceQuery.toString())) {
+            for (int i = 0; i < idList.size(); i++) {
+                statement.setString(i + 1, idList.get(i)); // Set each question_id from the idList
+            }
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                String questionID = rs.getString("question_id");
+
+                // If the current question ID has changed, we need to save the previous choices and reset the list
+                if (!currentID.equals(questionID)) {
+                    choicesList.add(new ArrayList<>(choicesWithValue));  // Add the collected choices for the previous question
+                    choicesWithValue.clear();  // Reset the choices list for the new question
+                    currentID = questionID;  // Update the current question ID
+                }
+
+                // Create a new map for each choice
+                Map<String, Object> choiceOrValue = new HashMap<>();
+                choiceOrValue.put("choice_text", rs.getString("choice_text"));
+                choiceOrValue.put("isCorrect", rs.getString("isCorrect"));
+
+                choicesWithValue.add(choiceOrValue);  // Add the choice to the current question's list
+            }
+
+            // Add the last question's choices after the loop ends
+            if (!choicesWithValue.isEmpty()) {
+                choicesList.add(new ArrayList<>(choicesWithValue));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Now, combine the question titles and choices into a final list of maps
+        for (int i = 0; i < questionList.size(); i++) {
+            Map<String, Object> qAndC = new HashMap<>();
+            qAndC.put("title", questionList.get(i));
+            qAndC.put("choices", choicesList.get(i));
+            questionsAndItsChoicesList.add(qAndC);
+        }
+
+        return questionsAndItsChoicesList;
     }
 
     private static void insertToQuiz(String id, String title, String description, String status){

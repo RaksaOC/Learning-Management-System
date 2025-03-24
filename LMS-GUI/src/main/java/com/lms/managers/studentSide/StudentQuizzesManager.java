@@ -30,12 +30,22 @@ public class StudentQuizzesManager {
     // ========================================
 
     // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
-    public void manageDoQuizSql(String studentID, int quizIndexToDo, ArrayList<Integer> answerList) {
-        ArrayList<String> quizzesIDFromSQL = returnQuizSql(studentID); // this one return the quiz id list from progress
-        ArrayList<ArrayList<Map<String, String>>> titleAndDescriptionList = returnTitleAndDescriptionForStudentToChoose(quizzesIDFromSQL); // this one returns the title and description of the quiz.
-        ArrayList<Map<String, Object>> questionsAndChoices = returnQuestionsAndItsChoices(quizzesIDFromSQL.get(quizIndexToDo - 1)); // this one returns the questions based on the quiz that the student chose. each question has its choices
 
-        // Create a list to store the correct choices for each question
+
+    public ArrayList<ArrayList<Map<String, String>>> manageDisplayQuizSql(String studentID) {
+        ArrayList<String> quizzesIDFromSQL = returnQuizSql(studentID);
+        ArrayList<ArrayList<Map<String, String>>> titleAndDescriptionList = returnTitleAndDescriptionForStudentToChoose(quizzesIDFromSQL);
+        return titleAndDescriptionList;
+    }
+
+    public ArrayList<Map<String, Object>> displayChosenQuiz(int quizIndexToDo, String studentID){
+        ArrayList<String> quizzesIDFromSQL = returnQuizSql(studentID);
+        ArrayList<Map<String, Object>> questionsAndChoices = returnQuestionsAndItsChoices(quizzesIDFromSQL.get(quizIndexToDo - 1)); // this one returns the questions based on the quiz that the student chose. each question has its choices
+        return questionsAndChoices;
+    }
+
+    public void submitAndCheckAnswer( ArrayList<Map<String, Object>> questionsAndChoices,String studentID, int quizIndexToDo, ArrayList<Integer> answerList){
+        ArrayList<String> quizzesIDFromSQL = returnQuizSql(studentID);
         ArrayList<ArrayList<Boolean>> answerToCheckWithStudentsAnswer = new ArrayList<>();
 
         for (Map<String, Object> questionAndChoice : questionsAndChoices) {
@@ -58,11 +68,7 @@ public class StudentQuizzesManager {
             // Add the list of correct choices to the final answer list
             answerToCheckWithStudentsAnswer.add(correctChoices);
         }
-        System.out.println(answerList);
-        System.out.println(answerToCheckWithStudentsAnswer);
         checkAnswerSql(answerToCheckWithStudentsAnswer, answerList, quizzesIDFromSQL.get(quizIndexToDo - 1));
-
-
     }
 
     private ArrayList<String> returnQuizSql(String studentID) {
@@ -247,6 +253,7 @@ public class StudentQuizzesManager {
                 score++;
             }
         }
+        System.out.println(score);
         try(PreparedStatement statement = conn.prepareStatement(quarry)){
             statement.setDouble(1, score);
             statement.setString(2, chosenQuizID);
@@ -256,9 +263,7 @@ public class StudentQuizzesManager {
         }
     }
 
-    public int getAllQuizScoreSql() {
-        return 0;
-    }
+
 
 
     // ========================================

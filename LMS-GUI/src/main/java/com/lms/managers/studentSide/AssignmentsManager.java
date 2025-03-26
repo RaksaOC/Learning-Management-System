@@ -10,170 +10,198 @@ import ui.UI;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.SimpleDateFormat;import java.util.*;
+import java.util.Date;
 
 public class AssignmentsManager {
     private Student student;
-    private Connection conn = DatabaseConnection.getInstance().getConnection();
+    private Connection conn;
     public AssignmentsManager() {
         AppSession session = AppSession.getInstance();
         this.student = session.getStudent();
+        this.conn = DatabaseConnection.getInstance().getConnection();
     }
 
     // ========================================
     // SQL-RELATED METHODS
     // ========================================
 
-    // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public Map<String, String> getAllAssignments() {
-        Map<String, String> id_name_classroom = new HashMap<>();
-        String query = "SELECT CONCAT(a.id, ' - ' ,a.title) AS id_name, " +
-                "p.classroom_id as class_id  " +
-                "FROM progress_assignment as pa " +
-                "JOIN progress AS p " +
-                "ON pa.progress_id = p.id AND p.student_id = ? " +
-                "JOIN assignment AS a " +
-                "ON pa.assignment_id = p.id ";
-        try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setString(1, AppSession.getInstance().getStudent().getId());
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                id_name_classroom.put("id_name", rs.getString("id_name"));
-                id_name_classroom.put("class_id", rs.getString("class_id"));
-            }
-        } catch (SQLException e) {
+    public void manageSubmitAssignment(String sub_attachment){
+        String query = "UPDATE progress_assignment pa " +
+                "JOIN progress p on pa.progress_id = p.id " +
+                "SET pa.status = 'inactive' AND pa.sub_attachment = ? " +
+                "WHERE p.student_id = ? AND pa.assignment_id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, sub_attachment);
+            statement.setString(2, student.getId());
+            statement.setString(3, AppSession.getInstance().getSelectedAssignment());
+            statement.executeUpdate();
+        }catch (SQLException e) {
             e.printStackTrace();
         }
-        return id_name_classroom;
     }
 
-    public Map<String, String> getClassroomAssignments() {
-        Map<String, String> id_name_classroom = new HashMap<>();
-        String query = "SELECT CONCAT(a.id, ' - ', a.title) AS id_name, p.classroom_id as class_id " +
-                "FROM progress_assignment as pa " +
-                "JOIN progress AS p " +
-                "ON pa.progress_id = p.id " +
-                "JOIN assignment AS a " +
-                "ON pa.assignment_id = a.id " + // Changed from 'q' to 'a'
-                "WHERE p.classroom_id = ? AND p.student_id = ? ";
-        try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setString(1, AppSession.getInstance().getSelectedClassroom());
-            statement.setString(2, AppSession.getInstance().getStudent().getId());
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                id_name_classroom.put("id_name", rs.getString("id_name"));
-                id_name_classroom.put("class_id", rs.getString("class_id"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return id_name_classroom;
-    }
-
-    // ========================================
-    // JSON-RELATED METHODS
-    // ========================================
-
-    // Load all classrooms from classroom.json
-    public JSONArray loadClassroom() {
-        try {
-            String filePath = "shared/data/classroom.json";
-            String contents = new String(Files.readAllBytes(Paths.get(filePath)));
-
-            return new JSONArray(contents);
-        } catch (IOException e) {
-            System.err.println("Error loading classrooms: " + e.getMessage());
-            return new JSONArray();  // Return empty array instead of null
-        }
-    }
-
-    public JSONArray getAssignments(String classroomId) {
-        JSONArray allClass = loadClassroom(); // Load classrooms
-        // Loop through the classrooms to find the matching classroom ID
-        for (int i = 0; i < allClass.length(); i++) {
-            JSONObject classToEdit = allClass.getJSONObject(i);
-
-            // Check if the classroom ID matches the selected classroomId
-            if (classToEdit.getString("id").equals(classroomId)) {
-                // If assignments exist, return them
-                JSONArray assignments = classToEdit.optJSONArray("assignments");
-                if (assignments != null && assignments.length() > 0) {
-                    return assignments;
-                }
-            }
-        }
-        return new JSONArray(); // Return empty array if no assignments are found
-    }
-
-    // Display all titles and allow the user to select an assignment by ID
-    public String selectAssignmentTitle(String classroomId) {
-        JSONArray allAssignments = getAssignments(classroomId); // Get filtered assignments
-
-        if (allAssignments.length() == 0) {
-            System.out.println("No assignments available for this classroom.");
-            return null; // Return null if no assignments
-        }
-
-        System.out.println("\nAvailable Assignments:");
-        for (int i = 0; i < allAssignments.length(); i++) {
-            JSONObject assignment = allAssignments.getJSONObject(i);
-            System.out.println(assignment.getString("id") + " - " + assignment.getString("title")); // Show ID & title
-        }
-
-//        return Menu.prompt("Enter Assignment ID to select: ");
-        return "";
-    }
+//    // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
+//
+//    public JSONArray getAssignmentSql (String classroomId) {
+//        JSONArray assignments = new JSONArray();
+//        String sql = "Select id, title, description, deadline, status FROM assignments " +
+//                "WHERE classroom_id = ?";
+//
+//        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+//            stmt.setString(1, classroomId);;
+//            ResultSet rs = stmt.executeQuery();
+//
+//            while (rs.next()) {
+//                JSONObject assignment = new JSONObject();
+//                assignment.put("id", rs.getString("id"));
+//                assignment.put("title", rs.getString("title"));
+//                assignment.put("description", rs.getString("description"));
+//                assignment.put("deadline" , rs.getString("deadline"));
+//                assignment.put("status", rs.getString("status"));
+//                assignments.put(assignment);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return assignments;
+//    }
+//
+//    // Get details of a specific assignment
+//    public JSONObject getAssignmentDetailsSql(String assignmentId) {
+//        JSONObject assignment = new JSONObject();
+//        String sql = "SELECT id, title, description, deadline, status FROM assignments WHERE id = ?";
+//
+//        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+//            stmt.setString(1, assignmentId);
+//            ResultSet rs = stmt.executeQuery();
+//
+//            if (rs.next()) {
+//                assignment.put("id", rs.getString("id"));
+//                assignment.put("title", rs.getString("title"));
+//                assignment.put("description", rs.getString("description"));
+//                assignment.put("deadline", rs.getString("deadline"));
+//                assignment.put("status", rs.getString("status"));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return assignment;
+//    }
+//
+//    // Save or update an assignment submission
+//    public void saveSubmissionSql(String studentId, String assignmentId, String classroomId, String submissionText) {
+//        String sql = "INSERT INTO submissions (student_id, assignment_id, classroom_id, submission_text, status, timestamp) VALUES (?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE submission_text = ?, status = ?, timestamp = ?";
+//
+//        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+//            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+//
+//            stmt.setString(1, studentId);
+//            stmt.setString(2, assignmentId);
+//            stmt.setString(3, classroomId);
+//            stmt.setString(4, submissionText);
+//            stmt.setString(5, "submitted");
+//            stmt.setTimestamp(6, timestamp);
+//            stmt.setString(7, submissionText);
+//            stmt.setString(8, "resubmitted");
+//            stmt.setTimestamp(9, timestamp);
+//
+//            stmt.executeUpdate();
+//            System.out.println("Assignment submitted successfully!");
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//
+//    // View all submitted assignments for a student
+//    public void viewSubmittedAssignmentsSql(String studentId) {
+//        String sql = "SELECT assignment_id, status, timestamp FROM submissions WHERE student_id = ?";
+//
+//        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+//            stmt.setString(1, studentId);
+//            ResultSet rs = stmt.executeQuery();
+//
+//            System.out.println("\nYour Submitted Assignments:");
+//            while (rs.next()) {
+//                System.out.println("Assignment ID: " + rs.getString("assignment_id") +
+//                        ", Status: " + rs.getString("status") +
+//                        ", Submitted on: " + rs.getTimestamp("timestamp"));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//
+//
+//    // ========================================
+//    // JSON-RELATED METHODS
+//    // ========================================
+//
+//    // Load all classrooms from classroom.json
+//    public JSONArray loadClassroom() {
+//        try {
+//            String filePath = "shared/data/classroom.json";
+//            String contents = new String(Files.readAllBytes(Paths.get(filePath)));
+//
+//            return new JSONArray(contents);
+//        } catch (IOException e) {
+//            System.err.println("Error loading classrooms: " + e.getMessage());
+//            return new JSONArray();  // Return empty array instead of null
+//        }
+//    }
+//
+//    public JSONArray getAssignments(String classroomId) {
+//        JSONArray allClass = loadClassroom(); // Load classrooms
+//        // Loop through the classrooms to find the matching classroom ID
+//        for (int i = 0; i < allClass.length(); i++) {
+//            JSONObject classToEdit = allClass.getJSONObject(i);
+//
+//            // Check if the classroom ID matches the selected classroomId
+//            if (classToEdit.getString("id").equals(classroomId)) {
+//                // If assignments exist, return them
+//                JSONArray assignments = classToEdit.optJSONArray("assignments");
+//                if (assignments != null && assignments.length() > 0) {
+//                    return assignments;
+//                }
+//            }
+//        }
+//        return new JSONArray(); // Return empty array if no assignments are found
+//    }
+//
+//    // Display all titles and allow the user to select an assignment by ID
+//    public String selectAssignmentTitle(String classroomId) {
+//        JSONArray allAssignments = getAssignments(classroomId); // Get filtered assignments
+//
+//        if (allAssignments.length() == 0) {
+//            System.out.println("No assignments available for this classroom.");
+//            return null; // Return null if no assignments
+//        }
+//
+//        System.out.println("\nAvailable Assignments:");
+//        for (int i = 0; i < allAssignments.length(); i++) {
+//            JSONObject assignment = allAssignments.getJSONObject(i);
+//            System.out.println(assignment.getString("id") + " - " + assignment.getString("title")); // Show ID & title
+//        }
+//
+////        return Menu.prompt("Enter Assignment ID to select: ");
+//        return "";
+//    }
 
     // To get each Assignment details after selected
-    public JSONObject getAssignmentDetails(String classroomId, String assignmentId) {
-        JSONArray allAssignments = getAssignments(classroomId); // Get all assignments for the classroom
-
-        for (int i = 0; i < allAssignments.length(); i++) {
-            JSONObject assignment = allAssignments.getJSONObject(i);
-            if (assignment.getString("id").equals(assignmentId)) {
-                return assignment; // Return the found assignment
-            }
-        }
-        return null; // Return null if the assignment isn't found
-    }
+//    public JSONObject getAssignmentDetails(String classroomId, String assignmentId) {
+//        JSONArray allAssignments = getAssignments(classroomId); // Get all assignments for the classroom
+//
+//        for (int i = 0; i < allAssignments.length(); i++) {
+//            JSONObject assignment = allAssignments.getJSONObject(i);
+//            if (assignment.getString("id").equals(assignmentId)) {
+//                return assignment; // Return the found assignment
+//            }
+//        }
+//        return null; // Return null if the assignment isn't found
+//    }
 
     // Display assignment details
     public void displayAssignmentDetails(JSONObject assignment) {
@@ -307,8 +335,7 @@ public class AssignmentsManager {
     }
 
 //    public HashMap<String, String> getAllAssignments(){
-////        JSONObject progress = student.getProgress();
-//        JSONObject progress = new JSONObject();
+//        JSONObject progress = student.getProgress();
 //
 //        ArrayList<String> progressIds = new ArrayList<>();
 //        Iterator<String> iterator = progress.keys();
@@ -351,5 +378,4 @@ public class AssignmentsManager {
         }
         return null;
     }
-
 }

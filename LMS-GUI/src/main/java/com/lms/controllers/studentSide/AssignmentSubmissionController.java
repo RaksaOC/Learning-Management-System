@@ -14,13 +14,15 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.AppSession;
 import main.SceneManager;
+import main.java.com.lms.managers.studentSide.AssignmentsManager;
 import ui.UI;
 
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class AssignmentSubmissionController {
-    AppSession session = AppSession.getInstance();
+    private AssignmentsManager assignmentsManager;
+    private AppSession session = AppSession.getInstance();
     @FXML
     private ImageView backButton;
     @FXML
@@ -51,13 +53,16 @@ public class AssignmentSubmissionController {
         assId.setText(session.getSelectedAssignment());
         // TODO: add managers to fetch the deadline title
         // TODO: fetch the ref name and add handler when attach
+        AtomicReference<String> link = null;
         attach.setOnMouseClicked(event -> {
-            String link = showInputDialog();
+            link.set(showInputDialog());
             attachmentWrapper.getChildren().clear();
-            attachmentWrapper.getChildren().add(attachCard(link, ""));
+            attachmentWrapper.getChildren().add(attachCard(link.get(), ""));
         });
 
-        
+        submit.setOnMouseClicked(event -> {
+            assignmentsManager.manageSubmitAssignment(link.get());
+        });
 
     }
 

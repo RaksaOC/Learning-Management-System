@@ -6,7 +6,6 @@ import main.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -18,10 +17,12 @@ import java.util.*;
 
 public class ResourcesManager {
     private Student student;
-    private Connection conn = DatabaseConnection.getInstance().getConnection();
+    private Connection conn;
+
     public ResourcesManager() {
         AppSession session = AppSession.getInstance();
         this.student = session.getStudent();
+        this.conn = DatabaseConnection.getInstance().getConnection();
     }
 
     // ========================================
@@ -30,77 +31,107 @@ public class ResourcesManager {
 
     // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
 
+    public void manageViewResource() {
+        String query = "UPDATE progress_material pr " +
+                "JOIN progress p ON pr.progress_id = p.id " +
+                "SET pr.status = 'inactive' " +
+                "WHERE p.student_id = ? and pr.material_id = ?";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public Map<String, String> getAllResources() {
-        Map<String, String> id_name_classroom = new HashMap<>();
-        String query = "SELECT CONCAT(m.id, ' - ' ,m.title) AS id_name, " +
-                "p.classroom_id as class_id  " +
-                "FROM progress_material as pm " +
-                "JOIN progress AS p " +
-                "ON pm.progress_id = p.id AND p.student_id = ? " +
-                "JOIN material AS m " +
-                "ON pm.material_id = m.id ";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setString(1, AppSession.getInstance().getStudent().getId());
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                id_name_classroom.put("id_name", rs.getString("id_name"));
-                id_name_classroom.put("class_id", rs.getString("class_id"));
-            }
+            statement.setString(1, student.getId());
+            statement.setString(2, AppSession.getInstance().getSelectedResources());
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return id_name_classroom;
-    }
-
-    public Map<String, String> getClassroomResources() {
-        Map<String, String> id_name_classroom = new HashMap<>();
-        String query = "SELECT CONCAT(m.id, ' - ', m.title) AS id_name, p.classroom_id as class_id " +
-                "FROM progress_material as pm " + // Changed to progress_material
-                "JOIN progress AS p " +
-                "ON pm.progress_id = p.id " +
-                "JOIN material AS m " + // Changed to material
-                "ON pm.material_id = m.id " + // Fixed incorrect join condition
-                "WHERE p.classroom_id = ? AND p.student_id = ? ";
-        try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setString(1, AppSession.getInstance().getSelectedClassroom());
-            statement.setString(2, AppSession.getInstance().getStudent().getId());
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                id_name_classroom.put("id_name", rs.getString("id_name"));
-                id_name_classroom.put("class_id", rs.getString("class_id"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return id_name_classroom;
     }
 
 
 
-
-
-
-
+//    // Load resources from SQL database
+//    public List<String> loadResourceSql(String classroomId) {
+//        List<String> resourceWeeks = new ArrayList<>();
+//        String query = "SELECT DISTINCT resourceWeek FROM resources WHERE classroomId = ?";
+//
+//        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+//            stmt.setString(1, classroomId);
+//            ResultSet rs = stmt.executeQuery();
+//
+//            while (rs.next()) {
+//                resourceWeeks.add(rs.getString("resourceWeek"));
+//            }
+//        } catch (SQLException e) {
+//            System.err.println("Error loading resources: " + e.getMessage());
+//        }
+//        return resourceWeeks;
+//    }
+//
+//    public void displayResourcesByWeekSql(String classroomId) {
+//        List<String> resourceWeeks = loadResourceSql(classroomId);
+//
+//        if (resourceWeeks.isEmpty()) {
+//            System.out.println("No resources available.");
+//            return;
+//        }
+//
+//        System.out.println("\nAvailable Resource Weeks:");
+//        for (int i = 0; i < resourceWeeks.size(); i++) {
+//            System.out.println((i + 1) + ". " + resourceWeeks.get(i));
+//        }
+//
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.print("\nEnter Resource Week to view contents: ");
+//        String selectedWeek = scanner.nextLine().trim();
+//
+//        displayContentsByWeekSql(classroomId, selectedWeek);
+//    }
+//
+//    public void displayContentsByWeekSql(String classroomId, String selectedWeek) {
+//        String query = "SELECT id, title, description, attachment FROM resources WHERE classroomId = ? AND resourceWeek = ?";
+//
+//        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+//            stmt.setString(1, classroomId);
+//            stmt.setString(2, selectedWeek);
+//            ResultSet rs = stmt.executeQuery();
+//
+//            if (!rs.isBeforeFirst()) {
+//                System.out.println("No resources found for " + selectedWeek);
+//                return;
+//            }
+//
+//            System.out.println("\nContents for " + selectedWeek + ":");
+//            while (rs.next()) {
+//                System.out.println("ID: " + rs.getString("id") + " - " + rs.getString("title"));
+//            }
+//
+//            Scanner scanner = new Scanner(System.in);
+//            System.out.print("\nEnter Resource ID to view details: ");
+//            String selectedResourceId = scanner.nextLine().trim();
+//
+//            displayResourceDetailsSql(selectedResourceId);
+//        } catch (SQLException e) {
+//            System.err.println("Error displaying contents: " + e.getMessage());
+//        }
+//    }
+//
+//    public void displayResourceDetailsSql(String resourceId) {
+//        String query = "SELECT title, description, attachment FROM resources WHERE id = ?";
+//
+//        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+//            stmt.setString(1, resourceId);
+//            ResultSet rs = stmt.executeQuery();
+//
+//            if (rs.next()) {
+//                System.out.println("\nTitle: " + rs.getString("title"));
+//                System.out.println("Description: " + rs.getString("description"));
+//                System.out.println("Attachment: " + rs.getString("attachment"));
+//            } else {
+//                System.out.println("Resource not found.");
+//            }
+//        } catch (SQLException e) {
+//            System.err.println("Error retrieving resource details: " + e.getMessage());
+//        }
+//    }
 
     // ========================================
     // JSON-RELATED METHODS
@@ -219,9 +250,8 @@ public class ResourcesManager {
 
     // Rasa Front end related functions -----------------------------------------------------------------------------------------------
 
-//    public HashMap<String, String> getAllResources(){
-////        JSONObject progress = student.getProgress();
-//        JSONObject progress = new JSONObject();
+//    public HashMap<String, String> getAllResources() {
+//        JSONObject progress = student.getProgress();
 //
 //        ArrayList<String> progressIds = new ArrayList<>();
 //        Iterator<String> iterator = progress.keys();
@@ -239,7 +269,7 @@ public class ResourcesManager {
 //        return allResources;
 //    }
 
-    private JSONArray getAllStudentProgress(List<String> progressIds){
+    private JSONArray getAllStudentProgress(List<String> progressIds) {
         JSONArray allProgress = loadProgress();
         JSONArray studentProgress = new JSONArray();
         for (int i = 0; i < progressIds.size(); i++) {
@@ -252,11 +282,11 @@ public class ResourcesManager {
         return studentProgress;
     }
 
-    private JSONArray loadProgress(){
-        try{
+    private JSONArray loadProgress() {
+        try {
             String content = new String(Files.readAllBytes(Paths.get("shared/data/progress.json")));
             return new JSONArray(content);
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return null;

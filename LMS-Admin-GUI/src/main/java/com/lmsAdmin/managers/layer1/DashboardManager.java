@@ -17,6 +17,7 @@ import java.util.Map;
 
 public class DashboardManager {
     private Connection conn = DatabaseConnection.getInstance().getConnection();
+
     public int getNumberOfStudents() {
         String query = "SELECT COUNT(*) FROM student";
         try(PreparedStatement statement = conn.prepareStatement(query)){

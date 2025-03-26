@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -14,9 +15,11 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import main.AppSession;
-import main.java.com.lms.managers.teacherSide.QuizManager;
+import main.java.com.lms.managers.teacherSide.TeacherQuizManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddQuizController {
     private int numOfQuestions = 1;
@@ -29,20 +32,20 @@ public class AddQuizController {
     private TextArea description;
     @FXML
     private VBox questionsWrapper;
-    @FXML
-    private VBox questionCard;
-    @FXML
-    private TextArea question;
-    @FXML
-    private TextField choice1;
-    @FXML
-    private TextField choice2;
-    @FXML
-    private TextField choice3;
-    @FXML
-    private TextField choice4;
-    @FXML
-    private TextArea correct;
+//    @FXML
+//    private VBox questionCard;
+//    @FXML
+//    private TextArea question;
+//    @FXML
+//    private TextField choice1;
+//    @FXML
+//    private TextField choice2;
+//    @FXML
+//    private TextField choice3;
+//    @FXML
+//    private TextField choice4;
+//    @FXML
+//    private TextArea correct;
     @FXML
     private Button add;
     @FXML
@@ -56,8 +59,16 @@ public class AddQuizController {
         });
 
         finish.setOnMouseClicked(event -> {
-            QuizManager quizManager = new QuizManager(AppSession.getInstance().getSelectedClassroom());
+            // Pass extracted data to the manager
+            TeacherQuizManager quizManager = new TeacherQuizManager(AppSession.getInstance().getSelectedClassroom());
+            quizManager.manageAddQuizSql(
+                    title.getText(),
+                    description.getText(),
+                    getQuestionsList(),
+                    "active"
+            );
         });
+
     }
 
     private VBox createQuestionCard() {
@@ -141,6 +152,62 @@ public class AddQuizController {
         questionCard.getChildren().addAll(questionSection, choicesSection, correctAnswerSection);
 
         return questionCard;
+    }
+
+    private ArrayList<Map<String, Object>> getQuestionsList() {
+        ArrayList<Map<String, Object>> questionList = new ArrayList<>();
+        for (Node node : questionsWrapper.getChildren()) {
+            if (node instanceof VBox questionCard) {
+                Map<String, Object> questionData = new HashMap<>();
+                ArrayList<Map<String, Object>> choices = new ArrayList<>();
+
+                // Extract question text
+                VBox questionSection = (VBox) questionCard.getChildren().get(0);
+                TextArea questionTextArea = (TextArea) questionSection.getChildren().get(1);
+                questionData.put("title", questionTextArea.getText());
+
+                // Extract choices
+                VBox choicesSection = (VBox) questionCard.getChildren().get(1);
+                VBox choicesWrapper = (VBox) choicesSection.getChildren().get(1);
+
+                HBox choiceRow1 = (HBox) choicesWrapper.getChildren().get(0);
+                TextField choice1 = (TextField) choiceRow1.getChildren().get(0);
+                TextField choice2 = (TextField) choiceRow1.getChildren().get(1);
+
+                HBox choiceRow2 = (HBox) choicesWrapper.getChildren().get(1);
+                TextField choice3 = (TextField) choiceRow2.getChildren().get(0);
+                TextField choice4 = (TextField) choiceRow2.getChildren().get(1);
+
+                choices.add(createChoice(choice1));
+                choices.add(createChoice(choice2));
+                choices.add(createChoice(choice3));
+                choices.add(createChoice(choice4));
+
+                questionData.put("choices", choices);
+
+                // Extract correct answer
+                VBox correctAnswerSection = (VBox) questionCard.getChildren().get(2);
+                TextArea correctTextArea = (TextArea) correctAnswerSection.getChildren().get(1);
+                String correctAnswer = correctTextArea.getText();
+
+                // Mark the correct choice
+                for (Map<String, Object> choice : choices) {
+                    if (choice.get("choice_text").equals(correctAnswer)) {
+                        choice.put("isCorrect", true);
+                    }
+                }
+
+                questionList.add(questionData);
+            }
+        }
+        return questionList;
+    }
+
+    private Map<String, Object> createChoice(TextField choiceField) {
+        Map<String, Object> choice = new HashMap<>();
+        choice.put("choice_text", choiceField.getText());
+        choice.put("isCorrect", false);
+        return choice;
     }
 
 }

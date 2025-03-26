@@ -233,7 +233,7 @@ public class ClassroomContentManager {
 
     // display only the assignment's titles from classroom and select an input
 //    private String selectAssignmentTitle() {
-//        JSONArray allAssignments = getClassroomAssignments();
+//        JSONArray allAssignments = getClassroomQuizzes();
 //        for (int i = 0; i < allAssignments.length(); i++) {
 //            if (allAssignments.getJSONObject(i).getString("status").equals("active")) {
 //                JSONObject assignment = allAssignments.getJSONObject(i);

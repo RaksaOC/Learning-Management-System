@@ -63,9 +63,50 @@ public class AssignmentsManager {
 
 
 
+    public Map<String, String> getAllAssignments() {
+        Map<String, String> id_name_classroom = new HashMap<>();
+        String query = "SELECT CONCAT(a.id, ' - ' ,a.title) AS id_name, " +
+                "p.classroom_id as class_id  " +
+                "FROM progress_assignment as pa " +
+                "JOIN progress AS p " +
+                "ON pa.progress_id = p.id AND p.student_id = ? " +
+                "JOIN assignment AS a " +
+                "ON pa.assignment_id = p.id ";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getStudent().getId());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                id_name_classroom.put("id_name", rs.getString("id_name"));
+                id_name_classroom.put("class_id", rs.getString("class_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id_name_classroom;
+    }
 
-
-
+    public Map<String, String> getClassroomAssignments() {
+        Map<String, String> id_name_classroom = new HashMap<>();
+        String query = "SELECT CONCAT(a.id, ' - ', a.title) AS id_name, p.classroom_id as class_id " +
+                "FROM progress_assignment as pa " +
+                "JOIN progress AS p " +
+                "ON pa.progress_id = p.id " +
+                "JOIN assignment AS a " +
+                "ON pa.assignment_id = a.id " + // Changed from 'q' to 'a'
+                "WHERE p.classroom_id = ? AND p.student_id = ? ";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedClassroom());
+            statement.setString(2, AppSession.getInstance().getStudent().getId());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                id_name_classroom.put("id_name", rs.getString("id_name"));
+                id_name_classroom.put("class_id", rs.getString("class_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id_name_classroom;
+    }
 
     // ========================================
     // JSON-RELATED METHODS
@@ -265,26 +306,26 @@ public class AssignmentsManager {
 //        JSONArray feedback =
     }
 
-    public HashMap<String, String> getAllAssignments(){
-//        JSONObject progress = student.getProgress();
-        JSONObject progress = new JSONObject();
-
-        ArrayList<String> progressIds = new ArrayList<>();
-        Iterator<String> iterator = progress.keys();
-        while (iterator.hasNext()) {
-            String key = iterator.next();
-            progressIds.add(progress.getString(key));
-        }
-        JSONArray studentProgress = getAllRelatedStudentProgress(progressIds);
-
-        HashMap<String, String> assignments = new HashMap<>();
-        for (int i = 0; i < studentProgress.length(); i++) {
-            for (int j = 0; j < studentProgress.getJSONObject(i).getJSONArray("assignments").length(); j++) {
-                assignments.put(studentProgress.getJSONObject(i).getJSONArray("assignments").getString(j), studentProgress.getJSONObject(i).getString("classroomId"));
-            }
-        }
-        return assignments;
-    }
+//    public HashMap<String, String> getAllAssignments(){
+////        JSONObject progress = student.getProgress();
+//        JSONObject progress = new JSONObject();
+//
+//        ArrayList<String> progressIds = new ArrayList<>();
+//        Iterator<String> iterator = progress.keys();
+//        while (iterator.hasNext()) {
+//            String key = iterator.next();
+//            progressIds.add(progress.getString(key));
+//        }
+//        JSONArray studentProgress = getAllRelatedStudentProgress(progressIds);
+//
+//        HashMap<String, String> assignments = new HashMap<>();
+//        for (int i = 0; i < studentProgress.length(); i++) {
+//            for (int j = 0; j < studentProgress.getJSONObject(i).getJSONArray("assignments").length(); j++) {
+//                assignments.put(studentProgress.getJSONObject(i).getJSONArray("assignments").getString(j), studentProgress.getJSONObject(i).getString("classroomId"));
+//            }
+//        }
+//        return assignments;
+//    }
 
     // Rasa Front end related functions -----------------------------------------------------------------------------------------------
 

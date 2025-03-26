@@ -2,16 +2,23 @@ package main.java.com.lms.managers.studentSide;
 
 import entities.Student;
 import main.AppSession;
+import main.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 public class ResourcesManager {
     private Student student;
+    private Connection conn = DatabaseConnection.getInstance().getConnection();
     public ResourcesManager() {
         AppSession session = AppSession.getInstance();
         this.student = session.getStudent();
@@ -43,6 +50,50 @@ public class ResourcesManager {
 
 
 
+    public Map<String, String> getAllResources() {
+        Map<String, String> id_name_classroom = new HashMap<>();
+        String query = "SELECT CONCAT(m.id, ' - ' ,m.title) AS id_name, " +
+                "p.classroom_id as class_id  " +
+                "FROM progress_material as pm " +
+                "JOIN progress AS p " +
+                "ON pm.progress_id = p.id AND p.student_id = ? " +
+                "JOIN material AS m " +
+                "ON pm.material_id = m.id ";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getStudent().getId());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                id_name_classroom.put("id_name", rs.getString("id_name"));
+                id_name_classroom.put("class_id", rs.getString("class_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id_name_classroom;
+    }
+
+    public Map<String, String> getClassroomResources() {
+        Map<String, String> id_name_classroom = new HashMap<>();
+        String query = "SELECT CONCAT(m.id, ' - ', m.title) AS id_name, p.classroom_id as class_id " +
+                "FROM progress_material as pm " + // Changed to progress_material
+                "JOIN progress AS p " +
+                "ON pm.progress_id = p.id " +
+                "JOIN material AS m " + // Changed to material
+                "ON pm.material_id = m.id " + // Fixed incorrect join condition
+                "WHERE p.classroom_id = ? AND p.student_id = ? ";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedClassroom());
+            statement.setString(2, AppSession.getInstance().getStudent().getId());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                id_name_classroom.put("id_name", rs.getString("id_name"));
+                id_name_classroom.put("class_id", rs.getString("class_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id_name_classroom;
+    }
 
 
 
@@ -168,25 +219,25 @@ public class ResourcesManager {
 
     // Rasa Front end related functions -----------------------------------------------------------------------------------------------
 
-    public HashMap<String, String> getAllResources(){
-//        JSONObject progress = student.getProgress();
-        JSONObject progress = new JSONObject();
-
-        ArrayList<String> progressIds = new ArrayList<>();
-        Iterator<String> iterator = progress.keys();
-        while (iterator.hasNext()) {
-            String key = iterator.next();
-            progressIds.add(progress.getString(key));
-        }
-        JSONArray studentProgress = getAllStudentProgress(progressIds);
-        HashMap<String, String> allResources = new HashMap<>();
-        for (int i = 0; i < studentProgress.length(); i++) {
-            for (int j = 0; j < studentProgress.getJSONObject(i).getJSONArray("resources").length(); j++) {
-                allResources.put(studentProgress.getJSONObject(i).getJSONArray("resources").getString(j), studentProgress.getJSONObject(i).getString("classroomId"));
-            }
-        }
-        return allResources;
-    }
+//    public HashMap<String, String> getAllResources(){
+////        JSONObject progress = student.getProgress();
+//        JSONObject progress = new JSONObject();
+//
+//        ArrayList<String> progressIds = new ArrayList<>();
+//        Iterator<String> iterator = progress.keys();
+//        while (iterator.hasNext()) {
+//            String key = iterator.next();
+//            progressIds.add(progress.getString(key));
+//        }
+//        JSONArray studentProgress = getAllStudentProgress(progressIds);
+//        HashMap<String, String> allResources = new HashMap<>();
+//        for (int i = 0; i < studentProgress.length(); i++) {
+//            for (int j = 0; j < studentProgress.getJSONObject(i).getJSONArray("resources").length(); j++) {
+//                allResources.put(studentProgress.getJSONObject(i).getJSONArray("resources").getString(j), studentProgress.getJSONObject(i).getString("classroomId"));
+//            }
+//        }
+//        return allResources;
+//    }
 
     private JSONArray getAllStudentProgress(List<String> progressIds){
         JSONArray allProgress = loadProgress();

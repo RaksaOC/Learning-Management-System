@@ -22,6 +22,7 @@ import main.java.com.lms.managers.studentSide.QuizzesManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 public class QuizCardsWrapperController {
@@ -68,11 +69,11 @@ public class QuizCardsWrapperController {
         QuizzesWrapper.setPrefHeight(Double.MAX_VALUE);
         QuizzesWrapper.setSpacing(40);
 
-        QuizzesManager QuizzesManager = new QuizzesManager();
-        quiz_classroom = QuizzesManager.getAllQuizzes();
+        QuizzesManager quizzesManager = new QuizzesManager();
+        quiz_classroom = (HashMap<String, String>) quizzesManager.getAllQuizzes();
 
         quizzesList = new ArrayList<>(quiz_classroom.keySet());
-        Collections.sort(quizzesList);
+        Collections.sort(quizzesList, Comparator.comparing(q -> q.substring(q.indexOf("-") + 2)));
         System.out.println(quizzesList);
 
         ArrayList<HBox> rows = new ArrayList<>();

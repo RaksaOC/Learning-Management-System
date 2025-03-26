@@ -17,7 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TeacherQuizManager extends ClassroomContentManager {
-    private static final Connection conn= DatabaseConnection.getInstance().getConnection();
+    private static final Connection conn = DatabaseConnection.getInstance().getConnection();
+
     public TeacherQuizManager(String classIdToEdit) {
         super(classIdToEdit);
     }
@@ -26,26 +27,26 @@ public class TeacherQuizManager extends ClassroomContentManager {
     // ========================================
 
     // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
-    public void manageAddQuizSql(String title, String description, ArrayList<Map<String, Object>> quizList, String status){
-        ArrayList<String> titles=new ArrayList<>();
-        ArrayList<ArrayList<Map<String, Object>>> choicesList=new ArrayList<>();
-        String quizID= generateNewID("quiz", "Q0000");
+    public void manageAddQuizSql(String title, String description, ArrayList<Map<String, Object>> quizList, String status) {
+        ArrayList<String> titles = new ArrayList<>();
+        ArrayList<ArrayList<Map<String, Object>>> choicesList = new ArrayList<>();
+        String quizID = generateNewID("quiz", "Q0000");
 
-        for(Map<String, Object> quiz:quizList){
+        for (Map<String, Object> quiz : quizList) {
             titles.add((String) quiz.get("title"));
             choicesList.add((ArrayList<Map<String, Object>>) quiz.get("choices"));
         }
         insertToQuiz(quizID, title, description, status);
-        for(int i=0;i<quizList.size();i++){
-            String questionID= generateNewID("question", "QU0000");
-            String choice_text="";
-            boolean isCorrect=false;
-            ArrayList<Map<String, Object>> currentChoiceList=choicesList.get(i);
+        for (int i = 0; i < quizList.size(); i++) {
+            String questionID = generateNewID("question", "QU0000");
+            String choice_text = "";
+            boolean isCorrect = false;
+            ArrayList<Map<String, Object>> currentChoiceList = choicesList.get(i);
             insertToQuestion(questionID, quizID, titles.get(i));
-            for(int j=0;j<currentChoiceList.size();j++){
-                String choiceID= generateNewID("choice", "CH0000");
-                choice_text=(String) currentChoiceList.get(j).get("choice_text");
-                isCorrect= (boolean) currentChoiceList.get(j).get("isCorrect");
+            for (int j = 0; j < currentChoiceList.size(); j++) {
+                String choiceID = generateNewID("choice", "CH0000");
+                choice_text = (String) currentChoiceList.get(j).get("choice_text");
+                isCorrect = (boolean) currentChoiceList.get(j).get("isCorrect");
                 insertToChoice(choiceID, questionID, choice_text, isCorrect);
             }
         }
@@ -54,81 +55,122 @@ public class TeacherQuizManager extends ClassroomContentManager {
         System.out.println("finished");
     }
 
-    public void manageEditQuizSql(){
 
-    }
-
-    public void manageDeleteQuizSql(){
-
-    }
-
-    public void manageViewQuiz(){
-
-    }
-
-    private ArrayList<Map<String, String>> returnQuizSql() {
-        String progressQuery = "SELECT id, title, description FROM quiz";
-        ArrayList<String> progressIDList = new ArrayList<>();
-
-        try (PreparedStatement statement = conn.prepareStatement(progressQuery)) {
-            ResultSet rs = statement.executeQuery();
-
-            while (rs.next()) { // Fetch all progress IDs
-                progressIDList.add(rs.getString("id"));
-            }
-
-            if (progressIDList.isEmpty()) {
-                System.out.println("No progress found for student.");
-                return new ArrayList<>();
-            }
-
+    //edit quiz section
+    public void manageEditQuiz(ArrayList<Map<String, Object>> quizInfoToEdit, String quizID, String title, String description) {
+        String quarry = "UPDATE quiz SET title=?, description=? WHERE id=?";
+        try (PreparedStatement statement = conn.prepareStatement(quarry)) {
+            statement.setString(1, title);
+            statement.setString(2, description);
+            statement.setString(3, quizID);
+            statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
-            return new ArrayList<>();
+            throw new RuntimeException(e);
         }
 
-        return null;
-    }
-
-    private ArrayList<ArrayList<Map<String, String>>> returnTitleAndDescriptionForStudentToChoose(ArrayList<String> quizIDList) {
-        ArrayList<ArrayList<Map<String, String>>> titleAndDescriptionList = new ArrayList<>();
-        StringBuilder quizQuery = new StringBuilder("SELECT title, description FROM quiz WHERE id IN (");
-        for (int i = 0; i < quizIDList.size(); i++) {
-            quizQuery.append("?");
-            if (i < quizIDList.size() - 1) {
-                quizQuery.append(", ");
-            }
+        ArrayList<String> questionFromEditData = new ArrayList<>();
+        for (Map<String, Object> question : quizInfoToEdit) {
+            questionFromEditData.add((String) question.get("title"));
         }
-        quizQuery.append(")");
 
-        try (PreparedStatement statement = conn.prepareStatement(quizQuery.toString())) {
-            for (int i = 0; i < quizIDList.size(); i++) {
-                statement.setString(i + 1, quizIDList.get(i)); // Set each progress_id
-            }
-            ResultSet rs = statement.executeQuery();
+        // Step 1: Get ordered list of question IDs
+        ArrayList<String> ids = new ArrayList<>();
+        String fetchQuery = "SELECT id FROM question WHERE quiz_id = ? ORDER BY id";
 
+        try (PreparedStatement fetchStatement = conn.prepareStatement(fetchQuery)) {
+            fetchStatement.setString(1, quizID);
+            ResultSet rs = fetchStatement.executeQuery();
             while (rs.next()) {
-                Map<String, String> titleOrDescription = new HashMap<>();
-                ArrayList<Map<String, String>> titleAndDescription = new ArrayList<>();
-                titleOrDescription.put("title", rs.getString("title"));
-                titleOrDescription.put("description", rs.getString("description"));
-                titleAndDescription.add(titleOrDescription);
-                titleAndDescriptionList.add(titleAndDescription);
+                ids.add(rs.getString("id"));
             }
-
-            if (titleAndDescriptionList.isEmpty()) {
-                System.out.println("No data from title and description");
-            } else {
-                return titleAndDescriptionList;
-            }
-
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        return null;
+
+        // Step 2: Update questions using the fetched IDs
+        for (int i = 0; i < ids.size(); i++) {
+            String updateQuery = "UPDATE question SET title = ? WHERE id = ?";
+            try (PreparedStatement updateStatement = conn.prepareStatement(updateQuery)) {
+                updateStatement.setString(1, questionFromEditData.get(i));
+                updateStatement.setString(2, ids.get(i));
+                updateStatement.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        // Step 3: Update the choice table
+        String fetchChoicesQuery = "SELECT id, question_id FROM choice WHERE question_id = ? ORDER BY id";
+
+        for (Map<String, Object> question : quizInfoToEdit) {
+            ArrayList<String> questionChoiceIDs = new ArrayList<>(); // Clear the list for each question
+            String questionID = ""; // Get the question ID
+
+            // Get questionID (you may need a different method to fetch questionID)
+            String fetchQuestionIDQuery = "SELECT id FROM question WHERE title = ? AND quiz_id = ?";
+            try (PreparedStatement fetchQuestionIDStmt = conn.prepareStatement(fetchQuestionIDQuery)) {
+                fetchQuestionIDStmt.setString(1, (String) question.get("title"));
+                fetchQuestionIDStmt.setString(2, quizID);
+                ResultSet rs = fetchQuestionIDStmt.executeQuery();
+                if (rs.next()) {
+                    questionID = rs.getString("id");
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            // Fetch choice IDs for this question
+            try (PreparedStatement fetchChoicesStmt = conn.prepareStatement(fetchChoicesQuery)) {
+                fetchChoicesStmt.setString(1, questionID);
+                ResultSet choiceRS = fetchChoicesStmt.executeQuery();
+                while (choiceRS.next()) {
+                    questionChoiceIDs.add(choiceRS.getString("id"));
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            // Step 4: Update choices
+            ArrayList<Map<String, Object>> questionChoices = (ArrayList<Map<String, Object>>) question.get("choices");
+            for (int i = 0; i < questionChoices.size(); i++) {
+                Map<String, Object> choice = questionChoices.get(i);
+                String choiceText = (String) choice.get("choice_text");
+                Boolean isCorrect = (Boolean) choice.get("isCorrect");
+                String choiceID = questionChoiceIDs.get(i);  // Use the specific list of choice IDs for this question
+
+                String updateChoiceQuery = "UPDATE choice SET choice_text = ?, isCorrect = ? WHERE id = ?";
+                try (PreparedStatement updateChoiceStmt = conn.prepareStatement(updateChoiceQuery)) {
+                    updateChoiceStmt.setString(1, choiceText);
+                    updateChoiceStmt.setBoolean(2, isCorrect);
+                    updateChoiceStmt.setString(3, choiceID);
+                    updateChoiceStmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
     }
 
-    private ArrayList<Map<String, Object>> returnQuestionsAndItsChoices(String chosenQuizID) {
+
+    public ArrayList<Map<String, String>> getQuizIDTitleAndDescriptionFromSqlToChooseToEdit() {
+        String quarry = "select * from quiz";
+        ArrayList<Map<String, String>> quizInfoList = new ArrayList<>();
+        try (PreparedStatement statement = conn.prepareStatement(quarry)) {
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Map<String, String> quizInfo = new HashMap<>();
+                quizInfo.put("id", rs.getString("id"));
+                quizInfo.put("title", rs.getString("title"));
+                quizInfo.put("description", rs.getString("description"));
+                quizInfoList.add(quizInfo);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return quizInfoList;
+    }
+
+    public ArrayList<Map<String, Object>> returnQuestionsAndItsChoices(String chosenQuizID) {
         ArrayList<Map<String, Object>> questionsAndItsChoicesList = new ArrayList<>();
         String questionQuery = "select title, id from question where quiz_id=?";
         ArrayList<String> questionList = new ArrayList<>();
@@ -207,66 +249,72 @@ public class TeacherQuizManager extends ClassroomContentManager {
         return questionsAndItsChoicesList;
     }
 
-    private static void insertToQuiz(String id, String title, String description, String status){
+    //
+    public void manageDeleteQuizSql() {
+
+    }
+
+
+    private static void insertToQuiz(String id, String title, String description, String status) {
         String quarry = "INSERT INTO quiz (id, title, description, status) VALUES ( ?, ?, ?, ?)";
-        try(PreparedStatement statement = conn.prepareStatement(quarry)){
+        try (PreparedStatement statement = conn.prepareStatement(quarry)) {
             statement.setString(1, id);
             statement.setString(2, title);
             statement.setString(3, description);
             statement.setString(4, status);
             statement.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private static void insertToQuestion(String id, String quiz_id, String title){
+    private static void insertToQuestion(String id, String quiz_id, String title) {
         String quarry = "INSERT INTO question (id, quiz_id, title) VALUES ( ?, ?, ?)";
-        try(PreparedStatement statement = conn.prepareStatement(quarry)){
+        try (PreparedStatement statement = conn.prepareStatement(quarry)) {
             statement.setString(1, id);
             statement.setString(2, quiz_id);
             statement.setString(3, title);
             statement.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private static void insertToChoice(String id, String question_id, String choice_text, Boolean isCorrect){
+    private static void insertToChoice(String id, String question_id, String choice_text, Boolean isCorrect) {
         String quarry = "INSERT INTO choice (id, question_id, choice_text, isCorrect) VALUES ( ?, ?, ?, ?)";
-        try(PreparedStatement statement = conn.prepareStatement(quarry)){
+        try (PreparedStatement statement = conn.prepareStatement(quarry)) {
             statement.setString(1, id);
             statement.setString(2, question_id);
             statement.setString(3, choice_text);
             statement.setBoolean(4, isCorrect);
             statement.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private static void insertToProgressQuiz(String progress_id, String quiz_id, Double score){
+    private static void insertToProgressQuiz(String progress_id, String quiz_id, Double score) {
         String quarry = "INSERT INTO progress_quiz (progress_id, quiz_id, score) VALUES (?, ?, ?)";
-        try(PreparedStatement statement = conn.prepareStatement(quarry)){
+        try (PreparedStatement statement = conn.prepareStatement(quarry)) {
             statement.setString(1, progress_id);
             statement.setString(2, quiz_id);
             statement.setDouble(3, score);
             statement.executeUpdate();
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
-    private static void insertToClassroomQuiz(String classIdToEdit,String quiz_id){
-        String quarry = "INSERT INTO classroom_quiz (class_id, quiz_id) VALUES ( ?, ?)";
-        try(PreparedStatement statement = conn.prepareStatement(quarry)){
-            statement.setString(1, classIdToEdit);
-            statement.setString(2, quiz_id);
-            statement.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    private static void insertToClassroomQuiz(String classIdToEdit, String quiz_id) {
+        String quarry = "INSERT INTO classroom_quiz (class_id, quiz_id) VALUES ( ?, ?)";
+        try (PreparedStatement statement = conn.prepareStatement(quarry)) {
+            statement.setString(1, classIdToEdit);
+            statement.setString(2, quiz_id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     protected String generateNewID(String tableName, String baseID) {
@@ -305,49 +353,6 @@ public class TeacherQuizManager extends ClassroomContentManager {
         }
         return null;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     // ========================================

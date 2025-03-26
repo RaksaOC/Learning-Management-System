@@ -250,7 +250,22 @@ public class TeacherQuizManager extends ClassroomContentManager {
     }
 
     //
-    public void manageDeleteQuizSql() {
+    public void manageDeleteQuizSql(String quizIDToDelete) {
+        String classroomQuizQuarry = "delete from classroom_quiz where quiz_id=?";
+        String quizQuarry = "update quiz set status=?";
+        try (PreparedStatement statement = conn.prepareStatement(classroomQuizQuarry)) {
+            statement.setString(1, quizIDToDelete);
+            ResultSet rs = statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try (PreparedStatement statement = conn.prepareStatement(quizQuarry)) {
+            statement.setString(1, "inactive");
+            ResultSet rs = statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
     }
 

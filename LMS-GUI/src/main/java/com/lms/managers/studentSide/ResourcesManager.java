@@ -2,19 +2,26 @@ package main.java.com.lms.managers.studentSide;
 
 import entities.Student;
 import main.AppSession;
+import main.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 public class ResourcesManager {
     private Student student;
+    private Connection connection;
     public ResourcesManager() {
         AppSession session = AppSession.getInstance();
         this.student = session.getStudent();
+        this.connection = DatabaseConnection.getInstance().getConnection();
     }
 
     // ========================================
@@ -24,32 +31,90 @@ public class ResourcesManager {
     // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
 
 
+    // Load resources from SQL database
+    public List<String> loadResourceSql(String classroomId) {
+        List<String> resourceWeeks = new ArrayList<>();
+        String query = "SELECT DISTINCT resourceWeek FROM resources WHERE classroomId = ?";
 
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, classroomId);
+            ResultSet rs = stmt.executeQuery();
 
+            while (rs.next()) {
+                resourceWeeks.add(rs.getString("resourceWeek"));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error loading resources: " + e.getMessage());
+        }
+        return resourceWeeks;
+    }
 
+    public void displayResourcesByWeekSql(String classroomId) {
+        List<String> resourceWeeks = loadResourceSql(classroomId);
 
+        if (resourceWeeks.isEmpty()) {
+            System.out.println("No resources available.");
+            return;
+        }
 
+        System.out.println("\nAvailable Resource Weeks:");
+        for (int i = 0; i < resourceWeeks.size(); i++) {
+            System.out.println((i + 1) + ". " + resourceWeeks.get(i));
+        }
 
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("\nEnter Resource Week to view contents: ");
+        String selectedWeek = scanner.nextLine().trim();
 
+        displayContentsByWeekSql(classroomId, selectedWeek);
+    }
 
+    public void displayContentsByWeekSql(String classroomId, String selectedWeek) {
+        String query = "SELECT id, title, description, attachment FROM resources WHERE classroomId = ? AND resourceWeek = ?";
 
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, classroomId);
+            stmt.setString(2, selectedWeek);
+            ResultSet rs = stmt.executeQuery();
 
+            if (!rs.isBeforeFirst()) {
+                System.out.println("No resources found for " + selectedWeek);
+                return;
+            }
 
+            System.out.println("\nContents for " + selectedWeek + ":");
+            while (rs.next()) {
+                System.out.println("ID: " + rs.getString("id") + " - " + rs.getString("title"));
+            }
 
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("\nEnter Resource ID to view details: ");
+            String selectedResourceId = scanner.nextLine().trim();
 
+            displayResourceDetailsSql(selectedResourceId);
+        } catch (SQLException e) {
+            System.err.println("Error displaying contents: " + e.getMessage());
+        }
+    }
 
+    public void displayResourceDetailsSql(String resourceId) {
+        String query = "SELECT title, description, attachment FROM resources WHERE id = ?";
 
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, resourceId);
+            ResultSet rs = stmt.executeQuery();
 
-
-
-
-
-
-
-
-
-
-
+            if (rs.next()) {
+                System.out.println("\nTitle: " + rs.getString("title"));
+                System.out.println("Description: " + rs.getString("description"));
+                System.out.println("Attachment: " + rs.getString("attachment"));
+            } else {
+                System.out.println("Resource not found.");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error retrieving resource details: " + e.getMessage());
+        }
+    }
 
     // ========================================
     // JSON-RELATED METHODS

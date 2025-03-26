@@ -2,6 +2,7 @@ package main.java.com.lms.managers.studentSide;
 
 import entities.Student;
 import main.AppSession;
+import main.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import ui.UI;
@@ -9,13 +10,17 @@ import ui.UI;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.*;
 import java.text.SimpleDateFormat;import java.util.*;
+import java.util.Date;
 
 public class AssignmentsManager {
     private Student student;
+    private Connection connection;
     public AssignmentsManager() {
         AppSession session = AppSession.getInstance();
         this.student = session.getStudent();
+        this.connection = DatabaseConnection.getInstance().getConnection();
     }
 
     // ========================================
@@ -24,40 +29,95 @@ public class AssignmentsManager {
 
     // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
 
+    public JSONArray getAssignmentSql (String classroomId) {
+        JSONArray assignments = new JSONArray();
+        String sql = "Select id, title, description, deadline, status FROM assignments " +
+                "WHERE classroom_id = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, classroomId);;
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                JSONObject assignment = new JSONObject();
+                assignment.put("id", rs.getString("id"));
+                assignment.put("title", rs.getString("title"));
+                assignment.put("description", rs.getString("description"));
+                assignment.put("deadline" , rs.getString("deadline"));
+                assignment.put("status", rs.getString("status"));
+                assignments.put(assignment);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return assignments;
+    }
+
+    // Get details of a specific assignment
+    public JSONObject getAssignmentDetailsSql(String assignmentId) {
+        JSONObject assignment = new JSONObject();
+        String sql = "SELECT id, title, description, deadline, status FROM assignments WHERE id = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, assignmentId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                assignment.put("id", rs.getString("id"));
+                assignment.put("title", rs.getString("title"));
+                assignment.put("description", rs.getString("description"));
+                assignment.put("deadline", rs.getString("deadline"));
+                assignment.put("status", rs.getString("status"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return assignment;
+    }
+
+    // Save or update an assignment submission
+    public void saveSubmissionSql(String studentId, String assignmentId, String classroomId, String submissionText) {
+        String sql = "INSERT INTO submissions (student_id, assignment_id, classroom_id, submission_text, status, timestamp) VALUES (?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE submission_text = ?, status = ?, timestamp = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+            stmt.setString(1, studentId);
+            stmt.setString(2, assignmentId);
+            stmt.setString(3, classroomId);
+            stmt.setString(4, submissionText);
+            stmt.setString(5, "submitted");
+            stmt.setTimestamp(6, timestamp);
+            stmt.setString(7, submissionText);
+            stmt.setString(8, "resubmitted");
+            stmt.setTimestamp(9, timestamp);
+
+            stmt.executeUpdate();
+            System.out.println("Assignment submitted successfully!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
+    // View all submitted assignments for a student
+    public void viewSubmittedAssignmentsSql(String studentId) {
+        String sql = "SELECT assignment_id, status, timestamp FROM submissions WHERE student_id = ?";
 
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, studentId);
+            ResultSet rs = stmt.executeQuery();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            System.out.println("\nYour Submitted Assignments:");
+            while (rs.next()) {
+                System.out.println("Assignment ID: " + rs.getString("assignment_id") +
+                        ", Status: " + rs.getString("status") +
+                        ", Submitted on: " + rs.getTimestamp("timestamp"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

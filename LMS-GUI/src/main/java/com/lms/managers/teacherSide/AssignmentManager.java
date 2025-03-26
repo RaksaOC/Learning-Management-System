@@ -4,6 +4,8 @@ import main.AppSession;
 import main.DatabaseConnection;import org.json.JSONArray;
 import org.json.JSONObject;
 
+import javax.xml.crypto.Data;
+import java.awt.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,8 +24,78 @@ public class AssignmentManager extends ClassroomContentManager {
 
     // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
 
+    private Connection conn = DatabaseConnection.getInstance().getConnection();
+
+    private void manageAddAssignmentSql() {
+        String query = "INSERT INTO assignment (id, title, description, deadline, status, ref_attachment) VALUES (?,?,?,?,?,?)";
+        String id = generateAssignmentIdSql("A0000");
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, id);
+
+            // user input needs: title, description, deadline, ref_attachment
+            statement.setString(2, ""); // value to change: title
+            statement.setString(3, ""); // value: description
+            statement.setString(4, ""); // value to change: deadline
+            statement.setString(5, ""); // fixed value
+            statement.setString(6, ""); // value to change: ref_attachment
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void manageEditAssignmentSql() {
+        String query = "UPDATE assignment SET title = ?, description = ?, deadline = ?, ref_attachment = ? WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+
+            // user input needs: title, description, deadline, ref_attachment
+            statement.setString(1, ""); // value to change: title
+            statement.setString(2, ""); // value: description
+            statement.setString(3, ""); // value to change: deadline
+            statement.setString(4, ""); // value to change: ref_attachment
+
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void manageDeleteAssignmentSql() {
+        String query = "UPDATE assignment SET status = ? WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+
+            // user input needs: title, description, deadline, ref_attachment
+            statement.setString(1, "inactive"); // fixed value
+
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getAssignmentIdSql() {
+        String query = "SELECT id from assignment where ";
+    }
 
 
+    private String generateAssignmentIdSql(String baseId) {
+        String totalAssignment = "";
+        String query = "SELECT count(*) from assignment";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            totalAssignment = String.valueOf(statement.executeQuery());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        int objects = Integer.parseInt(totalAssignment);
+        String numberPart = baseId.replaceAll("[^0-9]", ""); // extract number part "000"
+        int numberLength = numberPart.length();
+        if (objects != 0) {
+            objects ++; // find next available id
+        }
+        String formattedNumber = String.format("%0" + numberLength + "d", objects); // %03d
+        String prefixChar = baseId.replaceAll("[0-9]", ""); // extract the non-numeric part "A"
+        return prefixChar + formattedNumber;
+    }
 
 
 

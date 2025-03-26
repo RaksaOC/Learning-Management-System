@@ -18,7 +18,7 @@
             <Insets bottom="5.0" right="5.0" top="5.0" />
          </padding>
          <children>
-            <ImageView fitHeight="40.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" fx:id="backButton">
+            <ImageView fx:id="backButton" fitHeight="40.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                <image>
                   <Image url="@../../images/back-icon.png" />
                </image>
@@ -32,106 +32,40 @@
          <children>
             <VBox spacing="10.0" AnchorPane.leftAnchor="0.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="A000001">
+                  <Text fx:id="assId" strokeType="OUTSIDE" strokeWidth="0.0" text="A000001">
                      <font>
                         <Font name="AppleGothic Regular" size="18.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Assignment Title">
+                  <Text fx:id="assTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Assignment Title">
                      <font>
                         <Font name="AppleGothic Regular" size="18.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Due: ">
+                  <Text fx:id="deadLine" strokeType="OUTSIDE" strokeWidth="0.0" text="Due: ">
                      <font>
                         <Font name="AppleGothic Regular" size="18.0" />
                      </font>
                   </Text>
                </children>
             </VBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="337.0" spacing="10.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 30; -fx-background-radius: 30;" AnchorPane.rightAnchor="0.0">
-               <children>
-                  <ImageView fitHeight="70.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/success.png" />
-                     </image>
-                  </ImageView>
-                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Submitted">
-                           <font>
-                              <Font name="AppleGothic Regular" size="18.0" />
-                           </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Submit Date: ">
-                           <font>
-                              <Font name="AppleGothic Regular" size="18.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </VBox>
-               </children>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
-            </HBox>
          </children>
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
       </AnchorPane>
-      <VBox prefHeight="285.0" prefWidth="1144.0">
+      <VBox prefHeight="148.0" prefWidth="1144.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reference Material">
                <font>
                   <Font name="AppleGothic Regular" size="18.0" />
                </font>
             </Text>
-            <VBox prefHeight="287.0" prefWidth="1144.0" spacing="10.0">
+            <VBox fx:id="refWrapper" prefHeight="119.0" prefWidth="1144.0" spacing="10.0">
                <padding>
                   <Insets bottom="10.0" top="10.0" />
                </padding>
                <children>
-                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="79.0" prefWidth="700.0" spacing="40.0" style="-fx-background-color: #2F92BC; -fx-border-color: black; -fx-background-radius: 30; -fx-border-radius: 30;">
-                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/resources-icon.png" />
-                           </image>
-                        </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lab6.pdf">
-                           <font>
-                              <Font name="AppleGothic Regular" size="18.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="79.0" prefWidth="700.0" spacing="40.0" style="-fx-background-color: #2F92BC; -fx-border-color: black; -fx-background-radius: 30; -fx-border-radius: 30;">
-                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/resources-icon.png" />
-                           </image>
-                        </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lab6.pdf">
-                           <font>
-                              <Font name="AppleGothic Regular" size="18.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </HBox>
                   <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="79.0" prefWidth="700.0" spacing="40.0" style="-fx-background-color: #2F92BC; -fx-border-color: black; -fx-background-radius: 30; -fx-border-radius: 30;">
                      <children>
                         <ImageView fitHeight="68.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
@@ -166,31 +100,11 @@
                   <Font name="AppleGothic Regular" size="18.0" />
                </font>
             </Text>
-            <VBox prefHeight="192.0" prefWidth="1144.0" spacing="10.0">
+            <VBox fx:id="attachmentWrapper" prefHeight="104.0" prefWidth="1144.0" spacing="10.0">
                <padding>
                   <Insets bottom="10.0" top="10.0" />
                </padding>
                <children>
-                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="79.0" prefWidth="700.0" spacing="40.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 30; -fx-border-radius: 30;">
-                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/resources-icon.png" />
-                           </image>
-                        </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lab6.pdf">
-                           <font>
-                              <Font name="AppleGothic Regular" size="18.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </HBox>
                   <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="79.0" prefWidth="700.0" spacing="40.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 30; -fx-border-radius: 30;">
                      <children>
                         <ImageView fitHeight="68.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
@@ -217,10 +131,10 @@
       </VBox>
       <HBox prefHeight="19.0" prefWidth="1144.0">
          <children>
-            <Button mnemonicParsing="false" text="Attach" />
+            <Button fx:id="attach" mnemonicParsing="false" text="Attach" />
          </children>
       </HBox>
-      <Button mnemonicParsing="false" text="Submit or Undo Submission">
+      <Button fx:id="submit" mnemonicParsing="false" text="Submit ">
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin>

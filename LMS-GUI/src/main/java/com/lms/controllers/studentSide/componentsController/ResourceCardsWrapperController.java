@@ -71,6 +71,7 @@ public class ResourceCardsWrapperController {
         resourcesWrapper.setSpacing(40);
 
         ResourcesManager resourcesManager = new ResourcesManager();
+
         resource_classroom = resourcesManager.getAllResources();
 
         resourcesList = new ArrayList<>(resource_classroom.keySet());

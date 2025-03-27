@@ -46,6 +46,53 @@ public class ResourcesManager {
         }
     }
 
+    public Map<String, String> getAllResources() {
+        Map<String, String> id_name_classroom = new HashMap<>();
+        String query = "SELECT CONCAT(m.id, ' - ', m.title) AS id_name, " +
+                "p.classroom_id as class_id " +
+                "FROM progress_material as pm " +
+                "JOIN progress AS p " +
+                "ON pm.progress_id = p.id AND p.student_id = ? " +
+                "JOIN material AS m " +
+                "ON pm.material_id = m.id ";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getStudent().getId());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                id_name_classroom.put("id_name", rs.getString("id_name"));
+                id_name_classroom.put("class_id", rs.getString("class_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id_name_classroom;
+    }
+
+
+    public ArrayList<String> getClassroomResources() {
+        ArrayList<String> resources = new ArrayList<>();
+        String query = "SELECT CONCAT(m.id, ' - ', m.title) AS id_name " +
+                "FROM progress_material AS pm " +
+                "JOIN progress AS p ON pm.progress_id = p.id " +
+                "JOIN material AS m ON pm.material_id = m.id " +
+                "WHERE p.classroom_id = ? AND p.student_id = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedClassroom());
+            statement.setString(2, AppSession.getInstance().getStudent().getId());
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                resources.add(rs.getString("id_name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resources;
+    }
+
+
+
 
 
 //    // Load resources from SQL database

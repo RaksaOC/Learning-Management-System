@@ -15,12 +15,17 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.AppSession;
 import main.SceneManager;
+import main.java.com.lms.managers.studentSide.AssignmentsManager;
 import main.java.com.lms.managers.studentSide.QuizzesManager;
+import main.java.com.lms.managers.studentSide.ResourcesManager;
+import main.java.com.lms.managers.teacherSide.AssignmentManager;
 
 import java.util.ArrayList;
 
 public class ClassroomContentsController {
-    private QuizzesManager studentQuizzesManager;
+    private QuizzesManager quizzesManager;
+    private AssignmentsManager assignmentManager;
+    private ResourcesManager resourcesManager;
     @FXML
     private ScrollPane assignmentsScrollPane;
     @FXML
@@ -74,15 +79,17 @@ public class ClassroomContentsController {
     }
 
     private void initContentList(){
-        studentQuizzesManager = new QuizzesManager();
+        assignmentManager = new AssignmentsManager();
+        resourcesManager = new ResourcesManager();
+        quizzesManager = new QuizzesManager();
 
         assignmentIdsAndName = new ArrayList<>();
         resourceIdsAndName = new ArrayList<>();
         quizIdsAndName = new ArrayList<>();
 
-        assignmentIdsAndName.addAll(studentQuizzesManager.getClassroomQuizzes().keySet());
-        resourceIdsAndName.addAll(studentQuizzesManager.getClassroomQuizzes().keySet());
-        quizIdsAndName.addAll(studentQuizzesManager.getClassroomQuizzes().keySet());
+        assignmentIdsAndName.addAll(assignmentManager.getClassroomAssignments());
+        resourceIdsAndName.addAll(resourcesManager.getClassroomResources());
+        quizIdsAndName.addAll(quizzesManager.getClassroomQuizzes());
     }
 
     private VBox wrapper(ArrayList<String> content) {
@@ -99,6 +106,7 @@ public class ClassroomContentsController {
 
     private VBox card(ArrayList<String> content, int idx) {
         VBox card = new VBox();
+        System.out.println("The content is " + content.get(idx));
 
         ImageView cardBanner = new ImageView();
         Image image = new Image(getClass().getResource("../../../../../resources/com/lms/images/assignments-icon.png").toExternalForm());
@@ -146,13 +154,17 @@ public class ClassroomContentsController {
 
         cardID.setFont(Font.font("AppleGothic", 18));
         card.setOnMouseClicked(e -> {
+            AppSession.getInstance().setSelectedAssignment(extractId(content.get(idx)));
+            AppSession.getInstance().isAssignmentSubmissionFromAssignmentsPage(false);
+            System.out.println("Setting selected assignment ID: " + AppSession.getInstance().getSelectedAssignment());
+            System.out.println(extractId(content.get(idx)) + " has been selected");
             SceneManager.loadCenterView("assignmentSubmission", "resources/com/lms/views/studentSide/AssignmentSubmission.fxml");
             SceneManager.setCenterView("assignmentSubmission");
-            AppSession.getInstance().setSelectedAssignment(content.get(idx));
-            AppSession.getInstance().isAssignmentSubmissionFromAssignmentsPage(false);
-
-            System.out.println(content.get(idx) + " has been selected");
         });
         return card;
+    }
+
+    private String extractId(String longId){
+        return longId.substring(0, longId.indexOf(" "));
     }
 }

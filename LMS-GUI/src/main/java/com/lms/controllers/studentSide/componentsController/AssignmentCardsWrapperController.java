@@ -67,7 +67,7 @@ public class AssignmentCardsWrapperController {
         assignmentsWrapper.setSpacing(40);
 
         AssignmentsManager assignmentsManager = new AssignmentsManager();
-        assignment_classroom = assignmentsManager.getAllAssignments();
+        assignment_classroom = (HashMap<String, String>) assignmentsManager.getAllAssignments();
 
         assignmentsList = new ArrayList<>(assignment_classroom.keySet());
         Collections.sort(assignmentsList);

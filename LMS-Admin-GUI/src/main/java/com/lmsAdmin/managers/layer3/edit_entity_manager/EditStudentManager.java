@@ -359,6 +359,25 @@ public class EditStudentManager extends EditEntityManager {
         return ids;
     }
 
+    public ArrayList<String> loadIdsAndName(String generation_id, String specialization_id) {
+        ArrayList<String> ids = new ArrayList<>();
+        String query = "SELECT id, CONCAT(first_name, ' ', last_name) AS name FROM student " +
+                "WHERE student.generation_id = ? AND student.specialization_id = ? " +
+                "AND student.group_id IS NULL";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, generation_id);
+            statement.setString(2, specialization_id);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                ids.add(rs.getString("id") + " - " + rs.getString("name"));
+            }
+            return ids;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ids;
+    }
+
     public boolean isOldPasswordMatched(String oldPassword) {
         String query = "SELECT password FROM student WHERE id = ?";
         try(PreparedStatement statement = conn.prepareStatement(query)){

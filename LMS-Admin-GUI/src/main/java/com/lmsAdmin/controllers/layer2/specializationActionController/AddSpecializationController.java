@@ -29,10 +29,10 @@ public class AddSpecializationController extends MainFrameController {
     public void initialize() {
         departmentId.getItems().clear();
         departmentId.getItems().addAll(new EditDepartmentManager().loadIdsAndName());
-        id.setText(departmentId.getItems().getFirst() + "-");
+        id.setText(extractId(departmentId.getItems().getFirst()) + "-");
         departmentId.setOnMouseClicked(e -> {
             if (departmentId.getSelectionModel().getSelectedItem() != null) {
-                id.setText(departmentId.getSelectionModel().getSelectedItem() + "-");
+                id.setText(extractId(departmentId.getSelectionModel().getSelectedItem()) + "-");
             }
         });
     }
@@ -44,7 +44,7 @@ public class AddSpecializationController extends MainFrameController {
         String n = name.getText();
         String ID = id.getText();
 
-        if (manageSpecializationManager.isSpecializationIdTaken(id.getText())) {
+        if (!manageSpecializationManager.isSpecializationIdTaken(id.getText())) {
             if (isConfirmed()) {
                 manageSpecializationManager.manageAddSpecialization(ID, depId, n, "active");
 

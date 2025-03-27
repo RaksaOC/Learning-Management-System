@@ -34,6 +34,12 @@ public class AddClassroomController extends MainFrameController {
                 classID.setText(groupID.getSelectionModel().getSelectedItem() + "-" + extractId(courseID.getSelectionModel().getSelectedItem()));
             }
         });
+        groupID.setOnAction(event -> {
+            if (courseID.getSelectionModel().getSelectedItem() != null) {
+                classID.clear();
+                classID.setText(groupID.getSelectionModel().getSelectedItem() + "-" + extractId(courseID.getSelectionModel().getSelectedItem()));
+            }
+        });
     }
 
     @FXML
@@ -44,7 +50,9 @@ public class AddClassroomController extends MainFrameController {
                 extractId(teacherId.getSelectionModel().getSelectedItem()),
                 extractId(courseID.getSelectionModel().getSelectedItem()),
                 groupID.getSelectionModel().getSelectedItem(),
-                "status");
+                "active");
+
+        loadSuccess("addClassroom");
     }
 
     private void resetAllFields() {

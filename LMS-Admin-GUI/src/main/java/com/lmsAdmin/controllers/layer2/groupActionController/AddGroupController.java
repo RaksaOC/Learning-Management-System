@@ -26,17 +26,23 @@ public class AddGroupController extends MainFrameController {
     private Button addButton;
 
     public void initialize() {
+        generation.getItems().clear();
+        specialization.getItems().clear();
         generation.getItems().addAll(new EditGenerationManager().loadIdsAndName());
         specialization.getItems().addAll(new EditSpecializationManager().loadIdsAndName());
-        groupId.setText(generation.getItems().get(0) + "-" + specialization.getItems().get(0));
+        groupId.setText(extractId(generation.getItems().get(0)) + "-" + extractId(specialization.getItems().get(0)) + "-" + new ManageGroupManager().generateNewGroupEnding(extractId(generation.getItems().getFirst()), extractId(specialization.getItems().getFirst())));
+        groupId.setDisable(true);
         generation.setOnMouseClicked(mouseEvent -> {
             if (generation.getSelectionModel().getSelectedItem() != null) {
-                groupId.setText(generation.getSelectionModel().getSelectedItem() + "-" + specialization.getSelectionModel().getSelectedItem());
+                groupId.clear();
+                groupId.setText(extractId(generation.getSelectionModel().getSelectedItem()) + "-" + extractId(specialization.getSelectionModel().getSelectedItem()) + "-" + new ManageGroupManager().generateNewGroupEnding(extractId(generation.getSelectionModel().getSelectedItem()), extractId(specialization.getSelectionModel().getSelectedItem())));
             }
         });
         specialization.setOnMouseClicked(mouseEvent -> {
             if (specialization.getSelectionModel().getSelectedItem() != null) {
-                groupId.setText(generation.getSelectionModel().getSelectedItem() + "-" + specialization.getSelectionModel().getSelectedItem());
+                groupId.clear();
+                groupId.setText(extractId(generation.getSelectionModel().getSelectedItem()) + "-" + extractId(specialization.getSelectionModel().getSelectedItem()));
+                groupId.setText(extractId(generation.getSelectionModel().getSelectedItem()) + "-" + extractId(specialization.getSelectionModel().getSelectedItem()) + "-" + new ManageGroupManager().generateNewGroupEnding(extractId(generation.getSelectionModel().getSelectedItem()), extractId(specialization.getSelectionModel().getSelectedItem())));
             }
         });
     }
@@ -45,8 +51,8 @@ public class AddGroupController extends MainFrameController {
     private void handleAdd(MouseEvent event) {
         ManageGroupManager manageGroupManager = new ManageGroupManager();
         String groupId = this.groupId.getText();
-        String gen = this.generation.getSelectionModel().getSelectedItem().toString();
-        String spec = this.specialization.getSelectionModel().getSelectedItem().toString();
+        String gen = extractId(this.generation.getSelectionModel().getSelectedItem().toString());
+        String spec = extractId(this.specialization.getSelectionModel().getSelectedItem().toString());
         if (!manageGroupManager.isGroupIdTaken(groupId)) {
             if (isConfirmed()) {
                 manageGroupManager.manageAddGroup(groupId, gen, spec, "active");

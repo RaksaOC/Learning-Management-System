@@ -55,5 +55,4 @@ public class EditGroupManager extends EditEntityManager {
         }
         return ids;
     }
-
 }

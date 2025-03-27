@@ -191,7 +191,6 @@ public class SceneManager extends Application {
     }
 
     public static void refreshScenes() {
-
         loadScenes();
     }
 

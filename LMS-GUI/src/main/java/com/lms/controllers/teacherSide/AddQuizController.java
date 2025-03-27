@@ -15,6 +15,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import main.AppSession;
+import main.java.com.lms.managers.studentSide.QuizzesManager;
 import main.java.com.lms.managers.teacherSide.TeacherQuizManager;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class AddQuizController {
     private TextArea description;
     @FXML
     private VBox questionsWrapper;
-//    @FXML
+    //    @FXML
 //    private VBox questionCard;
 //    @FXML
 //    private TextArea question;
@@ -59,8 +60,19 @@ public class AddQuizController {
         });
 
         finish.setOnMouseClicked(event -> {
-            // Pass extracted data to the manager
             TeacherQuizManager quizManager = new TeacherQuizManager(AppSession.getInstance().getSelectedClassroom());
+            ArrayList<Map<String, Object>> questions = getQuestionsList();
+            for (int i = 0; i < questions.size(); i++) {
+                Map<String, Object> question = questions.get(i);
+                System.out.println("Question " + (i + 1) + ": " + question.get("title"));
+
+                ArrayList<Map<String, Object>> choices = (ArrayList<Map<String, Object>>) question.get("choices");
+                for (int j = 0; j < choices.size(); j++) {
+                    Map<String, Object> choice = choices.get(j);
+                    System.out.println("  Choice " + (j + 1) + ": " + choice.get("choice_text"));
+                }
+                System.out.println();
+            }
             quizManager.manageAddQuizSql(
                     title.getText(),
                     description.getText(),

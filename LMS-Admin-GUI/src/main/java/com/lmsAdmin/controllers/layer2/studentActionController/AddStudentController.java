@@ -66,6 +66,9 @@ public class AddStudentController extends MainFrameController {
         commune.getItems().clear();
         province.setDisable(false);
         province.getItems().clear();
+
+        generation.getItems().clear();
+        department.getItems().clear();
         specialization.setDisable(false);
         specialization.getItems().clear();
 
@@ -81,12 +84,12 @@ public class AddStudentController extends MainFrameController {
         department.setOnAction(e -> {
             if (department.getSelectionModel().getSelectedItem()!= null) {
                 specialization.getItems().clear();
-                ArrayList<String> filteredSpec = (ArrayList<String>) new EditSpecializationManager().loadIdsAndName()
-                        .stream()
-                        .filter(spec -> spec.split(" ")[0]
-                                .equals(extractId(department.getSelectionModel().getSelectedItem())))
-                        .toList();
-                specialization.getItems().addAll(filteredSpec);
+//                ArrayList<String> filteredSpec = (ArrayList<String>) new EditSpecializationManager().loadIdsAndName()
+//                        .stream()
+//                        .filter(spec -> spec.split(" ")[0]
+//                                .equals(extractId(department.getSelectionModel().getSelectedItem())))
+//                        .toList();
+                specialization.getItems().addAll(new EditSpecializationManager().loadIdsAndName());
             }
         });
 
@@ -115,7 +118,8 @@ public class AddStudentController extends MainFrameController {
 
     @FXML
     private void handleAdd(MouseEvent event) {
-        if(isPasswordSame(password.getText(), confirmPassword.getText())){
+        ManageStudentManager manageStudentManager = new ManageStudentManager();
+        if(isPasswordSame(password.getText(), confirmPassword.getText()) && !manageStudentManager.isEmailTaken(email.getText())) {
             String fName = firstName.getText();
             String lName = lastName.getText();
             String dateOfBirth = dob.getValue().toString();
@@ -128,14 +132,13 @@ public class AddStudentController extends MainFrameController {
             String com = commune.getSelectionModel().getSelectedItem().toString();
             String dis = district.getSelectionModel().getSelectedItem().toString();
             String pro = province.getSelectionModel().getSelectedItem().toString();
-            String gener = generation.getSelectionModel().getSelectedItem().toString();
+            String gener = extractId(generation.getSelectionModel().getSelectedItem().toString());
             String dep = extractId(department.getSelectionModel().getSelectedItem().toString());
             String spec = extractId(specialization.getSelectionModel().getSelectedItem().toString());
             String password = confirmPassword.getText();
             String em = email.getText();
 
             if (isConfirmed()) {
-                ManageStudentManager manageStudentManager = new ManageStudentManager();
 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 LocalDateTime now = LocalDateTime.now();
@@ -164,16 +167,16 @@ public class AddStudentController extends MainFrameController {
                         gPhone,
                         gGender
                 );
-                loadSuccess("addStudent");
-                SceneManager.refreshScenes();
-                resetAllFields();
+//                resetAllFields();  // TODO: uncomment all this when pushed to production
+//                SceneManager.refreshScenes();
+//                loadSuccess("addStudent");
             }
         }
         else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Password do not match");
+            alert.setTitle("Error");
             alert.setHeaderText(null);
-            alert.setContentText("Password do not match");
+            alert.setContentText("Password do not match or email is taken");
             alert.showAndWait();
             resetFields();
         }

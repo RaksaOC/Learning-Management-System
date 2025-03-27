@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="897.0" prefWidth="1174.0" style="-fx-background-color: #f4f6fa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lms.controllers.teacherSide.AddAssignmentController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="897.0" prefWidth="1174.0" style="-fx-background-color: #f4f6fa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lms.controllers.teacherSide.AddResourceController">
     <children>
         <VBox prefHeight="45.0" prefWidth="1144.0">
             <padding>
@@ -37,12 +38,12 @@
             <children>
                 <AnchorPane>
                     <children>
-                        <Text layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resource Titile: " AnchorPane.leftAnchor="0.0">
+                        <Text layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assignment Title: " AnchorPane.leftAnchor="0.0" >
                             <font>
                                 <Font name="AppleGothic Regular" size="18.0" />
                             </font>
                         </Text>
-                        <TextField layoutX="86.0" layoutY="1.0" prefHeight="26.0" prefWidth="333.0" AnchorPane.leftAnchor="165.0" />
+                        <TextField layoutX="86.0" layoutY="1.0" prefHeight="26.0" prefWidth="333.0" AnchorPane.leftAnchor="165.0" fx:id="resourceTitle"/>
                     </children>
                     <VBox.margin>
                         <Insets top="10.0" />
@@ -59,7 +60,7 @@
                                 <Font name="AppleGothic Regular" size="18.0" />
                             </font>
                         </Text>
-                        <TextArea prefHeight="150.0" prefWidth="979.0" AnchorPane.leftAnchor="165.0" />
+                        <TextArea prefHeight="150.0" prefWidth="979.0" AnchorPane.leftAnchor="165.0" fx:id="resourceDescription"/>
                     </children>
                     <VBox.margin>
                         <Insets top="10.0" />
@@ -70,6 +71,31 @@
                 <Insets top="20.0" />
             </VBox.margin>
         </VBox>
+        <VBox prefHeight="80.0" prefWidth="1144.0">
+            <children>
+                <AnchorPane>
+                    <children>
+                        <Text layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" AnchorPane.leftAnchor="0.0">
+                            <font>
+                                <Font name="AppleGothic Regular" size="18.0" />
+                            </font>
+                        </Text>
+                        <DatePicker layoutX="270.0" layoutY="1.0" AnchorPane.leftAnchor="165.0" fx:id="resourceDueDate"/>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="30.0" />
+                    </VBox.margin>
+                </AnchorPane>
+            </children>
+        </VBox>
+        <VBox prefHeight="40.0" prefWidth="1144.0">
+            <children>
+                <AnchorPane>
+                    <children>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
         <VBox prefHeight="118.0" prefWidth="1144.0">
             <children>
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reference Material">
@@ -77,7 +103,7 @@
                         <Font name="AppleGothic Regular" size="18.0" />
                     </font>
                 </Text>
-                <VBox prefHeight="93.0" prefWidth="1144.0" spacing="10.0">
+                <VBox prefHeight="93.0" prefWidth="1144.0" spacing="10.0" fx:id="referenceMaterialVBox">
                     <padding>
                         <Insets bottom="10.0" top="10.0" />
                     </padding>
@@ -89,7 +115,7 @@
         </VBox>
         <HBox prefHeight="19.0" prefWidth="1144.0" spacing="20.0">
             <children>
-                <Button mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 30; -fx-border-color: black; -fx-border-radius: 30;" text="+ Add">
+                <Button mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 30; -fx-border-color: black; -fx-border-radius: 30;" text="+ Add" fx:id="addAttach">
                     <font>
                         <Font size="15.0" />
                     </font></Button>
@@ -100,7 +126,7 @@
         </HBox>
         <HBox alignment="CENTER">
             <children>
-                <Button mnemonicParsing="false" style="-fx-background-color: #2F92BC; -fx-background-radius: 30;" text="Finish">
+                <Button mnemonicParsing="false" style="-fx-background-color: #2F92BC; -fx-background-radius: 30;" text="Finish" fx:id="finishButton">
                     <font>
                         <Font size="20.0" />
                     </font>

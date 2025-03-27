@@ -65,10 +65,10 @@ public class AddTeacherController extends MainFrameController {
                         null,
                         password
                 );
-
-                loadSuccess("addTeacher");
-                SceneManager.refreshScenes();
-                resetAllFields();
+                // TODO : uncomment
+//                loadSuccess("addTeacher");
+//                SceneManager.refreshScenes();
+//                resetAllFields();
             }
         }
         else{

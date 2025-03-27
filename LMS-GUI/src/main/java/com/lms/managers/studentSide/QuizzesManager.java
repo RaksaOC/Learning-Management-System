@@ -40,7 +40,7 @@ public class QuizzesManager {
 
     public ArrayList<Map<String, Object>> displayChosenQuiz(int quizIndexToDo, String studentID){
         ArrayList<String> quizzesIDFromSQL = returnQuizSql(studentID);
-        ArrayList<Map<String, Object>> questionsAndChoices = returnQuestionsAndItsChoices(quizzesIDFromSQL.get(quizIndexToDo - 1)); // this one returns the questions based on the quiz that the student chose. each question has its choices
+        ArrayList<Map<String, Object>> questionsAndChoices = returnQuestionsAndChoices(quizzesIDFromSQL.get(quizIndexToDo - 1)); // this one returns the questions based on the quiz that the student chose. each question has its choices
         return questionsAndChoices;
     }
 
@@ -166,7 +166,7 @@ public class QuizzesManager {
         return null;
     }
 
-    private ArrayList<Map<String, Object>> returnQuestionsAndItsChoices(String chosenQuizID) {
+    private ArrayList<Map<String, Object>> returnQuestionsAndChoices(String chosenQuizID) {
         ArrayList<Map<String, Object>> questionsAndItsChoicesList = new ArrayList<>();
         String questionQuery = "select title, id from question where quiz_id=?";
         ArrayList<String> questionList = new ArrayList<>();
@@ -426,27 +426,28 @@ public class QuizzesManager {
         return id_name_classroom;
     }
 
-    public Map<String, String> getClassroomQuizzes() {
-        Map<String, String> id_name_classroom = new HashMap<>();
-        String query = "SELECT CONCAT(q.id, q.title) AS id_name, p.classroom_id as class_id  FROM progress_quiz as pq " +
-                "JOIN progress AS p " +
-                "ON pq.progress_id = p.id " +
-                "JOIN quiz AS q " +
-                "ON pq.quiz_id = q.id " +
-                "WHERE p.classroom_id = ? AND p.student_id = ? ";
+    public ArrayList<String> getClassroomQuizzes() {
+        ArrayList<String> quizzes = new ArrayList<>();
+        String query = "SELECT CONCAT(q.id, ' - ', q.title) AS id_name " +
+                "FROM progress_quiz AS pq " +
+                "JOIN progress AS p ON pq.progress_id = p.id " +
+                "JOIN quiz AS q ON pq.quiz_id = q.id " +
+                "WHERE p.classroom_id = ? AND p.student_id = ?";
+
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, AppSession.getInstance().getSelectedClassroom());
             statement.setString(2, AppSession.getInstance().getStudent().getId());
             ResultSet rs = statement.executeQuery();
+
             while (rs.next()) {
-                id_name_classroom.put("id_name", rs.getString("id_name"));
-                id_name_classroom.put("class_id", rs.getString("class_id"));
+                quizzes.add(rs.getString("id_name"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return id_name_classroom;
+        return quizzes;
     }
+
 
     // Rasa Front end related functions -----------------------------------------------------------------------------------------------
 

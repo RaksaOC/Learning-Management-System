@@ -24,9 +24,12 @@ public class ManageClassroomManager extends ManageEntityManager {
                                    String course_id,
                                    String group_id,
                                    String status) {
+        super.baseID = "P000000";
         classroomId = id;
         insertIntoClassroom(id, teacher_id, course_id, group_id, status);
+        System.out.println("Adding classroom into group: " + group_id);
         ArrayList<String> studentIds = getStudentIdsInGroup(group_id);
+        System.out.println("Student in that group are " + studentIds);
         insertIntoProgress(studentIds);
     }
 
@@ -124,10 +127,12 @@ public class ManageClassroomManager extends ManageEntityManager {
         int numOfStudents = studentIds.size();
         String query = "INSERT INTO progress (id, student_id, classroom_id) VALUES (?, ?, ?)";
         for (int i = 0; i < numOfStudents; i++) {
+            System.out.println("added " + i + 1 + "student to progress");
             try(PreparedStatement statement = conn.prepareStatement(query)){
                 statement.setString(1, generateNewID("progress"));
                 statement.setString(2, studentIds.get(i));
                 statement.setString(3, classroomId);
+                statement.executeUpdate();
             }catch (SQLException e){
                 e.printStackTrace();
             }

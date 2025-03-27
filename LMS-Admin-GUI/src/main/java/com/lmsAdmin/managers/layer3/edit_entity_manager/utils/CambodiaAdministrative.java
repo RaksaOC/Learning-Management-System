@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public class CambodiaAdministrative {
     private ArrayList<String> communes;
 
     public ArrayList<String> getProvinces() {
-        String query = "SELECT province FROM administrative";
+        String query = "SELECT DISTINCT province FROM administrative";
         try(PreparedStatement statement = conn.prepareStatement(query)){
             ResultSet rs = statement.executeQuery();
             provinces = new ArrayList<>();
@@ -26,11 +27,12 @@ public class CambodiaAdministrative {
         }catch (Exception e){
             e.printStackTrace();
         }
+        Collections.sort(provinces);
         return provinces;
     }
 
     public ArrayList<String> getDistricts(String province) {
-        String query = "SELECT district FROM administrative where province = ?";
+        String query = "SELECT DISTINCT district FROM administrative where province = ?";
         try(PreparedStatement statement = conn.prepareStatement(query)){
             statement.setString(1, province);
             ResultSet rs = statement.executeQuery();
@@ -41,11 +43,12 @@ public class CambodiaAdministrative {
         }catch (Exception e){
             e.printStackTrace();
         }
+        Collections.sort(districts);
         return districts;
     }
 
     public ArrayList<String> getCommunes(String district, String province) {
-        String query = "SELECT commune FROM administrative WHERE district = ? AND province = ?";
+        String query = "SELECT DISTINCT commune FROM administrative WHERE district = ? AND province = ?";
         try(PreparedStatement statement = conn.prepareStatement(query)){
             statement.setString(1, district);
             statement.setString(2, province);
@@ -57,6 +60,7 @@ public class CambodiaAdministrative {
         }catch (Exception e){
             e.printStackTrace();
         }
+        Collections.sort(communes);
         return communes;
     }
 }

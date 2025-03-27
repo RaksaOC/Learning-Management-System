@@ -92,12 +92,6 @@
          <children>
             <AnchorPane>
                <children>
-                  <Text layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" AnchorPane.leftAnchor="0.0">
-                     <font>
-                        <Font name="AppleGothic Regular" size="18.0" />
-                     </font>
-                  </Text>
-                  <TextField layoutX="86.0" layoutY="1.0" prefHeight="26.0" prefWidth="333.0" promptText="DD/MM/YYYY" AnchorPane.leftAnchor="165.0" fx:id="assignmentDueTime"/>
                </children>
             </AnchorPane>
          </children>
@@ -109,7 +103,7 @@
                         <Font name="AppleGothic Regular" size="18.0" />
                     </font>
                 </Text>
-                <VBox prefHeight="93.0" prefWidth="1144.0" spacing="10.0">
+                <VBox prefHeight="93.0" prefWidth="1144.0" spacing="10.0" fx:id="referenceMaterialVBox">
                     <padding>
                         <Insets bottom="10.0" top="10.0" />
                     </padding>
@@ -121,7 +115,7 @@
         </VBox>
         <HBox prefHeight="19.0" prefWidth="1144.0" spacing="20.0">
             <children>
-                <Button mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 30; -fx-border-color: black; -fx-border-radius: 30;" text="+ Add" fx:id="addReferenceMaterial">
+                <Button mnemonicParsing="false" style="-fx-background-color: white; -fx-background-radius: 30; -fx-border-color: black; -fx-border-radius: 30;" text="+ Add" fx:id="addAttach">
                <font>
                   <Font size="15.0" />
                </font></Button>

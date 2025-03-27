@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import main.AppSession;
 import main.SceneManager;
 import main.java.com.lms.managers.studentSide.AssignmentsManager;
+import main.java.com.lms.managers.teacherSide.AssignmentManager;
 import ui.UI;
 
 import java.util.Optional;
@@ -40,7 +41,10 @@ public class AssignmentSubmissionController {
     @FXML
     private Button attach;
 
+    private String ass_ref;
+
     public void initialize() {
+        assignmentsManager = new AssignmentsManager();
         backButton.setOnMouseClicked(event -> {
             System.out.println(UI.TextColor.addColor("back button pressed", UI.TextColor.GREEN));
             if (AppSession.getInstance().getIsAssignmentSubmissionFromAssignmentsPage()) {
@@ -49,19 +53,33 @@ public class AssignmentSubmissionController {
                 SceneManager.setCenterView("studentClassroomContents");
             }
         });
+        String assignmentId = session.getSelectedAssignment();
+        attachmentWrapper.getChildren().clear();
 
-        assId.setText(session.getSelectedAssignment());
-        // TODO: add managers to fetch the deadline title
-        // TODO: fetch the ref name and add handler when attach
-        AtomicReference<String> link = null;
+        assId.setText(assignmentId);
+        assTitle.setText(assignmentsManager.getAssignmentTitle());
+        deadLine.setText(assignmentsManager.getAssignmentDeadline());
+        ass_ref = assignmentsManager.getAssignmentRef();
+        refWrapper.getChildren().clear();
+        refWrapper.getChildren().add(refCard(ass_ref));
+
+        AtomicReference<String> link = new AtomicReference<>("");
+
         attach.setOnMouseClicked(event -> {
-            link.set(showInputDialog());
-            attachmentWrapper.getChildren().clear();
-            attachmentWrapper.getChildren().add(attachCard(link.get(), ""));
+            String inputLink = showInputDialog();
+            if (inputLink != null && !inputLink.isEmpty()) {
+                link.set(inputLink);
+                attachmentWrapper.getChildren().clear();
+                attachmentWrapper.getChildren().add(attachCard(link.get(), ""));
+            }
         });
 
         submit.setOnMouseClicked(event -> {
-            assignmentsManager.manageSubmitAssignment(link.get());
+            if (link.get() != null && !link.get().isEmpty()) {
+                assignmentsManager.manageSubmitAssignment(link.get());
+            } else {
+                System.out.println("No attachment link provided!");
+            }
         });
 
     }
@@ -145,11 +163,8 @@ public class AssignmentSubmissionController {
 
         // Wait for the user response
         Optional<String> result = dialog.showAndWait();
-        AtomicReference<String> input = null;
-        result.ifPresent(in -> {
-            System.out.println("User input: " + in);
-            input.set(in);
-        });
-        return input.get();
+
+        // If the user clicked OK and entered a value, return it. Otherwise, return an empty string.
+        return result.orElse("");
     }
 }

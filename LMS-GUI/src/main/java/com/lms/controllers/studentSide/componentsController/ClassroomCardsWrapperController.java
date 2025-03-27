@@ -19,6 +19,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.AppSession;
 import main.SceneManager;
+import main.java.com.lms.managers.studentSide.ClassroomsManger;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -31,8 +32,6 @@ public class ClassroomCardsWrapperController {
     private ScrollPane scrollPane;
 
     private AppSession session = AppSession.getInstance();
-//    private JSONObject progress = session.getStudent().getProgress();
-    private JSONObject progress = new JSONObject();
     private ArrayList<String> classroomIds = new ArrayList<>();
 
     public void initialize() {
@@ -71,13 +70,9 @@ public class ClassroomCardsWrapperController {
         classroomsWrapper.setPrefWidth(Double.MAX_VALUE);
         classroomsWrapper.setPrefHeight(Double.MAX_VALUE);
         classroomsWrapper.setSpacing(40);
-        Set<String> keys = progress.keySet();
-        classroomIds.clear();
-        for (String classroomId : keys) {
-            classroomIds.add(classroomId);
-        }
+        classroomIds = new ClassroomsManger().getAllClassrooms();
+        System.out.println("This student's classrooms are " + classroomIds);
         Collections.sort(classroomIds);
-        System.out.println(classroomIds);
 
         ArrayList<HBox> rows = new ArrayList<>();
         HBox row = new HBox();

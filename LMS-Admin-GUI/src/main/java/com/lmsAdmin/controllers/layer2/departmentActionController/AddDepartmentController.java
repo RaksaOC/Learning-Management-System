@@ -29,7 +29,7 @@ public class AddDepartmentController extends MainFrameController {
 
         if (!manageDepartmentManager.isDepartmentIdTaken(id.getText())) {
             if (isConfirmed()) {
-                manageDepartmentManager.manageAddDepartment(n, id.getText());
+                manageDepartmentManager.manageAddDepartment(id.getText(), name.getText());
                 loadSuccess("addDepartment");
                 SceneManager.refreshScenes();
                 resetAllFields();

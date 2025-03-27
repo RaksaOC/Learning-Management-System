@@ -9,10 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +20,7 @@ public class TeacherQuizManager extends ClassroomContentManager {
     public TeacherQuizManager(String classIdToEdit) {
         super(classIdToEdit);
     }
+
     // ========================================
     // SQL-RELATED METHODS
     // ========================================
@@ -39,24 +37,26 @@ public class TeacherQuizManager extends ClassroomContentManager {
             choicesList.add((ArrayList<Map<String, Object>>) question.get("choices"));
         }
         insertToQuiz(quizID, title, description, status);
+        System.out.println("Inserted into Quiz Table");
         for (int i = 0; i < questionList.size(); i++) {
             String questionID = generateNewID("question", "QU0000");
             String choice_text = "";
             boolean isCorrect = false;
             ArrayList<Map<String, Object>> currentChoiceList = choicesList.get(i);
             insertToQuestion(questionID, quizID, titles.get(i));
+            System.out.println("Inserted into Question Table");
             for (int j = 0; j < currentChoiceList.size(); j++) {
                 String choiceID = generateNewID("choice", "CH0000");
                 choice_text = (String) currentChoiceList.get(j).get("choice_text");
                 isCorrect = (boolean) currentChoiceList.get(j).get("isCorrect");
                 insertToChoice(choiceID, questionID, choice_text, isCorrect);
+                System.out.println("Inserted into Choice Table");
             }
         }
         String progressId = "";
-        String progressIdQuery = "SELECT id FROM progress WHERE student_id = ? AND classroom_id = ?";
+        String progressIdQuery = "SELECT id FROM progress WHERE classroom_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(progressIdQuery)) {
-            statement.setString(1, AppSession.getInstance().getStudent().getId());
-            statement.setString(2, classIdToEdit);
+            statement.setString(1, classIdToEdit);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 progressId = rs.getString("id");
@@ -66,8 +66,9 @@ public class TeacherQuizManager extends ClassroomContentManager {
         }
 
         insertToProgressQuiz(progressId, quizID, null);
+        System.out.println("Inserted into Progress Table");
         insertToClassroomQuiz(this.classIdToEdit, quizID);
-        System.out.println("finished");
+        System.out.println("Inserted into Classroom Table");
     }
 
     public void manageEditQuizSql() {
@@ -223,7 +224,7 @@ public class TeacherQuizManager extends ClassroomContentManager {
         return questionsAndItsChoicesList;
     }
 
-    private static void insertToQuiz(String id, String title, String description, String status) {
+    private void insertToQuiz(String id, String title, String description, String status) {
         String quarry = "INSERT INTO quiz (id, title, description, status) VALUES ( ?, ?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(quarry)) {
             statement.setString(1, id);
@@ -236,7 +237,7 @@ public class TeacherQuizManager extends ClassroomContentManager {
         }
     }
 
-    private static void insertToQuestion(String id, String quiz_id, String title) {
+    private void insertToQuestion(String id, String quiz_id, String title) {
         String quarry = "INSERT INTO question (id, quiz_id, title) VALUES ( ?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(quarry)) {
             statement.setString(1, id);
@@ -248,7 +249,7 @@ public class TeacherQuizManager extends ClassroomContentManager {
         }
     }
 
-    private static void insertToChoice(String id, String question_id, String choice_text, Boolean isCorrect) {
+    private void insertToChoice(String id, String question_id, String choice_text, Boolean isCorrect) {
         String quarry = "INSERT INTO choice (id, question_id, choice_text, isCorrect) VALUES ( ?, ?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(quarry)) {
             statement.setString(1, id);
@@ -261,19 +262,20 @@ public class TeacherQuizManager extends ClassroomContentManager {
         }
     }
 
-    private static void insertToProgressQuiz(String progress_id, String quiz_id, Double score) {
-        String quarry = "INSERT INTO progress_quiz (progress_id, quiz_id, score) VALUES (?, ?, ?)";
-        try (PreparedStatement statement = conn.prepareStatement(quarry)) {
-            statement.setString(1, progress_id);
-            statement.setString(2, quiz_id);
-            statement.setDouble(3, score);
+    private void insertToProgressQuiz(String progress_id, String quiz_id, Double score) {
+        String query = "INSERT INTO progress_quiz (progress_id, quiz_id, score, status) " +
+                "SELECT id, ?, NULL, 'active' FROM progress WHERE classroom_id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, quiz_id); // Set quiz_id for all matched progress rows
+            statement.setString(2, AppSession.getInstance().getSelectedClassroom()); // Filter by selected classroom
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private static void insertToClassroomQuiz(String classIdToEdit, String quiz_id) {
+
+    private void insertToClassroomQuiz(String classIdToEdit, String quiz_id) {
         String quarry = "INSERT INTO classroom_quiz (class_id, quiz_id) VALUES ( ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(quarry)) {
             statement.setString(1, classIdToEdit);
@@ -283,7 +285,6 @@ public class TeacherQuizManager extends ClassroomContentManager {
             e.printStackTrace();
         }
     }
-
 
     protected String generateNewID(String tableName, String baseID) {
         try {

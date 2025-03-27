@@ -72,7 +72,7 @@ public class ResourceCardsWrapperController {
 
         ResourcesManager resourcesManager = new ResourcesManager();
 
-        resource_classroom = resourcesManager.getAllResources();
+        resource_classroom = (HashMap<String, String>) resourcesManager.getAllResources();
 
         resourcesList = new ArrayList<>(resource_classroom.keySet());
         Collections.sort(resourcesList);

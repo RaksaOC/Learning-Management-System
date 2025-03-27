@@ -18,6 +18,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.AppSession;
 import main.SceneManager;
+import main.java.com.lms.managers.teacherSide.ClassroomsManger;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
@@ -29,7 +30,6 @@ public class ClassroomsController {
     @FXML
     private ScrollPane classroomCardsWrapper;
 
-    private JSONArray classrooms = AppSession.getInstance().getTeacher().getClassrooms();
     private ArrayList<String> classroomIds;
 
 
@@ -47,12 +47,7 @@ public class ClassroomsController {
         classroomsWrapper.setPrefHeight(Double.MAX_VALUE);
         classroomsWrapper.setSpacing(40);
 
-        classroomIds = new ArrayList<>();
-        for (int i = 0; i < classrooms.length(); i++) {
-            classroomIds.add(classrooms.getString(i));
-        }
-
-        Collections.sort(classroomIds);
+        classroomIds = new ClassroomsManger().getAllClassrooms();
 
         ArrayList<HBox> rows = new ArrayList<>();
         HBox row = new HBox();

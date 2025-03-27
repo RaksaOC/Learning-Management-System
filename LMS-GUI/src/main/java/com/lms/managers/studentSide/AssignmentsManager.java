@@ -11,12 +11,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.*;
-import java.text.SimpleDateFormat;import java.util.*;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.Date;
 
 public class AssignmentsManager {
     private Student student;
     private Connection conn;
+
     public AssignmentsManager() {
         AppSession session = AppSession.getInstance();
         this.student = session.getStudent();
@@ -27,20 +29,109 @@ public class AssignmentsManager {
     // SQL-RELATED METHODS
     // ========================================
 
-    public void manageSubmitAssignment(String sub_attachment){
+    public void manageSubmitAssignment(String sub_attachment) {
         String query = "UPDATE progress_assignment pa " +
                 "JOIN progress p on pa.progress_id = p.id " +
-                "SET pa.status = 'inactive' AND pa.sub_attachment = ? " +
+                "SET pa.sub_attachment = ? " +
                 "WHERE p.student_id = ? AND pa.assignment_id = ?";
-        try(PreparedStatement statement = conn.prepareStatement(query)){
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, sub_attachment);
             statement.setString(2, student.getId());
             statement.setString(3, AppSession.getInstance().getSelectedAssignment());
             statement.executeUpdate();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+    public Map<String, String> getAllAssignments() {
+        Map<String, String> id_name_classroom = new HashMap<>();
+        String query = "SELECT CONCAT(a.id, ' - ', a.title) AS id_name, " +
+                "p.classroom_id as class_id " +
+                "FROM progress_assignment as pa " +
+                "JOIN progress AS p " +
+                "ON pa.progress_id = p.id AND p.student_id = ? " +
+                "JOIN assignment AS a " +
+                "ON pa.assignment_id = a.id ";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getStudent().getId());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                id_name_classroom.put("id_name", rs.getString("id_name"));
+                id_name_classroom.put("class_id", rs.getString("class_id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id_name_classroom;
+    }
+
+    public ArrayList<String> getClassroomAssignments() {
+        ArrayList<String> assignments = new ArrayList<>();
+        String query = "SELECT CONCAT(a.id, ' - ', a.title) AS id_name " +
+                "FROM progress_assignment AS pa " +
+                "JOIN progress AS p ON pa.progress_id = p.id " +
+                "JOIN assignment AS a ON pa.assignment_id = a.id " +
+                "WHERE p.classroom_id = ? AND p.student_id = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedClassroom());
+            statement.setString(2, AppSession.getInstance().getStudent().getId());
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                assignments.add(rs.getString("id_name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return assignments;
+    }
+
+    public String getAssignmentTitle() {
+        System.out.println("Assignment ID in second page: " + AppSession.getInstance().getSelectedAssignment());
+        String query = "SELECT title FROM assignment WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedAssignment());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("title");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getAssignmentDeadline() {
+        String query = "SELECT deadline FROM assignment WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedAssignment());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("deadline");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getAssignmentRef() {
+        String query = "SELECT ref_attachment FROM assignment WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedAssignment());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("ref_attachment");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 //    // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
 //
@@ -186,7 +277,8 @@ public class AssignmentsManager {
 //            System.out.println(assignment.getString("id") + " - " + assignment.getString("title")); // Show ID & title
 //        }
 //
-////        return Menu.prompt("Enter Assignment ID to select: ");
+
+    /// /        return Menu.prompt("Enter Assignment ID to select: ");
 //        return "";
 //    }
 
@@ -330,7 +422,7 @@ public class AssignmentsManager {
         }
     }
 
-    public void viewGradesAndComments(String studentId){
+    public void viewGradesAndComments(String studentId) {
 //        JSONArray feedback =
     }
 
@@ -356,7 +448,7 @@ public class AssignmentsManager {
 
     // Rasa Front end related functions -----------------------------------------------------------------------------------------------
 
-    private JSONArray getAllRelatedStudentProgress(List<String> progressIds){
+    private JSONArray getAllRelatedStudentProgress(List<String> progressIds) {
         JSONArray allProgress = loadProgress();
         JSONArray studentProgress = new JSONArray();
         for (int i = 0; i < progressIds.size(); i++) {
@@ -369,11 +461,11 @@ public class AssignmentsManager {
         return studentProgress;
     }
 
-    private JSONArray loadProgress(){
-        try{
+    private JSONArray loadProgress() {
+        try {
             String content = new String(Files.readAllBytes(Paths.get("shared/data/progress.json")));
             return new JSONArray(content);
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return null;

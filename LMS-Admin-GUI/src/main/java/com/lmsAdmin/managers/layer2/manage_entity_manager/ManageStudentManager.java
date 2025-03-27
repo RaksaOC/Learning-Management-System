@@ -2,6 +2,7 @@ package main.java.com.lmsAdmin.managers.layer2.manage_entity_manager;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import lib.Hasher;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -48,7 +49,7 @@ public class ManageStudentManager extends ManageEntityManager {
             statement.setString(5, dob);
             statement.setString(6, phone_number);
             statement.setString(7, email);
-            statement.setString(8, password);
+            statement.setString(8, Hasher.hash(password));
             statement.setString(9, commune);
             statement.setString(10, district);
             statement.setString(11, province);
@@ -154,5 +155,17 @@ public class ManageStudentManager extends ManageEntityManager {
             e.printStackTrace();
         }
         return map;
+    }
+
+    public boolean isEmailTaken(String email) {
+        String query = "SELECT * FROM student WHERE email = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, email);
+            ResultSet rs = statement.executeQuery();
+            return rs.next();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

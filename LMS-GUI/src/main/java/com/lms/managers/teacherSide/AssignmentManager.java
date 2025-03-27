@@ -4,6 +4,8 @@ import main.AppSession;
 import main.DatabaseConnection;import org.json.JSONArray;
 import org.json.JSONObject;
 
+import javax.xml.crypto.Data;
+import java.awt.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,6 +23,120 @@ public class AssignmentManager extends ClassroomContentManager {
     // ========================================
 
     // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
+
+    private Connection conn = DatabaseConnection.getInstance().getConnection();
+
+    public void manageAddAssignmentSql(String title, String description, String deadline, String ref_attachment) {
+        String query = "INSERT INTO assignment (id, title, description, deadline, status, ref_attachment) VALUES (?,?,?,?,?,?)";
+        String id = generateAssignmentIdSql("A0000");
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, id);
+            statement.setString(2, title);
+            statement.setString(3, description);
+            statement.setDate(4, Date.valueOf(deadline));
+            statement.setString(5, "active");
+            statement.setString(6, ref_attachment);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String query2= "INSERT INTO classroom_assignment(class_id, assignment_id) VALUES (?,?)";
+        try(PreparedStatement statement = conn.prepareStatement(query2)){
+            statement.setString(1, AppSession.getInstance().getSelectedClassroom());
+            statement.setString(2, id);
+            statement.executeUpdate();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String query3 = "INSERT INTO progress_assignment (progress_id, assignment_id, score, sub_attachment, status) " +
+                "SELECT id, ?, ?, ?, ? FROM progress WHERE classroom_id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query3)) {
+            statement.setString(1, id); // assignment_id
+            statement.setNull(2, Types.DECIMAL); // score (nullable)
+            statement.setNull(3, Types.VARCHAR); // sub_attachment (nullable)
+            statement.setString(4, "active"); // status
+            statement.setString(5, AppSession.getInstance().getSelectedClassroom()); // classroom_id for WHERE clause
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void manageEditAssignmentSql(String id, String title, String description, String deadline, String ref_attachment) {
+        // Check if the assignment ID exists
+        String checkQuery = "SELECT COUNT(*) FROM assignment WHERE id = ?";
+        try (PreparedStatement checkStmt = conn.prepareStatement(checkQuery)) {
+            checkStmt.setString(1, id);
+            checkStmt.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+
+        // Update the assignment
+        String query = "UPDATE assignment SET title = ?, description = ?, deadline = ?, ref_attachment = ? WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, title);
+            statement.setString(2, description);
+            statement.setString(3, deadline);
+            statement.setString(4, ref_attachment);
+            statement.setString(5, id); // Ensure ID is set in the WHERE clause
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void manageDeleteAssignmentSql(String id) {
+        String query = "UPDATE assignment SET status = ? WHERE id = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, "inactive"); // Set status
+            statement.setString(2, id); // Bind ID parameter
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(); // Replace with a logger in production
+        }
+    }
+
+    public String getAssignmentTitle(){
+        String query = "SELECT title FROM assignment WHERE id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, AppSession.getInstance().getSelectedAssignment());
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()){
+                return rs.getString("title");
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private String generateAssignmentIdSql(String baseId) {
+        String query = "SELECT count(*) FROM assignment";
+        int objects = 0; // Default to 0 if query fails
+        try (PreparedStatement statement = conn.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                objects = resultSet.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        objects++; // Increment to get the next available ID
+        // Extract number part (e.g., "000" from "A000")
+        String numberPart = baseId.replaceAll("[^0-9]", "");
+        int numberLength = numberPart.length();
+        // Format number with leading zeros
+        String formattedNumber = String.format("%0" + numberLength + "d", objects);
+        // Extract the prefix (non-numeric part, e.g., "A" from "A000")
+        String prefixChar = baseId.replaceAll("[0-9]", "");
+        return prefixChar + formattedNumber;
+    }
 
 
 

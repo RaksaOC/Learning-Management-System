@@ -1,12 +1,7 @@
-CREATE DATABASE LMS;
+CREATE DATABASE LMS2;
 
-USE LMS;
+USE LMS2;
 
--- HELPERS
-SHOW DATABASES;
-SET FOREIGN_KEY_CHECKS=1; -- make sure to switch between after use
-
--- Admin Table
 CREATE TABLE admin (
     id VARCHAR(10) PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
@@ -268,5 +263,3 @@ CREATE TABLE administrative(
     country VARCHAR(100),
     country_code VARCHAR(5)
 );
-
-select * from administrative;

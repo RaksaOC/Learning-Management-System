@@ -323,27 +323,30 @@ public class TeacherQuizManager extends ClassroomContentManager {
         return null;
     }
 
-        public Map<String, String> getClassroomQuizzes(){
-            Map<String, String> id_name_classroom = new HashMap<>();
-            String query = "SELECT CONCAT(q.id, q.title) AS id_name, p.classroom_id as class_id  FROM progress_quiz as pq " +
-                    "JOIN progress AS p " +
-                    "ON pq.progress_id = p.id " +
-                    "JOIN quiz AS q " +
-                    "ON pq.quiz_id = q.id " +
-                    "WHERE p.classroom_id = ? AND p.student_id = ? ";
-            try (PreparedStatement statement = conn.prepareStatement(query)) {
-                statement.setString(1, AppSession.getInstance().getSelectedClassroom());
-                statement.setString(2, AppSession.getInstance().getStudent().getId());
-                ResultSet rs = statement.executeQuery();
-                while (rs.next()) {
-                    id_name_classroom.put("id_name", rs.getString("id_name"));
-                    id_name_classroom.put("class_id", rs.getString("class_id"));
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+    public ArrayList<String> getClassroomQuizzesSql() {
+        ArrayList<String> quizzes = new ArrayList<>();
+        String query = "SELECT CONCAT(q.id, ' - ', q.title) AS id_name " +
+                "FROM progress_quiz AS pq " +
+                "JOIN progress AS p ON pq.progress_id = p.id " +
+                "JOIN quiz AS q ON pq.quiz_id = q.id " +
+                "JOIN classroom AS c ON p.classroom_id = c.id " +
+                "WHERE p.classroom_id = ? AND c.teacher_id = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedClassroom());
+            statement.setString(2, AppSession.getInstance().getTeacher().getId());
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                quizzes.add(rs.getString("id_name"));
             }
-            return id_name_classroom;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
+        return quizzes;
+    }
+
 
 
     // ========================================

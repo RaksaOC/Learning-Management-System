@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class AssignmentManager extends ClassroomContentManager {
 
@@ -136,6 +137,30 @@ public class AssignmentManager extends ClassroomContentManager {
         // Extract the prefix (non-numeric part, e.g., "A" from "A000")
         String prefixChar = baseId.replaceAll("[0-9]", "");
         return prefixChar + formattedNumber;
+    }
+
+    public ArrayList<String> getClassroomAssignmentsSql() {
+        ArrayList<String> assignments = new ArrayList<>();
+        String query = "SELECT CONCAT(a.id, ' - ', a.title) AS id_name " +
+                "FROM progress_assignment AS pa " +
+                "JOIN progress AS p ON pa.progress_id = p.id " +
+                "JOIN assignment AS a ON pa.assignment_id = a.id " +
+                "JOIN classroom AS c ON p.classroom_id = c.id " +
+                "WHERE p.classroom_id = ? AND c.teacher_id = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedClassroom());
+            statement.setString(2, AppSession.getInstance().getTeacher().getId());
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                assignments.add(rs.getString("id_name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return assignments;
     }
 
 

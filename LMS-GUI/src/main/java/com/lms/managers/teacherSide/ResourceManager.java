@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class ResourceManager extends ClassroomContentManager {
     private Connection conn = DatabaseConnection.getInstance().getConnection();
@@ -120,6 +121,29 @@ public class ResourceManager extends ClassroomContentManager {
         return prefixChar + formattedNumber;
     }
 
+    public ArrayList<String> getClassroomMaterialsSql() {
+        ArrayList<String> materials = new ArrayList<>();
+        String query = "SELECT CONCAT(m.id, ' - ', m.title) AS id_name " +
+                "FROM progress_material AS pm " +
+                "JOIN progress AS p ON pm.progress_id = p.id " +
+                "JOIN material AS m ON pm.material_id = m.id " +
+                "JOIN classroom AS c ON p.classroom_id = c.id " +
+                "WHERE p.classroom_id = ? AND c.teacher_id = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedClassroom());
+            statement.setString(2, AppSession.getInstance().getTeacher().getId());
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                materials.add(rs.getString("id_name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return materials;
+    }
 
     // ========================================
     // JSON-RELATED METHODS

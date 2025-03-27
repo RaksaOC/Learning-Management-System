@@ -169,16 +169,6 @@ CREATE TABLE classroom (
     FOREIGN KEY (group_id) REFERENCES student_group(id) ON UPDATE CASCADE
 );
 
--- Classroom_student table
-
-CREATE TABLE classroom_student(
-	class_id VARCHAR(20),
-    student_id VARCHAR(10),
-    
-    FOREIGN KEY (class_id) REFERENCES classroom(id) ON UPDATE CASCADE,
-    FOREIGN KEY (student_id) REFERENCES student(id) ON UPDATE CASCADE
-);
-
 -- Assignments Table
 CREATE TABLE assignment (
     id VARCHAR(10) PRIMARY KEY,

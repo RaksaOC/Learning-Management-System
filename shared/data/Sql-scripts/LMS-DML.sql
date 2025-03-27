@@ -16,7 +16,8 @@ INSERT INTO `classroom_assignment` VALUES ('GEN10-CS-DS-G1-AA','A0001');
 
 INSERT INTO `course` VALUES ('AA','Advanced Algorithm','Some description.','Undergraduate','5','active'),
 ('CPF','Computer Programming Fundamentals','This is the description of the Computer Programming Fundamentals course.','Undergraduate','5','active'),
-('DBMS','Database Design & Analysis','Some description.','Undergraduate','5','active'),('FD','Front End Development','Some description.','Undergraduate','4','active'),
+('DBMS','Database Design & Analysis','Some description.','Undergraduate','5','active'),
+('FD','Front End Development','Some description.','Undergraduate','4','active'),
 ('LA','Linear Algebra','This is the description of the Linear Algebra course.','Undergraduate','5','active'),
 ('VA','Visual Art','This is the description for the visual art course.','Undergraduate','3','active');
 
@@ -1342,6 +1343,302 @@ VALUES
   (
     'T0001', 'login', '2025-03-27 14:33:52'
   );
+  
+-- UPDATES
+
+-- ============================
+-- ========== Admin ===========
+-- ============================
+
+-- 🟡 Edit  
+
+-- Edit name  
+UPDATE admin 
+SET first_name = "NewFirst", last_name = "NewLast" 
+WHERE id = "admin_id";
+
+-- Edit phone  
+UPDATE admin 
+SET phone_number = "098765432" 
+WHERE id = "admin_id";
+
+-- Edit email  
+UPDATE admin 
+SET email = "new_email@example.com" 
+WHERE id = "admin_id";
+
+-- ...
+
+-- 🔴 Delete  
+UPDATE admin 
+SET status = "inactive" 
+WHERE id = "admin_id";
+
+-- ============================
+-- ========== Student =========
+-- ============================
+
+-- 🟡 Edit  
+
+-- Edit name  
+
+UPDATE student 
+SET first_name = "NewFirst", last_name = "NewLast" 
+WHERE id = "student_id";
+
+-- Edit phone  
+UPDATE student 
+SET phone_number = "098765432" 
+WHERE id = "student_id";
+
+-- Edit email  
+UPDATE student 
+SET email = "new_email@example.com" 
+WHERE id = "student_id";
+
+-- Edit guardian name  
+UPDATE student 
+SET guardian_first_name = "NewGuardianFirst", guardian_last_name = "NewGuardianLast" 
+WHERE id = "student_id";
+
+-- Edit guardian phone  
+UPDATE student 
+SET guardian_phone_number = "087654321" 
+WHERE id = "student_id";
+
+-- ...
+
+-- 🔴 Delete  
+
+UPDATE student 
+SET status = "inactive" 
+WHERE id = "student_id";
+
+-- ============================
+-- ========== Teacher =========
+-- ============================
+
+-- 🟡 Edit  
+
+-- Edit name  
+
+UPDATE teacher 
+SET first_name = "NewFirst", last_name = "NewLast" 
+WHERE id = "teacher_id";
+
+-- ...
+
+-- 🔴 Delete  
+
+UPDATE teacher 
+SET status = "inactive" 
+WHERE id = "teacher_id";
+
+-- ============================
+-- ========== Department ======
+-- ============================
+
+-- 🟡 Edit  
+
+-- Edit id  
+
+UPDATE department
+SET id = "new_id" 
+WHERE id = "dep_id";
+
+-- Edit Name
+
+UPDATE department
+SET name = "new_name" 
+WHERE id = "dep_id";
+
+-- 🔴 Delete  
+
+UPDATE department
+SET status = "inactive" 
+WHERE id = "dep_id";
+
+-- ============================
+-- ====== Specialization ======
+-- ============================
+
+-- 🟡 Edit  
+
+-- Edit id 
+
+UPDATE specialization
+SET id = "new_id" 
+WHERE id = "spe_id";
+
+-- Edit Name
+
+UPDATE specialization
+SET name = "new_name" 
+WHERE id = "spe_id";
+
+-- 🔴 Delete  
+
+UPDATE specialization
+SET status = "inactive" 
+WHERE id = "spe_id";
+
+-- ============================
+-- ====== Generation ==========
+-- ============================
+
+-- 🟡 Edit  
+
+-- Edit id  
+
+UPDATE generation
+SET id = "new_id" 
+WHERE id = "gen_id";
+
+-- Edit Name
+
+UPDATE generation
+SET name = "new_name" 
+WHERE id = "gen_id";
+
+-- 🔴 Delete  
+
+UPDATE generation
+SET status = "inactive" 
+WHERE id = "gen_id";
+
+-- ============================
+-- ====== student_group =======
+-- ============================
+
+-- 🟡 Edit  
+
+-- Edit id
+
+UPDATE student_group
+SET id = "new_id" 
+WHERE id = "group_id";
+
+-- 🔴 Delete  
+
+UPDATE student_group
+SET status = "inactive" 
+WHERE id = "group_id";
+
+-- 🟤 Others
+
+-- Add student to group
+
+UPDATE student
+SET group_id = "group_id"
+WHERE id = "student_id";
+
+-- ============================
+-- ======== classroom =========
+-- ============================
+
+-- 🟡 Edit
+
+-- Edit id
+
+UPDATE classroom
+SET id = "new_id"
+WHERE id = "class_id";
+
+-- Edit Name
+
+UPDATE course
+SET name = "new_name" 
+WHERE id = "class_id";
+
+-- 🔴 Delete  
+
+UPDATE classroom
+SET status = "inactive" 
+WHERE id = "class_id";
+
+-- 🟤 Others
+
+-- Add teacher to classroom
+
+UPDATE classroom 
+SET teacher_id = "teacher_id"
+where id = "class_id";
+
+-- Add course to classroom
+
+UPDATE classroom 
+SET course_id = "course_id"
+where id = "class_id";
+
+-- ============================
+-- ========= course ===========
+-- ============================
+
+-- 🟡 Edit  
+
+-- Edit id 
+
+UPDATE course
+SET id = "new_id" 
+WHERE id = "VA";
+
+-- Edit Name
+
+UPDATE course
+SET name = "new_name" 
+WHERE id = "VA";
+
+-- Edit description
+
+UPDATE course
+SET description = "new_desc" 
+WHERE id = "VA";
+
+-- Edit level
+
+UPDATE course
+SET level = "new_level" 
+WHERE id = "VA";
+
+-- Edit Credit
+
+UPDATE course
+SET credit = "new_credit" 
+WHERE id = "VA";
+
+-- 🔴 Delete  
+
+UPDATE course
+SET status = "inactive" 
+WHERE id = "VA";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- MISC =============================================================================
 
 INSERT INTO `administrative` 
 VALUES 

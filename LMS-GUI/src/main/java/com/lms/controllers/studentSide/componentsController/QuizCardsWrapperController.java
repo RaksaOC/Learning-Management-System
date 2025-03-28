@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.AppSession;
+import main.SceneManager;
 import main.java.com.lms.managers.studentSide.QuizzesManager;
 
 import java.util.ArrayList;
@@ -35,7 +36,6 @@ public class QuizCardsWrapperController {
     public void initialize() {
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        scrollPane.setStyle("-fx-background-color: red");
 
         scrollPane.setContent((quizzesWrapper()));
 
@@ -44,18 +44,14 @@ public class QuizCardsWrapperController {
             if (scrollPane.getScene() != null && scrollPane.getScene().getRoot() instanceof BorderPane parent) {
                 Node centerNode = parent.getCenter();
                 if (centerNode instanceof Region region) {
-                    // Bind width to the available space
                     scrollPane.maxWidthProperty().bind(region.widthProperty());
 
-                    // Dynamically set height to maintain responsiveness
                     scrollPane.setPrefHeight(region.getHeight() * 0.9); // 90% of the parent height
                     scrollPane.maxHeightProperty().bind(region.heightProperty()); // Prevent overflow
 
-                    // Enable scrolling while maintaining content's natural size
                     scrollPane.setFitToHeight(false);
                     scrollPane.setFitToWidth(true);
 
-                    // Allow content inside to scroll properly
                     VBox content = (VBox) scrollPane.getContent();
                     content.maxHeightProperty().bind(scrollPane.maxHeightProperty()); // Bind content height to ScrollPane
                 }
@@ -118,7 +114,7 @@ public class QuizCardsWrapperController {
         // styling
         quizCard.setSpacing(20);
         quizCard.setAlignment(Pos.TOP_CENTER);
-        quizCard.setPrefWidth(400);
+        quizCard.setPrefWidth(350);
         quizCard.setMinHeight(250);
         quizCard.setStyle("-fx-border-radius: 30; -fx-background-color: #FFFFFF; -fx-background-radius: 30");
         quizCard.setCursor(Cursor.HAND);
@@ -155,11 +151,18 @@ public class QuizCardsWrapperController {
 
         quizCard.setOnMouseClicked(e -> {
             AppSession.getInstance().setSelectedClassroom(quiz_classroom.get(quizzesList.get(idx)));
-            AppSession.getInstance().setSelectedQuiz(quizzesList.get(idx));
-            // TODO: transition to quiz viewing page
+            AppSession.getInstance().setSelectedAssignment(extractId(quizzesList.get(idx)));
+            AppSession.getInstance().isSubmissionFromAllPage(true);
+
+            SceneManager.loadCenterView("doQuiz", "resources/com/lms/views/studentSide/DoQuiz.fxml");
+            SceneManager.setCenterView("doQuiz");
         });
 
-        QuizID.setFont(Font.font("AppleGothic", 24));
+        QuizID.setFont(Font.font("AppleGothic", 20));
         return quizCard;
+    }
+
+    private String extractId(String longId) {
+        return longId.substring(0, longId.indexOf(" "));
     }
 }

@@ -59,7 +59,6 @@ public class AddResourceController {
                 ResourceManager resourceManager = new ResourceManager(AppSession.getInstance().getSelectedClassroom());
                 String title = resourceTitle.getText();
                 String description = resourceDescription.getText();
-                String dueDate = resourceDueDate.getValue().toString();
 
                 resourceManager.manageAddMaterial(title, description, link.get());
             } else {

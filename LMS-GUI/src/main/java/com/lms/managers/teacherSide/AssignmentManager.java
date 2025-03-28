@@ -117,6 +117,66 @@ public class AssignmentManager extends ClassroomContentManager {
         return null;
     }
 
+    public String getAssignmentDeadline() {
+        String query = "SELECT deadline FROM assignment WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedAssignment());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("deadline");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getAssignmentDescription(){
+        String query = "SELECT description FROM assignment WHERE id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, AppSession.getInstance().getSelectedAssignment());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("description");
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getAssignmentRef() {
+        String query = "SELECT ref_attachment FROM assignment WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedAssignment());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("ref_attachment");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getPrevAssignmentRef() {
+        String query = "SELECT sub_attachment FROM progress_assignment pa" +
+                " JOIN progress p ON pa.progress_id = p.id " +
+                "WHERE p.student_id = ? AND pa.assignment_id = ?";
+
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, AppSession.getInstance().getStudent().getId());
+            statement.setString(2, AppSession.getInstance().getSelectedAssignment());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("sub_attachment");
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     private String generateAssignmentIdSql(String baseId) {
         String query = "SELECT count(*) FROM assignment";
         int objects = 0; // Default to 0 if query fails
@@ -141,16 +201,23 @@ public class AssignmentManager extends ClassroomContentManager {
 
     public ArrayList<String> getClassroomAssignmentsSql() {
         ArrayList<String> assignments = new ArrayList<>();
+        // No need to check for teacherID cuz already done that at showing the teacher's classroom so we got the class_id alr
         String query = "SELECT CONCAT(a.id, ' - ', a.title) AS id_name " +
-                "FROM progress_assignment AS pa " +
-                "JOIN progress AS p ON pa.progress_id = p.id " +
-                "JOIN assignment AS a ON pa.assignment_id = a.id " +
-                "JOIN classroom AS c ON p.classroom_id = c.id " +
-                "WHERE p.classroom_id = ? AND c.teacher_id = ?";
+                "FROM classroom_assignment AS ca " +
+                "JOIN assignment AS a ON ca.assignment_id = a.id " +
+                "WHERE ca.class_id = ?";
+
+
+    // TODO: this is for grading. need to improve with name
+//        String query = "SELECT CONCAT(a.id, ' - ', a.title) AS id_name " +
+//                "FROM progress_assignment AS pa " +
+//                "JOIN progress AS p ON pa.progress_id = p.id " +
+//                "JOIN assignment AS a ON pa.assignment_id = a.id " +
+//                "JOIN classroom AS c ON p.classroom_id = c.id " +
+//                "WHERE p.classroom_id = ? AND c.teacher_id = ?";
 
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, AppSession.getInstance().getSelectedClassroom());
-            statement.setString(2, AppSession.getInstance().getTeacher().getId());
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {

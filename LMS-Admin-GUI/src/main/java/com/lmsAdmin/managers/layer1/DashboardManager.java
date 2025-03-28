@@ -73,7 +73,7 @@ public class DashboardManager {
             ResultSet rs = statement.executeQuery();
             while(rs.next()){
                 Map<String, String> map = new HashMap<>();
-                map.put("student_id", rs.getString("student_id"));
+                map.put("id", rs.getString("student_id"));
                 map.put("time", rs.getString("time"));
                 map.put("last_action", rs.getString("last_action"));
                 data.add(map);
@@ -91,7 +91,7 @@ public class DashboardManager {
             ResultSet rs = statement.executeQuery();
             while(rs.next()){
                 Map<String, String> map = new HashMap<>();
-                map.put("teacher_id", rs.getString("teacher_id"));
+                map.put("id", rs.getString("teacher_id"));
                 map.put("time", rs.getString("time"));
                 map.put("last_action", rs.getString("last_action"));
                 data.add(map);

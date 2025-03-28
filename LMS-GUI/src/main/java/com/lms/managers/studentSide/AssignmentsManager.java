@@ -50,15 +50,15 @@ public class AssignmentsManager {
                 "p.classroom_id as class_id " +
                 "FROM progress_assignment as pa " +
                 "JOIN progress AS p " +
-                "ON pa.progress_id = p.id AND p.student_id = ? " +
+                "ON pa.progress_id = p.id " +
                 "JOIN assignment AS a " +
-                "ON pa.assignment_id = a.id ";
+                "ON pa.assignment_id = a.id " +
+                "WHERE p.student_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, AppSession.getInstance().getStudent().getId());
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                id_name_classroom.put("id_name", rs.getString("id_name"));
-                id_name_classroom.put("class_id", rs.getString("class_id"));
+                id_name_classroom.put(rs.getString("id_name"), rs.getString("class_id"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -127,6 +127,38 @@ public class AssignmentsManager {
                 return rs.getString("ref_attachment");
             }
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getAssignmentDescription(){
+        String query = "SELECT description FROM assignment WHERE id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, AppSession.getInstance().getSelectedAssignment());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("description");
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getPrevAssignmentRef() {
+        String query = "SELECT sub_attachment FROM progress_assignment pa" +
+                " JOIN progress p ON pa.progress_id = p.id " +
+                "WHERE p.student_id = ? AND pa.assignment_id = ?";
+
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, AppSession.getInstance().getStudent().getId());
+            statement.setString(2, AppSession.getInstance().getSelectedAssignment());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("sub_attachment");
+            }
+        }catch (SQLException e) {
             e.printStackTrace();
         }
         return null;

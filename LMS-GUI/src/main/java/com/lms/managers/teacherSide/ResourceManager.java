@@ -74,13 +74,12 @@ public class ResourceManager extends ClassroomContentManager {
         }
 
         // Update the assignment
-        String query = "UPDATE material SET title = ?, description = ?, deadline = ?, ref_attachment = ? WHERE id = ?";
+        String query = "UPDATE material SET title = ?, description = ?, ref_attachment = ? WHERE id = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, title);
             statement.setString(2, description);
-            statement.setString(3, deadline);
-            statement.setString(4, ref_attachment);
-            statement.setString(5, id); // Ensure ID is set in the WHERE clause
+            statement.setString(3, ref_attachment);
+            statement.setString(4, id); // Ensure ID is set in the WHERE clause
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -124,15 +123,12 @@ public class ResourceManager extends ClassroomContentManager {
     public ArrayList<String> getClassroomMaterialsSql() {
         ArrayList<String> materials = new ArrayList<>();
         String query = "SELECT CONCAT(m.id, ' - ', m.title) AS id_name " +
-                "FROM progress_material AS pm " +
-                "JOIN progress AS p ON pm.progress_id = p.id " +
-                "JOIN material AS m ON pm.material_id = m.id " +
-                "JOIN classroom AS c ON p.classroom_id = c.id " +
-                "WHERE p.classroom_id = ? AND c.teacher_id = ?";
+                "FROM classroom_material AS cm " +
+                "JOIN material AS m ON cm.material_id = m.id " +
+                "WHERE cm.class_id = ?";
 
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, AppSession.getInstance().getSelectedClassroom());
-            statement.setString(2, AppSession.getInstance().getTeacher().getId());
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {

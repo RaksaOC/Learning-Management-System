@@ -10,14 +10,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.AppSession;
+import main.SceneManager;
 import main.java.com.lms.managers.studentSide.ResourcesManager;
 
 import java.util.ArrayList;
@@ -32,31 +30,27 @@ public class ResourceCardsWrapperController {
     private HashMap<String, String> resource_classroom;
     private ArrayList<String> resourcesList;
 
+    private int numOfCardsPerRow;
+
 
     public void initialize() {
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        scrollPane.setStyle("-fx-background-color: red");
 
         scrollPane.setContent(resourcesWrapper());
 
-        // Delay execution until parent is available
         Platform.runLater(() -> {
             if (scrollPane.getScene() != null && scrollPane.getScene().getRoot() instanceof BorderPane parent) {
                 Node centerNode = parent.getCenter();
                 if (centerNode instanceof Region region) {
-                    // Bind width to the available space
                     scrollPane.maxWidthProperty().bind(region.widthProperty());
 
-                    // Dynamically set height to maintain responsiveness
                     scrollPane.setPrefHeight(region.getHeight() * 0.9); // 90% of the parent height
                     scrollPane.maxHeightProperty().bind(region.heightProperty()); // Prevent overflow
 
-                    // Enable scrolling while maintaining content's natural size
                     scrollPane.setFitToHeight(false);
                     scrollPane.setFitToWidth(true);
 
-                    // Allow content inside to scroll properly
                     VBox content = (VBox) scrollPane.getContent();
                     content.maxHeightProperty().bind(scrollPane.maxHeightProperty()); // Bind content height to ScrollPane
                 }
@@ -82,13 +76,16 @@ public class ResourceCardsWrapperController {
         HBox row = new HBox();
         row.setSpacing(40); // Space between cards
 
+        numOfCardsPerRow = 0;
         for (int i = 0; i < resourcesList.size(); i++) {
             if (i % 5 == 0 && i != 0) {
                 rows.add(row); // Add completed row
                 row = new HBox(); // Start a new row
                 row.setSpacing(10);
+                numOfCardsPerRow = 0;
             }
             row.getChildren().add(resourceCard(i)); // Add card to the row
+            numOfCardsPerRow++;
         }
 
         // Add the last row if it contains any items
@@ -120,10 +117,13 @@ public class ResourceCardsWrapperController {
         // styling
         resourceCard.setSpacing(20);
         resourceCard.setAlignment(Pos.TOP_CENTER);
-        resourceCard.setPrefWidth(400);
+        resourceCard.setPrefWidth(350);
         resourceCard.setMinHeight(250);
         resourceCard.setStyle("-fx-border-radius: 30; -fx-background-color: #FFFFFF; -fx-background-radius: 30");
         resourceCard.setCursor(Cursor.HAND);
+        if(numOfCardsPerRow >= 5){
+            HBox.setHgrow(resourceCard, Priority.ALWAYS);
+        }
 
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(10);       // Increase the radius for a larger shadow
@@ -143,26 +143,28 @@ public class ResourceCardsWrapperController {
             resourceCard.setScaleY(1.0);
         });
 
-//        Rectangle clip = new Rectangle();
-//        clip.setArcHeight(30);
-//        clip.setArcWidth(30);
-//        resourceCardBanner.setClip(clip);
-
-        resourceCardBanner.setFitWidth(250);
-        resourceCardBanner.setFitHeight(250);
+        resourceCardBanner.setFitWidth(150);
+        resourceCardBanner.setFitHeight(150);
         resourceIDVBox.setStyle("-fx-border-radius: 30; -fx-background-color: #2F92BC; -fx-background-radius: 30");
         resourceIDVBox.setAlignment(Pos.CENTER);
         resourceIDVBox.setPrefWidth(Double.MAX_VALUE);
         resourceIDVBox.setPrefHeight(80);
 
-        resourceID.setFont(Font.font("AppleGothic", 24));
+        resourceID.setFont(Font.font("AppleGothic", 20));
 
         resourceCard.setOnMouseClicked(e->{
             AppSession.getInstance().setSelectedClassroom(resource_classroom.get(resourcesList.get(idx)));
-            AppSession.getInstance().setSelectedResources(resourcesList.get(idx));
-            // TODO: transition to resource viewing page
+            AppSession.getInstance().setSelectedAssignment(extractId(resourcesList.get(idx)));
+            AppSession.getInstance().isSubmissionFromAllPage(true);
+
+            SceneManager.loadCenterView("resourceSubmission", "resources/com/lms/views/studentSide/ResourceSubmission.fxml");
+            SceneManager.setCenterView("resourceSubmission");
         });
 
         return resourceCard;
+    }
+
+    private String extractId(String longId) {
+        return longId.substring(0, longId.indexOf(" "));
     }
 }

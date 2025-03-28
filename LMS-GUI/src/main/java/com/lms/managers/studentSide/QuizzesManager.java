@@ -410,15 +410,15 @@ public class QuizzesManager {
                 "p.classroom_id as class_id  " +
                 "FROM progress_quiz as pq " +
                 "JOIN progress AS p " +
-                "ON pq.progress_id = p.id AND p.student_id = ? " +
+                "ON pq.progress_id = p.id " +
                 "JOIN quiz AS q " +
-                "ON pq.quiz_id = q.id ";
+                "ON pq.quiz_id = q.id " +
+                "WHERE p.student_id = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, AppSession.getInstance().getStudent().getId());
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                id_name_classroom.put("id_name", rs.getString("id_name"));
-                id_name_classroom.put("class_id", rs.getString("class_id"));
+                id_name_classroom.put(rs.getString("id_name"), rs.getString("class_id"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

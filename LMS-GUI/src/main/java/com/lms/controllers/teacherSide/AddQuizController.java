@@ -15,6 +15,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import main.AppSession;
+import main.SceneManager;
 import main.java.com.lms.managers.studentSide.QuizzesManager;
 import main.java.com.lms.managers.teacherSide.TeacherQuizManager;
 
@@ -79,6 +80,11 @@ public class AddQuizController {
                     getQuestionsList(),
                     "active"
             );
+        });
+
+        backButton.setOnMouseClicked(event -> {
+            SceneManager.loadCenterView("teacherClassroomContent", "resources/com/lms/views/teacherSide/ClassroomContents.fxml");
+            SceneManager.setCenterView("teacherClassroomContent");
         });
 
     }

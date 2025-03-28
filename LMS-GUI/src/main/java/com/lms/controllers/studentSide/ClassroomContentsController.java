@@ -18,7 +18,6 @@ import main.SceneManager;
 import main.java.com.lms.managers.studentSide.AssignmentsManager;
 import main.java.com.lms.managers.studentSide.QuizzesManager;
 import main.java.com.lms.managers.studentSide.ResourcesManager;
-import main.java.com.lms.managers.teacherSide.AssignmentManager;
 
 import java.util.ArrayList;
 
@@ -55,7 +54,7 @@ public class ClassroomContentsController {
         assignmentsScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         assignmentsScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         assignmentsScrollPane.setFitToWidth(true);
-        assignmentsScrollPane.setContent(wrapper(assignmentIdsAndName));
+        assignmentsScrollPane.setContent(wrapper("assignment", assignmentIdsAndName));
         assignmentsScrollPane.setStyle("-fx-background-color: transparent;");
         assignmentsScrollPane.setPadding(new Insets(5, 10, 20, 10));
     }
@@ -64,7 +63,7 @@ public class ClassroomContentsController {
         resourcesScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         resourcesScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         resourcesScrollPane.setFitToWidth(true);
-        resourcesScrollPane.setContent(wrapper(resourceIdsAndName));
+        resourcesScrollPane.setContent(wrapper("resource", resourceIdsAndName));
         resourcesScrollPane.setStyle("-fx-background-color: transparent;");
         resourcesScrollPane.setPadding(new Insets(5, 10, 20, 10));
     }
@@ -73,12 +72,12 @@ public class ClassroomContentsController {
         quizzesScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         quizzesScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         quizzesScrollPane.setFitToWidth(true);
-        quizzesScrollPane.setContent(wrapper(quizIdsAndName));
+        quizzesScrollPane.setContent(wrapper("quiz", quizIdsAndName));
         quizzesScrollPane.setStyle("-fx-background-color: transparent;");
         quizzesScrollPane.setPadding(new Insets(5, 10, 20, 10));
     }
 
-    private void initContentList(){
+    private void initContentList() {
         assignmentManager = new AssignmentsManager();
         resourcesManager = new ResourcesManager();
         quizzesManager = new QuizzesManager();
@@ -92,21 +91,20 @@ public class ClassroomContentsController {
         quizIdsAndName.addAll(quizzesManager.getClassroomQuizzes());
     }
 
-    private VBox wrapper(ArrayList<String> content) {
+    private VBox wrapper(String type, ArrayList<String> content) {
         VBox assignmentsWrapper = new VBox(10);
         assignmentsWrapper.setStyle("-fx-padding: 20; -fx-background-color: #f4f6fa;");
 
         HBox row = new HBox(10);
         for (int i = 0; i < content.size(); i++) {
-            row.getChildren().add(card(content, i));
+            row.getChildren().add(card(type, content, i));
         }
         assignmentsWrapper.getChildren().add(row);
         return assignmentsWrapper;
     }
 
-    private VBox card(ArrayList<String> content, int idx) {
+    private VBox card(String type, ArrayList<String> content, int idx) {
         VBox card = new VBox();
-        System.out.println("The content is " + content.get(idx));
 
         ImageView cardBanner = new ImageView();
         Image image = new Image(getClass().getResource("../../../../../resources/com/lms/images/assignments-icon.png").toExternalForm());
@@ -154,17 +152,31 @@ public class ClassroomContentsController {
 
         cardID.setFont(Font.font("AppleGothic", 18));
         card.setOnMouseClicked(e -> {
-            AppSession.getInstance().setSelectedAssignment(extractId(content.get(idx)));
-            AppSession.getInstance().isAssignmentSubmissionFromAssignmentsPage(false);
-            System.out.println("Setting selected assignment ID: " + AppSession.getInstance().getSelectedAssignment());
-            System.out.println(extractId(content.get(idx)) + " has been selected");
-            SceneManager.loadCenterView("assignmentSubmission", "resources/com/lms/views/studentSide/AssignmentSubmission.fxml");
-            SceneManager.setCenterView("assignmentSubmission");
+            switch (type) {
+                case "assignment" -> {
+                    AppSession.getInstance().setSelectedAssignment(extractId(content.get(idx)));
+                    AppSession.getInstance().isSubmissionFromAllPage(false);
+                    SceneManager.loadCenterView("assignmentSubmission", "resources/com/lms/views/studentSide/AssignmentSubmission.fxml");
+                    SceneManager.setCenterView("assignmentSubmission");
+                }
+                case "resource" -> {
+                    AppSession.getInstance().setSelectedResources(extractId(content.get(idx)));
+                    AppSession.getInstance().isSubmissionFromAllPage(false);
+                    SceneManager.loadCenterView("resourceSubmission", "resources/com/lms/views/studentSide/ResourceSubmission.fxml");
+                    SceneManager.setCenterView("resourceSubmission");
+                }
+                case "quiz" -> {
+                    AppSession.getInstance().setSelectedQuiz(extractId(content.get(idx)));
+                    AppSession.getInstance().isSubmissionFromAllPage(false);
+                    SceneManager.loadCenterView("doQuiz", "resources/com/lms/views/studentSide/DoQuiz.fxml");
+                    SceneManager.setCenterView("doQuiz");
+                }
+            }
         });
         return card;
     }
 
-    private String extractId(String longId){
+    private String extractId(String longId) {
         return longId.substring(0, longId.indexOf(" "));
     }
 }

@@ -9,6 +9,7 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -18,6 +19,10 @@ import main.java.com.lms.managers.studentSide.AssignmentsManager;
 import main.java.com.lms.managers.teacherSide.AssignmentManager;
 import ui.UI;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -46,7 +51,6 @@ public class AssignmentSubmissionController {
     public void initialize() {
         assignmentsManager = new AssignmentsManager();
         backButton.setOnMouseClicked(event -> {
-            System.out.println(UI.TextColor.addColor("back button pressed", UI.TextColor.GREEN));
             if (AppSession.getInstance().getIsAssignmentSubmissionFromAssignmentsPage()) {
                 SceneManager.setCenterView("studentAssignments");
             } else {
@@ -54,7 +58,15 @@ public class AssignmentSubmissionController {
             }
         });
         String assignmentId = session.getSelectedAssignment();
-        attachmentWrapper.getChildren().clear();
+        if (assignmentsManager.getPrevAssignmentRef() == null) {
+            attachmentWrapper.getChildren().clear();
+        }
+        else{
+            attach.setDisable(true);
+            submit.setDisable(true);
+            attachmentWrapper.getChildren().clear();
+            attachmentWrapper.getChildren().add(attachCard(assignmentsManager.getPrevAssignmentRef(), ""));
+        }
 
         assId.setText(assignmentId);
         assTitle.setText(assignmentsManager.getAssignmentTitle());
@@ -93,6 +105,7 @@ public class AssignmentSubmissionController {
         resourceCard.setPrefWidth(700.0);
         resourceCard.setAlignment(Pos.CENTER_LEFT);
         resourceCard.setCursor(Cursor.HAND);
+        resourceCard.setMaxWidth(Region.USE_PREF_SIZE);
 
         // Set the padding
         resourceCard.setPadding(new Insets(0, 30, 0, 30));
@@ -112,8 +125,13 @@ public class AssignmentSubmissionController {
 
         // Add a click event (you can add specific action here)
         resourceCard.setOnMouseClicked(event -> {
-            System.out.println(refTitle + " has been clicked!");
-            // TODO: make the resource inactive meaning its viewed
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().browse(new URI(refTitle));
+                } catch (IOException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            }
         });
 
         return resourceCard;
@@ -128,6 +146,7 @@ public class AssignmentSubmissionController {
         attachCard.setPrefWidth(700.0);
         attachCard.setAlignment(Pos.CENTER_LEFT);
         attachCard.setCursor(Cursor.HAND);
+        attachCard.setMaxWidth(Region.USE_PREF_SIZE);
 
         // Set the padding
         attachCard.setPadding(new Insets(0, 30, 0, 30));
@@ -147,8 +166,13 @@ public class AssignmentSubmissionController {
 
         // Add a click event (you can add specific action here)
         attachCard.setOnMouseClicked(event -> {
-            System.out.println(resourceName + " has been clicked!");
-            // You can handle the action for the click here (e.g., navigate to resource details)
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().browse(new URI(resourceName));
+                } catch (IOException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            }
         });
 
         return attachCard;

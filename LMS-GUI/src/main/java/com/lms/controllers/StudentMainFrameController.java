@@ -129,6 +129,13 @@ public class StudentMainFrameController {
             alert.setContentText("Are you sure you want to switch user?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
+                AppSession.getInstance().setStudent(null);
+                AppSession.getInstance().setTeacher(null);
+                AppSession.getInstance().setSelectedQuiz(null);
+                AppSession.getInstance().setSelectedAssignment(null);
+                AppSession.getInstance().setSelectedResources(null);
+                AppSession.getInstance().setSelectedClassroom(null);
+
                 SceneManager.loadFullView("userType", "resources/com/lms/views/UserType.fxml");
                 SceneManager.setFullView("userType");
             }

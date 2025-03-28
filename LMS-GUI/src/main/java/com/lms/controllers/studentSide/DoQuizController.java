@@ -11,7 +11,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import main.AppSession;
 import main.DatabaseConnection;
+import main.SceneManager;
 import main.java.com.lms.managers.studentSide.QuizzesManager;
 
 import java.sql.Connection;
@@ -36,7 +38,21 @@ public class DoQuizController {
     private int numOfQuestions;
 
     public void initialize() {
+        backButton.setOnMouseClicked(event -> {
+            if(!AppSession.getInstance().getIsAssignmentSubmissionFromAssignmentsPage()){
+                SceneManager.loadCenterView("studentClassroomContent", "resources/com/lms/views/studentSide/ClassroomContents.fxml");
+                SceneManager.setCenterView("studentClassroomContent");
 
+                AppSession.getInstance().setSelectedQuiz(null);
+                AppSession.getInstance().setSelectedClassroom(null);
+            }else {
+                SceneManager.loadCenterView("quizzes", "resources/com/lms/views/studentSide/Quizzes.fxml");
+                SceneManager.setCenterView("quizzes");
+
+                AppSession.getInstance().setSelectedQuiz(null);
+                AppSession.getInstance().setSelectedClassroom(null);
+            }
+        });
     }
 
     private void createAllQuestions() {

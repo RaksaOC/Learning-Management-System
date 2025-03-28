@@ -31,7 +31,7 @@ public class ResourcesManager {
 
     // TODO: sql equivalent methods goes here, method name should have the same name but with Sql at the end. Ex: manageDoQuiz -> manageDoQuizSql
 
-    public void manageViewResource() {
+    public void manageSubmitResource() {
         String query = "UPDATE progress_material pr " +
                 "JOIN progress p ON pr.progress_id = p.id " +
                 "SET pr.status = 'inactive' " +
@@ -46,21 +46,63 @@ public class ResourcesManager {
         }
     }
 
+    public String getResourceTitle() {
+        String query = "SELECT title FROM material WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedResources());
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getString("title");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getResourceDescription() {
+        String query = "SELECT description FROM material WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedAssignment());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("description");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getRef() {
+        String query = "SELECT m.ref_attachment FROM material as m WHERE m.id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedResources());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("ref_attachment");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public Map<String, String> getAllResources() {
         Map<String, String> id_name_classroom = new HashMap<>();
         String query = "SELECT CONCAT(m.id, ' - ', m.title) AS id_name, " +
                 "p.classroom_id as class_id " +
                 "FROM progress_material as pm " +
                 "JOIN progress AS p " +
-                "ON pm.progress_id = p.id AND p.student_id = ? " +
+                "ON pm.progress_id = p.id " +
                 "JOIN material AS m " +
-                "ON pm.material_id = m.id ";
+                "ON pm.material_id = m.id " +
+                "WHERE p.student_id = ?  ";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, AppSession.getInstance().getStudent().getId());
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                id_name_classroom.put("id_name", rs.getString("id_name"));
-                id_name_classroom.put("class_id", rs.getString("class_id"));
+                id_name_classroom.put(rs.getString("id_name"), rs.getString("class_id"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -68,6 +110,22 @@ public class ResourcesManager {
         return id_name_classroom;
     }
 
+    public boolean isResourceSubmitted() {
+        String query = "SELECT COUNT(*) AS count FROM progress_material AS pm " +
+                "JOIN progress AS p ON pm.progress_id = p.id " +
+                "WHERE p.student_id = ? AND pm.status = 'inactive'";
+
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getStudent().getId());
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("count") > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public ArrayList<String> getClassroomResources() {
         ArrayList<String> resources = new ArrayList<>();
@@ -90,9 +148,6 @@ public class ResourcesManager {
         }
         return resources;
     }
-
-
-
 
 
 //    // Load resources from SQL database

@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -28,6 +29,12 @@ public class ClassroomContentsController {
     @FXML
     private ScrollPane assignmentsScrollPane;
     @FXML
+    private Button addAssignmentButton;
+    @FXML
+    private Button addResourceButton;
+    @FXML
+    private Button addQuizButton;
+    @FXML
     private ScrollPane resourcesScrollPane;
     @FXML
     private ScrollPane quizzesScrollPane;
@@ -39,6 +46,18 @@ public class ClassroomContentsController {
     private ArrayList<String> quizIdsAndName;
 
     public void initialize() {
+        addAssignmentButton.setOnMouseClicked(event -> {
+            SceneManager.loadCenterView("addAssignment", "resources/com/lms/views/teacherSide/AddAssignment.fxml");
+            SceneManager.setCenterView("addAssignment");
+        });
+        addResourceButton.setOnMouseClicked(event -> {
+            SceneManager.loadCenterView("addResource", "resources/com/lms/views/teacherSide/AddResource.fxml");
+            SceneManager.setCenterView("addResource");
+        });
+        addQuizButton.setOnMouseClicked(event -> {
+            SceneManager.loadCenterView("addQuiz", "resources/com/lms/views/teacherSide/AddQuiz.fxml");
+            SceneManager.setCenterView("addQuiz");
+        });
         initContentList();
         initAssignmentsScrollPane();
         initResourcesScrollPane();
@@ -105,7 +124,6 @@ public class ClassroomContentsController {
 
     private VBox card(ArrayList<String> content, int idx) {
         VBox card = new VBox();
-        System.out.println("The content is " + content.get(idx));
 
         ImageView cardBanner = new ImageView();
         Image image = new Image(getClass().getResource("../../../../../resources/com/lms/images/assignments-icon.png").toExternalForm());
@@ -154,11 +172,10 @@ public class ClassroomContentsController {
         cardID.setFont(Font.font("AppleGothic", 18));
         card.setOnMouseClicked(e -> {
             AppSession.getInstance().setSelectedAssignment(extractId(content.get(idx)));
-            AppSession.getInstance().isAssignmentSubmissionFromAssignmentsPage(false);
             System.out.println("Setting selected assignment ID: " + AppSession.getInstance().getSelectedAssignment());
             System.out.println(extractId(content.get(idx)) + " has been selected");
-            SceneManager.loadCenterView("assignmentSubmission", "resources/com/lms/views/studentSide/AssignmentSubmission.fxml");
-            SceneManager.setCenterView("assignmentSubmission");
+            SceneManager.loadCenterView("assignmentView", "resources/com/lms/views/teacherSide/AssignmentView.fxml");
+            SceneManager.setCenterView("assignmentView");
         });
         return card;
     }

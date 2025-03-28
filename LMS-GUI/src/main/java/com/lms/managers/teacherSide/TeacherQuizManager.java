@@ -325,16 +325,21 @@ public class TeacherQuizManager extends ClassroomContentManager {
 
     public ArrayList<String> getClassroomQuizzesSql() {
         ArrayList<String> quizzes = new ArrayList<>();
+
         String query = "SELECT CONCAT(q.id, ' - ', q.title) AS id_name " +
-                "FROM progress_quiz AS pq " +
-                "JOIN progress AS p ON pq.progress_id = p.id " +
-                "JOIN quiz AS q ON pq.quiz_id = q.id " +
-                "JOIN classroom AS c ON p.classroom_id = c.id " +
-                "WHERE p.classroom_id = ? AND c.teacher_id = ?";
+                "FROM classroom_quiz AS cq " +
+                "JOIN quiz AS q ON cq.quiz_id = q.id " +
+                "WHERE cq.class_id = ?";
+
+//        String query = "SELECT CONCAT(q.id, ' - ', q.title) AS id_name " +
+//                "FROM progress_quiz AS pq " +
+//                "JOIN progress AS p ON pq.progress_id = p.id " +
+//                "JOIN quiz AS q ON pq.quiz_id = q.id " +
+//                "JOIN classroom AS c ON p.classroom_id = c.id " +
+//                "WHERE p.classroom_id = ? AND c.teacher_id = ?";
 
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, AppSession.getInstance().getSelectedClassroom());
-            statement.setString(2, AppSession.getInstance().getTeacher().getId());
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {

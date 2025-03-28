@@ -46,18 +46,14 @@ public class ClassroomCardsWrapperController {
             if (scrollPane.getScene() != null && scrollPane.getScene().getRoot() instanceof BorderPane parent) {
                 Node centerNode = parent.getCenter();
                 if (centerNode instanceof Region region) {
-                    // Bind width to the available space
                     scrollPane.maxWidthProperty().bind(region.widthProperty());
 
-                    // Dynamically set height to maintain responsiveness
                     scrollPane.setPrefHeight(region.getHeight() * 0.9); // 90% of the parent height
                     scrollPane.maxHeightProperty().bind(region.heightProperty()); // Prevent overflow
 
-                    // Enable scrolling while maintaining content's natural size
                     scrollPane.setFitToHeight(false);
                     scrollPane.setFitToWidth(true);
 
-                    // Allow content inside to scroll properly
                     VBox content = (VBox) scrollPane.getContent();
                     content.maxHeightProperty().bind(scrollPane.maxHeightProperty()); // Bind content height to ScrollPane
                 }
@@ -70,13 +66,13 @@ public class ClassroomCardsWrapperController {
         classroomsWrapper.setPrefWidth(Double.MAX_VALUE);
         classroomsWrapper.setPrefHeight(Double.MAX_VALUE);
         classroomsWrapper.setSpacing(40);
+
         classroomIds = new ClassroomsManger().getAllClassrooms();
-        System.out.println("This student's classrooms are " + classroomIds);
         Collections.sort(classroomIds);
 
         ArrayList<HBox> rows = new ArrayList<>();
         HBox row = new HBox();
-        row.setSpacing(40); // Space between cards
+        row.setSpacing(40);
 
         for (int i = 0; i < classroomIds.size(); i++) {
             if (i % 4 == 0 && i != 0) {
@@ -138,11 +134,6 @@ public class ClassroomCardsWrapperController {
             classroomCard.setScaleY(1.0);
         });
 
-//        Rectangle clip = new Rectangle();
-//        clip.setArcHeight(30);
-//        clip.setArcWidth(30);
-//        classroomCardBanner.setClip(clip);
-
         classroomCardBanner.setFitWidth(420);
         classroomCardBanner.setFitHeight(250);
         classroomCard.setPadding(new Insets(15, 0, 0, 0));
@@ -158,7 +149,6 @@ public class ClassroomCardsWrapperController {
         classroomCard.setOnMouseClicked(e -> {
             System.out.println("clicked on "+ classroomIds.get(idx));
             session.setSelectedClassroom(classroomIds.get(idx));
-            // switch to classroom contents scene
             SceneManager.loadCenterView("studentClassroomContents", "resources/com/lms/views/studentSide/ClassroomContents.fxml");
             Platform.runLater(() ->{
                 SceneManager.setCenterView("studentClassroomContents");
@@ -167,4 +157,10 @@ public class ClassroomCardsWrapperController {
 
         return classroomCard;
     }
+
+    // used for when we add name to the class id, commented for now
+
+//    public String extractId(String longId){
+//        return longId.substring(0, longId.indexOf(" "));
+//    }
 }

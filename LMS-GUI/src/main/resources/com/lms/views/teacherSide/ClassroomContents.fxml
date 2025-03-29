@@ -140,11 +140,10 @@
                                         <Insets bottom="10.0" top="10.0" />
                                     </VBox.margin>
                                 </Text>
-                                <TableView prefHeight="221.0" prefWidth="598.0">
+                                <TableView prefHeight="221.0" prefWidth="598.0" fx:id="studentsTable">
                                     <columns>
-                                        <TableColumn prefWidth="75.0" text="ID" />
-                                        <TableColumn prefWidth="108.0" text="Name" />
-                                        <TableColumn prefWidth="104.0" text="Grade" />
+                                        <TableColumn prefWidth="75.0" text="ID" fx:id="studentIdColumn"/>
+                                        <TableColumn prefWidth="108.0" text="Name" fx:id="studentNameColumn"/>
                                     </columns>
                                 </TableView>
                             </children>

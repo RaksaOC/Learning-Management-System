@@ -126,5 +126,32 @@ public class Student extends User {
     public String getCreatedAt() { return createdAt; }
     public String getGroup() { return group; }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", DoB='" + DoB + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", commune='" + commune + '\'' +
+                ", district='" + district + '\'' +
+                ", province='" + province + '\'' +
+                ", status='" + status + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", lastLogin='" + lastLogin + '\'' +
+                ", department='" + department + '\'' +
+                ", specialization='" + specialization + '\'' +
+                ", generation='" + generation + '\'' +
+                ", group='" + group + '\'' +
+                ", guardianFirstName='" + guardianFirstName + '\'' +
+                ", guardianLastName='" + guardianLastName + '\'' +
+                ", guardianPhoneNumber='" + guardianPhoneNumber + '\'' +
+                ", guardianGender='" + guardianGender + '\'' +
+                '}';
+    }
 
 }

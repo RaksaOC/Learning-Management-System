@@ -11,17 +11,20 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.AppSession;
 import main.SceneManager;
 import main.java.com.lms.managers.teacherSide.AssignmentManager;
+import main.java.com.lms.managers.teacherSide.ClassroomsManger;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class AssignmentViewController {
@@ -49,7 +52,14 @@ public class AssignmentViewController {
     @FXML
     private Button gradeButton; // TODO: add this button to a VBOX in studentsList and setCenterView to gradeAssignment and assign it to go to "gradeAssignment" centerView
 
+    private ClassroomsManger classroomsManger = new ClassroomsManger();
+    private ArrayList<String> students;
+
     public void initialize() {
+
+
+        students = classroomsManger.getAllStudentsInClassroom();
+
         assignmentID.setText(assignmentManager.getAssignmentTitle());
         assignmentName.setText(assignmentManager.getAssignmentTitle());
         assignmentDueDate.setText(assignmentManager.getAssignmentDeadline());
@@ -78,6 +88,10 @@ public class AssignmentViewController {
         refWrapper.getChildren().clear();
         refWrapper.getChildren().addAll(refCard(assignmentManager.getAssignmentRef()));
 
+        studentsList.setAlignment(Pos.TOP_LEFT);
+        for (int i = 0; i < students.size(); i++) {
+            studentsList.getChildren().add(studentCard(students.get(i)));
+        }
     }
 
     private HBox refCard(String refTitle) {
@@ -89,6 +103,7 @@ public class AssignmentViewController {
         resourceCard.setPrefWidth(700.0);
         resourceCard.setAlignment(Pos.CENTER_LEFT);
         resourceCard.setCursor(Cursor.HAND);
+        resourceCard.setMaxWidth(Region.USE_PREF_SIZE);
 
         // Set the padding
         resourceCard.setPadding(new Insets(0, 30, 0, 30));
@@ -118,5 +133,41 @@ public class AssignmentViewController {
         });
 
         return resourceCard;
+    }
+
+    private HBox studentCard(String studentId_name) {
+        // Create the HBox container
+        HBox resourceCard = new HBox(40);
+        resourceCard.setStyle("-fx-background-color: #ffffff; -fx-border-color: black; -fx-background-radius: 30; -fx-border-radius: 30;");
+        resourceCard.setMaxWidth(Double.MAX_VALUE);
+        resourceCard.setPrefHeight(79.0);
+        resourceCard.setPrefWidth(400.0);
+        resourceCard.setAlignment(Pos.CENTER_LEFT);
+        resourceCard.setCursor(Cursor.HAND);
+        resourceCard.setMaxWidth(Region.USE_PREF_SIZE);
+
+        resourceCard.setPadding(new Insets(30, 30, 30, 30));
+
+        Text resourceText = new Text(studentId_name);
+        resourceText.setFont(Font.font("AppleGothic Regular", 18));
+
+        Button gradeButton = new Button("Grade");
+        gradeButton.setCursor(Cursor.HAND);
+        gradeButton.setOnMouseClicked(event -> {
+            AppSession.getInstance().setStudent(classroomsManger.getStudentToGrade(extractId(studentId_name)));
+
+            SceneManager.loadCenterView("gradeAssignment", "resources/com/lms/views/teacherSide/GradeAssignment.fxml");
+            SceneManager.setCenterView("gradeAssignment");
+
+            System.out.println("Student to grade is: " + AppSession.getInstance().getStudent().toString());
+        });
+
+        resourceCard.getChildren().addAll(resourceText, gradeButton);
+
+        return resourceCard;
+    }
+
+    public String extractId(String longId){
+        return longId.substring(0, longId.indexOf(" "));
     }
 }

@@ -1,7 +1,8 @@
 package main.java.com.lms.managers.teacherSide;
 
 import main.AppSession;
-import main.DatabaseConnection;import org.json.JSONArray;
+import main.DatabaseConnection;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.xml.crypto.Data;
@@ -42,12 +43,12 @@ public class AssignmentManager extends ClassroomContentManager {
             e.printStackTrace();
         }
 
-        String query2= "INSERT INTO classroom_assignment(class_id, assignment_id) VALUES (?,?)";
-        try(PreparedStatement statement = conn.prepareStatement(query2)){
+        String query2 = "INSERT INTO classroom_assignment(class_id, assignment_id) VALUES (?,?)";
+        try (PreparedStatement statement = conn.prepareStatement(query2)) {
             statement.setString(1, AppSession.getInstance().getSelectedClassroom());
             statement.setString(2, id);
             statement.executeUpdate();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -103,15 +104,15 @@ public class AssignmentManager extends ClassroomContentManager {
         }
     }
 
-    public String getAssignmentTitle(){
+    public String getAssignmentTitle() {
         String query = "SELECT title FROM assignment WHERE id = ?";
-        try(PreparedStatement statement = conn.prepareStatement(query)){
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, AppSession.getInstance().getSelectedAssignment());
             ResultSet rs = statement.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 return rs.getString("title");
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -131,15 +132,15 @@ public class AssignmentManager extends ClassroomContentManager {
         return null;
     }
 
-    public String getAssignmentDescription(){
+    public String getAssignmentDescription() {
         String query = "SELECT description FROM assignment WHERE id = ?";
-        try(PreparedStatement statement = conn.prepareStatement(query)){
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, AppSession.getInstance().getSelectedAssignment());
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 return rs.getString("description");
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -164,14 +165,14 @@ public class AssignmentManager extends ClassroomContentManager {
                 " JOIN progress p ON pa.progress_id = p.id " +
                 "WHERE p.student_id = ? AND pa.assignment_id = ?";
 
-        try(PreparedStatement statement = conn.prepareStatement(query)){
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, AppSession.getInstance().getStudent().getId());
             statement.setString(2, AppSession.getInstance().getSelectedAssignment());
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 return rs.getString("sub_attachment");
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -208,7 +209,7 @@ public class AssignmentManager extends ClassroomContentManager {
                 "WHERE ca.class_id = ?";
 
 
-    // TODO: this is for grading. need to improve with name
+        // TODO: this is for grading. need to improve with name
 //        String query = "SELECT CONCAT(a.id, ' - ', a.title) AS id_name " +
 //                "FROM progress_assignment AS pa " +
 //                "JOIN progress AS p ON pa.progress_id = p.id " +
@@ -230,35 +231,110 @@ public class AssignmentManager extends ClassroomContentManager {
         return assignments;
     }
 
+    public void manageGradeAssignmentSql(Double score) {
+        String progressId = "";
+        String getStudentProgressId = "SELECT p.id as id FROM progress p " +
+                "WHERE p.student_id = ? AND p.classroom_id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(getStudentProgressId)) {
+            statement.setString(1, AppSession.getInstance().getStudent().getId());
+            statement.setString(2, AppSession.getInstance().getSelectedClassroom());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                progressId = rs.getString("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
+        System.out.println("student progress id to grade: " + progressId);
 
+        String query = "UPDATE progress_assignment SET score = ?, status = 'inactive' WHERE progress_id = ? AND assignment_id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setDouble(1, score);
+            System.out.println("Assignment ID to grade: " + AppSession.getInstance().getSelectedAssignment());
+            statement.setString(2, progressId);
+            statement.setString(3, AppSession.getInstance().getSelectedAssignment());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public boolean isAssignmentSubmitted() {
+        String query = "SELECT sub_attachment FROM progress_assignment pa " +
+                "JOIN progress p ON pa.progress_id = p.id " +
+                "WHERE pa.assignment_id = ? AND p.student_id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedAssignment());
+            statement.setString(2, AppSession.getInstance().getStudent().getId());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                if (rs.getString("sub_attachment") != null) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
+    public boolean isAssignmentGraded() {
+        String query = "SELECT status FROM progress_assignment pa " +
+                "JOIN progress p ON pa.progress_id = p.id " +
+                "WHERE pa.assignment_id = ? AND p.student_id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedAssignment());
+            statement.setString(2, AppSession.getInstance().getStudent().getId());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                if (rs.getString("status").equals("inactive")) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
+    public Double getAssignmentGrade() {
+        String query = "SELECT pa.score as score FROM progress_assignment pa " +
+                "JOIN progress p ON pa.progress_id = p.id " +
+                "WHERE pa.assignment_id = ? AND p.student_id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedAssignment());
+            statement.setString(2, AppSession.getInstance().getStudent().getId());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                if (rs.getString("score") != null) {
+                    return (rs.getDouble("score"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public String getStudentSubAttachment() {
+        String query = "SELECT sub_attachment FROM progress_assignment pa " +
+                "JOIN progress p ON pa.progress_id = p.id " +
+                "WHERE pa.assignment_id = ? AND p.student_id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedAssignment());
+            statement.setString(2, AppSession.getInstance().getStudent().getId());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                if (rs.getString("sub_attachment") != null) {
+                    return rs.getString("sub_attachment");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
     // ========================================

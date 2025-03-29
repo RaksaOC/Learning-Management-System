@@ -3,8 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="845.0" prefWidth="1174.0" style="-fx-background-color: #f4f6fa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lms.controllers.studentSide.AssignmentSubmissionController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="845.0" prefWidth="1174.0" style="-fx-background-color: #f4f6fa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lms.controllers.teacherSide.ResourceView">
    <children>
       <VBox prefHeight="45.0" prefWidth="1144.0">
          <padding>
@@ -34,12 +32,12 @@
          <children>
             <VBox spacing="10.0" AnchorPane.leftAnchor="0.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Resource ID">
+                  <Text fx:id="resourceId" strokeType="OUTSIDE" strokeWidth="0.0" text="Resource ID">
                      <font>
                         <Font name="AppleGothic Regular" size="18.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Resource Titile">
+                  <Text fx:id="resourceTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Resource Titile">
                      <font>
                         <Font name="AppleGothic Regular" size="18.0" />
                      </font>
@@ -58,72 +56,10 @@
                   <Font name="AppleGothic Regular" size="18.0" />
                </font>
             </Text>
-            <VBox prefHeight="287.0" prefWidth="1144.0" spacing="10.0">
+            <VBox fx:id="refWrapper" prefHeight="287.0" prefWidth="1144.0" spacing="10.0">
                <padding>
                   <Insets bottom="10.0" top="10.0" />
                </padding>
-               <children>
-                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="79.0" prefWidth="700.0" spacing="40.0" style="-fx-background-color: #2F92BC; -fx-border-color: black; -fx-background-radius: 30; -fx-border-radius: 30;">
-                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/resources-icon.png" />
-                           </image>
-                        </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lab6.pdf">
-                           <font>
-                              <Font name="AppleGothic Regular" size="18.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="79.0" prefWidth="700.0" spacing="40.0" style="-fx-background-color: #2F92BC; -fx-border-color: black; -fx-background-radius: 30; -fx-border-radius: 30;">
-                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/resources-icon.png" />
-                           </image>
-                        </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lab6.pdf">
-                           <font>
-                              <Font name="AppleGothic Regular" size="18.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="79.0" prefWidth="700.0" spacing="40.0" style="-fx-background-color: #2F92BC; -fx-border-color: black; -fx-background-radius: 30; -fx-border-radius: 30;">
-                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/resources-icon.png" />
-                           </image>
-                        </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lab6.pdf">
-                           <font>
-                              <Font name="AppleGothic Regular" size="18.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </HBox>
-               </children>
             </VBox>
          </children>
          <VBox.margin>
@@ -132,33 +68,13 @@
       </VBox>
       <HBox prefHeight="19.0" prefWidth="1144.0" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" text="Edit" />
-            <Button mnemonicParsing="false" text="Delete" />
+            <Button fx:id="editButton" mnemonicParsing="false" text="Edit" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" text="Delete" />
          </children>
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin>
       </HBox>
-      <VBox alignment="TOP_CENTER" spacing="20.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Students">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="AppleGothic Regular" size="20.0" />
-               </font>
-            </Text>
-            <TableView prefHeight="200.0" prefWidth="200.0">
-              <columns>
-                <TableColumn maxWidth="1.7976931348623157E308" prefWidth="109.0" text="ID" />
-                <TableColumn maxWidth="1.7976931348623157E308" prefWidth="123.0" text="Name" />
-                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="150.0" text="Date" />
-                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="90.0" text="Status" />
-              </columns>
-            </TableView>
-         </children>
-      </VBox>
    </children>
    <padding>
       <Insets bottom="20.0" left="10.0" right="20.0" top="20.0" />

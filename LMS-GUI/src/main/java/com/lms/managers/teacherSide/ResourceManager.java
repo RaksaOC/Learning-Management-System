@@ -98,6 +98,48 @@ public class ResourceManager extends ClassroomContentManager {
         }
     }
 
+    public String getResourceTitle() {
+        String query = "SELECT title FROM material WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedResources());
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getString("title");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getResourceDescription() {
+        String query = "SELECT description FROM material WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedAssignment());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("description");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getRef() {
+        String query = "SELECT m.ref_attachment FROM material as m WHERE m.id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedResources());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("ref_attachment");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     private String generateMaterialIdSql(String baseId) {
         String query = "SELECT count(*) FROM material";
         int objects = 0; // Default to 0 if query fails

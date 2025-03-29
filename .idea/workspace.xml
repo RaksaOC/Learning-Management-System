@@ -5,18 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="816c4d4f-796b-4ab7-98a7-72a49b87cc0e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/ResourceView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/AssignmentSubmissionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/AssignmentSubmissionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/DashboardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/AssignmentViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/AssignmentViewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/ClassroomContentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/ClassroomContentsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/GradeAssignmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/GradeAssignmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/EditAssignmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/EditAssignmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/EditResourceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/EditResourceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/ResourceView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/ResourceViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/ResourceViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/studentSide/AssignmentsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/studentSide/AssignmentsManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/teacherSide/AssignmentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/teacherSide/AssignmentManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/teacherSide/ClassroomsManger.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/teacherSide/ClassroomsManger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/teacherSide/ResourceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/teacherSide/ResourceManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/teacherSide/ClassroomContents.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/teacherSide/ClassroomContents.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/teacherSide/GradeAssignment.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/teacherSide/GradeAssignment.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/AssignmentSubmission.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/AssignmentSubmission.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/Dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/studentSide/Dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/teacherSide/EditAssignment.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/teacherSide/EditAssignment.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/teacherSide/EditResource.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/teacherSide/EditResource.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/teacherSide/ResourceView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/teacherSide/ResourceView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/entities/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/entities/Student.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +179,7 @@
       <workItem from="1741933317374" duration="944000" />
       <workItem from="1742912217337" duration="9201000" />
       <workItem from="1742964869902" duration="64151000" />
-      <workItem from="1743165244338" duration="10542000" />
+      <workItem from="1743165244338" duration="15841000" />
     </task>
     <servers />
   </component>

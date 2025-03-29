@@ -29,6 +29,7 @@ import java.util.concurrent.atomic.AtomicReference;
 public class AssignmentSubmissionController {
     private AssignmentsManager assignmentsManager;
     private AppSession session = AppSession.getInstance();
+
     @FXML
     private ImageView backButton;
     @FXML
@@ -45,6 +46,8 @@ public class AssignmentSubmissionController {
     private Button submit;
     @FXML
     private Button attach;
+    @FXML
+    private VBox scoreBox;
 
     private String ass_ref;
 
@@ -58,6 +61,7 @@ public class AssignmentSubmissionController {
             }
         });
         String assignmentId = session.getSelectedAssignment();
+        // means that its submitted
         if (assignmentsManager.getPrevAssignmentRef() == null) {
             attachmentWrapper.getChildren().clear();
         }
@@ -66,6 +70,14 @@ public class AssignmentSubmissionController {
             submit.setDisable(true);
             attachmentWrapper.getChildren().clear();
             attachmentWrapper.getChildren().add(attachCard(assignmentsManager.getPrevAssignmentRef(), ""));
+        }
+
+        if(assignmentsManager.isAssignmentGraded()){
+            Text score = new Text("Your Score: " + assignmentsManager.getAssignmentGrade().toString());
+            score.setFont(Font.font("AppleGothic", 20));
+
+            scoreBox.setAlignment(Pos.CENTER);
+            scoreBox.getChildren().add(score);
         }
 
         assId.setText(assignmentId);
@@ -93,7 +105,6 @@ public class AssignmentSubmissionController {
                 System.out.println("No attachment link provided!");
             }
         });
-
     }
 
     private HBox refCard(String refTitle) {

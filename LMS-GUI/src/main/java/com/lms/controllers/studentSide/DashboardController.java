@@ -17,26 +17,26 @@ public class DashboardController {
     private Text numOfAssignment;
     @FXML
     private Text numOfQuiz;
-    @FXML
-    private TableView<Map<String, String>> assignmentsTable;
-    @FXML
-    private TableColumn<Map<String, String>, String> assIdColumn;
-    @FXML
-    private TableColumn<Map<String, String>, String> assNameColumn;
-    @FXML
-    private TableColumn<Map<String, String>, String> assStatusColumn;
-    @FXML
-    private TableColumn<Map<String, String>, String> assScoreColumn;
-    @FXML
-    private TableView<Map<String, String>> quizTable;
-    @FXML
-    private TableColumn<Map<String, String>, String> quizIdColumn;
-    @FXML
-    private TableColumn<Map<String, String>, String> quizNameColumn;
-    @FXML
-    private TableColumn<Map<String, String>, String> quizStatusColumn;
-    @FXML
-    private TableColumn<Map<String, String>, String> quizScoreColumn;
+//    @FXML
+//    private TableView<Map<String, String>> assignmentsTable;
+//    @FXML
+//    private TableColumn<Map<String, String>, String> assIdColumn;
+//    @FXML
+//    private TableColumn<Map<String, String>, String> assNameColumn;
+//    @FXML
+//    private TableColumn<Map<String, String>, String> assStatusColumn;
+//    @FXML
+//    private TableColumn<Map<String, String>, String> assScoreColumn;
+//    @FXML
+//    private TableView<Map<String, String>> quizTable;
+//    @FXML
+//    private TableColumn<Map<String, String>, String> quizIdColumn;
+//    @FXML
+//    private TableColumn<Map<String, String>, String> quizNameColumn;
+//    @FXML
+//    private TableColumn<Map<String, String>, String> quizStatusColumn;
+//    @FXML
+//    private TableColumn<Map<String, String>, String> quizScoreColumn;
 
 
     public void initialize() {

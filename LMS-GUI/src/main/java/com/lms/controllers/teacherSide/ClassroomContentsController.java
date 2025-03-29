@@ -33,6 +33,7 @@ public class ClassroomContentsController {
     private TeacherQuizManager quizzesManager;
     private AssignmentManager assignmentManager;
     private ResourceManager resourcesManager;
+
     @FXML
     private ScrollPane assignmentsScrollPane;
     @FXML
@@ -51,7 +52,6 @@ public class ClassroomContentsController {
     private TableColumn<Map<String, String>, String> studentIdColumn;
     @FXML
     private TableColumn<Map<String, String>, String> studentNameColumn;
-
     @FXML
     private ImageView backButton;
 

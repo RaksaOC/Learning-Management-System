@@ -66,41 +66,45 @@ public class AssignmentManager extends ClassroomContentManager {
         }
     }
 
-    public void manageEditAssignmentSql(String id, String title, String description, String deadline, String ref_attachment) {
-        // Check if the assignment ID exists
-        String checkQuery = "SELECT COUNT(*) FROM assignment WHERE id = ?";
-        try (PreparedStatement checkStmt = conn.prepareStatement(checkQuery)) {
-            checkStmt.setString(1, id);
-            checkStmt.executeQuery();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return;
-        }
-
-        // Update the assignment
-        String query = "UPDATE assignment SET title = ?, description = ?, deadline = ?, ref_attachment = ? WHERE id = ?";
-        try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setString(1, title);
-            statement.setString(2, description);
-            statement.setString(3, deadline);
-            statement.setString(4, ref_attachment);
-            statement.setString(5, id); // Ensure ID is set in the WHERE clause
+    public void manageEditAssignmentSql(String newTitle, String newDescription, String newDeadline, String newRef_attachment) {
+        String query = "UPDATE assignment SET title = ?, description = ?, deadline = ?, ref_attachment, WHERE id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, newTitle);
+            statement.setString(2, newDescription);
+            statement.setString(3, newDeadline);
+            statement.setString(4, newRef_attachment);
             statement.executeUpdate();
-        } catch (Exception e) {
+        }catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
 
-    public void manageDeleteAssignmentSql(String id) {
+    public void manageDeleteAssignmentSql() {
         String query = "UPDATE assignment SET status = ? WHERE id = ?";
 
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, "inactive"); // Set status
-            statement.setString(2, id); // Bind ID parameter
+            statement.setString(2, AppSession.getInstance().getSelectedAssignment()); // Bind ID parameter
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace(); // Replace with a logger in production
+        }
+
+        String query2 = "DELETE FROM classroom_assignment WHERE assignment_id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query2)){
+            statement.setString(1, AppSession.getInstance().getSelectedAssignment());
+            statement.executeUpdate();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String query3 = "DELETE FROM progress_assignment WHERE assignment_id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query3)){
+            statement.setString(1, AppSession.getInstance().getSelectedAssignment());
+            statement.executeUpdate();
+        }catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

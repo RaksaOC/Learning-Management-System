@@ -65,28 +65,6 @@
                <padding>
                   <Insets bottom="10.0" top="10.0" />
                </padding>
-               <children>
-                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="79.0" prefWidth="700.0" spacing="40.0" style="-fx-background-color: #2F92BC; -fx-border-color: black; -fx-background-radius: 30; -fx-border-radius: 30;">
-                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/resources-icon.png" />
-                           </image>
-                        </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lab6.pdf">
-                           <font>
-                              <Font name="AppleGothic Regular" size="18.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </HBox>
-               </children>
             </VBox>
          </children>
          <VBox.margin>
@@ -104,28 +82,6 @@
                <padding>
                   <Insets bottom="10.0" top="10.0" />
                </padding>
-               <children>
-                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="79.0" prefWidth="700.0" spacing="40.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 30; -fx-border-radius: 30;">
-                     <children>
-                        <ImageView fitHeight="68.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/resources-icon.png" />
-                           </image>
-                        </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lab6.pdf">
-                           <font>
-                              <Font name="AppleGothic Regular" size="18.0" />
-                           </font>
-                        </Text>
-                     </children>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </HBox>
-               </children>
             </VBox>
          </children>
       </VBox>
@@ -139,6 +95,7 @@
             <Insets top="20.0" />
          </VBox.margin>
       </Button>
+      <VBox fx:id="scoreBox" prefHeight="200.0" prefWidth="100.0" />
    </children>
    <padding>
       <Insets bottom="20.0" left="10.0" right="20.0" top="20.0" />

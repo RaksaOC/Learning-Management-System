@@ -48,9 +48,7 @@ public class AssignmentViewController {
     @FXML
     private Button deleteButton;
     @FXML
-    private VBox studentsList; // TODO: from the manger generate HBOXes in this list
-    @FXML
-    private Button gradeButton; // TODO: add this button to a VBOX in studentsList and setCenterView to gradeAssignment and assign it to go to "gradeAssignment" centerView
+    private VBox studentsList;
 
     private ClassroomsManger classroomsManger = new ClassroomsManger();
     private ArrayList<String> students;
@@ -81,7 +79,10 @@ public class AssignmentViewController {
             alert.setContentText("Are you sure you want to delete this assignment?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
+                assignmentManager.manageDeleteAssignmentSql();
                 AppSession.getInstance().setSelectedAssignment(null);
+
+                SceneManager.loadCenterView("teacherClassroomContents", "resources/com/lms/views/teacherSide/ClassroomContents.fxml");
                 SceneManager.setCenterView("teacherClassroomContents");
             }
         });

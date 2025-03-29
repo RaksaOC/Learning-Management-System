@@ -62,39 +62,43 @@ public class ResourceManager extends ClassroomContentManager {
         }
     }
 
-    private void manageEditMaterialSql(String id, String title, String description, String deadline, String ref_attachment) {
-        // Check if the assignment ID exists
-        String checkQuery = "SELECT COUNT(*) FROM material WHERE id = ?";
-        try (PreparedStatement checkStmt = conn.prepareStatement(checkQuery)) {
-            checkStmt.setString(1, id);
-            checkStmt.executeQuery();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return;
-        }
-
-        // Update the assignment
+    public void manageEditMaterialSql(String newTitle, String newDescription, String ref_attachment) {
         String query = "UPDATE material SET title = ?, description = ?, ref_attachment = ? WHERE id = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setString(1, title);
-            statement.setString(2, description);
+            statement.setString(1, newTitle);
+            statement.setString(2, newDescription);
             statement.setString(3, ref_attachment);
-            statement.setString(4, id); // Ensure ID is set in the WHERE clause
+            statement.setString(4, AppSession.getInstance().getSelectedResources());
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void manageDeleteMaterialSql(String id) {
+    public void manageDeleteMaterialSql() {
         String query = "UPDATE material SET status = ? WHERE id = ?";
-
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, "inactive"); // Set status
-            statement.setString(2, id); // Bind ID parameter
+            statement.setString(2, AppSession.getInstance().getSelectedResources());
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace(); // Replace with a logger in production
+        }
+
+        String query2 = "DELETE FROM classroom_material WHERE material_id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query2)){
+            statement.setString(1, AppSession.getInstance().getSelectedResources());
+            statement.executeUpdate();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String query3 = "DELETE FROM progress_material WHERE progress_id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query3)){
+            statement.setString(1, AppSession.getInstance().getSelectedResources());
+            statement.executeUpdate();
+        }catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

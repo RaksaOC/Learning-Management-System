@@ -66,6 +66,44 @@ public class AssignmentsManager {
         return id_name_classroom;
     }
 
+    public boolean isAssignmentGraded() {
+        String query = "SELECT status FROM progress_assignment pa " +
+                "JOIN progress p ON pa.progress_id = p.id " +
+                "WHERE pa.assignment_id = ? AND p.student_id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedAssignment());
+            statement.setString(2, AppSession.getInstance().getStudent().getId());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                if (rs.getString("status").equals("inactive")) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public Double getAssignmentGrade() {
+        String query = "SELECT pa.score as score FROM progress_assignment pa " +
+                "JOIN progress p ON pa.progress_id = p.id " +
+                "WHERE pa.assignment_id = ? AND p.student_id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedAssignment());
+            statement.setString(2, AppSession.getInstance().getStudent().getId());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                if (rs.getString("score") != null) {
+                    return (rs.getDouble("score"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public ArrayList<String> getClassroomAssignments() {
         ArrayList<String> assignments = new ArrayList<>();
         String query = "SELECT CONCAT(a.id, ' - ', a.title) AS id_name " +

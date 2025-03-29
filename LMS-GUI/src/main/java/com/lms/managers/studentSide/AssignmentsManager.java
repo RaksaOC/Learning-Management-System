@@ -110,7 +110,7 @@ public class AssignmentsManager {
                 "FROM progress_assignment AS pa " +
                 "JOIN progress AS p ON pa.progress_id = p.id " +
                 "JOIN assignment AS a ON pa.assignment_id = a.id " +
-                "WHERE p.classroom_id = ? AND p.student_id = ?";
+                "WHERE p.classroom_id = ? AND p.student_id = ? ";
 
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, AppSession.getInstance().getSelectedClassroom());

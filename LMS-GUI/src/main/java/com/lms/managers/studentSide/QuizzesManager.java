@@ -448,6 +448,57 @@ public class QuizzesManager {
         return quizzes;
     }
 
+    public String getQuizTitle(){
+        String query = "SELECT title FROM quiz WHERE id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, AppSession.getInstance().getSelectedQuiz());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("title");
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public String getQuizDescription(){
+        String query = "SELECT description FROM quiz WHERE id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, AppSession.getInstance().getSelectedQuiz());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("description");
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public ArrayList<Map<String, String>> getAllStudentsAndScore(){
+        String query = "SELECT s.id as id, CONCAT(s.first_name, ' ' , s.last_name) AS name, pq.score as score FROM student as s " +
+                "JOIN progress as p ON p.student_id = s.id " +
+                "JOIN progress_quiz as pq ON pq.progress_id = p.id " +
+                "WHERE pq.quiz_id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, AppSession.getInstance().getSelectedQuiz());
+            ResultSet rs = statement.executeQuery();
+            ArrayList<Map<String, String>> quizzes = new ArrayList<>();
+            while (rs.next()) {
+                Map<String, String> quiz = new HashMap<>();
+                quiz.put("id", rs.getString("id"));
+                quiz.put("name", rs.getString("name"));
+                quiz.put("score", rs.getString("score"));
+                quizzes.add(quiz);
+            }
+            return quizzes;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     // Rasa Front end related functions -----------------------------------------------------------------------------------------------
 

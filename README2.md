@@ -86,7 +86,13 @@ The system boasts over **60 functionalities**, meticulously designed to enhance 
 
 ### 📂 Database Design / ERD Schema
 
+**ER Diagram**
+
 ![ER Diagram](https://github.com/RaksaOC/Learning-Management-System/blob/6bb113f21b0d55f6e15d8bf1ec0138a1254612be/doc/images/ERD.png)
+
+**Relational Schema**
+
+![Schema](https://github.com/RaksaOC/Learning-Management-System/blob/abcc62779cfed1423e73e7d9db188cf5906f704d/doc/images/Schema.svg)
 
 ### 🏗 Project Structure
 As of 08/02/2025

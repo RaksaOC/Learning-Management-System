@@ -38,14 +38,12 @@ public class QuizzesManager {
         return titleAndDescriptionList;
     }
 
-    public ArrayList<Map<String, Object>> displayChosenQuiz(int quizIndexToDo, String studentID){
-        ArrayList<String> quizzesIDFromSQL = returnQuizSql(studentID);
-        ArrayList<Map<String, Object>> questionsAndChoices = returnQuestionsAndChoices(quizzesIDFromSQL.get(quizIndexToDo - 1)); // this one returns the questions based on the quiz that the student chose. each question has its choices
-        return questionsAndChoices;
-    }
+//    public ArrayList<Map<String, Object>> displayChosenQuiz(String chosenQuizID, String studentID){
+//        ArrayList<Map<String, Object>> questionsAndChoices = returnQuestionsAndItsChoices(chosenQuizID); // this one returns the questions based on the quiz that the student chose. each question has its choices
+//        return questionsAndChoices;
+//    }
 
-    public void submitAndCheckAnswer( ArrayList<Map<String, Object>> questionsAndChoices,String studentID, int quizIndexToDo, ArrayList<Integer> answerList){
-        ArrayList<String> quizzesIDFromSQL = returnQuizSql(studentID);
+    public void submitAndCheckAnswer( ArrayList<Map<String, Object>> questionsAndChoices, String chosenQuizID, ArrayList<Integer> answerList){
         ArrayList<ArrayList<Boolean>> answerToCheckWithStudentsAnswer = new ArrayList<>();
 
         for (Map<String, Object> questionAndChoice : questionsAndChoices) {
@@ -68,7 +66,7 @@ public class QuizzesManager {
             // Add the list of correct choices to the final answer list
             answerToCheckWithStudentsAnswer.add(correctChoices);
         }
-        checkAnswerSql(answerToCheckWithStudentsAnswer, answerList, quizzesIDFromSQL.get(quizIndexToDo - 1));
+        checkAnswerSql(answerToCheckWithStudentsAnswer, answerList, chosenQuizID);
     }
 
     private ArrayList<String> returnQuizSql(String studentID) {
@@ -262,6 +260,9 @@ public class QuizzesManager {
             e.printStackTrace();
         }
     }
+
+
+
 
     // ========================================
     // JSON-RELATED METHODS

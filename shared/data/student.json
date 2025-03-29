@@ -1,104 +1,33 @@
-[
-    {
-        "generation": "GEN10",
-        "lastLogin": "2025-03-11 09:53:21",
-        "address": {
-            "province": "phnom penh",
-            "commune": "Male",
-            "district": "Chbar ampv"
-        },
-        "gender": "Male",
-        "createdAt": "2025-02-04 21:53:36",
-        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-        "phoneNumber": "012540494",
-        "dob": "03042006",
-        "name": {
-            "firstName": "Chan",
-            "lastName": "Raksa"
-        },
-        "specialization": "CS-SE",
-        "progress": {
-            "GEN10-CS-SE-G1-VA": "P000001",
-            "GEN10-CS-SE-G1-DBMS": "P000001",
-            "GEN10-CS-SE-G1-SS": "P000001",
-            "GEN10-CS-SE-G1-IL": "P000001",
-            "GEN10-CS-SE-G1-OOP": "P000001"
-        },
-        "id": "S000001",
-        "guardian": {
-            "phoneNumber": "adasd",
-            "gender": "Male",
-            "name": {
-                "firstName": "asda",
-                "lastName": "asdasd"
-            }
-        },
-        "department": "CS",
-        "email": "ocraksa@gmail.com",
-        "status": "active"
+[{
+    "generation": "GEN10",
+    "lastLogin": "2025-03-22 16:40:35",
+    "address": {
+        "province": "phnom penh",
+        "commune": "abc",
+        "district": "Chbar ampv"
     },
-    {
-        "generation": "Male",
-        "lastLogin": "",
-        "address": {
-            "province": "Male",
-            "commune": "Male",
-            "district": "Male"
-        },
-        "gender": "Female",
-        "createdAt": "2025-02-17 11:18:36",
-        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-        "phoneNumber": "dsad",
-        "dob": "2025-02-07",
-        "name": {
-            "firstName": "me",
-            "lastName": "me"
-        },
-        "specialization": "Male",
-        "progress": {},
-        "id": "S000002",
-        "guardian": {
-            "phoneNumber": "adasd",
-            "gender": "Male",
-            "name": {
-                "firstName": "asda",
-                "lastName": "asdasd"
-            }
-        },
-        "department": "Male",
-        "email": "adasdasd",
-        "status": "inactive"
+    "gender": "Male",
+    "createdAt": "2025-02-04 21:53:36",
+    "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "phoneNumber": "012540494",
+    "dob": "03-04-2006",
+    "name": {
+        "firstName": "Chan",
+        "lastName": "Raksa"
     },
-    {
-        "generation": "Male",
-        "lastLogin": "",
-        "address": {
-            "province": "asdfadsf",
-            "commune": "asdfasf",
-            "district": "asdfsfd"
-        },
-        "gender": "Female",
-        "createdAt": "2025-03-17 13:23:04",
-        "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
-        "phoneNumber": "asdfasfdafs",
-        "dob": "2025-03-27",
+    "specialization": "Software Engineering",
+    "progress": {"GEN10-CS-SE-G1-OOP": "P000001"},
+    "id": "S000001",
+    "classrooms": ["GEN10-CS-SE-G1-OOP"],
+    "guardian": {
+        "guardianGender": "female",
+        "guardianPhoneNumber": "0123423432",
         "name": {
-            "firstName": "al;sdjflajdsfasdfasf",
-            "lastName": "asdfasdf"
-        },
-        "specialization": "Female",
-        "progress": {},
-        "id": "S000003",
-        "guardian": {
-            "phoneNumber": "asdfadsf",
-            "gender": "Female",
-            "name": {
-                "firstName": "asdfasdf",
-                "lastName": "asdfasdf"
-            }
-        },
-        "department": "Female",
-        "email": "asdfasdfafsd",
-        "status": "active"
-    }
-]
+            "firstName": "mom",
+            "lastName": "dad"
+        }
+    },
+    "department": "Computer Science",
+    "email": "ocraksa@gmail.com",
+    "status": "active"
+}]

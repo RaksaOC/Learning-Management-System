@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import main.SceneManager;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditStudentManager;
 import org.json.JSONObject;
@@ -45,10 +46,13 @@ public class EditStudentNameController extends MainFrameController {
 
     @FXML
     public void handleEdit(){
-        manager = new EditStudentManager(idComboBox.getValue().substring(idComboBox.getValue().indexOf(" ")));
-        manager.manageEditName(newFirstNameTextField.getText(), newLastNameTextField.getText());
-        loadSuccess("editStudentName");
-        clearFields();
+        if (isConfirmed()) {
+            manager = new EditStudentManager(extractId(idComboBox.getItems().getFirst()));
+            manager.manageEditName(newFirstNameTextField.getText(), newLastNameTextField.getText());
+            loadSuccess("editStudentName");
+            SceneManager.refreshScenes();
+            clearFields();
+        }
     }
 
     private void clearFields(){

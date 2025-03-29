@@ -6,10 +6,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import main.AppSession;
 import main.SceneManager;
-import main.java.com.lms.managers.studentSide.AuthenticationManager;
+import main.java.com.lms.managers.AuthenticationManager;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -25,6 +25,8 @@ public class TeacherMainFrameController {
     private HBox settingsLink;
     @FXML
     private HBox logoutLink;
+    @FXML
+    private HBox switchUserLink;
     @FXML
     private ImageView profileImage;
 
@@ -61,17 +63,34 @@ public class TeacherMainFrameController {
             alert.setContentText("Are you sure you want to logout?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
-                AuthenticationManager authenticationManager = new AuthenticationManager();
-                authenticationManager.markLastLoggedOut("teacher");
-                SceneManager.loadCenterView("teacherLogIn", "resource/com/lms/views/teacherSide/LogIn.fxml");
-                SceneManager.setCenterView("teacherLogIn");
+                AuthenticationManager authenticationManager = new AuthenticationManager("teacher");
+                authenticationManager.createNewLogOutSql(AppSession.getInstance().getTeacher().getId());
+                SceneManager.loadFullView("teacherLogIn", "resources/com/lms/views/teacherSide/LogIn.fxml");
+                SceneManager.setFullView("teacherLogIn"); // authentication further handled by teacherLogInController
+            }
+        });
+        switchUserLink.setOnMouseClicked(event -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Logout");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure you want to switch user?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                AppSession.getInstance().setStudent(null);
+                AppSession.getInstance().setTeacher(null);
+                AppSession.getInstance().setSelectedQuiz(null);
+                AppSession.getInstance().setSelectedAssignment(null);
+                AppSession.getInstance().setSelectedResources(null);
+                AppSession.getInstance().setSelectedClassroom(null);
+
+                SceneManager.loadFullView("userType", "resource/com/lms/views/userType.fxml");
+                SceneManager.setFullView("userType");
             }
         });
         profileImage.setOnMouseClicked(event -> {
             SceneManager.loadCenterView("teacherProfileSettings", "resources/com/lms/views/teacherSide/Profile-Settings.fxml");
             SceneManager.setCenterView("teacherProfileSettings");
         });
-
     }
 
     private void highlightSelectedLink(HBox selectedTab) {

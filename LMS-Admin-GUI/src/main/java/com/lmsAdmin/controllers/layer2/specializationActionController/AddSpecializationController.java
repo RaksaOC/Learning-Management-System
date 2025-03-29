@@ -2,6 +2,7 @@ package main.java.com.lmsAdmin.controllers.layer2.specializationActionController
 
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -28,19 +29,36 @@ public class AddSpecializationController extends MainFrameController {
     public void initialize() {
         departmentId.getItems().clear();
         departmentId.getItems().addAll(new EditDepartmentManager().loadIdsAndName());
+        id.setText(extractId(departmentId.getItems().getFirst()) + "-");
+        departmentId.setOnMouseClicked(e -> {
+            if (departmentId.getSelectionModel().getSelectedItem() != null) {
+                id.setText(extractId(departmentId.getSelectionModel().getSelectedItem()) + "-");
+            }
+        });
     }
 
     @FXML
     private void handleAdd(MouseEvent event) {
-        depId = departmentId.getSelectionModel().getSelectedItem().toString().substring(0, departmentId.getSelectionModel().getSelectedItem().toString().indexOf(" "));
+        ManageSpecializationManager manageSpecializationManager = new ManageSpecializationManager();
+        depId = extractId(departmentId.getSelectionModel().getSelectedItem());
         String n = name.getText();
         String ID = id.getText();
 
-        ManageSpecializationManager manageSpecializationManager = new ManageSpecializationManager();
-        manageSpecializationManager.manageAddSpecialization(ID, depId, n, "active");
+        if (!manageSpecializationManager.isSpecializationIdTaken(id.getText())) {
+            if (isConfirmed()) {
+                manageSpecializationManager.manageAddSpecialization(ID, depId, n, "active");
 
-        loadSuccess("addSpecialization");
-        resetAllFields();
+                loadSuccess("addSpecialization");
+                SceneManager.refreshScenes();
+                resetAllFields();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Specialization id is not valid");
+            alert.showAndWait();
+        }
     }
 
     private void resetAllFields() {

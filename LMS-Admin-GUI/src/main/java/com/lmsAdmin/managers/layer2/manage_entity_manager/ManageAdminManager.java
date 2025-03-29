@@ -110,4 +110,17 @@ public class ManageAdminManager extends ManageEntityManager {
         }
         return null;
     }
+
+    public boolean isEmailTaken(String email) {
+        String query = "SELECT 1 FROM admin WHERE email = ? LIMIT 1";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class EditGenerationManager extends EditEntityManager {
 
@@ -80,6 +82,7 @@ public class EditGenerationManager extends EditEntityManager {
             while (resultSet.next()) {
                 idsAndName.add(resultSet.getString("id") + " - " + resultSet.getString("name"));
             }
+            Collections.sort(idsAndName, Comparator.comparing(s -> s.substring(0, s.indexOf("-") + 2)));
             return idsAndName;
         }catch (SQLException e){
             e.printStackTrace();

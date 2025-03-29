@@ -70,7 +70,7 @@
                               <Font name="AppleGothic Regular" size="18.0" />
                            </font>
                         </Text>
-                        <TextArea disable="true" prefHeight="239.0" prefWidth="900.0" style="-fx-background-color: #f4f6fa; -fx-border-color: #f4f6fa; -fx-background-radius: 0; -fx-border-width: 0;" wrapText="true" />
+                        <TextArea fx:id="assignmentDescription" disable="true" prefHeight="239.0" prefWidth="900.0" style="-fx-background-color: #f4f6fa; -fx-border-color: #f4f6fa; -fx-background-radius: 0; -fx-border-width: 0;" wrapText="true" />
                      </children>
                      <VBox.margin>
                         <Insets top="40.0" />
@@ -83,7 +83,7 @@
                               <Font name="AppleGothic Regular" size="18.0" />
                            </font>
                         </Text>
-                        <VBox prefHeight="111.0" prefWidth="1144.0" spacing="10.0">
+                        <VBox prefHeight="111.0" prefWidth="1144.0" spacing="10.0" fx:id="refWrapper">
                            <padding>
                               <Insets bottom="10.0" top="10.0" />
                            </padding>
@@ -124,7 +124,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <VBox alignment="TOP_CENTER" spacing="20.0" VBox.vgrow="NEVER">
+                  <VBox alignment="TOP_CENTER" spacing="20.0" VBox.vgrow="NEVER" fx:id="studentsList">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Students">
                            <VBox.margin>

@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="845.0" prefWidth="1174.0" style="-fx-background-color: #f4f6fa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lms.controllers.studentSide.AssignmentSubmissionController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="845.0" prefWidth="1174.0" style="-fx-background-color: #f4f6fa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lms.controllers.teacherSide.EditResourceController">
     <children>
         <VBox prefHeight="45.0" prefWidth="1144.0">
             <padding>
@@ -36,7 +37,7 @@
                         <Font name="AppleGothic Regular" size="18.0" />
                     </font>
                 </Text>
-                <TextField disable="true" editable="false" layoutX="86.0" layoutY="1.0" AnchorPane.leftAnchor="140.0" />
+                <TextField fx:id="curTitle" disable="true" editable="false" layoutX="86.0" layoutY="1.0" AnchorPane.leftAnchor="140.0" />
             </children>
             <VBox.margin>
                 <Insets top="10.0" />
@@ -44,17 +45,40 @@
         </AnchorPane>
         <AnchorPane>
             <children>
-                <Text layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assignmet Titile: " AnchorPane.leftAnchor="0.0">
+                <Text layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resource Titile: " AnchorPane.leftAnchor="0.0">
                     <font>
                         <Font name="AppleGothic Regular" size="18.0" />
                     </font>
                 </Text>
-                <TextField layoutX="86.0" layoutY="1.0" AnchorPane.leftAnchor="140.0" />
+                <TextField fx:id="newTitle" layoutX="86.0" layoutY="1.0" AnchorPane.leftAnchor="140.0" />
             </children>
             <VBox.margin>
                 <Insets top="10.0" />
             </VBox.margin>
         </AnchorPane>
+      <AnchorPane>
+         <children>
+            <Text layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Description:" AnchorPane.leftAnchor="0.0">
+               <font>
+                  <Font name="AppleGothic Regular" size="18.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="curDescription" disable="true" layoutX="265.0" layoutY="-55.0" prefHeight="200.0" prefWidth="650.0" AnchorPane.leftAnchor="179.0" AnchorPane.topAnchor="0.0" />
+         </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </AnchorPane>
+      <AnchorPane>
+         <children>
+            <Text layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Description:" AnchorPane.leftAnchor="0.0">
+               <font>
+                  <Font name="AppleGothic Regular" size="18.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="newDescription" layoutX="265.0" layoutY="-55.0" prefHeight="200.0" prefWidth="650.0" AnchorPane.leftAnchor="179.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
         <VBox prefHeight="285.0" prefWidth="1144.0">
             <children>
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reference Materials">
@@ -62,87 +86,10 @@
                         <Font name="AppleGothic Regular" size="18.0" />
                     </font>
                 </Text>
-                <VBox prefHeight="287.0" prefWidth="1144.0" spacing="10.0">
+                <VBox fx:id="refWrapper" prefHeight="287.0" prefWidth="1144.0" spacing="10.0">
                     <padding>
                         <Insets bottom="10.0" top="10.0" />
                     </padding>
-                    <children>
-                        <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="79.0" prefWidth="700.0" spacing="40.0" style="-fx-background-color: #2F92BC; -fx-border-color: black; -fx-background-radius: 30; -fx-border-radius: 30;">
-                            <children>
-                                <ImageView fitHeight="68.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../../images/resources-icon.png" />
-                                    </image>
-                                </ImageView>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lab6.pdf">
-                                    <font>
-                                        <Font name="AppleGothic Regular" size="18.0" />
-                                    </font>
-                                </Text>
-                                <Button mnemonicParsing="false" text="Remove">
-                                    <HBox.margin>
-                                        <Insets left="360.0" />
-                                    </HBox.margin>
-                                </Button>
-                            </children>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                            <padding>
-                                <Insets left="30.0" />
-                            </padding>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="79.0" prefWidth="700.0" spacing="40.0" style="-fx-background-color: #2F92BC; -fx-border-color: black; -fx-background-radius: 30; -fx-border-radius: 30;">
-                            <children>
-                                <ImageView fitHeight="68.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../../images/resources-icon.png" />
-                                    </image>
-                                </ImageView>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lab6.pdf">
-                                    <font>
-                                        <Font name="AppleGothic Regular" size="18.0" />
-                                    </font>
-                                </Text>
-                                <Button mnemonicParsing="false" text="Remove">
-                                    <HBox.margin>
-                                        <Insets left="360.0" />
-                                    </HBox.margin>
-                                </Button>
-                            </children>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                            <padding>
-                                <Insets left="30.0" />
-                            </padding>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="79.0" prefWidth="700.0" spacing="40.0" style="-fx-background-color: #2F92BC; -fx-border-color: black; -fx-background-radius: 30; -fx-border-radius: 30;">
-                            <children>
-                                <ImageView fitHeight="68.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../../images/resources-icon.png" />
-                                    </image>
-                                </ImageView>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lab6.pdf">
-                                    <font>
-                                        <Font name="AppleGothic Regular" size="18.0" />
-                                    </font>
-                                </Text>
-                                <Button mnemonicParsing="false" text="Remove">
-                                    <HBox.margin>
-                                        <Insets left="360.0" />
-                                    </HBox.margin>
-                                </Button>
-                            </children>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                            <padding>
-                                <Insets left="30.0" />
-                            </padding>
-                        </HBox>
-                    </children>
                 </VBox>
             </children>
             <VBox.margin>
@@ -151,7 +98,7 @@
         </VBox>
         <HBox prefHeight="19.0" prefWidth="1144.0" spacing="20.0">
             <children>
-                <Button mnemonicParsing="false" text="+ Add" />
+                <Button fx:id="addButton" mnemonicParsing="false" text="+ Add" />
             </children>
             <VBox.margin>
                 <Insets top="20.0" />
@@ -159,7 +106,7 @@
         </HBox>
         <HBox alignment="CENTER">
             <children>
-                <Button mnemonicParsing="false" text="Edit" />
+                <Button fx:id="editButton" mnemonicParsing="false" text="Edit" />
             </children>
         </HBox>
     </children>

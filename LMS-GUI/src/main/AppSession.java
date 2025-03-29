@@ -14,7 +14,7 @@ public class AppSession {
     private String selectedResources;
     private String selectedQuiz;
 
-    private boolean isAssignmentSubmissionFromAssignmentsPage = false;
+    private boolean isSubmissionFromAllPage = false;
 
     private AppSession() {}  // Private constructor for singleton pattern
 
@@ -45,8 +45,8 @@ public class AppSession {
         this.selectedAssignment = selectedAssignment;
     }
 
-    public void isAssignmentSubmissionFromAssignmentsPage(boolean assignmentSubmissionFromAssignmentsPage) {
-        this.isAssignmentSubmissionFromAssignmentsPage = assignmentSubmissionFromAssignmentsPage;
+    public void isSubmissionFromAllPage(boolean assignmentSubmissionFromAssignmentsPage) {
+        this.isSubmissionFromAllPage = assignmentSubmissionFromAssignmentsPage;
     }
 
     public void setSelectedResources(String selectedResources) {
@@ -78,8 +78,8 @@ public class AppSession {
         return selectedQuiz;
     }
 
-    public boolean getIsAssignmentSubmissionFromAssignmentsPage() {
-        return this.isAssignmentSubmissionFromAssignmentsPage;
+    public boolean getIsSubmissionFromAllPage() {
+        return this.isSubmissionFromAllPage;
     }
 
 }

@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import main.SceneManager;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditAdminManager;
 
@@ -26,7 +27,7 @@ public class EditAdminGenderController extends MainFrameController {
         editButton.setDisable(true);
         idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         idComboBox.setOnAction(event -> {
-            manager = new EditAdminManager(idComboBox.getValue());
+            manager = new EditAdminManager(extractId(idComboBox.getSelectionModel().getSelectedItem()));
             curTextField.setText(manager.getOldGender());
             newGenderComboBox.setDisable(false);
         });
@@ -34,9 +35,12 @@ public class EditAdminGenderController extends MainFrameController {
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditGender(newGenderComboBox.getValue().toString());
-        loadSuccess("editAdminGender");
-        clearFields();
+        if (isConfirmed()) {
+            manager.manageEditGender(newGenderComboBox.getValue().toString());
+            loadSuccess("editAdminGender");
+            SceneManager.refreshScenes();
+            clearFields();
+        }
     }
 
     private void clearFields() {

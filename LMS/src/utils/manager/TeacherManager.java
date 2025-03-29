@@ -2,38 +2,49 @@ package utils.manager;
 
 import entities.Student;
 import entities.Teacher;
+import org.json.JSONArray;
+import org.json.JSONMLParserConfiguration;
+import org.json.JSONObject;
+import utils.controller.ClassroomController;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class TeacherManager {
     Teacher teacherToEdit;
     public TeacherManager(Teacher teacher) {
-        teacherToEdit = teacher;
-    }
-
-    public void manageGradeAssignment(){
-        // logic to add a grade to an assignment of the student...
-
-    }
-
-    public void manageViewStudentAssignment(String studentID){
-        //                                  ^
-        // look for the assignments of this student associated with the course or taught by this teacher
-    }
-
-    public void manageViewAllStudentAssignments(){}
-
-    public void editStudentAssignment(){
-        // this is to edit info like the description of the assignment....
+        this.teacherToEdit = teacher;
     }
 
     public String manageViewProfile(){
-        String profile = """
-                
-                """;
+        String profile = String.format("""
+        Teacher Profile:
+        ----------------
+        ID: %s
+        Name: %s %s
+        Email: %s
+        Gender: %s
+        Phone: %s
+        Date of Birth: %s
+        Classrooms: %s
+        """,
+                teacherToEdit.getId(), teacherToEdit.getFirstName(), teacherToEdit.getLastName(),teacherToEdit.getEmail()
+                ,teacherToEdit.getGender(), teacherToEdit.getPhone(), teacherToEdit.getDoB(), printClassrooms(teacherToEdit.getClassrooms())
+        );
+
         return profile;
     }
 
-    private void commentOnAssignment(){
-        // used with the manageGradeAssignment to add comment...
+    public String printClassrooms(JSONArray classroom){
+        String allClass = "";
+        for(int i = 0; i < classroom.length(); i ++){
+            allClass += classroom.getString(i) + "\n" ;
+        }
+        return allClass;
     }
 
 

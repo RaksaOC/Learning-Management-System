@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import main.SceneManager;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditGenerationManager;
 
@@ -26,7 +27,7 @@ public class EditGenerationNameController extends MainFrameController {
         editButton.setDisable(true);
         idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         idComboBox.setOnAction(event -> {
-            manager = new EditGenerationManager(idComboBox.getValue());
+            manager = new EditGenerationManager(extractId(idComboBox.getSelectionModel().getSelectedItem()));
             curTextField.setText(manager.getOldName());
             newTextField.setDisable(false);
         });
@@ -34,9 +35,12 @@ public class EditGenerationNameController extends MainFrameController {
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditName(newTextField.getText());
-        loadSuccess("editGenerationName");
-        clearFields();
+        if (isConfirmed()) {
+            manager.manageEditName(newTextField.getText());
+            loadSuccess("editGenerationName");
+            SceneManager.refreshScenes();
+            clearFields();
+        }
     }
 
     private void clearFields() {

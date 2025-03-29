@@ -29,6 +29,8 @@ public class DeleteAdminController extends MainFrameController {
     @FXML
     private VBox detailsVBox;
 
+    private String selectedLongId;
+
     public void initialize() {
         EditAdminManager idLoader = new EditAdminManager();
         idComboBox.getItems().addAll(idLoader.loadIdsAndName());
@@ -41,9 +43,11 @@ public class DeleteAdminController extends MainFrameController {
 
     @FXML
     private void handleDelete(MouseEvent event) {
+        selectedLongId = idComboBox.getSelectionModel().getSelectedItem();
         if (isConfirmed()) {
-            manageAdminManager.manageDeleteAdmin(idComboBox.getValue());
+            manageAdminManager.manageDeleteAdmin(extractId(selectedLongId));
             loadSuccess("deleteAdmin");
+            SceneManager.refreshScenes();
         } else {
             clearDetails();
         }

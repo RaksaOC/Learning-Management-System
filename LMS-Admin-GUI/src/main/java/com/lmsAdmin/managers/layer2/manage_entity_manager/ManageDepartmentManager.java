@@ -73,4 +73,30 @@ public class ManageDepartmentManager extends ManageEntityManager {
         }
         return null;
     }
+
+    public boolean isDepartmentIdTaken(String id) {
+        String query = "SELECT 1 FROM department WHERE id = ? LIMIT 1";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, id);
+            ResultSet rs = statement.executeQuery();
+            return rs.next();  // Returns true if at least one row exists
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean isDepartmentDeletable(String id) {
+        String query = "SELECT 1 FROM student WHERE department_id = ? LIMIT 1";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, id);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                return !rs.next();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

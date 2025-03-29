@@ -2,6 +2,7 @@ package main.java.com.lmsAdmin.controllers.layer2.courseActionController;
 
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -37,17 +38,28 @@ public class AddCourseController extends MainFrameController {
     private void handleAdd(MouseEvent event) {
         ManageCourseManager manageCourseManager = new ManageCourseManager();
 
-        manageCourseManager.manageAddCourse(
-                id.getText(),
-                name.getText(),
-                credit.getSelectionModel().getSelectedItem().toString().trim(),
-                level.getSelectionModel().getSelectedItem().toString().trim(),
-                description.getText(),
-                "active"
-        );
-        System.out.println("content added successfully with Sql");
-        loadSuccess("addCourse");
-        resetAllFields();
+        if (!manageCourseManager.isCourseIdTaken(id.getText())) {
+            if (isConfirmed()) {
+                manageCourseManager.manageAddCourse(
+                        id.getText(),
+                        name.getText(),
+                        credit.getSelectionModel().getSelectedItem().toString().trim(),
+                        level.getSelectionModel().getSelectedItem().toString().trim(),
+                        description.getText(),
+                        "active"
+                );
+                loadSuccess("addCourse");
+                resetAllFields();
+                SceneManager.refreshScenes();
+            }
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Course ID already exists");
+            alert.showAndWait();
+        }
     }
 
     private void resetAllFields() {

@@ -29,10 +29,11 @@ public class AssignmentCardsWrapperController {
     private HashMap<String, String> assignment_classroom;
     private ArrayList<String> assignmentsList;
 
+    private int numOfCardsPerRow;
+
     public void initialize() {
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        scrollPane.setStyle("-fx-background-color: red");
 
         scrollPane.setContent(assignmentsWrapper());
 
@@ -67,7 +68,7 @@ public class AssignmentCardsWrapperController {
         assignmentsWrapper.setSpacing(40);
 
         AssignmentsManager assignmentsManager = new AssignmentsManager();
-        assignment_classroom = assignmentsManager.getAllAssignments();
+        assignment_classroom = (HashMap<String, String>) assignmentsManager.getAllAssignments();
 
         assignmentsList = new ArrayList<>(assignment_classroom.keySet());
         Collections.sort(assignmentsList);
@@ -76,13 +77,16 @@ public class AssignmentCardsWrapperController {
         HBox row = new HBox();
         row.setSpacing(10); // Space between cards
 
+        numOfCardsPerRow = 0;
         for (int i = 0; i < assignmentsList.size(); i++) {
             if (i % 5 == 0 && i != 0) {
                 rows.add(row); // Add completed row
                 row = new HBox(); // Start a new row
                 row.setSpacing(10); // Space between cards
+                numOfCardsPerRow = 0;
             }
             row.getChildren().add(assignmentCard(i)); // Add card to the row
+            numOfCardsPerRow++;
         }
 
         // Add the last row if it contains any items
@@ -91,6 +95,7 @@ public class AssignmentCardsWrapperController {
         }
         assignmentsWrapper.getChildren().addAll(rows);
         assignmentsWrapper.setPadding(new Insets(20, 15, 15, 15));
+        assignmentsWrapper.setStyle("-fx-background-color: #f4f6fa");
         return assignmentsWrapper;
     }
 
@@ -108,12 +113,14 @@ public class AssignmentCardsWrapperController {
 
         assignmentCard.getChildren().add(assignmentCardBanner);
         assignmentCard.getChildren().add(assignmentIDVBox);
-
+        if (numOfCardsPerRow >= 5){
+            HBox.setHgrow(assignmentCard, Priority.ALWAYS);
+        }
 
         // styling
         assignmentCard.setSpacing(20);
         assignmentCard.setAlignment(Pos.TOP_CENTER);
-        assignmentCard.setPrefWidth(400);
+        assignmentCard.setPrefWidth(350);
         assignmentCard.setMinHeight(250);
         assignmentCard.setStyle("-fx-border-radius: 30; -fx-background-color: #FFFFFF; -fx-background-radius: 30");
         assignmentCard.setCursor(Cursor.HAND);
@@ -136,35 +143,28 @@ public class AssignmentCardsWrapperController {
             assignmentCard.setScaleY(1.0);
         });
 
-//        Rectangle clip = new Rectangle();
-//        clip.setArcHeight(30);
-//        clip.setArcWidth(30);
-//        assignmentCardBanner.setClip(clip);
-
-        assignmentCardBanner.setFitWidth(250);
+        assignmentCardBanner.setFitWidth(150);
         assignmentCardBanner.setFitHeight(150);
         assignmentIDVBox.setStyle("-fx-border-radius: 30; -fx-background-color: #2F92BC; -fx-background-radius: 30");
         assignmentIDVBox.setAlignment(Pos.CENTER);
         assignmentIDVBox.setPrefWidth(Double.MAX_VALUE);
-        assignmentIDVBox.setPrefHeight(100);
+        assignmentIDVBox.setPrefHeight(80);
 
-        assignmentID.setFont(Font.font("AppleGothic", 24));
-        assignmentCard.setMaxWidth(400);
-        HBox.setHgrow(assignmentCard, Priority.ALWAYS);
+        assignmentID.setFont(Font.font("AppleGothic", 20));
 
         assignmentCard.setOnMouseClicked(e -> {
             AppSession.getInstance().setSelectedClassroom(assignment_classroom.get(assignmentsList.get(idx)));
-            AppSession.getInstance().setSelectedAssignment(assignmentsList.get(idx));
-            AppSession.getInstance().isAssignmentSubmissionFromAssignmentsPage(true);
-
-            System.out.println("Selected Classroom: " + assignment_classroom.get(assignmentsList.get(idx)));
-            System.out.println("Selected Assignment: " + assignmentsList.get(idx));
+            AppSession.getInstance().setSelectedAssignment(extractId(assignmentsList.get(idx)));
+            AppSession.getInstance().isSubmissionFromAllPage(true);
 
             SceneManager.loadCenterView("assignmentSubmission", "resources/com/lms/views/studentSide/AssignmentSubmission.fxml");
             SceneManager.setCenterView("assignmentSubmission");
-
         });
 
         return assignmentCard;
+    }
+
+    private String extractId(String longId) {
+        return longId.substring(0, longId.indexOf(" "));
     }
 }

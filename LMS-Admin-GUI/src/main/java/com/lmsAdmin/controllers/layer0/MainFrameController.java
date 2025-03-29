@@ -140,4 +140,8 @@ public class MainFrameController {
         delay.play(); // Start the delay
     }
 
+    protected String extractId(String longId){
+        return longId.substring(0, longId.indexOf(" "));
+    }
+
 }

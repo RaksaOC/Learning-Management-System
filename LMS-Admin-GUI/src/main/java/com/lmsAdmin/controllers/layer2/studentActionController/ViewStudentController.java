@@ -76,7 +76,7 @@ public class ViewStudentController extends MainFrameController {
 
     @FXML
     private void handleSearch(MouseEvent event) {
-        this.selectedId = idComboBox.getSelectionModel().getSelectedItem().toString().substring(0, idComboBox.getSelectionModel().getSelectedItem().toString().indexOf(" "));
+        this.selectedId = extractId(idComboBox.getSelectionModel().getSelectedItem());
         createDetails();
     }
 

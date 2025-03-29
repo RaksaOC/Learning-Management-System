@@ -2,6 +2,7 @@ package main.java.com.lmsAdmin.controllers.layer2.groupActionController;
 
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -25,26 +26,48 @@ public class AddGroupController extends MainFrameController {
     private Button addButton;
 
     public void initialize() {
+        generation.getItems().clear();
+        specialization.getItems().clear();
         generation.getItems().addAll(new EditGenerationManager().loadIdsAndName());
         specialization.getItems().addAll(new EditSpecializationManager().loadIdsAndName());
+        groupId.setText(extractId(generation.getItems().get(0)) + "-" + extractId(specialization.getItems().get(0)) + "-" + new ManageGroupManager().generateNewGroupEnding(extractId(generation.getItems().getFirst()), extractId(specialization.getItems().getFirst())));
+        groupId.setDisable(true);
+        generation.setOnMouseClicked(mouseEvent -> {
+            if (generation.getSelectionModel().getSelectedItem() != null) {
+                groupId.clear();
+                groupId.setText(extractId(generation.getSelectionModel().getSelectedItem()) + "-" + extractId(specialization.getSelectionModel().getSelectedItem()) + "-" + new ManageGroupManager().generateNewGroupEnding(extractId(generation.getSelectionModel().getSelectedItem()), extractId(specialization.getSelectionModel().getSelectedItem())));
+            }
+        });
+        specialization.setOnMouseClicked(mouseEvent -> {
+            if (specialization.getSelectionModel().getSelectedItem() != null) {
+                groupId.clear();
+                groupId.setText(extractId(generation.getSelectionModel().getSelectedItem()) + "-" + extractId(specialization.getSelectionModel().getSelectedItem()));
+                groupId.setText(extractId(generation.getSelectionModel().getSelectedItem()) + "-" + extractId(specialization.getSelectionModel().getSelectedItem()) + "-" + new ManageGroupManager().generateNewGroupEnding(extractId(generation.getSelectionModel().getSelectedItem()), extractId(specialization.getSelectionModel().getSelectedItem())));
+            }
+        });
     }
 
     @FXML
     private void handleAdd(MouseEvent event) {
-        String groupId = this.groupId.getText();
-        String gen = this.generation.getSelectionModel().getSelectedItem().toString();
-        String spec = this.specialization.getSelectionModel().getSelectedItem().toString();
         ManageGroupManager manageGroupManager = new ManageGroupManager();
-        manageGroupManager.manageAddGroup(groupId, gen, spec, "active");
+        String groupId = this.groupId.getText();
+        String gen = extractId(this.generation.getSelectionModel().getSelectedItem().toString());
+        String spec = extractId(this.specialization.getSelectionModel().getSelectedItem().toString());
+        if (!manageGroupManager.isGroupIdTaken(groupId)) {
+            if (isConfirmed()) {
+                manageGroupManager.manageAddGroup(groupId, gen, spec, "active");
 
-        SceneManager.setScene("success");
-        PauseTransition delay = new PauseTransition(Duration.seconds(2));
-        delay.setOnFinished(ev -> {
-            SceneManager.setScene("addGroup");
-            resetAllFields();
-        });
-
-        delay.play();
+                loadSuccess("addGroup");
+                SceneManager.refreshScenes();
+                resetAllFields();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Group Id already exists");
+            alert.showAndWait();
+        }
     }
 
     private void resetAllFields() {

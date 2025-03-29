@@ -43,15 +43,17 @@ public class DeleteTeacherController extends MainFrameController{
 
     @FXML
     private void handleDelete(MouseEvent event) {
-        selectedId = idComboBox.getSelectionModel().getSelectedItem().toString().substring(0, idComboBox.getSelectionModel().getSelectedItem().toString().indexOf(" "));
+        selectedId = extractId(idComboBox.getSelectionModel().getSelectedItem());
         if(isConfirmed()){
             ManageTeacherManager manageTeacherManager = new ManageTeacherManager();
             manageTeacherManager.manageDeleteTeacher(selectedId);
+            SceneManager.refreshScenes();
+            loadSuccess("deleteTeacher");
         }
         else{
             clearDetails();
         }
-        loadSuccess("deleteTeacher");
+
     }
 
 

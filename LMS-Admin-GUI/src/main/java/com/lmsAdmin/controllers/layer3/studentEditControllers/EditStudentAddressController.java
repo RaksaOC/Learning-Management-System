@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import main.SceneManager;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditStudentManager;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.utils.CambodiaAdministrative;
@@ -36,10 +37,6 @@ public class EditStudentAddressController extends MainFrameController {
     @FXML
     private void initialize() {
         CambodiaAdministrative addressInfos = new CambodiaAdministrative();
-        addressInfos.fillAddressData();
-        ArrayList <String> provinces = addressInfos.getProvinces();
-        Map<String, ArrayList<String>> districts = addressInfos.getDistricts();
-        Map<String, ArrayList<String>> communes = addressInfos.getCommunes();
 
         editButton.setDisable(true);
         newCommuneComboBox.setDisable(true);
@@ -49,21 +46,21 @@ public class EditStudentAddressController extends MainFrameController {
         idComboBox.getItems().addAll(idLoader.loadIdsAndName());
 
         idComboBox.setOnAction(event -> {
-            manager = new EditStudentManager(idComboBox.getValue());
+            manager = new EditStudentManager(extractId(idComboBox.getItems().getFirst()));
             curCommuneTextField.setText(manager.getOldCommune());
             curDistrictTextField.setText(manager.getOldDistrict());
             curProvinceTextField.setText(manager.getOldProvince());
 
             // Enable province selection and populate it
             newProvinceComboBox.setDisable(false);
-            newProvinceComboBox.getItems().setAll(provinces);
+            newProvinceComboBox.getItems().addAll(addressInfos.getProvinces());
         });
 
         // Add listener to update districts when province is selected
         newProvinceComboBox.setOnAction(event -> {
             String selectedProvince = newProvinceComboBox.getValue();
             if (selectedProvince != null) {
-                newDistrictComboBox.getItems().setAll(districts.getOrDefault(selectedProvince, new ArrayList<>()));
+                newDistrictComboBox.getItems().addAll(addressInfos.getDistricts(selectedProvince));
                 newDistrictComboBox.setDisable(false);
             } else {
                 newDistrictComboBox.getItems().clear();
@@ -75,9 +72,10 @@ public class EditStudentAddressController extends MainFrameController {
 
         // Add listener to update communes when district is selected
         newDistrictComboBox.setOnAction(event -> {
+            String selectedProvince = newProvinceComboBox.getValue();
             String selectedDistrict = newDistrictComboBox.getValue();
             if (selectedDistrict != null) {
-                newCommuneComboBox.getItems().setAll(communes.getOrDefault(selectedDistrict, new ArrayList<>()));
+                newCommuneComboBox.getItems().addAll(addressInfos.getCommunes(selectedDistrict, selectedProvince));
                 newCommuneComboBox.setDisable(false);
             } else {
                 newCommuneComboBox.getItems().clear();
@@ -88,9 +86,12 @@ public class EditStudentAddressController extends MainFrameController {
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditAddress(newCommuneComboBox.getSelectionModel().getSelectedItem(), newDistrictComboBox.getSelectionModel().getSelectedItem(), newProvinceComboBox.getSelectionModel().getSelectedItem());
-        loadSuccess("editStudentAddress");
-        clearFields();
+        if (isConfirmed()) {
+            manager.manageEditAddress(newCommuneComboBox.getSelectionModel().getSelectedItem(), newDistrictComboBox.getSelectionModel().getSelectedItem(), newProvinceComboBox.getSelectionModel().getSelectedItem());
+            loadSuccess("editStudentAddress");
+            SceneManager.refreshScenes();
+            clearFields();
+        }
     }
 
     private void clearFields() {

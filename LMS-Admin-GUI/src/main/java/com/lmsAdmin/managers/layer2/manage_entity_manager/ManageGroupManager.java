@@ -97,4 +97,55 @@ public class ManageGroupManager extends ManageEntityManager {
         }
         return row;
     }
+
+    public String generateNewGroupEnding(String generation_id, String specialization_id) {
+        String query = "SELECT COUNT(*) FROM student_group WHERE generation_id = ? AND specialization_id = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, generation_id);
+            statement.setString(2, specialization_id);
+
+            ResultSet rs = statement.executeQuery();
+            int count = 0;
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+            return "G" + (count + 1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "G1";
+    }
+
+
+    public boolean isGroupIdTaken(String id) {
+        String query = "SELECT 1 FROM student_group WHERE id = ? LIMIT 1";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next();  // Returns true if at least one row exists
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean isGroupDeletable(String id) {
+            String query = "SELECT COUNT(*) FROM student WHERE group_id = ?";
+
+            try (PreparedStatement statement = conn.prepareStatement(query)) {
+                statement.setString(1, id);
+                try (ResultSet rs = statement.executeQuery()) {
+                    if (rs.next()) {
+                        int count = rs.getInt(1); // Get the count
+                        return count == 0; // Deletable if no students exist
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return false; // Default to false in case of an exception
+
+    }
+
 }

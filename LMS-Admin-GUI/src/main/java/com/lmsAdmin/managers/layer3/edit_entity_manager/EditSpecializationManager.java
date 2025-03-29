@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class EditSpecializationManager extends EditEntityManager {
 
@@ -45,6 +47,23 @@ public class EditSpecializationManager extends EditEntityManager {
             while(rs.next()) {
                 ids.add(rs.getString("id") + " - " + rs.getString("name"));
             }
+            Collections.sort(ids, Comparator.comparing(s -> s.substring(s.indexOf("-") + 2)));
+            return ids;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return ids;
+    }
+
+    public ArrayList<String> loadIdsAndName(String department_id){
+        ArrayList<String> ids = new ArrayList<>();
+        String query = "SELECT id, name FROM specialization WHERE department_id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()) {
+                ids.add(rs.getString("id") + " - " + rs.getString("name"));
+            }
+            Collections.sort(ids, Comparator.comparing(s -> s.substring(s.indexOf("-") + 2)));
             return ids;
         }catch (SQLException e){
             e.printStackTrace();

@@ -2,51 +2,101 @@ package utils.controller;
 
 import entities.Student;
 import entities.Teacher;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import ui.UI;
 import utils.manager.StudentManager;
+import utils.menu.Menu;
+import utils.controller.ClassroomController;
 
 import java.util.Scanner;
 
 public class StudentController {
     Student student;
+    String indexOfClass;
     public StudentController(Student s) {
 //                              ^
 //            takes in the student object from the authentication controller
-
         this.student = s;
     }
+    public StudentController(Student student ,String indexOfClass) {
+        this.indexOfClass  = indexOfClass;
+    }
 
-    public void submitAssignment(){
+    public String selectClassroom(){
+        StudentManager studentManager = new StudentManager(student);
+        System.out.println(studentManager.printClassrooms(student.getClassrooms()));
+        String choice = Menu.prompt("Select a Classroom ID: ");
+        JSONArray classrooms = student.getClassrooms();
+        for(int i =0; i < classrooms.length(); i++){
+            if(classrooms.getString(i).equals(choice)){
+                return  choice;
+            }
+        }
+        return selectClassroom();
+    }
+    public void submitAssignment(){}
         // handles the actions of submitting an assignment
         // getting input like link to the finished work of the student
 
-//        Scanner sc = new Scanner(System.in);
-//        System.out.println("link ");
-//
-//        // submitted
-//        assignment  = student.getAssingment();
-//        assingment.add(newAssignment);
-//
-//        StudentManager studentManager = new StudentManager(student);
-//        studentManager.manageViewAssignment();
+    public String selectProgress() {
+        StudentManager studentManager = new StudentManager(student);
+        System.out.println(studentManager.printProgress(student.getProgress()));
+        JSONObject progressData = student.getProgress(); // Get student's progress object
+        System.out.println("\nAvailable Progress:");
+        for (String key : progressData.keySet()) { // Loop through progress keys
+            String progressId = progressData.getString(key);
+            System.out.println(key + ": " + progressId); // Output {group: progressId}
+        }
+        return Menu.prompt("Enter Progress ID to select: "); // Ask user to enter Progress ID (e.g., P000001)
+    }
 
         // call to manager to manage the submission of the assignment (write to file (to where....))
 
-        // example use:
-        // String assignmentLInk = sc.nextLine();
-        // manager.manageSubmitAssignment(assignmentLink)
+    // Assignment Controller
+    public void handleViewAssignment(String classroomId) {
+        StudentManager studentManager = new StudentManager(student);
+        // Step 1: Get the assignment ID selected by the user
+        String assignmentId = studentManager.selectAssignmentTitle(classroomId);
+        if (assignmentId == null) {
+            System.out.println("No assignment selected.");
+            return;
+        }
+        // Step 2: Retrieve the assignment details
+        JSONObject assignment = studentManager.getAssignmentDetails(classroomId, assignmentId);
+        // Step 3: Display the assignment details
+        if (assignment != null) {
+            studentManager.displayAssignmentDetails(assignment);
+        } else {
+            System.out.println("Assignment not found.");
+        }
     }
 
-    public void viewAssignment(){
-        // works like the submit assignment just call to manager to read the file that contains the assignment
-        // the controller can take the raw json data from the manager and organize it to look pretty
+    public void handleDoAssignment(String classroomId) {
+        StudentManager studentManager = new StudentManager(student);
+        String assignmentId = studentManager.selectAssignmentTitle(classroomId);
 
-        // example:
-        // JSONArray assignments = manager.manageViewAssignment();
-        // logic to make the the data look nice i.e. into a table...
+        if (assignmentId != null) {
+            studentManager.editAssignment(student.getId(), assignmentId, classroomId);
+        }
+    }
+
+    public void handleViewSubmittedAssignment(){
+        StudentManager studentManager = new StudentManager(student);
+        studentManager.viewSubmittedAssignments(student.getId());
+    }
+
+    public void handleViewGradeAndComments(){
 
     }
 
+//    Part of Resource
+    public void handleViewResource(String classroomId) {
+        StudentManager studentManager = new StudentManager(student);
+        studentManager.displayResourcesByWeek(classroomId);
+    }
+
+    //    View Profile method
     public void viewProfile(){
         StudentManager studentManager = new StudentManager(student);
         String profileDetails = studentManager.manageViewProfile();
@@ -58,10 +108,21 @@ public class StudentController {
         // logic to make the data look nice i.e. into a table...
     }
 
+//    public String selectProgress() {
+//        StudentManager studentManager = new StudentManager(student);
+//        System.out.println(studentManager.printClassrooms(student.getProgress()));
+//        String choice = Menu.prompt("Select a Progress: ");
+//        return Integer.toString(Integer.parseInt(choice) - 1);
+//    }
+
+    public void viewClassroom(){
+        StudentManager studentManager = new StudentManager(student);
+        String classDetails = studentManager.manageViewClassroom("");
+        System.out.println(UI.TextColor.addColor((classDetails), UI.TextColor.BLUE));
+    }
+
+
     // more methods/functionalities to be added
-
-
-
 
     // helper methods goes here
 

@@ -96,7 +96,7 @@ public class EditAdminManager extends EditEntityManager {
     public ArrayList<String> loadIdsAndName() {
         ArrayList<String> idsAndName = new ArrayList<>();
 
-        String getIdsAndNameQuery = "SELECT id, CONCAT(first_name, last_name) as name FROM admin";
+        String getIdsAndNameQuery = "SELECT id, CONCAT(first_name, ' ', last_name) as name FROM admin";
         try (PreparedStatement statement = conn.prepareStatement(getIdsAndNameQuery)) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {

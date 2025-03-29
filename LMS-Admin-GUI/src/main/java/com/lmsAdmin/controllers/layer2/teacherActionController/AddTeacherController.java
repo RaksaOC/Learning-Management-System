@@ -46,33 +46,30 @@ public class AddTeacherController extends MainFrameController {
             String password = confirmPassword.getText();
             String em = email.getText();
 
-            ManageTeacherManager manageTeacherManager = new ManageTeacherManager();
+            if (isConfirmed()) {
+                ManageTeacherManager manageTeacherManager = new ManageTeacherManager();
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            LocalDateTime now = LocalDateTime.now();
-            String formattedDate = now.format(formatter);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime now = LocalDateTime.now();
+                String formattedDate = now.format(formatter);
 
-            manageTeacherManager.manageAddTeacher(
-                    fName,
-                    lName,
-                    gen,
-                    dateOfBirth,
-                    phone,
-                    em,
-                    "active",
-                    formattedDate,
-                    null,
-                    password
-            );
-
-            SceneManager.setScene("success");
-            PauseTransition delay = new PauseTransition(Duration.seconds(2));
-            delay.setOnFinished(ev -> {
-                SceneManager.setScene("addTeacher");
-                resetAllFields();
-            });
-
-            delay.play();
+                manageTeacherManager.manageAddTeacher(
+                        fName,
+                        lName,
+                        gen,
+                        dateOfBirth,
+                        phone,
+                        em,
+                        "active",
+                        formattedDate,
+                        null,
+                        password
+                );
+                // TODO : uncomment
+//                loadSuccess("addTeacher");
+//                SceneManager.refreshScenes();
+//                resetAllFields();
+            }
         }
         else{
             Alert alert = new Alert(Alert.AlertType.ERROR);

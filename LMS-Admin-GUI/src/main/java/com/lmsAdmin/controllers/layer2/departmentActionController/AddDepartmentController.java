@@ -2,6 +2,7 @@ package main.java.com.lmsAdmin.controllers.layer2.departmentActionController;
 
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -25,9 +26,21 @@ public class AddDepartmentController extends MainFrameController {
         String n = this.name.getText();
         String ID = this.id.getText();
         ManageDepartmentManager manageDepartmentManager = new ManageDepartmentManager();
-        manageDepartmentManager.manageAddDepartment(n, id.getText());
-        loadSuccess("addDepartment");
-        resetAllFields();
+
+        if (!manageDepartmentManager.isDepartmentIdTaken(id.getText())) {
+            if (isConfirmed()) {
+                manageDepartmentManager.manageAddDepartment(id.getText(), name.getText());
+                loadSuccess("addDepartment");
+                SceneManager.refreshScenes();
+                resetAllFields();
+            }
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Department ID already exists");
+        }
     }
 
     private void resetAllFields() {

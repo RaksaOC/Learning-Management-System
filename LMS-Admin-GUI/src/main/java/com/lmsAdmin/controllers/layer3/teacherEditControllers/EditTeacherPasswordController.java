@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import main.SceneManager;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditTeacherManager;
 
@@ -26,7 +27,7 @@ public class EditTeacherPasswordController extends MainFrameController {
         editButton.setDisable(true);
         idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         idComboBox.setOnAction(event -> {
-            manager = new EditTeacherManager(idComboBox.getValue());
+            manager = new EditTeacherManager(extractId(idComboBox.getValue()));
             newTextField.setDisable(true);
             curTextField.textProperty().addListener((observable, oldValue, newValue) -> {
                 if (manager.isOldPasswordMatched(newValue)) {
@@ -44,9 +45,12 @@ public class EditTeacherPasswordController extends MainFrameController {
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditPassword(newTextField.getText());
-        loadSuccess("editTeacherPassword");
-        clearFields();
+        if (isConfirmed()) {
+            manager.manageEditPassword(newTextField.getText());
+            loadSuccess("editTeacherPassword");
+            SceneManager.refreshScenes();
+            clearFields();
+        }
     }
 
     private void clearFields() {

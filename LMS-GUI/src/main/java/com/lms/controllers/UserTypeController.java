@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import main.AppSession;
 import main.SceneManager;
-import main.java.com.lms.managers.studentSide.AuthenticationManager;
+import main.java.com.lms.managers.AuthenticationManager;
 
 public class UserTypeController {
     @FXML
@@ -38,16 +38,18 @@ public class UserTypeController {
         });
 
         studentHbox.setOnMouseClicked(event -> {
-            AuthenticationManager authenticationManager = new AuthenticationManager();
-            if (authenticationManager.isLastLoggedIn("student")) {
-                Student student = (Student) getUser("student");
-                authenticationManager.createNewLogIn("student", student.getId());
+            AuthenticationManager authenticationManager = new AuthenticationManager("student");
+            if (authenticationManager.isLastLoggedInSql()) {
+                System.out.println("Student's last action was last logged in");
+                Student student = (Student) authenticationManager.getLastLoggedInUserSql();
+                System.out.println(student);
+                authenticationManager.createNewLogInSql(student.getId());
 
                 AppSession session = AppSession.getInstance();
                 session.setStudent(student);
 
                 StudentMainFrameController studentMainFrameController = SceneManager.loadMainFrame("student");
-                studentMainFrameController.setNameText(session.getStudent().getFullName());
+                studentMainFrameController.setNameText(session.getStudent().getFirstName() + " " + session.getStudent().getLastName());
 
                 SceneManager.loadCenterView("studentDashboard", "resources/com/lms/views/studentSide/Dashboard.fxml");
                 SceneManager.setCenterView("studentDashboard");
@@ -57,16 +59,16 @@ public class UserTypeController {
             }
         });
         teacherHbox.setOnMouseClicked(event -> {
-            AuthenticationManager authenticationManager = new AuthenticationManager();
-            if (authenticationManager.isLastLoggedIn("teacher")) {
-                Teacher teacher = (Teacher) getUser("teacher");
-                authenticationManager.createNewLogIn("teacher", teacher.getId());
+            AuthenticationManager authenticationManager = new AuthenticationManager("teacher");
+            if (authenticationManager.isLastLoggedInSql()) {
+                Teacher teacher = (Teacher) authenticationManager.getLastLoggedInUserSql();
+                authenticationManager.createNewLogInSql( teacher.getId());
 
                 AppSession session = AppSession.getInstance();
                 session.setTeacher(teacher);
 
                 TeacherMainFrameController teacherMainFrameController = SceneManager.loadMainFrame("teacher");
-                teacherMainFrameController.setNameText(session.getTeacher().getFullName());
+                teacherMainFrameController.setNameText(session.getTeacher().getFirstName() + " " + session.getTeacher().getLastName());
 
                 SceneManager.loadCenterView("teacherDashboard", "resources/com/lms/views/teacherSide/Dashboard.fxml");
                 SceneManager.setCenterView("teacherDashboard");

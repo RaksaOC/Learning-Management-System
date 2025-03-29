@@ -50,20 +50,22 @@ public class AddAdminController extends MainFrameController {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
             String formattedDate = now.format(formatter);
-
-            manageAdminManager.manageAddAdmin(
-                    fName,
-                    lName,
-                    formattedDate,
-                    null,
-                    password,
-                    phone,
-                    gen,
-                    dateOfBirth,
-                    em,
-                    "active"
-            );
-            loadSuccess("addAdmin");
+            if (isConfirmed()){
+                manageAdminManager.manageAddAdmin(
+                        fName,
+                        lName,
+                        formattedDate,
+                        null,
+                        password,
+                        phone,
+                        gen,
+                        dateOfBirth,
+                        em,
+                        "active"
+                );
+                loadSuccess("addAdmin");
+            }
+            SceneManager.refreshScenes();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Password do not match");

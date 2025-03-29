@@ -89,7 +89,7 @@ public class EditTeacherManager extends EditEntityManager {
 
     public ArrayList<String> loadIdsAndName() {
         ArrayList<String> ids = new ArrayList<>();
-        String query = "SELECT id, CONCAT(first_name, last_name ) as name FROM teacher";
+        String query = "SELECT id, CONCAT(first_name, ' ', last_name ) as name FROM teacher";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {

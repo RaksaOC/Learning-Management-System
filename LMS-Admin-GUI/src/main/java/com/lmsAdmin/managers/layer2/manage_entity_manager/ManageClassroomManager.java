@@ -1,5 +1,8 @@
 package main.java.com.lmsAdmin.managers.layer2.manage_entity_manager;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import main.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -7,256 +10,154 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ManageClassroomManager extends ManageEntityManager {
-    // TODO: add classroom SQL logic
+    private Connection conn = DatabaseConnection.getInstance().getConnection();
+    private String classroomId;
 
-//    public void manageAddEntity(String groupID, String newClassroomID) {
-//        // works with 2 files (classroom file and university file)
-//        JSONObject newClassroom = new JSONObject();
-//        newClassroom.put("id", newClassroomID);
-//        newClassroom.put("courseId", "");
-//        newClassroom.put("teacherId", "");
-//        newClassroom.put("status", "active");
-//        newClassroom.put("students", getStudentsFromGroup(groupID));
-//        newClassroom.put("assignments", new JSONArray());
-//        newClassroom.put("resources", new JSONArray());
-//        newClassroom.put("quizzes", new JSONArray());
-//        entityData_Arr.put(newClassroom);
-//        createProgress(newClassroom.getString("id"), newClassroom.getJSONArray("students")); // handles saving to student.json and progress.json
-//        addToClassroomInUni(groupID, newClassroomID); // handles the saving in the function
-//        setClassroomToTeacher(newClassroomID, newClassroom.getString("teacherId"));
-//        saveEntity(); // this only saves to the classroom.json file
-//    }
-//
-//    public void manageDeleteEntity(String classroomID) {
-//        for (int i = 0; i < entityData_Arr.length(); i++) {
-//            if (entityData_Arr.getJSONObject(i).getString("id").equals(classroomID)) {
-//                entityData_Arr.getJSONObject(i).put("status", "inactive");
-//                break;
-//            }
-//        }
-//        saveEntity(); // saves to classroom.json
-//        deleteClassroomFromUni(classroomID);// handles the saving
-//    }
-//
-//    @Override
-//    public void manageViewEntity() {
-//        System.out.println(entityData_Arr.toString(4));
-//    }
-//
-//    public void manageAssignTeacherToClassroom(String classroomID, String teacherID) {
-//        for (int i = 0; i < entityData_Arr.length(); i++) {
-//            if (entityData_Arr.getJSONObject(i).getString("id").equals(classroomID)) {
-//                entityData_Arr.getJSONObject(i).put("teacherId", teacherID);
-//                break;
-//            }
-//        }
-//        saveEntity();
-//    }
-//
-//    private void setClassroomToTeacher(String classroomID, String teacherID) {
-//        try{
-//            String content = new String(Files.readAllBytes(Paths.get("shared/data/teacher.json")));
-//            JSONArray teachers = new JSONArray(content);
-//            for (int i = 0; i < teachers.length(); i++) {
-//                if (teachers.getJSONObject(i).getString("id").equals(teacherID)) {
-//                    teachers.getJSONObject(i).getJSONArray("classrooms").put(classroomID);
-//                    break;
-//                }
-//            }
-//        }catch (IOException e){
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private JSONArray getStudentsFromGroup(String groupID) {
-//        JSONArray dep = loadDepartment();
-//
-//        for (int i = 0; i < dep.length(); i++) {
-//            for (int j = 0; j < dep.getJSONObject(i).getJSONArray("specializations").length(); j++) {
-//                for (int k = 0; k < dep.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
-//                    for (int m = 0; m < dep.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").length(); m++) {
-//                        if (dep.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(m).getString("id").equals(groupID)) {
-//                            return dep.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(m).getJSONArray("students");
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        return null;
-//    }
-//
-//    private void createProgress(String classroomID, JSONArray studentsFromGroup) {
-//        // create a progress in student
-//        // create progress in progress.json
-//        try {
-//            this.content = new String(Files.readAllBytes(Paths.get("shared/data/classroom.json")));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        JSONArray progress = new JSONArray(content);
-//
-//        JSONObject newProgress = new JSONObject();
-//        newProgress.put("classroomId", classroomID);
-//        newProgress.put("assignments", new JSONArray());
-//        newProgress.put("resources", new JSONArray());
-//        newProgress.put("quizzes", new JSONArray());
-//
-//        for (int i = 0; i < studentsFromGroup.length(); i++) {
-//            newProgress.put("studentId", studentsFromGroup.getString(i));
-//            newProgress.put("id", generateNewProgressId(progress.length() + i));
-//            progress.put(newProgress);
-//        }
-//
-//        try{
-//            this.content = new String(Files.readAllBytes(Paths.get("shared/data/student.json")));
-//        }catch(IOException e){
-//            e.printStackTrace();
-//        }
-//
-//        JSONArray allStudents = new JSONArray(content);
-//
-//        for (int i = 0; i < allStudents.length(); i++) {
-//            for(int j = 0; j < studentsFromGroup.length(); j++){
-//                if(allStudents.getJSONObject(i).getString("id").equals(studentsFromGroup.getString(j))){
-//                    allStudents.getJSONObject(i).getJSONObject("progress").put(classroomID, newProgress.getString("id"));
-//                }
-//            }
-//        }
-//
-//        try (FileWriter file = new FileWriter("shared/data/progress.json")) {
-//            file.write(progress.toString(4)); // Pretty-print with 4 spaces
-//            file.flush();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }try (FileWriter file = new FileWriter("shared/data/student.json")) {
-//            file.write(allStudents.toString(4)); // Pretty-print with 4 spaces
-//            file.flush();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-//
-//    public void manageAssignCourseToClassroom(String classroomID, String courseID) {
-//        for (int i = 0; i < entityData_Arr.length(); i++) {
-//            if (entityData_Arr.getJSONObject(i).getString("id").equals(classroomID)) {
-//                entityData_Arr.getJSONObject(i).put("courseId", courseID);
-//            }
-//        }
-//        saveEntity();
-//    }
-//
-//    private void addToClassroomInUni(String groupID, String classroomID) {
-//        JSONArray dep = loadDepartment();
-//        beginLoop:
-//        for (int i = 0; i < dep.length(); i++) {
-//            for (int j = 0; j < dep.getJSONObject(i).getJSONArray("specializations").length(); j++) {
-//                for (int k = 0; k < dep.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
-//                    for (int l = 0; l < dep.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").length(); l++) {
-//                        if (dep.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).getString("id").equals(groupID)) {
-//                            dep.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).getJSONArray("classrooms").put(classroomID);
-//                            break beginLoop;
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        saveEntityToUni(dep);
-//    }
-//
-//    private void deleteClassroomFromUni(String classroomID) {
-//        JSONArray dep = loadDepartment();
-//        beginLoop:
-//        for (int i = 0; i < dep.length(); i++) {
-//            for (int j = 0; j < dep.getJSONObject(i).getJSONArray("specializations").length(); j++) {
-//                for (int k = 0; k < dep.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").length(); k++) {
-//                    for (int l = 0; l < dep.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").length(); l++) {
-//                        for (int m = 0; m < dep.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).getJSONArray("classrooms").length(); m++) {
-//                            if (dep.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).getJSONArray("classrooms").get(m).equals(classroomID)) {
-//                                dep.getJSONObject(i).getJSONArray("specializations").getJSONObject(j).getJSONArray("generations").getJSONObject(k).getJSONArray("groups").getJSONObject(l).getJSONArray("classrooms").remove(m);
-//                                break beginLoop;
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        saveEntityToUni(dep);
-//    }
-//
-//    private JSONArray loadDepartment() {
-//        String uniFilePath = "shared/data/university.json";
-//        try {
-//            this.content = new String(Files.readAllBytes(Paths.get(uniFilePath)));
-//            JSONObject uni = new JSONObject(content);
-//            JSONArray departments = uni.getJSONArray("departments");
-//            return departments;
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
-//
-//    private void saveEntityToUni(JSONArray departments) {
-//        // load uni
-//        String uniFilePath = "shared/data/university.json";
-//        JSONObject uni = new JSONObject();
-//        try {
-//            this.content = new String(Files.readAllBytes(Paths.get(uniFilePath)));
-//            uni = new JSONObject(content);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        // put department into uni
-//        uni.put("departments", departments);
-//
-//        // write uni back
-//        try (FileWriter file = new FileWriter("shared/data/university.json")) {
-//            file.write(uni.toString(4)); // Pretty-print with 4 spaces
-//            file.flush();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public boolean isClassroomIDExist(String classroomID) {
-//        for (int i = 0; i < entityData_Arr.length(); i++) {
-//            if (entityData_Arr.getJSONObject(i).getString("id").equals(classroomID)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    private String generateNewProgressId(int lastId){
-//        String baseId = "P000001";
-//        String string_lastId = String.valueOf(lastId);
-//        int start = baseId.length() - string_lastId.length();
-//        int end = baseId.length();
-//        int j = 0;
-//        StringBuilder base = new StringBuilder(baseId);
-//        StringBuilder last = new StringBuilder(string_lastId);
-//        for(int i = start; i <= end; i++){
-//            base.setCharAt(i, last.charAt(j));
-//            j++;
-//        }
-//        baseId = base.toString();
-//        return baseId;
-//    }
-//
-//    public JSONObject getDetails(String classroomID) {
-//        for (int i = 0; i < entityData_Arr.length(); i++) {
-//            if (entityData_Arr.getJSONObject(i).getString("id").equals(classroomID)) {
-//                return entityData_Arr.getJSONObject(i);
-//            }
-//        }
-//        return null;
-//    }
-//
-//    public JSONArray getAllDetails(){
-//        return entityData_Arr;
-//    }
+    public void manageAddClassroom(String id,
+                                   String teacher_id,
+                                   String course_id,
+                                   String group_id,
+                                   String status) {
+        super.baseID = "P000000";
+        classroomId = id;
+        insertIntoClassroom(id, teacher_id, course_id, group_id, status);
+        System.out.println("Adding classroom into group: " + group_id);
+        ArrayList<String> studentIds = getStudentIdsInGroup(group_id);
+        System.out.println("Student in that group are " + studentIds);
+        insertIntoProgress(studentIds);
+    }
+
+    public void manageDeleteClassroom(String id) {
+        String query = "UPDATE classroom SET status = 'inactive' WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ObservableList<Map<String, String>> getAllClassroomDetails() {
+        String query = "SELECT * FROM classroom";
+        ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Map<String, String> map = new HashMap<>();
+                map.put("id", resultSet.getString("id"));
+                map.put("teacher_id", resultSet.getString("teacher_id"));
+                map.put("course_id", resultSet.getString("course_id"));
+                map.put("group_id", resultSet.getString("group_id"));
+                map.put("status", resultSet.getString("status"));
+                data.add(map);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    public Map<String, String> getClassroomDetails(String id) {
+        String query = "SELECT * FROM classroom WHERE id = ?";
+        Map<String, String> map = new HashMap<>();
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                map.put("id", resultSet.getString("id"));
+                map.put("teacher_id", resultSet.getString("teacher_id"));
+                map.put("course_id", resultSet.getString("course_id"));
+                map.put("group_id", resultSet.getString("group_id"));
+                map.put("status", resultSet.getString("status"));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    public boolean isClassroomIdTaken(String classroomId) {
+        String query = "SELECT 1 FROM classroom WHERE id = ? LIMIT 1";
+        try(PreparedStatement statement = conn.prepareStatement(query)){
+            statement.setString(1, classroomId);
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private void insertIntoClassroom(String id, String teacher_id, String course_id, String group_id, String status) {
+        String query = "INSERT INTO classroom (id, teacher_id, course_id, group_id, status) VALUES(?,?,?,?,?)";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, id);
+            statement.setString(2, teacher_id);
+            statement.setString(3, course_id);
+            statement.setString(4, group_id);
+            statement.setString(5, status);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private ArrayList<String> getStudentIdsInGroup(String group_id) {
+        ArrayList<String> studentIds = new ArrayList<>();
+        String query2 = "SELECT id FROM student WHERE group_id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(query2)){
+            statement.setString(1, group_id);
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()){
+                studentIds.add(rs.getString(1));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return studentIds;
+    }
+
+    private void insertIntoProgress(ArrayList<String> studentIds) {
+        int numOfStudents = studentIds.size();
+        String query = "INSERT INTO progress (id, student_id, classroom_id) VALUES (?, ?, ?)";
+        for (int i = 0; i < numOfStudents; i++) {
+            System.out.println("added " + i + 1 + "student to progress");
+            try(PreparedStatement statement = conn.prepareStatement(query)){
+                statement.setString(1, generateNewID("progress"));
+                statement.setString(2, studentIds.get(i));
+                statement.setString(3, classroomId);
+                statement.executeUpdate();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public boolean isClassroomDeletable(String id) {
+        String query = "SELECT COUNT(*) FROM student AS s " +
+                "JOIN student_group AS sg ON s.group_id = sg.id " +
+                "JOIN classroom AS c ON c.group_id = s.group_id " +
+                "WHERE c.id = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, id);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    int count = rs.getInt(1);
+                    return count == 0;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

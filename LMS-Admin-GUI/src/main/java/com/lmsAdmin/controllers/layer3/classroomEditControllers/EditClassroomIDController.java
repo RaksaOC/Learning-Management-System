@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import main.SceneManager;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditClassroomManager;
 
@@ -26,7 +27,7 @@ public class EditClassroomIDController extends MainFrameController {
         editButton.setDisable(true);
         idComboBox.getItems().addAll(idLoader.loadIds());
         idComboBox.setOnAction(event -> {
-            manager = new EditClassroomManager(idComboBox.getValue());
+            manager = new EditClassroomManager(idComboBox.getSelectionModel().getSelectedItem());
             curTextField.setText(manager.getOldId());
             newTextField.setDisable(false);
             newTextField.setText(cutString());
@@ -35,9 +36,12 @@ public class EditClassroomIDController extends MainFrameController {
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditIdSql(newTextField.getText());
-        loadSuccess("editClassroomID");
-        clearFields();
+        if (isConfirmed()) {
+            manager.manageEditIdSql(newTextField.getText());
+            loadSuccess("editClassroomID");
+            SceneManager.refreshScenes();
+            clearFields();
+        }
     }
 
     private void clearFields() {

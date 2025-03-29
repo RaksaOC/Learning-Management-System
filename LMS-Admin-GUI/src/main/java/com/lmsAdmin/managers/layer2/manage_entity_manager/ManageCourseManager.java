@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ManageCourseManager extends ManageEntityManager{
+public class ManageCourseManager extends ManageEntityManager {
     JSONArray courses;
 
     public ManageCourseManager() {
@@ -26,9 +26,9 @@ public class ManageCourseManager extends ManageEntityManager{
             String level,
             String description,
             String status
-    ){
+    ) {
         String addCourseQuery = "INSERT INTO course (id, name, credit, level, description, status) VALUES (?, ?, ?, ?, ?, ?)";
-        try(PreparedStatement statement = conn.prepareStatement(addCourseQuery)){
+        try (PreparedStatement statement = conn.prepareStatement(addCourseQuery)) {
             statement.setString(1, id);
             statement.setString(2, name);
             statement.setString(3, credit);
@@ -36,33 +36,23 @@ public class ManageCourseManager extends ManageEntityManager{
             statement.setString(5, description);
             statement.setString(6, status);
             statement.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     public void manageDeleteCourse(String id) {
         String query = "UPDATE course SET status = ? WHERE id = ?";
-        try(PreparedStatement statement = conn.prepareStatement(query)){
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, "inactive");
             statement.setString(2, id);
             statement.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-//    public boolean isCourseIdExist(String id) {
-//        JSONArray courses = entityData_Obj.getJSONArray("courses");
-//        for (int i = 0; i < courses.length(); i++) {
-//            if (courses.getJSONObject(i).getString("id").equals(id)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
-    public ObservableList<Map<String, String>> getAllCourseDetails(){
+    public ObservableList<Map<String, String>> getAllCourseDetails() {
         String query = "SELECT * FROM course";
         ObservableList<Map<String, String>> courses = FXCollections.observableArrayList();
         try {
@@ -88,7 +78,7 @@ public class ManageCourseManager extends ManageEntityManager{
     public Map<String, String> getCourseDetails(String id) {
         String query = "SELECT * FROM course WHERE id = ?";
         Map<String, String> details = new HashMap<>();
-        try (PreparedStatement statement = conn.prepareStatement(query)){
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, id);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
@@ -100,10 +90,42 @@ public class ManageCourseManager extends ManageEntityManager{
                 details.put("status", rs.getString("status"));
             }
             return details;
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public boolean isCourseIdTaken(String id) {
+        String query = "SELECT 1 FROM course WHERE id = ? LIMIT 1";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next();  // Returns true if at least one row exists
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean isCourseDeletable(String id) {
+        String query = "SELECT COUNT(*) FROM classroom AS cl " +
+                "JOIN course AS c ON cl.couse_id = c.id " +
+                "WHERE c.id = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, id);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    int count = rs.getInt(1); // Get the count
+                    return count == 0; // Deletable if no students exist
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // Default to false in case of an exception
     }
 }
 

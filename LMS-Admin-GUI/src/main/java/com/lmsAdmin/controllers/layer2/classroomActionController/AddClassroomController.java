@@ -1,48 +1,60 @@
 package main.java.com.lmsAdmin.controllers.layer2.classroomActionController;
 
-import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Duration;
-import main.SceneManager;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer2.manage_entity_manager.ManageClassroomManager;
+import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditCourseManager;
+import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditGroupManager;
+import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditTeacherManager;
 
 public class AddClassroomController extends MainFrameController {
     @FXML
     private TextField classID;
     @FXML
+    private ComboBox<String> teacherId;
+    @FXML
+    private ComboBox<String> courseID;
+    @FXML
     private ComboBox<String> groupID;
     @FXML
     private Button addButton;
 
-    // TODO: add functionalities
+    public void initialize() {
+        teacherId.getItems().addAll(new EditTeacherManager().loadIdsAndName());
+        courseID.getItems().addAll(new EditCourseManager().loadIdsAndName());
+        groupID.getItems().addAll(new EditGroupManager().loadIdsAndName());
+        classID.setText(groupID.getItems().getFirst() + "-" + extractId(courseID.getItems().getFirst()));
+        courseID.setOnAction(event -> {
+            if (groupID.getSelectionModel().getSelectedItem() != null) {
+                classID.clear();
+                classID.setText(groupID.getSelectionModel().getSelectedItem() + "-" + extractId(courseID.getSelectionModel().getSelectedItem()));
+            }
+        });
+        groupID.setOnAction(event -> {
+            if (courseID.getSelectionModel().getSelectedItem() != null) {
+                classID.clear();
+                classID.setText(groupID.getSelectionModel().getSelectedItem() + "-" + extractId(courseID.getSelectionModel().getSelectedItem()));
+            }
+        });
+    }
 
     @FXML
     private void handleAdd(MouseEvent event) {
-//        String classId = classID.getText();
-//        String gId = groupID.getSelectionModel().getSelectedItem().toString();
-//        ManageClassroomManager manageClassroomManager = new ManageClassroomManager();
-//        manageClassroomManager(gId, classId);
-//
-//        System.out.println("Content");
-//        System.out.println(classId);
-//        System.out.println(gId);
-//        System.out.println("Added Successfully");
-//
-//        SceneManager.setScene("success");
-//        PauseTransition delay = new PauseTransition(Duration.seconds(2));
-//        delay.setOnFinished(ev -> {
-//            SceneManager.setScene("addClassroom");
-//            resetAllFields();
-//        });
-//
-//        delay.play();
+        ManageClassroomManager manageClassroomManager = new ManageClassroomManager();
+
+        manageClassroomManager.manageAddClassroom(classID.getText(), 
+                extractId(teacherId.getSelectionModel().getSelectedItem()),
+                extractId(courseID.getSelectionModel().getSelectedItem()),
+                groupID.getSelectionModel().getSelectedItem(),
+                "active");
+
+        loadSuccess("addClassroom");
     }
-//
+
     private void resetAllFields() {
         classID.clear();
         groupID.getSelectionModel().clearSelection();

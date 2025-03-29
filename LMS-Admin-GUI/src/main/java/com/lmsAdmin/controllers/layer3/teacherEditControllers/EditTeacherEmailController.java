@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import main.SceneManager;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditTeacherManager;
 
@@ -26,7 +27,7 @@ public class EditTeacherEmailController extends MainFrameController {
         editButton.setDisable(true);
         idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         idComboBox.setOnAction(event -> {
-            manager = new EditTeacherManager(idComboBox.getValue());
+            manager = new EditTeacherManager(extractId(idComboBox.getValue()));
             curTextField.setText(manager.getOldEmail());
             newTextField.setDisable(false);
         });
@@ -34,9 +35,12 @@ public class EditTeacherEmailController extends MainFrameController {
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditEmail(newTextField.getText());
-        loadSuccess("editTeacherEmail");
-        clearFields();
+        if (isConfirmed()) {
+            manager.manageEditEmail(newTextField.getText());
+            loadSuccess("editTeacherEmail");
+            SceneManager.refreshScenes();
+            clearFields();
+        }
     }
 
     private void clearFields() {

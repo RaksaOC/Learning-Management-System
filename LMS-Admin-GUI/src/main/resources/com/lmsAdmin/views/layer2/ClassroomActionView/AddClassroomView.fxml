@@ -307,15 +307,27 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="groupID" editable="true" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Group">
-                           <items>
-                              <FXCollections fx:factory="observableArrayList">
-                                 <String fx:value="Male" />
-                                 <String fx:value="Female" />
-                                 <String fx:value="Other" />
-                              </FXCollections>
-                           </items>
-                        </ComboBox>
+                        <ComboBox fx:id="groupID" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Group" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="1248.0" spacing="20.0">
+                     <children>
+                        <Label text="Teacher">
+                           <font>
+                              <Font name="Gill Sans Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="teacherId" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a teacher"/>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="100.0" prefWidth="1248.0" spacing="20.0">
+                     <children>
+                        <Label text="Course">
+                           <font>
+                              <Font name="Gill Sans Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="courseID" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Group"/>
                      </children>
                   </VBox>
                </children>
@@ -332,7 +344,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="classID" prefHeight="48.0" prefWidth="502.0" promptText="Enter Classroom ID">
+                        <TextField fx:id="classID" disable="true" prefHeight="48.0" prefWidth="502.0" promptText="Enter Classroom ID">
                            <font>
                               <Font size="17.0" />
                            </font>

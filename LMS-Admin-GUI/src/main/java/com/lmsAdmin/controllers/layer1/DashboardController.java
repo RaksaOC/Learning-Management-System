@@ -12,6 +12,8 @@ import main.java.com.lmsAdmin.managers.layer1.DashboardManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Map;
+
 public class DashboardController extends MainFrameController {
 
     // TODO: change these to SQL
@@ -27,29 +29,33 @@ public class DashboardController extends MainFrameController {
     @FXML
     private Text numOfClassrooms;
     @FXML
-    private TableView<JSONObject> studentLogTableView;
+    private TableView<Map<String, String>> studentLogTableView;
     @FXML
-    private TableView<JSONObject> teacherLogTableView;
+    private TableColumn<Map<String, String>, String> studentIDTableColumn;
     @FXML
-    private TableView<JSONObject> activeClassroomTableView;
+    private TableColumn<Map<String, String>, String> studentTimeTableColumn;
     @FXML
-    private TableColumn<JSONObject, String> studentIDTableColumn;
+    private TableColumn<Map<String, String>, String> studentActionTableColumn;
+
     @FXML
-    private TableColumn<JSONObject, String> studentTimeTableColumn;
+    private TableView<Map<String, String>> teacherLogTableView;
     @FXML
-    private TableColumn<JSONObject, String> studentActionTableColumn;
+    private TableColumn<Map<String, String>, String> teacherIDTableColumn;
     @FXML
-    private TableColumn<JSONObject, String> teacherIDTableColumn;
+    private TableColumn<Map<String, String>, String> teacherTimeTableColumn;
     @FXML
-    private TableColumn<JSONObject, String> teacherTimeTableColumn;
+    private TableColumn<Map<String, String>, String> teacherActionTableColumn;
+
     @FXML
-    private TableColumn<JSONObject, String> teacherActionTableColumn;
+    private TableView<Map<String, String>> activeClassroomTableView;
     @FXML
-    private TableColumn<JSONObject, String> activeClassroomClassIDTableColumn;
+    private TableColumn<Map<String, String>, String> activeClassroomClassIDTableColumn;
     @FXML
-    private TableColumn<JSONObject, String> activeClassroomCourseTableColumn;
+    private TableColumn<Map<String, String>, String> activeClassroomCourseTableColumn;
     @FXML
-    private TableColumn<JSONObject, String> activeClassroomTeacherTableColumn;
+    private TableColumn<Map<String, String>, String> activeClassroomTeacherTableColumn;
+    @FXML
+    private TableColumn<Map<String, String>, String> activeClassroomGroupTableColumn;
 
     public void initialize() {
         numOfStudents.setText(String.valueOf(dashboardManager.getNumberOfStudents()));
@@ -57,65 +63,36 @@ public class DashboardController extends MainFrameController {
         numOfCourses.setText(String.valueOf(dashboardManager.getNumberOfCourses()));
         numOfClassrooms.setText(String.valueOf(dashboardManager.getNumberOfClassrooms()));
 
-        // Load student logs
-        JSONArray studentLogHistory = dashboardManager.getStudentsHistory();
-        if (studentLogHistory != null) {
-            ObservableList<JSONObject> studentLog = FXCollections.observableArrayList();
-            for (int i = 0; i < studentLogHistory.length(); i++) {
-                studentLog.add(studentLogHistory.getJSONObject(i));
-            }
-            studentIDTableColumn.setCellValueFactory(cellData ->
-                    new SimpleStringProperty(cellData.getValue().optString("id", "N/A"))
-            );
-            studentTimeTableColumn.setCellValueFactory(cellData ->
-                    new SimpleStringProperty(cellData.getValue().optString("time", "N/A"))
-            );
-            studentActionTableColumn.setCellValueFactory(cellData ->
-                    new SimpleStringProperty(cellData.getValue().optString("lastAction", "N/A"))
-            );
-            studentLogTableView.setItems(studentLog);
-        }
-
-        // Load teacher logs
-        JSONArray teacherLogHistory = dashboardManager.getTeachersHistory();
-        if (teacherLogHistory != null) {
-            ObservableList<JSONObject> teacherLog = FXCollections.observableArrayList();
-            for (int i = 0; i < teacherLogHistory.length(); i++) {
-                teacherLog.add(teacherLogHistory.getJSONObject(i));
-            }
-            teacherIDTableColumn.setCellValueFactory(cellData ->
-                    new SimpleStringProperty(cellData.getValue().optString("id", "N/A"))
-            );
-            teacherTimeTableColumn.setCellValueFactory(cellData ->
-                    new SimpleStringProperty(cellData.getValue().optString("time", "N/A"))
-            );
-            teacherActionTableColumn.setCellValueFactory(cellData ->
-                    new SimpleStringProperty(cellData.getValue().optString("lastAction", "N/A"))
-            );
-            teacherLogTableView.setItems(teacherLog);
-        }
-
-        // Load active classroom logs
-        JSONArray activeClassroomHistory = dashboardManager.getActiveClassrooms();
-        if (activeClassroomHistory != null) {
-            ObservableList<JSONObject> activeClassroomLog = FXCollections.observableArrayList();
-            for (int i = 0; i < activeClassroomHistory.length(); i++) {
-                activeClassroomLog.add(activeClassroomHistory.getJSONObject(i));
-            }
-            activeClassroomClassIDTableColumn.setCellValueFactory(cellData ->
-                    new SimpleStringProperty(cellData.getValue().optString("id", "N/A"))
-            );
-            activeClassroomCourseTableColumn.setCellValueFactory(cellData ->
-                    new SimpleStringProperty(cellData.getValue().optString("courseId", "N/A"))
-            );
-            activeClassroomTeacherTableColumn.setCellValueFactory(cellData ->
-                    new SimpleStringProperty(cellData.getValue().optString("teacherId", "N/A"))
-            );
-            activeClassroomTableView.setItems(activeClassroomLog);
-        }
+        initTeacherLogTable();
+        initStudentLogTable();
+        initActiveClassroomTable();
     }
 
-    private javafx.beans.property.SimpleStringProperty getJSONValue(JSONObject obj, String key) {
-        return new javafx.beans.property.SimpleStringProperty(obj.optString(key, "N/A"));
+    private void initStudentLogTable() {
+        ObservableList<Map<String, String>> data  = dashboardManager.getStudentHistory();
+        studentIDTableColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get("id")));
+        studentTimeTableColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get("time")));
+        studentActionTableColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get("last_action")));
+
+        studentLogTableView.setItems(data);
+    }
+
+    private void initTeacherLogTable() {
+        ObservableList<Map<String, String>> data  = dashboardManager.getTeacherHistory();
+        teacherIDTableColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get("id")));
+        teacherTimeTableColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get("time")));
+        teacherActionTableColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get("last_action")));
+
+        teacherLogTableView.setItems(data);
+    }
+
+    private void initActiveClassroomTable() {
+        ObservableList<Map<String, String>> data  = dashboardManager.getActiveClassrooms();
+        activeClassroomClassIDTableColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get("id")));
+        activeClassroomTeacherTableColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get("teacher_id")));
+        activeClassroomCourseTableColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get("course_id")));
+        activeClassroomGroupTableColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get("group_id")));
+
+        activeClassroomTableView.setItems(data);
     }
 }

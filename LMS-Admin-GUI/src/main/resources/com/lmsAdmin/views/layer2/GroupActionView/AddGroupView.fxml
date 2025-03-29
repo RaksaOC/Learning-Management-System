@@ -307,25 +307,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="generation" editable="true" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Generation">
-                           <items>
-                              <FXCollections fx:factory="observableArrayList">
-                                 <String fx:value="Male" />
-                                 <String fx:value="Female" />
-                                 <String fx:value="Other" />
-                              </FXCollections>
-                           </items>
-                        </ComboBox>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="100.0" prefWidth="500.0" spacing="20.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <Label text="Department">
-                           <font>
-                              <Font name="Gill Sans Bold" size="19.0" />
-                           </font>
-                        </Label>
-                        <ComboBox fx:id="department" editable="true" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Department">
+                        <ComboBox fx:id="generation" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Generation">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Male" />
@@ -343,7 +325,7 @@
                               <Font name="Gill Sans Bold" size="19.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="specialization" editable="true" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Specialization">
+                        <ComboBox fx:id="specialization" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="329.0" promptText="Select a Specialization">
                            <items>
                               <FXCollections fx:factory="observableArrayList">
                                  <String fx:value="Male" />

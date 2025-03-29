@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import main.SceneManager;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditStudentManager;
 
@@ -45,7 +46,7 @@ public class EditStudentGuardianController extends MainFrameController {
         idComboBox.getItems().addAll(idLoader.loadIdsAndName());
 
         idComboBox.setOnAction(event -> {
-            manager = new EditStudentManager(idComboBox.getValue());
+            manager = new EditStudentManager(extractId(idComboBox.getItems().getFirst()));
             curGFirstNameTextField.setText(manager.getOldGuardianFirstName());
             curGLastNameTextField.setText(manager.getOldGuardianLastName());
             curGGenderTextField.setText(manager.getOldGuardianGender());
@@ -61,9 +62,12 @@ public class EditStudentGuardianController extends MainFrameController {
 
     @FXML
     private void handleEdit(MouseEvent event) {
-        manager.manageEditGuardian(newGFirstNameTextField.getText(), newGFirstNameTextField.getText(), newGGenderComboBox.getSelectionModel().getSelectedItem(), newGPhoneTextField.getText());
-        loadSuccess("editStudentGuardian");
-        clearFields();
+        if (isConfirmed()) {
+            manager.manageEditGuardian(newGFirstNameTextField.getText(), newGFirstNameTextField.getText(), newGGenderComboBox.getSelectionModel().getSelectedItem(), newGPhoneTextField.getText());
+            loadSuccess("editStudentGuardian");
+            SceneManager.refreshScenes();
+            clearFields();
+        }
     }
 
     private void clearFields() {

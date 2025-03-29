@@ -1,11 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1078.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1078.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lms.controllers.teacherSide.DashboardController">
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
-      <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
-      <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
+      <HBox alignment="CENTER" prefHeight="227.0" prefWidth="1078.0" spacing="20.0" VBox.vgrow="NEVER">
+         <children>
+            <VBox prefHeight="160.0" prefWidth="311.0" style="-fx-background-color: white; -fx-background-radius: 30;" HBox.hgrow="ALWAYS">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="20.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Classrooms" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+                           <font>
+                              <Font name="AppleGothic Regular" size="20.0" />
+                           </font>
+                        </Text>
+                        <ImageView fitHeight="85.0" fitWidth="150.0" layoutX="227.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="21.0">
+                           <image>
+                              <Image url="@../../images/course-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Text fx:id="numOfClassrooms" fill="#687ba1" layoutX="52.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" AnchorPane.leftAnchor="20.0">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <VBox prefHeight="160.0" prefWidth="311.0" style="-fx-background-color: white; -fx-background-radius: 30;" HBox.hgrow="ALWAYS">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="20.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assignments Created" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+                           <font>
+                              <Font name="AppleGothic Regular" size="20.0" />
+                           </font>
+                        </Text>
+                        <ImageView fitHeight="85.0" fitWidth="150.0" layoutX="227.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="21.0">
+                           <image>
+                              <Image url="@../../images/course-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Text fx:id="numOfAssCreated" fill="#687ba1" layoutX="52.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" AnchorPane.leftAnchor="20.0">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="227.0" prefWidth="1078.0" spacing="20.0">
+         <children>
+            <VBox prefHeight="160.0" prefWidth="311.0" style="-fx-background-color: white; -fx-background-radius: 30;" HBox.hgrow="ALWAYS">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="20.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quiz Created" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+                           <font>
+                              <Font name="AppleGothic Regular" size="20.0" />
+                           </font>
+                        </Text>
+                        <ImageView fitHeight="85.0" fitWidth="150.0" layoutX="227.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="21.0">
+                           <image>
+                              <Image url="@../../images/course-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Text fx:id="numOfQuizCreated" fill="#687ba1" layoutX="52.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" AnchorPane.leftAnchor="20.0">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <VBox prefHeight="160.0" prefWidth="311.0" style="-fx-background-color: white; -fx-background-radius: 30;" HBox.hgrow="ALWAYS">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="20.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Assignments Graded" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+                           <font>
+                              <Font name="AppleGothic Regular" size="20.0" />
+                           </font>
+                        </Text>
+                        <ImageView fitHeight="85.0" fitWidth="150.0" layoutX="227.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="21.0">
+                           <image>
+                              <Image url="@../../images/course-icon.png" />
+                           </image>
+                        </ImageView>
+                        <Text fx:id="numOfAssGraded" fill="#687ba1" layoutX="52.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" AnchorPane.leftAnchor="20.0">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </HBox>
    </children>
 </VBox>

@@ -93,7 +93,7 @@ public class ResourceManager extends ClassroomContentManager {
             e.printStackTrace();
         }
 
-        String query3 = "DELETE FROM progress_material WHERE progress_id = ?";
+        String query3 = "DELETE FROM progress_material WHERE material_id = ?";
         try(PreparedStatement statement = conn.prepareStatement(query3)){
             statement.setString(1, AppSession.getInstance().getSelectedResources());
             statement.executeUpdate();

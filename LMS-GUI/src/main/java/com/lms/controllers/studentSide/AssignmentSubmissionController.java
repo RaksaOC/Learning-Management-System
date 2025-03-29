@@ -16,8 +16,6 @@ import javafx.scene.text.Text;
 import main.AppSession;
 import main.SceneManager;
 import main.java.com.lms.managers.studentSide.AssignmentsManager;
-import main.java.com.lms.managers.teacherSide.AssignmentManager;
-import ui.UI;
 
 import java.awt.*;
 import java.io.IOException;
@@ -54,9 +52,16 @@ public class AssignmentSubmissionController {
     public void initialize() {
         assignmentsManager = new AssignmentsManager();
         backButton.setOnMouseClicked(event -> {
-            if (AppSession.getInstance().getIsAssignmentSubmissionFromAssignmentsPage()) {
+            if (AppSession.getInstance().getIsSubmissionFromAllPage()) {
+                loadDynamicComponentToCenterView(
+                        "studentAssignments",
+                        "studentAssignmentCardsWrapper",
+                        "resources/com/lms/views/studentSide/Assignments.fxml",
+                        "resources/com/lms/views/studentSide/components/AssignmentCardsWrapper.fxml"
+                );
                 SceneManager.setCenterView("studentAssignments");
             } else {
+                SceneManager.loadCenterView("studentClassroomContents", "resources/com/lms/views/studentSide/ClassroomContents.fxml");
                 SceneManager.setCenterView("studentClassroomContents");
             }
         });
@@ -201,5 +206,13 @@ public class AssignmentSubmissionController {
 
         // If the user clicked OK and entered a value, return it. Otherwise, return an empty string.
         return result.orElse("");
+    }
+
+    private void loadDynamicComponentToCenterView(String centerViewName, String dynamicComponentName, String centerViewFilePath, String dynamicComponentFilePath) {
+        SceneManager.loadCenterView(centerViewName, centerViewFilePath);
+        SceneManager.loadComponent(dynamicComponentName, dynamicComponentFilePath);
+
+        VBox center = (VBox) SceneManager.getCenterView(centerViewName);
+        center.getChildren().add(SceneManager.getComponent(dynamicComponentName));
     }
 }

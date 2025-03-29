@@ -89,7 +89,7 @@ public class AssignmentManager extends ClassroomContentManager {
             statement.setString(2, AppSession.getInstance().getSelectedAssignment()); // Bind ID parameter
             statement.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace(); // Replace with a logger in production
+            e.printStackTrace();
         }
 
         String query2 = "DELETE FROM classroom_assignment WHERE assignment_id = ?";

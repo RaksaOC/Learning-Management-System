@@ -38,15 +38,22 @@ public class ResourceSubmissionController {
 
     public void initialize() {
         backButton.setOnMouseClicked(event -> {
-            if(!AppSession.getInstance().getIsAssignmentSubmissionFromAssignmentsPage()){
+            if(!AppSession.getInstance().getIsSubmissionFromAllPage()){
+                AppSession.getInstance().setSelectedResources(null);
                 SceneManager.loadCenterView("studentClassroomContent", "resources/com/lms/views/studentSide/ClassroomContents.fxml");
                 SceneManager.setCenterView("studentClassroomContent");
-                AppSession.getInstance().setSelectedResources(null);
             }
             else{
-                SceneManager.loadCenterView("resources", "resources/com/lms/views/studentSide/Resources.fxml");
-                SceneManager.setCenterView("resources");
                 AppSession.getInstance().setSelectedResources(null);
+
+                loadDynamicComponentToCenterView(
+                        "studentResources",
+                        "studentResourceCardsWrapper",
+                        "resources/com/lms/views/studentSide/Resources.fxml",
+                        "resources/com/lms/views/studentSide/components/ResourceCardsWrapper.fxml"
+                );
+
+                SceneManager.setCenterView("studentResources");
             }
         });
         submitButton.setOnMouseClicked(event -> {
@@ -102,5 +109,13 @@ public class ResourceSubmissionController {
         });
 
         return resourceCard;
+    }
+
+    private void loadDynamicComponentToCenterView(String centerViewName, String dynamicComponentName, String centerViewFilePath, String dynamicComponentFilePath) {
+        SceneManager.loadCenterView(centerViewName, centerViewFilePath);
+        SceneManager.loadComponent(dynamicComponentName, dynamicComponentFilePath);
+
+        VBox center = (VBox) SceneManager.getCenterView(centerViewName);
+        center.getChildren().add(SceneManager.getComponent(dynamicComponentName));
     }
 }

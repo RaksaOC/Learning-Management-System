@@ -78,7 +78,7 @@ public class AppSession {
         return selectedQuiz;
     }
 
-    public boolean getIsAssignmentSubmissionFromAssignmentsPage() {
+    public boolean getIsSubmissionFromAllPage() {
         return this.isSubmissionFromAllPage;
     }
 

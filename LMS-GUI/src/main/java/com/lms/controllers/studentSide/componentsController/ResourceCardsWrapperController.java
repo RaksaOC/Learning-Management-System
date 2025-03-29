@@ -154,7 +154,7 @@ public class ResourceCardsWrapperController {
 
         resourceCard.setOnMouseClicked(e->{
             AppSession.getInstance().setSelectedClassroom(resource_classroom.get(resourcesList.get(idx)));
-            AppSession.getInstance().setSelectedAssignment(extractId(resourcesList.get(idx)));
+            AppSession.getInstance().setSelectedResources(extractId(resourcesList.get(idx)));
             AppSession.getInstance().isSubmissionFromAllPage(true);
 
             SceneManager.loadCenterView("resourceSubmission", "resources/com/lms/views/studentSide/ResourceSubmission.fxml");

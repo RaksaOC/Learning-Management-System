@@ -39,18 +39,22 @@ public class DoQuizController {
 
     public void initialize() {
         backButton.setOnMouseClicked(event -> {
-            if(!AppSession.getInstance().getIsAssignmentSubmissionFromAssignmentsPage()){
+            if(!AppSession.getInstance().getIsSubmissionFromAllPage()){
+                AppSession.getInstance().setSelectedQuiz(null);
+                AppSession.getInstance().setSelectedClassroom(null);
                 SceneManager.loadCenterView("studentClassroomContent", "resources/com/lms/views/studentSide/ClassroomContents.fxml");
                 SceneManager.setCenterView("studentClassroomContent");
 
-                AppSession.getInstance().setSelectedQuiz(null);
-                AppSession.getInstance().setSelectedClassroom(null);
             }else {
-                SceneManager.loadCenterView("quizzes", "resources/com/lms/views/studentSide/Quizzes.fxml");
-                SceneManager.setCenterView("quizzes");
-
                 AppSession.getInstance().setSelectedQuiz(null);
                 AppSession.getInstance().setSelectedClassroom(null);
+                loadDynamicComponentToCenterView(
+                        "studentQuizzes",
+                        "studentQuizCardsWrapper",
+                        "resources/com/lms/views/studentSide/Quizzes.fxml",
+                        "resources/com/lms/views/studentSide/components/QuizCardsWrapper.fxml"
+                );
+                SceneManager.setCenterView("studentQuizzes");
             }
         });
     }
@@ -132,4 +136,11 @@ public class DoQuizController {
         return questionCard;
     }
 
+    private void loadDynamicComponentToCenterView(String centerViewName, String dynamicComponentName, String centerViewFilePath, String dynamicComponentFilePath) {
+        SceneManager.loadCenterView(centerViewName, centerViewFilePath);
+        SceneManager.loadComponent(dynamicComponentName, dynamicComponentFilePath);
+
+        VBox center = (VBox) SceneManager.getCenterView(centerViewName);
+        center.getChildren().add(SceneManager.getComponent(dynamicComponentName));
+    }
 }

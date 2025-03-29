@@ -67,7 +67,6 @@ public class EditResourceController {
             SceneManager.loadCenterView("resourceView", "resources/com/lms/views/teacherSide/ResourceView.fxml");
             SceneManager.setCenterView("resourceView");
         });
-
     }
 
     private HBox refCard(String refTitle) {

@@ -6,10 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="816c4d4f-796b-4ab7-98a7-72a49b87cc0e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/AddAssignmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/AddAssignmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/AddQuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/AddQuizController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/AddResourceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/AddResourceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/AssignmentViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/AssignmentViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/EditAssignmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/EditAssignmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/QuizResultController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/QuizViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/QuizViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/studentSide/AssignmentsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/studentSide/AssignmentsManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/studentSide/QuizzesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/studentSide/QuizzesManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/teacherSide/QuizView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/teacherSide/QuizView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/ResourceViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/ResourceViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/teacherSide/AssignmentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/teacherSide/AssignmentManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/teacherSide/TeacherQuizManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/teacherSide/TeacherQuizManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-DQL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-DQL.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

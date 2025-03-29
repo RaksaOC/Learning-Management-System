@@ -69,6 +69,8 @@ public class QuizViewController {
 
         deleteButton.setOnMouseClicked(event -> {
             // TODO: connect to delete
+            SceneManager.loadCenterView("teacherClassroomContents", "resources/com/lms/views/teacherSide/ClassroomContents.fxml");
+            SceneManager.setCenterView("teacherClassroomContents");
         });
     }
 

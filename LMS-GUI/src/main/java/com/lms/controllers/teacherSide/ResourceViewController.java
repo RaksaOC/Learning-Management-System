@@ -59,7 +59,8 @@ public class ResourceViewController {
             resourceManager.manageDeleteMaterialSql();
             AppSession.getInstance().setSelectedResources(null);
 
-            // TODO: return back to classroom content page after deletion
+            SceneManager.loadCenterView("teacherClassroomContents", "resources/com/lms/views/teacherSide/ClassroomContents.fxml");
+            SceneManager.setCenterView("teacherClassroomContents");
         });
     }
 

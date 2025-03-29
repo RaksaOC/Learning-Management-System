@@ -67,12 +67,13 @@ public class AssignmentManager extends ClassroomContentManager {
     }
 
     public void manageEditAssignmentSql(String newTitle, String newDescription, String newDeadline, String newRef_attachment) {
-        String query = "UPDATE assignment SET title = ?, description = ?, deadline = ?, ref_attachment, WHERE id = ?";
+        String query = "UPDATE assignment SET title = ?, description = ?, deadline = ?, ref_attachment = ? WHERE id = ?";
         try(PreparedStatement statement = conn.prepareStatement(query)){
             statement.setString(1, newTitle);
             statement.setString(2, newDescription);
-            statement.setString(3, newDeadline);
+            statement.setDate(3, Date.valueOf(newDeadline));
             statement.setString(4, newRef_attachment);
+            statement.setString(5, AppSession.getInstance().getSelectedAssignment());
             statement.executeUpdate();
         }catch (SQLException e) {
             e.printStackTrace();

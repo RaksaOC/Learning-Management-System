@@ -80,6 +80,9 @@ public class AddQuizController {
                     getQuestionsList(),
                     "active"
             );
+
+            SceneManager.loadCenterView("teacherClassroomContents", "resources/com/lms/views/teacherSide/ClassroomContents.fxml");
+            SceneManager.setCenterView("teacherClassroomContents");
         });
 
         backButton.setOnMouseClicked(event -> {

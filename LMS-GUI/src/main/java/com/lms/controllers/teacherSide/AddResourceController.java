@@ -12,7 +12,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.AppSession;
 import main.SceneManager;
-import main.java.com.lms.managers.teacherSide.AssignmentManager;
 import main.java.com.lms.managers.teacherSide.ResourceManager;
 
 import java.util.Optional;
@@ -27,8 +26,6 @@ public class AddResourceController {
     @FXML
     private TextArea resourceDescription;
     @FXML
-    private DatePicker resourceDueDate;
-    @FXML
     private Button addAttach;
 
     @FXML
@@ -40,6 +37,7 @@ public class AddResourceController {
 
     public void initialize() {
         backButton.setOnMouseClicked(event -> {
+            SceneManager.loadCenterView("teacherClassroomContents", "resources/com/lms/views/teacherSide/ClassroomContents.fxml");
             SceneManager.setCenterView("teacherClassroomContents");
         });
 
@@ -53,14 +51,15 @@ public class AddResourceController {
 
         finishButton.setOnMouseClicked(event -> {
             if (!(resourceTitle.getText().isEmpty() ||
-                    resourceDescription.getText().isEmpty() ||
-                    resourceDueDate.getValue() == null)) {
+                    resourceDescription.getText().isEmpty())) {
 
                 ResourceManager resourceManager = new ResourceManager(AppSession.getInstance().getSelectedClassroom());
                 String title = resourceTitle.getText();
                 String description = resourceDescription.getText();
 
                 resourceManager.manageAddMaterial(title, description, link.get());
+                SceneManager.loadCenterView("teacherClassroomContents", "resources/com/lms/views/teacherSide/ClassroomContents.fxml");
+                SceneManager.setCenterView("teacherClassroomContents");
             } else {
                 showAlert("Error", "Please fill all the fields.");
             }

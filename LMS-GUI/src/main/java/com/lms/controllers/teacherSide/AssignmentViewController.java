@@ -58,15 +58,17 @@ public class AssignmentViewController {
 
         students = classroomsManger.getAllStudentsInClassroom();
 
-        assignmentID.setText(assignmentManager.getAssignmentTitle());
+        assignmentID.setText(AppSession.getInstance().getSelectedAssignment());
         assignmentName.setText(assignmentManager.getAssignmentTitle());
         assignmentDueDate.setText(assignmentManager.getAssignmentDeadline());
         assignmentDescription.setText(assignmentManager.getAssignmentDescription());
         backButton.setOnMouseClicked(event -> {
-            SceneManager.setCenterView("teacherClassroomContents");
             AppSession.getInstance().setSelectedAssignment(null);
             AppSession.getInstance().setSelectedResources(null);
             AppSession.getInstance().setSelectedQuiz(null);
+
+            SceneManager.loadCenterView("teacherClassroomContents", "resources/com/lms/views/teacherSide/ClassroomContents.fxml");
+            SceneManager.setCenterView("teacherClassroomContents");
         });
         editButton.setOnMouseClicked(event -> {
             SceneManager.loadCenterView("editAssignment", "resources/com/lms/views/teacherSide/EditAssignment.fxml");

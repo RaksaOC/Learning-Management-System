@@ -67,7 +67,7 @@ public class EditAssignmentController {
             }
         });
         editButton.setOnAction(event -> {
-            assignmentManager.manageEditAssignmentSql(newAssignmentName.getText(), newAssignmentDescription.getText(), newAssignmentDeadline.toString(), link.get());
+            assignmentManager.manageEditAssignmentSql(newAssignmentName.getText(), newAssignmentDescription.getText(), newAssignmentDeadline.getValue().toString(), link.get());
             SceneManager.loadCenterView("assignmentView", "resources/com/lms/views/teacherSide/AssignmentView.fxml");
             SceneManager.setCenterView("assignmentView");
         });

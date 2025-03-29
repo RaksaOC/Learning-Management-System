@@ -41,6 +41,7 @@ public class AddAssignmentController {
 
     public void initialize() {
         backButton.setOnMouseClicked(event -> {
+            SceneManager.loadCenterView("teacherClassroomContents", "resources/com/lms/views/teacherSide/ClassroomContents.fxml");
             SceneManager.setCenterView("teacherClassroomContents");
         });
 
@@ -63,6 +64,8 @@ public class AddAssignmentController {
                 String dueDate = assignmentDueDate.getValue().toString();
 
                 assignmentManager.manageAddAssignmentSql(title, description, dueDate, link.get());
+                SceneManager.loadCenterView("teacherClassroomContents", "resources/com/lms/views/teacherSide/ClassroomContents.fxml");
+                SceneManager.setCenterView("teacherClassroomContents");
             } else {
                 showAlert("Error", "Please fill all the fields.");
             }

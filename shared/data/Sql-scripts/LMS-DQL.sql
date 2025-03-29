@@ -1,3 +1,28 @@
+SELECT * FROM admin;
+SELECT * FROM student;
+SELECT * FROM teacher;
+SELECT * FROM teacher_history;
+SELECT * FROM student_history;
+SELECT * FROM progress;
+SELECT * FROM progress_assignment;
+SELECT * FROM progress_material;
+SELECT * FROM progress_quiz;
+SELECT * FROM course;
+SELECT * FROM department;
+SELECT * FROM specialization;
+SELECT * FROM generation;
+SELECT * FROM student_group;
+SELECT * FROM classroom;
+SELECT * FROM assignment;
+SELECT * FROM material;
+SELECT * FROM quiz;
+SELECT * FROM question;
+SELECT * FROM choice;
+SELECT * FROM classroom_assignment;
+SELECT * FROM classroom_quiz;
+SELECT * FROM classroom_material;
+SELECT * FROM administrative;
+
 -- ================================================
 -- Viewing Data
 -- ================================================

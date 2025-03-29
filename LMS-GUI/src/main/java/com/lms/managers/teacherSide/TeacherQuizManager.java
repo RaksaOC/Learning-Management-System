@@ -1,5 +1,6 @@
 package main.java.com.lms.managers.teacherSide;
 
+import main.AppSession;
 import main.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -279,7 +280,7 @@ public class TeacherQuizManager extends ClassroomContentManager {
     }
 
 
-    private static void insertToQuiz(String id, String title, String description, String status) {
+    private void insertToQuiz(String id, String title, String description, String status) {
         String quarry = "INSERT INTO quiz (id, title, description, status) VALUES ( ?, ?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(quarry)) {
             statement.setString(1, id);

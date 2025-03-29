@@ -23,6 +23,10 @@ SELECT * FROM classroom_quiz;
 SELECT * FROM classroom_material;
 SELECT * FROM administrative;
 
+-- &&&&&&&&&&&&&&&&&&&&&&&&&
+-- &&&&&&& Scenarios &&&&&&&
+-- &&&&&&&&&&&&&&&&&&&&&&&&&
+
 -- ================================================
 -- Viewing Data
 -- ================================================

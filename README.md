@@ -77,7 +77,11 @@ With a **MySQL-powered backend**, a **modern JavaFX user interface**, and an **M
 
 ## 🖼️ Screenshots
 
+### 🏫 LMS-Admin
 
+### 👩‍🎓 LMS-Student
+
+### 🧑‍🏫 LMS-Teacher
 
 ## 🛠 Technical Aspects
 

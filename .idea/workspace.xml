@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="816c4d4f-796b-4ab7-98a7-72a49b87cc0e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/doc/images/student1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/images/student2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/images/student3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/images/teacher1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/images/teacher2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/images/teacher3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/admin1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/admin2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/admin3.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
@@ -99,7 +96,7 @@
       <recent name="main.java.com.lmsadmin.managers" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Run LMS-GUI">
+  <component name="RunManager" selected="Application.Run LMS-Admin-GUI">
     <configuration name="Run LMS-Admin-GUI" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="LMS-Admin-GUI" />

@@ -1,5 +1,6 @@
 package main.java.com.lms.controllers.teacherSide;
 
+import entities.Teacher;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -14,12 +15,14 @@ import javafx.scene.text.Text;
 import main.AppSession;
 import main.SceneManager;
 import main.java.com.lms.managers.studentSide.QuizzesManager;
+import main.java.com.lms.managers.teacherSide.TeacherQuizManager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class QuizViewController {
-    private final QuizzesManager quizManager = new QuizzesManager();
+    private final TeacherQuizManager quizManager = new TeacherQuizManager(AppSession.getInstance().getSelectedClassroom());
     @FXML
     private ImageView backButton;
     @FXML
@@ -46,7 +49,8 @@ public class QuizViewController {
     private int questionNum;
 
     public void initialize() {
-
+        questionNum = 1;
+        questionsWrapper.setAlignment(Pos.CENTER);
         backButton.setOnMouseClicked(event -> {
             SceneManager.loadCenterView("teacherClassroomContents", "resources/com/lms/views/teacherSide/ClassroomContents.fxml");
             SceneManager.setCenterView("teacherClassroomContents");
@@ -62,6 +66,17 @@ public class QuizViewController {
 
         studentTable.getItems().addAll(quizManager.getAllStudentsAndScore());
 
+        ArrayList<Map<String, Object>> questionsAndChoices = quizManager.getQuestionsAndChoices();
+
+        for (int i = 0; i < questionsAndChoices.size(); i++) {
+            String title = (String) questionsAndChoices.get(i).get("title");
+
+            // Extract choice texts into a list
+            List<Map<String, Object>> choicesList = (List<Map<String, Object>>) questionsAndChoices.get(i).get("choices");
+
+            questionsWrapper.getChildren().add(createQuestionCard(title, choicesList));
+        }
+
         editButton.setOnMouseClicked(event -> {
             SceneManager.loadCenterView("editQuiz", "resources/com/lms/views/teacherSide/EditQuiz.fxml");
             SceneManager.setCenterView("editQuiz");
@@ -74,7 +89,8 @@ public class QuizViewController {
         });
     }
 
-    private VBox createQuestionCard(String questionText, List<String> choices) {
+    private VBox createQuestionCard(String questionText, List<Map<String, Object>> choices) {
+        System.out.println("Choices for question: "+ questionText + " is \n" + choices);
         // Outer VBox (questionCard)
         VBox questionCard = new VBox();
         questionCard.setPrefSize(791, 375);
@@ -86,15 +102,16 @@ public class QuizViewController {
         // ----------------- Question Section -----------------
         VBox questionSection = new VBox();
         questionSection.setPrefSize(751, 90);
-        questionSection.setAlignment(Pos.TOP_CENTER);
+        questionSection.setAlignment(Pos.CENTER);
         questionSection.setPadding(new Insets(10));
 
         Label questionLabel = new Label("Question " + questionNum);
         questionLabel.setStyle("-fx-font-size: 19px; -fx-font-family: AppleGothic");
 
         Label questionTextLabel = new Label(questionText);
-        questionTextLabel.setWrapText(true);
         questionTextLabel.setPrefWidth(731);
+        questionTextLabel.setAlignment(Pos.CENTER);
+        questionTextLabel.setPadding(new Insets(30, 0, 0, 0));
 
         questionSection.getChildren().addAll(questionLabel, questionTextLabel);
 
@@ -112,23 +129,22 @@ public class QuizViewController {
         choicesWrapper.setSpacing(10);
         choicesWrapper.setPadding(new Insets(10));
 
-        for (String choiceText : choices) {
+        for (Map<String, Object> choice : choices) {
             HBox choiceBox = new HBox();
             choiceBox.setPrefSize(691, 50);
             choiceBox.setAlignment(Pos.CENTER_LEFT);
-            choiceBox.setStyle("-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-radius: 10; -fx-padding: 10;");
-            choiceBox.setOnMouseClicked(event -> {
-                // Reset colors for all choices
-                for (Node node : choicesWrapper.getChildren()) {
-                    node.setStyle("-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-radius: 10; -fx-padding: 10;");
-                }
-                // Highlight selected choice
-                choiceBox.setStyle("-fx-background-color: #f4f6fa; -fx-border-color: #cccccc; -fx-border-radius: 10; -fx-padding: 10;");
-            });
+            choiceBox.setPadding(new Insets(10));
 
-            Label choiceLabel = new Label(choiceText);
+            Label choiceLabel = new Label((String) choice.get("choice_text"));
             choiceLabel.setWrapText(true);
             choiceLabel.setPrefWidth(650);
+
+            // Apply blueish background ONLY for correct answers
+            if (choice.get("isCorrect").equals(1)) {
+                choiceBox.setStyle("-fx-background-color: #2f92bc; -fx-border-color: #cccccc; -fx-border-radius: 10; -fx-background-radius: 10");
+            } else {
+                choiceBox.setStyle("-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-radius: 10; -fx-background-radius: 10");
+            }
 
             choiceBox.getChildren().add(choiceLabel);
             choicesWrapper.getChildren().add(choiceBox);

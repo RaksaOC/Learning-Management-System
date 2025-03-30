@@ -125,6 +125,7 @@ public class TeacherMainFrameController {
         links.add(classroomsLink);
         links.add(settingsLink);
         links.add(logoutLink);
+        links.add(switchUserLink);
     }
 
     public void setNameText(String name) {

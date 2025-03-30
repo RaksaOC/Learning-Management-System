@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.AppSession;
 import main.DatabaseConnection;
@@ -17,11 +18,13 @@ import main.SceneManager;
 import main.java.com.lms.managers.studentSide.QuizzesManager;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class DoQuizController {
     private Connection conn = DatabaseConnection.getInstance().getConnection();
-
+    private QuizzesManager quizzesManager = new QuizzesManager();
     @FXML
     private ImageView backButton;
     @FXML
@@ -32,20 +35,30 @@ public class DoQuizController {
     private VBox questionsWrapper;
     @FXML
     private Button finish;
+    @FXML
+    private VBox scoreBox;
 
     private int questionNum;
 
-    private int numOfQuestions;
+    private int score;
 
     public void initialize() {
+        double percent = quizzesManager.getPrevScore();
+        Text scoreTxt = new Text("High Score: " + percent + "%");
+        scoreTxt.setFont(Font.font("AppleGothic", 24));
+        scoreBox.getChildren().add(scoreTxt);
+
+        questionNum = 1;
+        score = 0;
+        scoreBox.setAlignment(Pos.CENTER);
+        title.setText(quizzesManager.getQuizTitle());
+        description.setText(quizzesManager.getQuizDescription());
         backButton.setOnMouseClicked(event -> {
-            if(!AppSession.getInstance().getIsSubmissionFromAllPage()){
+            if (!AppSession.getInstance().getIsSubmissionFromAllPage()) {
                 AppSession.getInstance().setSelectedQuiz(null);
-                AppSession.getInstance().setSelectedClassroom(null);
                 SceneManager.loadCenterView("studentClassroomContent", "resources/com/lms/views/studentSide/ClassroomContents.fxml");
                 SceneManager.setCenterView("studentClassroomContent");
-
-            }else {
+            } else {
                 AppSession.getInstance().setSelectedQuiz(null);
                 AppSession.getInstance().setSelectedClassroom(null);
                 loadDynamicComponentToCenterView(
@@ -57,17 +70,34 @@ public class DoQuizController {
                 SceneManager.setCenterView("studentQuizzes");
             }
         });
-    }
 
-    private void createAllQuestions() {
-        QuizzesManager studentQuizzesManager = new QuizzesManager();
-//        ArrayList<Map<String, Object>> allQuestions =  studentQuizzesManager.displayChosenQuiz(quizIndexToDo, studentID);
+        ArrayList<Map<String, Object>> questionsAndChoices = quizzesManager.getQuestionsAndChoices();
+        for (int i = 0; i < questionsAndChoices.size(); i++) {
+            List<Map<String, Object>> choicesList = (List<Map<String, Object>>) questionsAndChoices.get(i).get("choices");
+            questionsWrapper.getChildren().add(createQuestionCard((String) questionsAndChoices.get(i).get("title"), choicesList));
+        }
+
         finish.setOnMouseClicked(event -> {
-//            studentQuizzesManager.submitAndCheckAnswer();
+            scoreBox.getChildren().clear();
+
+            double percentage = ((double) score / questionsAndChoices.size()) * 100;
+
+            if(quizzesManager.getPrevScore() < percentage) {
+                quizzesManager.manageSubmitQuiz(percentage);
+            }
+
+            Text scoreText = new Text("You got: " + percentage + "%");
+            scoreText.setFont(Font.font("AppleGothic", 24));
+
+            scoreBox.getChildren().add(scoreText);
+            questionsWrapper.setDisable(true);
+            finish.setDisable(true);
         });
+
     }
 
-    private VBox createQuestionCard(String questionText, List<String> choices) {
+    private VBox createQuestionCard(String questionText, List<Map<String, Object>> choices) {
+        System.out.println("Choices for question: " + questionText + " is \n" + choices);
         // Outer VBox (questionCard)
         VBox questionCard = new VBox();
         questionCard.setPrefSize(791, 375);
@@ -79,15 +109,16 @@ public class DoQuizController {
         // ----------------- Question Section -----------------
         VBox questionSection = new VBox();
         questionSection.setPrefSize(751, 90);
-        questionSection.setAlignment(Pos.TOP_CENTER);
+        questionSection.setAlignment(Pos.CENTER);
         questionSection.setPadding(new Insets(10));
 
         Label questionLabel = new Label("Question " + questionNum);
         questionLabel.setStyle("-fx-font-size: 19px; -fx-font-family: AppleGothic");
 
         Label questionTextLabel = new Label(questionText);
-        questionTextLabel.setWrapText(true);
         questionTextLabel.setPrefWidth(731);
+        questionTextLabel.setAlignment(Pos.CENTER);
+        questionTextLabel.setPadding(new Insets(30, 0, 0, 0));
 
         questionSection.getChildren().addAll(questionLabel, questionTextLabel);
 
@@ -105,23 +136,25 @@ public class DoQuizController {
         choicesWrapper.setSpacing(10);
         choicesWrapper.setPadding(new Insets(10));
 
-        for (String choiceText : choices) {
+        for (Map<String, Object> choice : choices) {
             HBox choiceBox = new HBox();
             choiceBox.setPrefSize(691, 50);
             choiceBox.setAlignment(Pos.CENTER_LEFT);
-            choiceBox.setStyle("-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-radius: 10; -fx-padding: 10;");
-            choiceBox.setOnMouseClicked(event -> {
-                // Reset colors for all choices
-                for (Node node : choicesWrapper.getChildren()) {
-                    node.setStyle("-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-radius: 10; -fx-padding: 10;");
-                }
-                // Highlight selected choice
-                choiceBox.setStyle("-fx-background-color: #f4f6fa; -fx-border-color: #cccccc; -fx-border-radius: 10; -fx-padding: 10;");
-            });
+            choiceBox.setPadding(new Insets(10));
 
-            Label choiceLabel = new Label(choiceText);
+            Label choiceLabel = new Label((String) choice.get("choice_text"));
             choiceLabel.setWrapText(true);
             choiceLabel.setPrefWidth(650);
+
+            // Apply blueish background ONLY for correct answers
+            choiceBox.setStyle("-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-radius: 10; -fx-background-radius: 10");
+            choiceBox.setOnMouseClicked(event -> {
+                choiceBox.setStyle("-fx-background-color: #2f92bc; -fx-border-color: #cccccc; -fx-border-radius: 10; -fx-background-radius: 10");
+                if (choice.get("isCorrect").equals(1)) {
+                    score++;
+                }
+            });
+
 
             choiceBox.getChildren().add(choiceLabel);
             choicesWrapper.getChildren().add(choiceBox);

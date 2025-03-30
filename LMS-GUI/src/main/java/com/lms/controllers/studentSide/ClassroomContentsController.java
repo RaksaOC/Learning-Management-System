@@ -94,8 +94,22 @@ public class ClassroomContentsController {
     private VBox wrapper(String type, ArrayList<String> content) {
         VBox assignmentsWrapper = new VBox(10);
         assignmentsWrapper.setStyle("-fx-padding: 20; -fx-background-color: #f4f6fa;");
+        assignmentsWrapper.setMaxHeight(Double.MAX_VALUE);
+        assignmentsWrapper.setMaxWidth(Double.MAX_VALUE);
 
+        if(content.isEmpty()) {
+            VBox empty = new VBox(10);
+            empty.setMaxHeight(Double.MAX_VALUE);
+            empty.setMaxWidth(Double.MAX_VALUE);
+            Text text = new Text("No content to display");
+            text.setFont(Font.font("AppleGothic", 24));
+            empty.setAlignment(Pos.CENTER);
+            empty.getChildren().add(text);
+            assignmentsWrapper.getChildren().add(empty);
+            return assignmentsWrapper;
+        }
         HBox row = new HBox(10);
+
         for (int i = 0; i < content.size(); i++) {
             row.getChildren().add(card(type, content, i));
         }

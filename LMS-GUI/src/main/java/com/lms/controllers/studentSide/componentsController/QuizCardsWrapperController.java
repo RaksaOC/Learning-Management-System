@@ -151,7 +151,7 @@ public class QuizCardsWrapperController {
 
         quizCard.setOnMouseClicked(e -> {
             AppSession.getInstance().setSelectedClassroom(quiz_classroom.get(quizzesList.get(idx)));
-            AppSession.getInstance().setSelectedAssignment(extractId(quizzesList.get(idx)));
+            AppSession.getInstance().setSelectedQuiz(extractId(quizzesList.get(idx)));
             AppSession.getInstance().isSubmissionFromAllPage(true);
 
             SceneManager.loadCenterView("doQuiz", "resources/com/lms/views/studentSide/DoQuiz.fxml");

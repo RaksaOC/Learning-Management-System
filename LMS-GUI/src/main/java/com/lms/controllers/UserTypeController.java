@@ -78,14 +78,4 @@ public class UserTypeController {
             }
         });
     }
-
-    private User getUser(String userType) {
-        // this function only for when last logged in
-        AuthenticationManager authenticationManager = new AuthenticationManager();
-        String id = authenticationManager.getLastLoggedInUserId(userType);
-        // usage of an overloaded method
-        User user = authenticationManager.getAuthenticatedUser(id); // this process also include the assignment of "lastLogin" of user
-
-        return user;
-    }
 }

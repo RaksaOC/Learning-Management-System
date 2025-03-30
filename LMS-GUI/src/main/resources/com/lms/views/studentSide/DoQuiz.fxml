@@ -11,49 +11,43 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="917.0" prefWidth="1176.0"
-      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="main.java.com.lms.controllers.studentSide.DoQuizController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="917.0" prefWidth="1176.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lms.controllers.studentSide.DoQuizController">
     <children>
-        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308"
-                    maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="969.0" prefWidth="1176.0"
-                    vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="969.0" prefWidth="1176.0" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
             <content>
-                <VBox maxHeight="1.7976931348623157E308" prefHeight="897.0" prefWidth="1174.0"
-                      style="-fx-background-color: #f4f6fa;">
+                <VBox maxHeight="1.7976931348623157E308" prefHeight="897.0" prefWidth="1174.0" style="-fx-background-color: #f4f6fa;">
                     <children>
                         <VBox prefHeight="45.0" prefWidth="1144.0" VBox.vgrow="NEVER">
                             <padding>
-                                <Insets bottom="5.0" right="5.0" top="5.0"/>
+                                <Insets bottom="5.0" right="5.0" top="5.0" />
                             </padding>
                             <children>
-                                <ImageView fx:id="backButton" fitHeight="40.0" fitWidth="45.0" pickOnBounds="true"
-                                           preserveRatio="true" rotate="180.0">
+                                <ImageView fx:id="backButton" fitHeight="40.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                                     <image>
-                                        <Image url="@../../images/back-icon.png"/>
+                                        <Image url="@../../images/back-icon.png" />
                                     </image>
                                     <cursor>
-                                        <Cursor fx:constant="HAND"/>
+                                        <Cursor fx:constant="HAND" />
                                     </cursor>
                                     <VBox.margin>
-                                        <Insets left="-5.0"/>
+                                        <Insets left="-5.0" />
                                     </VBox.margin>
                                 </ImageView>
                             </children>
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                             <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quiz Title" fx:id="title">
+                                <Text fx:id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="Quiz Title">
                                     <font>
-                                        <Font size="22.0"/>
+                                        <Font size="22.0" />
                                     </font>
                                 </Text>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description" fx:id="description">
+                                <Text fx:id="description" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
                                     <font>
-                                        <Font size="22.0"/>
+                                        <Font size="22.0" />
                                     </font>
                                     <VBox.margin>
-                                        <Insets top="50.0"/>
+                                        <Insets top="50.0" />
                                     </VBox.margin>
                                 </Text>
                             </children>
@@ -62,49 +56,52 @@
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Questions">
                                     <font>
-                                        <Font name="AppleGothic Regular" size="18.0"/>
+                                        <Font name="AppleGothic Regular" size="18.0" />
                                     </font>
                                 </Text>
-                                <VBox fx:id="questionsWrapper" alignment="TOP_CENTER" prefHeight="471.0"
-                                      prefWidth="1144.0" spacing="10.0" VBox.vgrow="NEVER">
+                                <VBox fx:id="questionsWrapper" alignment="TOP_CENTER" prefHeight="471.0" prefWidth="1144.0" spacing="10.0" VBox.vgrow="NEVER">
                                     <padding>
-                                        <Insets bottom="10.0" top="10.0"/>
+                                        <Insets bottom="10.0" top="10.0" />
                                     </padding>
                                     <children>
                                     </children>
                                     <VBox.margin>
-                                        <Insets top="30.0"/>
+                                        <Insets top="30.0" />
                                     </VBox.margin>
                                 </VBox>
                             </children>
                             <VBox.margin>
-                                <Insets top="40.0"/>
+                                <Insets top="40.0" />
                             </VBox.margin>
                         </VBox>
                         <HBox alignment="CENTER" prefHeight="19.0" prefWidth="1144.0" spacing="20.0" VBox.vgrow="NEVER">
                             <VBox.margin>
-                                <Insets top="20.0"/>
+                                <Insets top="20.0" />
                             </VBox.margin>
                         </HBox>
                         <HBox alignment="CENTER" VBox.vgrow="NEVER">
                             <children>
-                                <Button fx:id="finish" mnemonicParsing="false"
-                                        style="-fx-background-color: #2F92BC; -fx-background-radius: 30;" text="Submit">
+                                <Button fx:id="finish" mnemonicParsing="false" style="-fx-background-color: #2F92BC; -fx-background-radius: 30;" text="Submit">
                                     <font>
-                                        <Font size="20.0"/>
+                                        <Font size="20.0" />
                                     </font>
                                     <padding>
-                                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
+                                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                                     </padding>
                                 </Button>
                             </children>
                             <VBox.margin>
-                                <Insets top="20.0"/>
+                                <Insets top="20.0" />
                             </VBox.margin>
                         </HBox>
+                  <VBox fx:id="scoreBox" prefHeight="200.0" prefWidth="100.0">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </VBox>
                     </children>
                     <padding>
-                        <Insets bottom="20.0" left="10.0" right="20.0" top="20.0"/>
+                        <Insets bottom="20.0" left="10.0" right="20.0" top="20.0" />
                     </padding>
                 </VBox>
             </content>

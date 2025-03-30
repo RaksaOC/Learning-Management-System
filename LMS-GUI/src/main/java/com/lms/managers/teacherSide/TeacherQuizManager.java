@@ -1,17 +1,11 @@
 package main.java.com.lms.managers.teacherSide;
 
 import main.AppSession;
-import main.DatabaseConnection;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class TeacherQuizManager extends ClassroomContentManager {
@@ -58,6 +52,11 @@ public class TeacherQuizManager extends ClassroomContentManager {
         System.out.println("Inserted into Progress Table");
         insertToClassroomQuiz(this.classIdToEdit, quizID);
         System.out.println("finished");
+    }
+
+    public void manageEditQuizSql(String title, String description, ArrayList<Map<String, Object>> quizList) {
+        manageDeleteQuizSql();
+        manageAddQuizSql(title, description, quizList, "active");
     }
 
 
@@ -155,33 +154,128 @@ public class TeacherQuizManager extends ClassroomContentManager {
         }
     }
 
+    public ArrayList<Map<String, Object>> getQuestionsAndChoices() {
+        ArrayList<Map<String, Object>> questionsAndChoicesList = new ArrayList<>();
 
-    public ArrayList<Map<String, String>> getQuizIDTitleAndDescriptionFromSqlToChooseToEdit() {
-        String quarry = "select * from quiz";
-        ArrayList<Map<String, String>> quizInfoList = new ArrayList<>();
-        try (PreparedStatement statement = conn.prepareStatement(quarry)) {
+        String query = """
+                    SELECT q.id AS question_id, q.title, c.choice_text, c.isCorrect
+                    FROM question q
+                    JOIN choice c ON q.id = c.question_id
+                    WHERE q.quiz_id = ?
+                    ORDER BY q.id
+                """;
+
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedQuiz());
             ResultSet rs = statement.executeQuery();
+
+            Map<String, Map<String, Object>> questionMap = new LinkedHashMap<>();
+
             while (rs.next()) {
-                Map<String, String> quizInfo = new HashMap<>();
-                quizInfo.put("id", rs.getString("id"));
-                quizInfo.put("title", rs.getString("title"));
-                quizInfo.put("description", rs.getString("description"));
-                quizInfoList.add(quizInfo);
+                String questionId = rs.getString("question_id");
+                String title = rs.getString("title");
+
+                // If the question is not already in the map, add it
+                questionMap.putIfAbsent(questionId, new HashMap<>(Map.of(
+                        "title", title,
+                        "choices", new ArrayList<Map<String, Object>>()
+                )));
+
+                // Add the choice to the corresponding question
+                Map<String, Object> choice = new HashMap<>();
+                choice.put("choice_text", rs.getString("choice_text"));
+                choice.put("isCorrect", Integer.parseInt(rs.getString("isCorrect")));
+
+                ((ArrayList<Map<String, Object>>) questionMap.get(questionId).get("choices")).add(choice);
             }
+
+            questionsAndChoicesList.addAll(questionMap.values());
+
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
-        return quizInfoList;
+
+        return questionsAndChoicesList;
     }
 
-    public ArrayList<Map<String, Object>> returnQuestionsAndItsChoices(String chosenQuizID) {
+    public String getQuizTitle() {
+        String query = "SELECT title FROM quiz WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedQuiz());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("title");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public String getQuizDescription() {
+        String query = "SELECT description FROM quiz WHERE id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedQuiz());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("description");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public ArrayList<Map<String, String>> getAllStudentsAndScore() {
+        String query = "SELECT s.id as id, CONCAT(s.first_name, ' ' , s.last_name) AS name, pq.score as score FROM student as s " +
+                "JOIN progress as p ON p.student_id = s.id " +
+                "JOIN progress_quiz as pq ON pq.progress_id = p.id " +
+                "WHERE pq.quiz_id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, AppSession.getInstance().getSelectedQuiz());
+            ResultSet rs = statement.executeQuery();
+            ArrayList<Map<String, String>> quizzes = new ArrayList<>();
+            while (rs.next()) {
+                Map<String, String> quiz = new HashMap<>();
+                quiz.put("id", rs.getString("id"));
+                quiz.put("name", rs.getString("name"));
+                quiz.put("score", rs.getString("score"));
+                quizzes.add(quiz);
+            }
+            return quizzes;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+//    public ArrayList<Map<String, String>> getQuizIDTitleAndDescriptionFromSqlToChooseToEdit() {
+//        String quarry = "select * from quiz";
+//        ArrayList<Map<String, String>> quizInfoList = new ArrayList<>();
+//        try (PreparedStatement statement = conn.prepareStatement(quarry)) {
+//            ResultSet rs = statement.executeQuery();
+//            while (rs.next()) {
+//                Map<String, String> quizInfo = new HashMap<>();
+//                quizInfo.put("id", rs.getString("id"));
+//                quizInfo.put("title", rs.getString("title"));
+//                quizInfo.put("description", rs.getString("description"));
+//                quizInfoList.add(quizInfo);
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return quizInfoList;
+//    }
+
+    public ArrayList<Map<String, Object>> getQuizQuestionAndChoice() {
         ArrayList<Map<String, Object>> questionsAndItsChoicesList = new ArrayList<>();
         String questionQuery = "select title, id from question where quiz_id=?";
         ArrayList<String> questionList = new ArrayList<>();
         ArrayList<String> idList = new ArrayList<>();
 
         try (PreparedStatement statement = conn.prepareStatement(questionQuery)) {
-            statement.setString(1, chosenQuizID);
+            statement.setString(1, AppSession.getInstance().getSelectedQuiz());
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
@@ -254,19 +348,29 @@ public class TeacherQuizManager extends ClassroomContentManager {
     }
 
     //
-    public void manageDeleteQuizSql(String quizIDToDelete) {
-        String classroomQuizQuarry = "delete from classroom_quiz where quiz_id=?";
-        String quizQuarry = "update quiz set status=?";
-        try (PreparedStatement statement = conn.prepareStatement(classroomQuizQuarry)) {
-            statement.setString(1, quizIDToDelete);
-            ResultSet rs = statement.executeQuery();
+    public void manageDeleteQuizSql() {
+        String deleteClassroomQuizQuarry = "delete from classroom_quiz where quiz_id= ?";
+        try (PreparedStatement statement = conn.prepareStatement(deleteClassroomQuizQuarry)) {
+            statement.setString(1, AppSession.getInstance().getSelectedQuiz());
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        try (PreparedStatement statement = conn.prepareStatement(quizQuarry)) {
+
+        String deleteQuiz = "update quiz set status= ? WHERE id=?";
+        try (PreparedStatement statement = conn.prepareStatement(deleteQuiz)) {
             statement.setString(1, "inactive");
-            ResultSet rs = statement.executeQuery();
+            statement.setString(2, AppSession.getInstance().getSelectedQuiz());
+            statement.executeUpdate();
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String deleteProgressQuery = "delete from progress_quiz where quiz_id=?";
+        try(PreparedStatement statement = conn.prepareStatement(deleteProgressQuery)){
+            statement.setString(1, AppSession.getInstance().getSelectedQuiz());
+            statement.executeUpdate();
+        }catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -296,7 +400,7 @@ public class TeacherQuizManager extends ClassroomContentManager {
         }
     }
 
-    private void insertToChoice(String id, String question_id, String choice_text, Boolean isCorrect){
+    private void insertToChoice(String id, String question_id, String choice_text, Boolean isCorrect) {
         String quarry = "INSERT INTO choice (id, question_id, choice_text, isCorrect) VALUES ( ?, ?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(quarry)) {
             statement.setString(1, id);
@@ -321,7 +425,6 @@ public class TeacherQuizManager extends ClassroomContentManager {
         }
     }
 
-
     private void insertToClassroomQuiz(String classIdToEdit, String quiz_id) {
         String quarry = "INSERT INTO classroom_quiz (class_id, quiz_id) VALUES ( ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(quarry)) {
@@ -333,7 +436,7 @@ public class TeacherQuizManager extends ClassroomContentManager {
         }
     }
 
-    protected String generateNewID(String tableName, String baseID) {
+    private String generateNewID(String tableName, String baseID) {
         try {
             // Query to get the count of rows in the table
             String query = "SELECT COUNT(id) as last_id FROM " + tableName;
@@ -377,13 +480,6 @@ public class TeacherQuizManager extends ClassroomContentManager {
                 "FROM classroom_quiz AS cq " +
                 "JOIN quiz AS q ON cq.quiz_id = q.id " +
                 "WHERE cq.class_id = ?";
-
-//        String query = "SELECT CONCAT(q.id, ' - ', q.title) AS id_name " +
-//                "FROM progress_quiz AS pq " +
-//                "JOIN progress AS p ON pq.progress_id = p.id " +
-//                "JOIN quiz AS q ON pq.quiz_id = q.id " +
-//                "JOIN classroom AS c ON p.classroom_id = c.id " +
-//                "WHERE p.classroom_id = ? AND c.teacher_id = ?";
 
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, AppSession.getInstance().getSelectedClassroom());

@@ -78,10 +78,17 @@ With a **MySQL-powered backend**, a **modern JavaFX user interface**, and an **M
 ## 🖼️ Screenshots
 
 ### 🏫 LMS-Admin
-
+![screenshot](https://github.com/RaksaOC/Learning-Management-System/blob/07d6a0e1b4bda815cc20cbc6e8a8f05548dda1dd/doc/images/admin1.png)
+![screenshot](https://github.com/RaksaOC/Learning-Management-System/blob/07d6a0e1b4bda815cc20cbc6e8a8f05548dda1dd/doc/images/admin2.png)
+![screenshot](https://github.com/RaksaOC/Learning-Management-System/blob/07d6a0e1b4bda815cc20cbc6e8a8f05548dda1dd/doc/images/admin3.png)
 ### 👩‍🎓 LMS-Student
-
+![screenshot](https://github.com/RaksaOC/Learning-Management-System/blob/07d6a0e1b4bda815cc20cbc6e8a8f05548dda1dd/doc/images/student1.png)
+![screenshot](https://github.com/RaksaOC/Learning-Management-System/blob/07d6a0e1b4bda815cc20cbc6e8a8f05548dda1dd/doc/images/student2.png)
+![screenshot](https://github.com/RaksaOC/Learning-Management-System/blob/07d6a0e1b4bda815cc20cbc6e8a8f05548dda1dd/doc/images/student3.png)
 ### 🧑‍🏫 LMS-Teacher
+![screenshot](https://github.com/RaksaOC/Learning-Management-System/blob/07d6a0e1b4bda815cc20cbc6e8a8f05548dda1dd/doc/images/teacher1.png)
+![screenshot](https://github.com/RaksaOC/Learning-Management-System/blob/07d6a0e1b4bda815cc20cbc6e8a8f05548dda1dd/doc/images/teacher2.png)
+![screenshot](https://github.com/RaksaOC/Learning-Management-System/blob/07d6a0e1b4bda815cc20cbc6e8a8f05548dda1dd/doc/images/teacher3.png)
 
 ## 🛠 Technical Aspects
 

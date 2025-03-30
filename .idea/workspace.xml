@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="816c4d4f-796b-4ab7-98a7-72a49b87cc0e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/ClassroomContentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/studentSide/ClassroomContentsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/ClassroomContentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/controllers/teacherSide/ClassroomContentsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/student1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/student2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/student3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/teacher1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/teacher2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/images/teacher3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,9 +61,9 @@
     "ToolWindow.Run.ShowToolbar": "false",
     "dart.analysis.tool.window.visible": "false",
     "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "cleanup",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/raksa/School/Year 2/Term 2/OOP/Project/Learning-Management-System/LMS-GUI/src/main/java/com/lms/managers/teacherSide",
+    "last_opened_file_path": "/Users/raksa/School/Year 2/Term 2/OOP/Project/Learning-Management-System/doc/images",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -72,11 +78,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/doc/images" />
       <recent name="$PROJECT_DIR$/LMS-GUI/src/main/java/com/lms/managers/teacherSide" />
       <recent name="$PROJECT_DIR$/shared/data" />
       <recent name="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views/teacherSide" />
       <recent name="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/views" />
-      <recent name="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/LMS-GUI/src/main/resources/com/lms/images" />

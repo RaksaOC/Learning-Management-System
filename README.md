@@ -75,6 +75,10 @@ With a **MySQL-powered backend**, a **modern JavaFX user interface**, and an **M
 
 ---
 
+## 🖼️ Screenshots
+
+
+
 ## 🛠 Technical Aspects
 
 ### 🔮 Design Principles

@@ -15,30 +15,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="main.java.com.lms.controllers.teacherSide.QuizViewController">
+<VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lms.controllers.teacherSide.QuizViewController">
     <children>
-        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="1033.0"
-                    prefWidth="1176.0" style="-fx-background-color: black;" vbarPolicy="ALWAYS">
+        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="1033.0" prefWidth="1176.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
             <content>
-                <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity"
-                      prefHeight="2702.0" prefWidth="1174.0" style="-fx-background-color: #f4f6fa;">
+                <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="2702.0" prefWidth="1174.0" style="-fx-background-color: #f4f6fa;">
                     <children>
                         <VBox prefHeight="45.0" prefWidth="1144.0">
                             <padding>
-                                <Insets bottom="5.0" right="5.0" top="5.0"/>
+                                <Insets bottom="5.0" right="5.0" top="5.0" />
                             </padding>
                             <children>
-                                <ImageView fx:id="backButton" fitHeight="40.0" fitWidth="45.0" pickOnBounds="true"
-                                           preserveRatio="true" rotate="180.0">
+                                <ImageView fx:id="backButton" fitHeight="40.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
                                     <image>
-                                        <Image url="@../../images/back-icon.png"/>
+                                        <Image url="@../../images/back-icon.png" />
                                     </image>
                                     <cursor>
-                                        <Cursor fx:constant="HAND"/>
+                                        <Cursor fx:constant="HAND" />
                                     </cursor>
                                     <VBox.margin>
-                                        <Insets/>
+                                        <Insets />
                                     </VBox.margin>
                                 </ImageView>
                             </children>
@@ -49,67 +45,62 @@
                                     <children>
                                         <Text fx:id="quizId" strokeType="OUTSIDE" strokeWidth="0.0" text="A000001">
                                             <font>
-                                                <Font name="AppleGothic Regular" size="18.0"/>
+                                                <Font name="AppleGothic Regular" size="18.0" />
                                             </font>
                                         </Text>
-                                        <Text fx:id="quizTitle" strokeType="OUTSIDE" strokeWidth="0.0"
-                                              text="Quiz Title">
+                                        <Text fx:id="quizTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Quiz Title">
                                             <font>
-                                                <Font name="AppleGothic Regular" size="18.0"/>
+                                                <Font name="AppleGothic Regular" size="18.0" />
                                             </font>
                                         </Text>
                                     </children>
                                 </VBox>
                             </children>
                             <VBox.margin>
-                                <Insets top="10.0"/>
+                                <Insets top="10.0" />
                             </VBox.margin>
                         </AnchorPane>
                         <VBox minHeight="267.0" prefHeight="267.0" prefWidth="1144.0">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
                                     <font>
-                                        <Font name="AppleGothic Regular" size="18.0"/>
+                                        <Font name="AppleGothic Regular" size="18.0" />
                                     </font>
                                 </Text>
-                                <TextArea fx:id="quizDescription" disable="true" prefHeight="239.0" prefWidth="900.0"
-                                          style="-fx-background-color: #f4f6fa; -fx-border-color: #f4f6fa; -fx-background-radius: 0; -fx-border-width: 0;"
-                                          wrapText="true"/>
+                                <TextArea fx:id="quizDescription" disable="true" prefHeight="239.0" prefWidth="900.0" style="-fx-background-color: #f4f6fa; -fx-border-color: #f4f6fa; -fx-background-radius: 0; -fx-border-width: 0;" wrapText="true" />
                             </children>
                             <VBox.margin>
-                                <Insets top="40.0"/>
+                                <Insets top="40.0" />
                             </VBox.margin>
                         </VBox>
                         <VBox prefHeight="128.0" prefWidth="1144.0">
                             <VBox.margin>
-                                <Insets top="10.0"/>
+                                <Insets top="10.0" />
                             </VBox.margin>
                         </VBox>
                         <HBox prefHeight="19.0" prefWidth="1144.0" spacing="20.0">
                             <children>
-                                <Button fx:id="editButton" mnemonicParsing="false"
-                                        style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 30; -fx-background-radius: 30;"
-                                        text="Edit"/>
-                                <Button fx:id="deleteButton" mnemonicParsing="false"
-                                        style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 30; -fx-background-radius: 30;"
-                                        text="Delete"/>
+                                <Button fx:id="editButton" mnemonicParsing="false" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 30; -fx-background-radius: 30;" text="Edit" />
+                                <Button fx:id="deleteButton" mnemonicParsing="false" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 30; -fx-background-radius: 30;" text="Delete" />
                             </children>
                             <VBox.margin>
-                                <Insets top="20.0"/>
+                                <Insets top="20.0" />
                             </VBox.margin>
                         </HBox>
-                        <VBox fx:id="questionsWrapper" prefHeight="563.0" prefWidth="1144.0" spacing="10.0"
-                              style="-fx-background-color: #f4f6fa;" VBox.vgrow="NEVER"/>
-                        <TableView prefHeight="200.0" prefWidth="200.0" fx:id="studentTable">
+                        <VBox fx:id="questionsWrapper" prefHeight="563.0" prefWidth="1144.0" spacing="10.0" style="-fx-background-color: #f4f6fa;" VBox.vgrow="NEVER" />
+                        <TableView fx:id="studentTable" prefHeight="200.0" prefWidth="200.0">
                             <columns>
-                                <TableColumn prefWidth="75.0" text="ID" fx:id="idColumn"/>
-                                <TableColumn prefWidth="75.0" text="Name" fx:id="nameColumn"/>
-                                <TableColumn prefWidth="75.0" text="Score" fx:id="scoreColumn"/>
+                                <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+                                <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
+                                <TableColumn fx:id="scoreColumn" prefWidth="75.0" text="Score" />
                             </columns>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
                         </TableView>
                     </children>
                     <padding>
-                        <Insets bottom="20.0" left="10.0" right="20.0" top="20.0"/>
+                        <Insets bottom="20.0" left="10.0" right="20.0" top="20.0" />
                     </padding>
                 </VBox>
             </content>

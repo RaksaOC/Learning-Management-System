@@ -65,6 +65,8 @@ public class AssignmentSubmissionController {
                 SceneManager.setCenterView("studentClassroomContents");
             }
         });
+        attach.setCursor(Cursor.HAND);
+        submit.setCursor(Cursor.HAND);
         String assignmentId = session.getSelectedAssignment();
         // means that its submitted
         if (assignmentsManager.getPrevAssignmentRef() == null) {

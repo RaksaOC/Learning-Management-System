@@ -29,8 +29,8 @@ public class StudentMainFrameController {
     private HBox resourcesLink;
     @FXML
     private HBox quizzesLink;
-    @FXML
-    private HBox gradeReportLink;
+//    @FXML
+//    private HBox gradeReportLink;
     @FXML
     private HBox settingsLink;
     @FXML
@@ -97,11 +97,11 @@ public class StudentMainFrameController {
             SceneManager.setCenterView("studentQuizzes");
             highlightSelectedLink(quizzesLink);
         });
-        gradeReportLink.setOnMouseClicked(event -> {
-            SceneManager.loadCenterView("studentGradeReport", "resources/com/lms/views/studentSide/GradeReport.fxml");
-            SceneManager.setCenterView("studentGradeReport");
-            highlightSelectedLink(gradeReportLink);
-        });
+//        gradeReportLink.setOnMouseClicked(event -> {
+//            SceneManager.loadCenterView("studentGradeReport", "resources/com/lms/views/studentSide/GradeReport.fxml");
+//            SceneManager.setCenterView("studentGradeReport");
+//            highlightSelectedLink(gradeReportLink);
+//        });
         settingsLink.setOnMouseClicked(event -> {
             SceneManager.loadCenterView("studentProfileSettings", "resources/com/lms/views/studentSide/Profile-Settings.fxml");
             SceneManager.setCenterView("studentProfileSettings");
@@ -180,7 +180,7 @@ public class StudentMainFrameController {
         links.add(assignmentsLink);
         links.add(resourcesLink);
         links.add(quizzesLink);
-        links.add(gradeReportLink);
+//        links.add(gradeReportLink);
         links.add(settingsLink);
         links.add(logoutLink);
         links.add(switchUserLink);

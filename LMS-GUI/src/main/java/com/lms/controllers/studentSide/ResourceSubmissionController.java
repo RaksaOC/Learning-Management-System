@@ -37,6 +37,7 @@ public class ResourceSubmissionController {
     private Button submitButton;
 
     public void initialize() {
+        submitButton.setCursor(Cursor.HAND);
         backButton.setOnMouseClicked(event -> {
             if(!AppSession.getInstance().getIsSubmissionFromAllPage()){
                 AppSession.getInstance().setSelectedResources(null);

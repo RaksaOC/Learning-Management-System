@@ -3,6 +3,7 @@ package main.java.com.lms.controllers.teacherSide;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -44,8 +45,14 @@ public class EditQuizController {
     private Button finish;
 
     public void initialize() {
+        add.setCursor(Cursor.HAND);
+        finish.setCursor(Cursor.HAND);
+        backButton.setCursor(Cursor.HAND);
+
         curTitle.setText(quizzesManager.getQuizTitle());
         curDescription.setText(quizzesManager.getQuizDescription());
+        newTitle.setText(quizzesManager.getQuizTitle());
+        newDescription.setText(quizzesManager.getQuizDescription());
         backButton.setOnMouseClicked(event -> {
             SceneManager.loadCenterView("quizView", "resources/com/lms/views/teacherSide/QuizView.fxml");
             SceneManager.setCenterView("quizView");

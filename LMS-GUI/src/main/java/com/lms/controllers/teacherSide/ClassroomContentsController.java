@@ -60,6 +60,9 @@ public class ClassroomContentsController {
     private ArrayList<String> quizIdsAndName;
 
     public void initialize() {
+        addAssignmentButton.setCursor(Cursor.HAND);
+        addResourceButton.setCursor(Cursor.HAND);
+        addQuizButton.setCursor(Cursor.HAND);
         addAssignmentButton.setOnMouseClicked(event -> {
             SceneManager.loadCenterView("addAssignment", "resources/com/lms/views/teacherSide/AddAssignment.fxml");
             SceneManager.setCenterView("addAssignment");

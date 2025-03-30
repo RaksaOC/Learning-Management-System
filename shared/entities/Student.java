@@ -153,5 +153,4 @@ public class Student extends User {
                 ", guardianGender='" + guardianGender + '\'' +
                 '}';
     }
-
 }

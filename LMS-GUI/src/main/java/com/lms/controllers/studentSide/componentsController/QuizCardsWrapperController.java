@@ -36,6 +36,7 @@ public class QuizCardsWrapperController {
     public void initialize() {
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setStyle("-fx-background-color: transparent;");
 
         scrollPane.setContent((quizzesWrapper()));
 
@@ -66,7 +67,18 @@ public class QuizCardsWrapperController {
         QuizzesWrapper.setSpacing(40);
 
         QuizzesManager quizzesManager = new QuizzesManager();
-        quiz_classroom = (HashMap<String, String>) quizzesManager.getAllQuizzes();
+        quiz_classroom = (HashMap<String, String>) quizzesManager.getAllUnfinishedQuizzes();
+        if(quiz_classroom.isEmpty()){
+            VBox emptyBox = new VBox();
+            Text emptyText = new Text("No Upcoming Quizzes");
+            emptyBox.setAlignment(Pos.CENTER);
+            emptyBox.setPrefWidth(Double.MAX_VALUE);
+            emptyBox.setPrefHeight(Double.MAX_VALUE);
+            emptyBox.setStyle("-fx-background-color: #f4f6fa");
+            emptyText.setFont(Font.font("AppleGothic", 24));
+            emptyBox.getChildren().add(emptyText);
+            return emptyBox;
+        }
 
         quizzesList = new ArrayList<>(quiz_classroom.keySet());
         Collections.sort(quizzesList, Comparator.comparing(q -> q.substring(q.indexOf("-") + 2)));
@@ -142,8 +154,8 @@ public class QuizCardsWrapperController {
 //        clip.setArcWidth(30);
 //        quizCardBanner.setClip(clip);
 
-        quizCardBanner.setFitWidth(250);
-        quizCardBanner.setFitHeight(250);
+        quizCardBanner.setFitWidth(150);
+        quizCardBanner.setFitHeight(150);
         QuizIDVBox.setStyle("-fx-border-radius: 30; -fx-background-color: #2F92BC; -fx-background-radius: 30");
         QuizIDVBox.setAlignment(Pos.CENTER);
         QuizIDVBox.setPrefWidth(Double.MAX_VALUE);

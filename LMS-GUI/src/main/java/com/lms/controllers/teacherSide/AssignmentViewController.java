@@ -54,7 +54,8 @@ public class AssignmentViewController {
     private ArrayList<String> students;
 
     public void initialize() {
-
+        editButton.setCursor(Cursor.HAND);
+        deleteButton.setCursor(Cursor.HAND);
 
         students = classroomsManger.getAllStudentsInClassroom();
 

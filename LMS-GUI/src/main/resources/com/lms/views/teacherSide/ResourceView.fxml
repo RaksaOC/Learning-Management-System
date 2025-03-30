@@ -49,14 +49,14 @@
             <Insets top="10.0" />
          </VBox.margin>
       </AnchorPane>
-      <VBox prefHeight="285.0" prefWidth="1144.0">
+      <VBox prefHeight="140.0" prefWidth="1144.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Resources">
                <font>
                   <Font name="AppleGothic Regular" size="18.0" />
                </font>
             </Text>
-            <VBox fx:id="refWrapper" prefHeight="287.0" prefWidth="1144.0" spacing="10.0">
+            <VBox fx:id="refWrapper" prefHeight="121.0" prefWidth="1144.0" spacing="10.0">
                <padding>
                   <Insets bottom="10.0" top="10.0" />
                </padding>

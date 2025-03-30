@@ -37,6 +37,9 @@ public class ResourceViewController {
     private Button deleteButton;
 
     public void initialize() {
+        editButton.setCursor(Cursor.HAND);
+        deleteButton.setCursor(Cursor.HAND);
+
         backButton.setOnMouseClicked(event -> {
             SceneManager.loadCenterView("teacherClassroomContent", "resources/com/lms/views/teacherSide/ClassroomContents.fxml");
             SceneManager.setCenterView("teacherClassroomContent");

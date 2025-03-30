@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -54,6 +55,8 @@ public class AddQuizController {
     private Button finish;
 
     public void initialize() {
+        add.setCursor(Cursor.HAND);
+        finish.setCursor(Cursor.HAND);
         questionsWrapper.getChildren().add(createQuestionCard());
         add.setOnMouseClicked(event -> {
             numOfQuestions++;

@@ -51,6 +51,7 @@ public class GradeAssignmentController {
     private Button finishButton;
 
     public void initialize() {
+        finishButton.setCursor(Cursor.HAND);
         assignmentManager = new AssignmentManager(AppSession.getInstance().getSelectedClassroom());
 
         assignmentID.setText(AppSession.getInstance().getSelectedAssignment());

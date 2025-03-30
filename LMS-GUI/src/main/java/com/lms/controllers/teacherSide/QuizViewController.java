@@ -2,15 +2,18 @@ package main.java.com.lms.controllers.teacherSide;
 
 import entities.Teacher;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.AppSession;
 import main.SceneManager;
@@ -49,9 +52,12 @@ public class QuizViewController {
     private int questionNum;
 
     public void initialize() {
+        editButton.setCursor(Cursor.HAND);
+        deleteButton.setCursor(Cursor.HAND);
         questionNum = 1;
         questionsWrapper.setAlignment(Pos.CENTER);
         backButton.setOnMouseClicked(event -> {
+            AppSession.getInstance().setSelectedQuiz(null);
             SceneManager.loadCenterView("teacherClassroomContents", "resources/com/lms/views/teacherSide/ClassroomContents.fxml");
             SceneManager.setCenterView("teacherClassroomContents");
         });
@@ -64,7 +70,11 @@ public class QuizViewController {
         nameColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().get("name")));
         scoreColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().get("score")));
 
-        studentTable.getItems().addAll(quizManager.getAllStudentsAndScore());
+        System.out.println(quizManager.getAllStudentsAndScore());
+        studentTable.setItems(FXCollections.observableArrayList(quizManager.getAllStudentsAndScore()));
+        System.out.println("table content:"  + studentTable.getItems());
+        studentTable.setMinHeight(400);
+        studentTable.refresh();
 
         ArrayList<Map<String, Object>> questionsAndChoices = quizManager.getQuestionsAndChoices();
 
@@ -112,6 +122,7 @@ public class QuizViewController {
         questionTextLabel.setPrefWidth(731);
         questionTextLabel.setAlignment(Pos.CENTER);
         questionTextLabel.setPadding(new Insets(30, 0, 0, 0));
+        questionTextLabel.setFont(Font.font("AppleGothic", 20));
 
         questionSection.getChildren().addAll(questionLabel, questionTextLabel);
 

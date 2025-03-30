@@ -37,8 +37,7 @@ public class ClassroomCardsWrapperController {
     public void initialize() {
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        scrollPane.setStyle("-fx-background-color: red");
-
+        scrollPane.setStyle("-fx-background-color: transparent;");
         scrollPane.setContent(classroomsWrapper());
 
         // Delay execution until parent is available
@@ -68,6 +67,17 @@ public class ClassroomCardsWrapperController {
         classroomsWrapper.setSpacing(40);
 
         classroomIds = new ClassroomsManger().getAllClassrooms();
+        if(classroomIds.isEmpty()){
+            VBox emptyBox = new VBox();
+            emptyBox.setPrefWidth(Double.MAX_VALUE);
+            emptyBox.setPrefHeight(Double.MAX_VALUE);
+            emptyBox.setStyle("-fx-background-color: #f4f6fa");
+            Text emptyText = new Text("No Classrooms Found");
+            emptyBox.setAlignment(Pos.CENTER);
+            emptyText.setFont(Font.font("AppleGothic", 24));
+            emptyBox.getChildren().add(emptyText);
+            return emptyBox;
+        }
         Collections.sort(classroomIds);
 
         ArrayList<HBox> rows = new ArrayList<>();
@@ -97,7 +107,7 @@ public class ClassroomCardsWrapperController {
         VBox classroomCard = new VBox();
 
         ImageView classroomCardBanner = new ImageView();
-        Image image = new Image(getClass().getResource("../../../../../../resources/com/lms/images/img.png").toExternalForm());
+        Image image = new Image(getClass().getResource("../../../../../../resources/com/lms/images/classroom.png").toExternalForm());
         classroomCardBanner.setImage(image);
 
         VBox classroomIDVBox = new VBox();
@@ -134,7 +144,7 @@ public class ClassroomCardsWrapperController {
             classroomCard.setScaleY(1.0);
         });
 
-        classroomCardBanner.setFitWidth(420);
+        classroomCardBanner.setFitWidth(350);
         classroomCardBanner.setFitHeight(250);
         classroomCard.setPadding(new Insets(15, 0, 0, 0));
 //        classroomIDVBox.setStyle("-fx-border-radius: 30; -fx-background-color: #2F92BC; -fx-background-radius: 30");

@@ -3,6 +3,7 @@ package main.java.com.lms.controllers.studentSide;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -77,6 +78,7 @@ public class DoQuizController {
             questionsWrapper.getChildren().add(createQuestionCard((String) questionsAndChoices.get(i).get("title"), choicesList));
         }
 
+        finish.setCursor(Cursor.HAND);
         finish.setOnMouseClicked(event -> {
             scoreBox.getChildren().clear();
 
@@ -119,6 +121,7 @@ public class DoQuizController {
         questionTextLabel.setPrefWidth(731);
         questionTextLabel.setAlignment(Pos.CENTER);
         questionTextLabel.setPadding(new Insets(30, 0, 0, 0));
+        questionTextLabel.setFont(Font.font("AppleGothic", 20));
 
         questionSection.getChildren().addAll(questionLabel, questionTextLabel);
 
@@ -138,6 +141,7 @@ public class DoQuizController {
 
         for (Map<String, Object> choice : choices) {
             HBox choiceBox = new HBox();
+            choiceBox.setCursor(Cursor.HAND);
             choiceBox.setPrefSize(691, 50);
             choiceBox.setAlignment(Pos.CENTER_LEFT);
             choiceBox.setPadding(new Insets(10));

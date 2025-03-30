@@ -2,6 +2,7 @@ package main.java.com.lms.controllers;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
@@ -34,6 +35,7 @@ public class TeacherMainFrameController {
     private HBox selectedLink;
 
     public void initialize() {
+        profileImage.setCursor(Cursor.HAND);
         initLinksArray();
         highlightSelectedLink(dashboardLink);
         initHoverEffect();
@@ -47,7 +49,6 @@ public class TeacherMainFrameController {
         classroomsLink.setOnMouseClicked(event -> {
             SceneManager.loadCenterView("teacherClassrooms", "resources/com/lms/views/teacherSide/Classrooms.fxml");
             SceneManager.setCenterView("teacherClassrooms");
-
             highlightSelectedLink(classroomsLink);
         });
 
@@ -90,6 +91,7 @@ public class TeacherMainFrameController {
         profileImage.setOnMouseClicked(event -> {
             SceneManager.loadCenterView("teacherProfileSettings", "resources/com/lms/views/teacherSide/Profile-Settings.fxml");
             SceneManager.setCenterView("teacherProfileSettings");
+            highlightSelectedLink(settingsLink);
         });
     }
 

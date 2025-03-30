@@ -239,14 +239,15 @@ public class TeacherQuizManager extends ClassroomContentManager {
                 Map<String, String> quiz = new HashMap<>();
                 quiz.put("id", rs.getString("id"));
                 quiz.put("name", rs.getString("name"));
-                quiz.put("score", rs.getString("score"));
+                String score = rs.getString("score");
+                quiz.put("score", (score != null) ? score : "N/A");
                 quizzes.add(quiz);
             }
             return quizzes;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return new ArrayList<>();
     }
 
 

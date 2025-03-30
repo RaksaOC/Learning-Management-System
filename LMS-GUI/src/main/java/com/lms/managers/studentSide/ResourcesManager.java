@@ -3,12 +3,7 @@ package main.java.com.lms.managers.studentSide;
 import entities.Student;
 import main.AppSession;
 import main.DatabaseConnection;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -82,7 +77,7 @@ public class ResourcesManager {
         return null;
     }
 
-    public Map<String, String> getAllResources() {
+    public Map<String, String> getAllUnfinishedResources() {
         Map<String, String> id_name_classroom = new HashMap<>();
         String query = "SELECT CONCAT(m.id, ' - ', m.title) AS id_name, " +
                 "p.classroom_id as class_id " +
@@ -91,7 +86,7 @@ public class ResourcesManager {
                 "ON pm.progress_id = p.id " +
                 "JOIN material AS m " +
                 "ON pm.material_id = m.id " +
-                "WHERE p.student_id = ?  ";
+                "WHERE p.student_id = ?  AND pm.status = 'active' ";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, AppSession.getInstance().getStudent().getId());
             ResultSet rs = statement.executeQuery();

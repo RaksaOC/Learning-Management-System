@@ -55,6 +55,9 @@ public class EditAssignmentController {
     private AtomicReference<String> link = new AtomicReference<>("");
 
     public void initialize() {
+        addRef.setCursor(Cursor.HAND);
+        editButton.setCursor(Cursor.HAND);
+
         curAssignmentName.setText(assignmentManager.getAssignmentTitle());
         curAssignmentDescription.setText(assignmentManager.getAssignmentDescription());
         curAssignmentDeadline.setText(assignmentManager.getAssignmentDeadline());

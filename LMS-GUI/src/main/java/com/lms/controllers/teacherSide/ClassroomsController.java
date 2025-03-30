@@ -76,7 +76,7 @@ public class ClassroomsController {
         VBox classroomCard = new VBox();
 
         ImageView classroomCardBanner = new ImageView();
-        Image image = new Image(getClass().getResource("../../../../../resources/com/lms/images/img.png").toExternalForm());
+        Image image = new Image(getClass().getResource("../../../../../resources/com/lms/images/classroom.png").toExternalForm());
         classroomCardBanner.setImage(image);
 
         VBox classroomIDVBox = new VBox();
@@ -118,7 +118,7 @@ public class ClassroomsController {
 //        clip.setArcWidth(30);
 //        classroomCardBanner.setClip(clip);
 
-        classroomCardBanner.setFitWidth(420);
+        classroomCardBanner.setFitWidth(350);
         classroomCardBanner.setFitHeight(250);
         classroomCard.setPadding(new Insets(15, 0, 0, 0));
 //        classroomIDVBox.setStyle("-fx-border-radius: 30; -fx-background-color: #2F92BC; -fx-background-radius: 30");

@@ -36,6 +36,7 @@ public class ResourceCardsWrapperController {
     public void initialize() {
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setStyle("-fx-background-color: transparent;");
 
         scrollPane.setContent(resourcesWrapper());
 
@@ -66,7 +67,18 @@ public class ResourceCardsWrapperController {
 
         ResourcesManager resourcesManager = new ResourcesManager();
 
-        resource_classroom = (HashMap<String, String>) resourcesManager.getAllResources();
+        resource_classroom = (HashMap<String, String>) resourcesManager.getAllUnfinishedResources();
+        if(resource_classroom.isEmpty()){
+            VBox emptyBox = new VBox();
+            Text emptyText = new Text("No Unread Resources");
+            emptyBox.setAlignment(Pos.CENTER);
+            emptyBox.setPrefWidth(Double.MAX_VALUE);
+            emptyBox.setPrefHeight(Double.MAX_VALUE);
+            emptyBox.setStyle("-fx-background-color: #f4f6fa");
+            emptyText.setFont(Font.font("AppleGothic", 24));
+            emptyBox.getChildren().add(emptyText);
+            return emptyBox;
+        }
 
         resourcesList = new ArrayList<>(resource_classroom.keySet());
         Collections.sort(resourcesList);

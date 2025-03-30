@@ -3,14 +3,8 @@ package main.java.com.lms.managers.studentSide;
 import entities.Student;
 import main.AppSession;
 import main.DatabaseConnection;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.math.BigDecimal;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -284,7 +278,7 @@ public class QuizzesManager {
 //        }
 //    }
 
-    public Map<String, String> getAllQuizzes() {
+    public Map<String, String> getAllUnfinishedQuizzes() {
         Map<String, String> id_name_classroom = new HashMap<>();
         String query = "SELECT CONCAT(q.id, ' - ' ,q.title) AS id_name, " +
                 "p.classroom_id as class_id  " +
@@ -293,7 +287,7 @@ public class QuizzesManager {
                 "ON pq.progress_id = p.id " +
                 "JOIN quiz AS q " +
                 "ON pq.quiz_id = q.id " +
-                "WHERE p.student_id = ?";
+                "WHERE p.student_id = ? AND pq.score IS NULL";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, AppSession.getInstance().getStudent().getId());
             ResultSet rs = statement.executeQuery();

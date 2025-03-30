@@ -43,16 +43,9 @@ public class StudentProfileSettingsController {
     private Text gPhone;
     @FXML
     private Text lastLoggedIn;
-    @FXML
-    private HBox themeToggleWrapper;
-    @FXML
-    private VBox themeSwitch;
-    @FXML
-    private VBox themeToggleLabel;
 
     public void initialize() {
         initPersonalInfo();
-        initSettings();
     }
 
     private void initPersonalInfo(){
@@ -73,52 +66,52 @@ public class StudentProfileSettingsController {
         this.lastLoggedIn.setText(session.getStudent().getLastLogin());
     }
 
-    private void initSettings(){
-        AtomicBoolean isOn = new AtomicBoolean(false);
-        themeToggleWrapper.setOnMouseClicked(event -> {
-            if (!isOn.get()) {
-                // ON State (left side filled, right side empty)
-                themeSwitch.setStyle("-fx-background-color: white; -fx-border-radius: 20; -fx-background-radius: 20");
-                themeToggleLabel.setStyle("-fx-background-color: #2F92BC; -fx-background-radius: 20; -fx-border-radius: 20");
-
-                themeSwitch.getChildren().clear();
-                themeToggleLabel.getChildren().clear();
-
-                Text onLabel = new Text("ON");
-                onLabel.setFill(Color.BLACK);
-                onLabel.setFont(Font.font("AppleGothic", 13));
-
-                themeSwitch.setAlignment(Pos.CENTER);
-                themeSwitch.getChildren().add(onLabel); // Add text to the left side
-
-//                ThemeManager.toggleTheme(SceneManager.getMainLayout());
-                isOn.set(true);
-            } else {
-                // OFF State (right side filled, left side empty)
-                themeSwitch.setStyle("-fx-background-color: #2F92BC; -fx-border-radius: 20; -fx-background-radius: 20");
-                themeToggleLabel.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20");
-
-                themeSwitch.getChildren().clear();
-                themeToggleLabel.getChildren().clear();
-
-                Text offLabel = new Text("OFF");
-                offLabel.setFill(Color.BLACK);
-                offLabel.setFont(Font.font("AppleGothic", 13));
-
-                themeToggleLabel.setAlignment(Pos.CENTER);
-                themeToggleLabel.getChildren().add(offLabel); // Add text to the right side
-//                ThemeManager.toggleTheme(SceneManager.getMainLayout());
-
-                isOn.set(false);
-            }
-        });
-
-        themeToggleWrapper.setOnMouseEntered(event -> {
-            themeToggleWrapper.setOpacity(0.9);
-        });
-        themeToggleWrapper.setOnMouseExited(event -> {
-            themeToggleWrapper.setOpacity(1);
-        });
-
-    }
+//    private void initSettings(){
+//        AtomicBoolean isOn = new AtomicBoolean(false);
+//        themeToggleWrapper.setOnMouseClicked(event -> {
+//            if (!isOn.get()) {
+//                // ON State (left side filled, right side empty)
+//                themeSwitch.setStyle("-fx-background-color: white; -fx-border-radius: 20; -fx-background-radius: 20");
+//                themeToggleLabel.setStyle("-fx-background-color: #2F92BC; -fx-background-radius: 20; -fx-border-radius: 20");
+//
+//                themeSwitch.getChildren().clear();
+//                themeToggleLabel.getChildren().clear();
+//
+//                Text onLabel = new Text("ON");
+//                onLabel.setFill(Color.BLACK);
+//                onLabel.setFont(Font.font("AppleGothic", 13));
+//
+//                themeSwitch.setAlignment(Pos.CENTER);
+//                themeSwitch.getChildren().add(onLabel); // Add text to the left side
+//
+////                ThemeManager.toggleTheme(SceneManager.getMainLayout());
+//                isOn.set(true);
+//            } else {
+//                // OFF State (right side filled, left side empty)
+//                themeSwitch.setStyle("-fx-background-color: #2F92BC; -fx-border-radius: 20; -fx-background-radius: 20");
+//                themeToggleLabel.setStyle("-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20");
+//
+//                themeSwitch.getChildren().clear();
+//                themeToggleLabel.getChildren().clear();
+//
+//                Text offLabel = new Text("OFF");
+//                offLabel.setFill(Color.BLACK);
+//                offLabel.setFont(Font.font("AppleGothic", 13));
+//
+//                themeToggleLabel.setAlignment(Pos.CENTER);
+//                themeToggleLabel.getChildren().add(offLabel); // Add text to the right side
+////                ThemeManager.toggleTheme(SceneManager.getMainLayout());
+//
+//                isOn.set(false);
+//            }
+//        });
+//
+//        themeToggleWrapper.setOnMouseEntered(event -> {
+//            themeToggleWrapper.setOpacity(0.9);
+//        });
+//        themeToggleWrapper.setOnMouseExited(event -> {
+//            themeToggleWrapper.setOpacity(1);
+//        });
+//
+//    }
 }

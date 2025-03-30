@@ -15,9 +15,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.lmsAdmin.controllers.layer0.LogInController">
    <center>
-      <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #CECECE;" BorderPane.alignment="BOTTOM_RIGHT">
+      <VBox alignment="CENTER" BorderPane.alignment="BOTTOM_RIGHT">
          <children>
-            <AnchorPane layoutX="261.0" layoutY="165.0" prefHeight="570.0" prefWidth="879.0">
+            <AnchorPane maxWidth="-Infinity" prefHeight="570.0" prefWidth="883.0">
                <children>
                   <ImageView fitHeight="568.0" fitWidth="386.0" layoutY="2.0" opacity="0.57" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="493.0" AnchorPane.topAnchor="2.0">
                      <image>
@@ -84,9 +84,6 @@
                </effect>
             </AnchorPane>
          </children>
-         <padding>
-            <Insets left="100.0" top="100.0" />
-         </padding>
-      </AnchorPane>
+      </VBox>
    </center>
 </BorderPane>

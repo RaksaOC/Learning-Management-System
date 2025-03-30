@@ -7,6 +7,7 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -36,6 +37,8 @@ public class AddResourceController {
     private AtomicReference<String> link = new AtomicReference<>("");
 
     public void initialize() {
+        addAttach.setCursor(Cursor.HAND);
+        finishButton.setCursor(Cursor.HAND);
         backButton.setOnMouseClicked(event -> {
             SceneManager.loadCenterView("teacherClassroomContents", "resources/com/lms/views/teacherSide/ClassroomContents.fxml");
             SceneManager.setCenterView("teacherClassroomContents");
@@ -69,11 +72,11 @@ public class AddResourceController {
     private HBox attachCard(String resourceName, String resourceImagePath) {
         HBox attachCard = new HBox(40);
         attachCard.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 30; -fx-border-radius: 30;");
-        attachCard.setMaxWidth(Double.MAX_VALUE);
         attachCard.setPrefHeight(79.0);
         attachCard.setPrefWidth(700.0);
         attachCard.setAlignment(Pos.CENTER_LEFT);
         attachCard.setCursor(Cursor.HAND);
+        attachCard.setMaxWidth(Region.USE_PREF_SIZE);
 
         attachCard.setPadding(new Insets(0, 30, 0, 30));
 

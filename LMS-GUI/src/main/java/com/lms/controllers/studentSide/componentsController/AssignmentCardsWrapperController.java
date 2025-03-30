@@ -1,5 +1,6 @@
 package main.java.com.lms.controllers.studentSide.componentsController;
 
+import com.sun.scenario.animation.shared.FiniteClipEnvelope;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -34,7 +35,7 @@ public class AssignmentCardsWrapperController {
     public void initialize() {
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-
+        scrollPane.setStyle("-fx-background-color: transparent;");
         scrollPane.setContent(assignmentsWrapper());
 
         // Delay execution until parent is available
@@ -68,8 +69,18 @@ public class AssignmentCardsWrapperController {
         assignmentsWrapper.setSpacing(40);
 
         AssignmentsManager assignmentsManager = new AssignmentsManager();
-        assignment_classroom = (HashMap<String, String>) assignmentsManager.getAllAssignments();
-
+        assignment_classroom = (HashMap<String, String>) assignmentsManager.getAllUnfinishedAssignments();
+        if(assignment_classroom.isEmpty()){
+            VBox emptyBox = new VBox();
+            Text emptyText = new Text("No Upcoming Assignments");
+            emptyBox.setPrefWidth(Double.MAX_VALUE);
+            emptyBox.setPrefHeight(Double.MAX_VALUE);
+            emptyBox.setStyle("-fx-background-color: #f4f6fa");
+            emptyBox.setAlignment(Pos.CENTER);
+            emptyText.setFont(Font.font("AppleGothic", 24));
+            emptyBox.getChildren().add(emptyText);
+            return emptyBox;
+        }
         assignmentsList = new ArrayList<>(assignment_classroom.keySet());
         Collections.sort(assignmentsList);
 

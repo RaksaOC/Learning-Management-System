@@ -3,17 +3,9 @@ package main.java.com.lms.managers.studentSide;
 import entities.Student;
 import main.AppSession;
 import main.DatabaseConnection;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import ui.UI;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Date;
 
 public class AssignmentsManager {
     private final Student student;
@@ -40,7 +32,7 @@ public class AssignmentsManager {
         }
     }
 
-    public Map<String, String> getAllAssignments() {
+    public Map<String, String> getAllUnfinishedAssignments() {
         Map<String, String> id_name_classroom = new HashMap<>();
         String query = "SELECT CONCAT(a.id, ' - ', a.title) AS id_name, " +
                 "p.classroom_id as class_id " +
@@ -49,7 +41,7 @@ public class AssignmentsManager {
                 "ON pa.progress_id = p.id " +
                 "JOIN assignment AS a " +
                 "ON pa.assignment_id = a.id " +
-                "WHERE p.student_id = ?";
+                "WHERE p.student_id = ? AND pa.status = 'active' AND pa.sub_attachment IS NULL ";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, AppSession.getInstance().getStudent().getId());
             ResultSet rs = statement.executeQuery();

@@ -48,6 +48,10 @@ public class EditResourceController {
     private AtomicReference<String> link = new AtomicReference<>("");
 
     public void initialize() {
+        backButton.setCursor(Cursor.HAND);
+        addButton.setCursor(Cursor.HAND);
+        editButton.setCursor(Cursor.HAND);
+
         backButton.setOnMouseClicked(event -> {
             SceneManager.loadCenterView("resourceView", "resources/com/lms/views/teacherSide/ResourceView.fxml");
             SceneManager.setCenterView("resourceView");

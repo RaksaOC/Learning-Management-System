@@ -201,7 +201,6 @@ CREATE TABLE question (
     id VARCHAR(10) PRIMARY KEY,
     quiz_id VARCHAR(10),
     title VARCHAR(100) NOT NULL,
-    correct VARCHAR(100) NOT NULL,
     FOREIGN KEY (quiz_id) REFERENCES quiz(id) ON UPDATE CASCADE
 );
 
@@ -210,6 +209,7 @@ CREATE TABLE choice (
     id VARCHAR(10) PRIMARY KEY,  -- good for changing a specific choice
     question_id VARCHAR(10) NOT NULL,
     choice_text VARCHAR(100) NOT NULL,
+    correct VARCHAR(100) NOT NULL,
     FOREIGN KEY (question_id) REFERENCES question(id) ON DELETE CASCADE
 );
 

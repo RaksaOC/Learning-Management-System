@@ -23,6 +23,8 @@ SELECT * FROM classroom_quiz;
 SELECT * FROM classroom_material;
 SELECT * FROM administrative;
 
+
+
 -- &&&&&&&&&&&&&&&&&&&&&&&&&
 -- &&&&&&& Scenarios &&&&&&&
 -- &&&&&&&&&&&&&&&&&&&&&&&&&
@@ -187,7 +189,7 @@ WHERE p.student_id = 'sample_student_id';
 
 -- Get number of students
 
-SELECT COUNT(*) FROM students;
+SELECT COUNT(*) FROM student;
 
 -- -------------------------
 -- Teacher's Data

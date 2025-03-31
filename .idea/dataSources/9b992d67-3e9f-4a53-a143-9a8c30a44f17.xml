@@ -1121,1202 +1121,1424 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <table id="301" parent="295" name="admin">
+    <routine id="301" parent="295" name="getAssignmentsCreatedByTeacher">
+      <Definer>root@%</Definer>
+      <Deterministic>1</Deterministic>
+      <RoutineKind>function</RoutineKind>
+      <SourceTextLength>313</SourceTextLength>
+    </routine>
+    <routine id="302" parent="295" name="getAssignmentsGradedByTeacher">
+      <Definer>root@%</Definer>
+      <Deterministic>1</Deterministic>
+      <RoutineKind>function</RoutineKind>
+      <SourceTextLength>466</SourceTextLength>
+    </routine>
+    <routine id="303" parent="295" name="getClassroomsTaughtByTeacher">
+      <Definer>root@%</Definer>
+      <Deterministic>1</Deterministic>
+      <RoutineKind>function</RoutineKind>
+      <SourceTextLength>247</SourceTextLength>
+    </routine>
+    <routine id="304" parent="295" name="getCompletedAssignments">
+      <Definer>root@%</Definer>
+      <Deterministic>1</Deterministic>
+      <RoutineKind>function</RoutineKind>
+      <SourceTextLength>431</SourceTextLength>
+    </routine>
+    <routine id="305" parent="295" name="getCompletedClassrooms">
+      <Definer>root@%</Definer>
+      <Deterministic>1</Deterministic>
+      <RoutineKind>function</RoutineKind>
+      <SourceTextLength>357</SourceTextLength>
+    </routine>
+    <routine id="306" parent="295" name="getCompletedQuizzes">
+      <Definer>root@%</Definer>
+      <Deterministic>1</Deterministic>
+      <RoutineKind>function</RoutineKind>
+      <SourceTextLength>397</SourceTextLength>
+    </routine>
+    <routine id="307" parent="295" name="getQuizzesCreatedByTeacher">
+      <Definer>root@%</Definer>
+      <Deterministic>1</Deterministic>
+      <RoutineKind>function</RoutineKind>
+      <SourceTextLength>291</SourceTextLength>
+    </routine>
+    <routine id="308" parent="295" name="getTotalStudents">
+      <Definer>root@%</Definer>
+      <Deterministic>1</Deterministic>
+      <RoutineKind>function</RoutineKind>
+      <SourceTextLength>171</SourceTextLength>
+    </routine>
+    <routine id="309" parent="295" name="getTotalTeachers">
+      <Definer>root@%</Definer>
+      <Deterministic>1</Deterministic>
+      <RoutineKind>function</RoutineKind>
+      <SourceTextLength>171</SourceTextLength>
+    </routine>
+    <table id="310" parent="295" name="admin">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="302" parent="295" name="administrative">
+    <table id="311" parent="295" name="administrative">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="303" parent="295" name="assignment">
+    <table id="312" parent="295" name="assignment">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="304" parent="295" name="choice">
+    <table id="313" parent="295" name="choice">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="305" parent="295" name="classroom">
+    <table id="314" parent="295" name="classroom">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="306" parent="295" name="classroom_assignment">
+    <table id="315" parent="295" name="classroom_assignment">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="307" parent="295" name="classroom_material">
+    <table id="316" parent="295" name="classroom_material">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="308" parent="295" name="classroom_quiz">
+    <table id="317" parent="295" name="classroom_quiz">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="309" parent="295" name="classroom_student">
+    <table id="318" parent="295" name="classroom_student">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="310" parent="295" name="course">
+    <table id="319" parent="295" name="course">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="311" parent="295" name="department">
+    <table id="320" parent="295" name="department">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="312" parent="295" name="generation">
+    <table id="321" parent="295" name="generation">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="313" parent="295" name="material">
+    <table id="322" parent="295" name="material">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="314" parent="295" name="progress">
+    <table id="323" parent="295" name="progress">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="315" parent="295" name="progress_assignment">
+    <table id="324" parent="295" name="progress_assignment">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="316" parent="295" name="progress_material">
+    <table id="325" parent="295" name="progress_material">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="317" parent="295" name="progress_quiz">
+    <table id="326" parent="295" name="progress_quiz">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="318" parent="295" name="question">
+    <table id="327" parent="295" name="question">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="319" parent="295" name="quiz">
+    <table id="328" parent="295" name="quiz">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="320" parent="295" name="specialization">
+    <table id="329" parent="295" name="specialization">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="321" parent="295" name="student">
+    <table id="330" parent="295" name="student">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="322" parent="295" name="student_group">
+    <table id="331" parent="295" name="student_group">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="323" parent="295" name="student_history">
+    <table id="332" parent="295" name="student_history">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="324" parent="295" name="teacher">
+    <table id="333" parent="295" name="teacher">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="325" parent="295" name="teacher_history">
+    <table id="334" parent="295" name="teacher_history">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <column id="326" parent="301" name="id">
+    <view id="335" parent="295" name="student_all_assignments">
+      <Definer>root@%</Definer>
+      <SourceTextLength>311</SourceTextLength>
+    </view>
+    <view id="336" parent="295" name="student_all_materials">
+      <Definer>root@%</Definer>
+      <SourceTextLength>303</SourceTextLength>
+    </view>
+    <view id="337" parent="295" name="student_all_quizzes">
+      <Definer>root@%</Definer>
+      <SourceTextLength>287</SourceTextLength>
+    </view>
+    <view id="338" parent="295" name="student_assignments_in_classroom">
+      <Definer>root@%</Definer>
+      <SourceTextLength>322</SourceTextLength>
+    </view>
+    <view id="339" parent="295" name="student_completed_classrooms">
+      <Definer>root@%</Definer>
+      <SourceTextLength>266</SourceTextLength>
+    </view>
+    <view id="340" parent="295" name="student_materials_in_classroom">
+      <Definer>root@%</Definer>
+      <SourceTextLength>314</SourceTextLength>
+    </view>
+    <view id="341" parent="295" name="student_quizzes_in_classroom">
+      <Definer>root@%</Definer>
+      <SourceTextLength>298</SourceTextLength>
+    </view>
+    <view id="342" parent="295" name="teacher_assigned_classrooms">
+      <Definer>root@%</Definer>
+      <SourceTextLength>117</SourceTextLength>
+    </view>
+    <view id="343" parent="295" name="teacher_assignments_in_classroom">
+      <Definer>root@%</Definer>
+      <SourceTextLength>388</SourceTextLength>
+    </view>
+    <view id="344" parent="295" name="teacher_materials_in_classroom">
+      <Definer>root@%</Definer>
+      <SourceTextLength>376</SourceTextLength>
+    </view>
+    <view id="345" parent="295" name="teacher_quizzes_in_classroom">
+      <Definer>root@%</Definer>
+      <SourceTextLength>360</SourceTextLength>
+    </view>
+    <argument id="346" parent="301">
+      <ArgumentDirection>R</ArgumentDirection>
+      <StoredType>int|0s</StoredType>
+    </argument>
+    <argument id="347" parent="301" name="teacher_id">
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </argument>
+    <argument id="348" parent="302">
+      <ArgumentDirection>R</ArgumentDirection>
+      <StoredType>int|0s</StoredType>
+    </argument>
+    <argument id="349" parent="302" name="teacher_id">
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </argument>
+    <argument id="350" parent="303">
+      <ArgumentDirection>R</ArgumentDirection>
+      <StoredType>int|0s</StoredType>
+    </argument>
+    <argument id="351" parent="303" name="teacher_id">
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </argument>
+    <argument id="352" parent="304">
+      <ArgumentDirection>R</ArgumentDirection>
+      <StoredType>int|0s</StoredType>
+    </argument>
+    <argument id="353" parent="304" name="student_id">
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </argument>
+    <argument id="354" parent="305">
+      <ArgumentDirection>R</ArgumentDirection>
+      <StoredType>int|0s</StoredType>
+    </argument>
+    <argument id="355" parent="305" name="student_id">
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </argument>
+    <argument id="356" parent="306">
+      <ArgumentDirection>R</ArgumentDirection>
+      <StoredType>int|0s</StoredType>
+    </argument>
+    <argument id="357" parent="306" name="student_id">
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </argument>
+    <argument id="358" parent="307">
+      <ArgumentDirection>R</ArgumentDirection>
+      <StoredType>int|0s</StoredType>
+    </argument>
+    <argument id="359" parent="307" name="teacher_id">
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </argument>
+    <argument id="360" parent="308">
+      <ArgumentDirection>R</ArgumentDirection>
+      <StoredType>int|0s</StoredType>
+    </argument>
+    <argument id="361" parent="309">
+      <ArgumentDirection>R</ArgumentDirection>
+      <StoredType>int|0s</StoredType>
+    </argument>
+    <column id="362" parent="310" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="327" parent="301" name="first_name">
+    <column id="363" parent="310" name="first_name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="328" parent="301" name="last_name">
+    <column id="364" parent="310" name="last_name">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="329" parent="301" name="created_at">
+    <column id="365" parent="310" name="created_at">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>datetime|0s</StoredType>
     </column>
-    <column id="330" parent="301" name="last_login">
+    <column id="366" parent="310" name="last_login">
       <Position>5</Position>
       <StoredType>datetime|0s</StoredType>
     </column>
-    <column id="331" parent="301" name="password">
+    <column id="367" parent="310" name="password">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="332" parent="301" name="phone_number">
+    <column id="368" parent="310" name="phone_number">
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StoredType>varchar(20)|0s</StoredType>
     </column>
-    <column id="333" parent="301" name="gender">
+    <column id="369" parent="310" name="gender">
       <NotNull>1</NotNull>
       <Position>8</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="334" parent="301" name="dob">
+    <column id="370" parent="310" name="dob">
       <NotNull>1</NotNull>
       <Position>9</Position>
       <StoredType>date|0s</StoredType>
     </column>
-    <column id="335" parent="301" name="email">
+    <column id="371" parent="310" name="email">
       <NotNull>1</NotNull>
       <Position>10</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="336" parent="301" name="status">
+    <column id="372" parent="310" name="status">
       <NotNull>1</NotNull>
       <Position>11</Position>
       <StoredType>enum(&apos;active&apos;, &apos;inactive&apos;)|0e</StoredType>
     </column>
-    <index id="337" parent="301" name="PRIMARY">
+    <index id="373" parent="310" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="338" parent="301" name="email">
+    <index id="374" parent="310" name="email">
       <ColNames>email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="339" parent="301" name="PRIMARY">
+    <key id="375" parent="310" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="340" parent="301" name="email">
+    <key id="376" parent="310" name="email">
       <UnderlyingIndexName>email</UnderlyingIndexName>
     </key>
-    <column id="341" parent="302" name="commune">
+    <column id="377" parent="311" name="commune">
       <Position>1</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="342" parent="302" name="commune_code">
+    <column id="378" parent="311" name="commune_code">
       <Position>2</Position>
       <StoredType>varchar(20)|0s</StoredType>
     </column>
-    <column id="343" parent="302" name="commune_ref">
+    <column id="379" parent="311" name="commune_ref">
       <Position>3</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="344" parent="302" name="commune_alt">
+    <column id="380" parent="311" name="commune_alt">
       <Position>4</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="345" parent="302" name="commune_alt2">
+    <column id="381" parent="311" name="commune_alt2">
       <Position>5</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="346" parent="302" name="commune_sqm">
+    <column id="382" parent="311" name="commune_sqm">
       <Position>6</Position>
       <StoredType>decimal(10)|0s</StoredType>
     </column>
-    <column id="347" parent="302" name="district">
+    <column id="383" parent="311" name="district">
       <Position>7</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="348" parent="302" name="district_code">
+    <column id="384" parent="311" name="district_code">
       <Position>8</Position>
       <StoredType>varchar(15)|0s</StoredType>
     </column>
-    <column id="349" parent="302" name="province">
+    <column id="385" parent="311" name="province">
       <Position>9</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="350" parent="302" name="province_code">
+    <column id="386" parent="311" name="province_code">
       <Position>10</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="351" parent="302" name="country">
+    <column id="387" parent="311" name="country">
       <Position>11</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="352" parent="302" name="country_code">
+    <column id="388" parent="311" name="country_code">
       <Position>12</Position>
       <StoredType>varchar(5)|0s</StoredType>
     </column>
-    <column id="353" parent="303" name="id">
+    <column id="389" parent="312" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="354" parent="303" name="title">
+    <column id="390" parent="312" name="title">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="355" parent="303" name="description">
+    <column id="391" parent="312" name="description">
       <Position>3</Position>
       <StoredType>text|0s</StoredType>
     </column>
-    <column id="356" parent="303" name="deadline">
+    <column id="392" parent="312" name="deadline">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>datetime|0s</StoredType>
     </column>
-    <column id="357" parent="303" name="status">
+    <column id="393" parent="312" name="status">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>enum(&apos;active&apos;, &apos;inactive&apos;)|0e</StoredType>
     </column>
-    <column id="358" parent="303" name="ref_attachment">
+    <column id="394" parent="312" name="ref_attachment">
       <Position>6</Position>
       <StoredType>varchar(500)|0s</StoredType>
     </column>
-    <index id="359" parent="303" name="PRIMARY">
+    <index id="395" parent="312" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="360" parent="303" name="PRIMARY">
+    <key id="396" parent="312" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="361" parent="304" name="id">
+    <column id="397" parent="313" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="362" parent="304" name="question_id">
+    <column id="398" parent="313" name="question_id">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="363" parent="304" name="choice_text">
+    <column id="399" parent="313" name="choice_text">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="364" parent="304" name="isCorrect">
+    <column id="400" parent="313" name="isCorrect">
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>tinyint(1)|0s</StoredType>
     </column>
-    <foreign-key id="365" parent="304" name="choice_ibfk_1">
+    <foreign-key id="401" parent="313" name="choice_ibfk_1">
       <ColNames>question_id</ColNames>
       <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
       <RefTableName>question</RefTableName>
     </foreign-key>
-    <index id="366" parent="304" name="PRIMARY">
+    <index id="402" parent="313" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="367" parent="304" name="question_id">
+    <index id="403" parent="313" name="question_id">
       <ColNames>question_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="368" parent="304" name="PRIMARY">
+    <key id="404" parent="313" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="369" parent="305" name="id">
+    <column id="405" parent="314" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="370" parent="305" name="teacher_id">
+    <column id="406" parent="314" name="teacher_id">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(20)|0s</StoredType>
     </column>
-    <column id="371" parent="305" name="course_id">
+    <column id="407" parent="314" name="course_id">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(20)|0s</StoredType>
     </column>
-    <column id="372" parent="305" name="group_id">
+    <column id="408" parent="314" name="group_id">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(20)|0s</StoredType>
     </column>
-    <column id="373" parent="305" name="status">
+    <column id="409" parent="314" name="status">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>enum(&apos;active&apos;, &apos;inactive&apos;)|0e</StoredType>
     </column>
-    <foreign-key id="374" parent="305" name="classroom_ibfk_1">
+    <foreign-key id="410" parent="314" name="classroom_ibfk_1">
       <ColNames>teacher_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>teacher</RefTableName>
     </foreign-key>
-    <foreign-key id="375" parent="305" name="classroom_ibfk_2">
+    <foreign-key id="411" parent="314" name="classroom_ibfk_2">
       <ColNames>course_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>course</RefTableName>
     </foreign-key>
-    <foreign-key id="376" parent="305" name="classroom_ibfk_3">
+    <foreign-key id="412" parent="314" name="classroom_ibfk_3">
       <ColNames>group_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>student_group</RefTableName>
     </foreign-key>
-    <index id="377" parent="305" name="PRIMARY">
+    <index id="413" parent="314" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="378" parent="305" name="teacher_id">
+    <index id="414" parent="314" name="teacher_id">
       <ColNames>teacher_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="379" parent="305" name="course_id">
+    <index id="415" parent="314" name="course_id">
       <ColNames>course_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="380" parent="305" name="group_id">
+    <index id="416" parent="314" name="group_id">
       <ColNames>group_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="381" parent="305" name="PRIMARY">
+    <key id="417" parent="314" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="382" parent="306" name="class_id">
+    <column id="418" parent="315" name="class_id">
       <Position>1</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="383" parent="306" name="assignment_id">
+    <column id="419" parent="315" name="assignment_id">
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <foreign-key id="384" parent="306" name="classroom_assignment_ibfk_1">
+    <foreign-key id="420" parent="315" name="classroom_assignment_ibfk_1">
       <ColNames>class_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>classroom</RefTableName>
     </foreign-key>
-    <foreign-key id="385" parent="306" name="classroom_assignment_ibfk_2">
+    <foreign-key id="421" parent="315" name="classroom_assignment_ibfk_2">
       <ColNames>assignment_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>assignment</RefTableName>
     </foreign-key>
-    <index id="386" parent="306" name="class_id">
+    <index id="422" parent="315" name="class_id">
       <ColNames>class_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="387" parent="306" name="assignment_id">
+    <index id="423" parent="315" name="assignment_id">
       <ColNames>assignment_id</ColNames>
       <Type>btree</Type>
     </index>
-    <column id="388" parent="307" name="class_id">
+    <column id="424" parent="316" name="class_id">
       <Position>1</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="389" parent="307" name="material_id">
+    <column id="425" parent="316" name="material_id">
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <foreign-key id="390" parent="307" name="classroom_material_ibfk_1">
+    <foreign-key id="426" parent="316" name="classroom_material_ibfk_1">
       <ColNames>class_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>classroom</RefTableName>
     </foreign-key>
-    <foreign-key id="391" parent="307" name="classroom_material_ibfk_2">
+    <foreign-key id="427" parent="316" name="classroom_material_ibfk_2">
       <ColNames>material_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>material</RefTableName>
     </foreign-key>
-    <index id="392" parent="307" name="class_id">
+    <index id="428" parent="316" name="class_id">
       <ColNames>class_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="393" parent="307" name="material_id">
+    <index id="429" parent="316" name="material_id">
       <ColNames>material_id</ColNames>
       <Type>btree</Type>
     </index>
-    <column id="394" parent="308" name="class_id">
+    <column id="430" parent="317" name="class_id">
       <Position>1</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="395" parent="308" name="quiz_id">
+    <column id="431" parent="317" name="quiz_id">
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <foreign-key id="396" parent="308" name="classroom_quiz_ibfk_1">
+    <foreign-key id="432" parent="317" name="classroom_quiz_ibfk_1">
       <ColNames>class_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>classroom</RefTableName>
     </foreign-key>
-    <foreign-key id="397" parent="308" name="classroom_quiz_ibfk_2">
+    <foreign-key id="433" parent="317" name="classroom_quiz_ibfk_2">
       <ColNames>quiz_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>quiz</RefTableName>
     </foreign-key>
-    <index id="398" parent="308" name="class_id">
+    <index id="434" parent="317" name="class_id">
       <ColNames>class_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="399" parent="308" name="quiz_id">
+    <index id="435" parent="317" name="quiz_id">
       <ColNames>quiz_id</ColNames>
       <Type>btree</Type>
     </index>
-    <column id="400" parent="309" name="class_id">
+    <column id="436" parent="318" name="class_id">
       <Position>1</Position>
       <StoredType>varchar(20)|0s</StoredType>
     </column>
-    <column id="401" parent="309" name="student_id">
+    <column id="437" parent="318" name="student_id">
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <foreign-key id="402" parent="309" name="classroom_student_ibfk_1">
+    <foreign-key id="438" parent="318" name="classroom_student_ibfk_1">
       <ColNames>class_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>classroom</RefTableName>
     </foreign-key>
-    <foreign-key id="403" parent="309" name="classroom_student_ibfk_2">
+    <foreign-key id="439" parent="318" name="classroom_student_ibfk_2">
       <ColNames>student_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>student</RefTableName>
     </foreign-key>
-    <index id="404" parent="309" name="class_id">
+    <index id="440" parent="318" name="class_id">
       <ColNames>class_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="405" parent="309" name="student_id">
+    <index id="441" parent="318" name="student_id">
       <ColNames>student_id</ColNames>
       <Type>btree</Type>
     </index>
-    <column id="406" parent="310" name="id">
+    <column id="442" parent="319" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(20)|0s</StoredType>
     </column>
-    <column id="407" parent="310" name="name">
+    <column id="443" parent="319" name="name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="408" parent="310" name="description">
+    <column id="444" parent="319" name="description">
       <Position>3</Position>
       <StoredType>text|0s</StoredType>
     </column>
-    <column id="409" parent="310" name="level">
+    <column id="445" parent="319" name="level">
       <Position>4</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="410" parent="310" name="credit">
+    <column id="446" parent="319" name="credit">
       <Position>5</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="411" parent="310" name="status">
+    <column id="447" parent="319" name="status">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>enum(&apos;active&apos;, &apos;inactive&apos;)|0e</StoredType>
     </column>
-    <index id="412" parent="310" name="PRIMARY">
+    <index id="448" parent="319" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="413" parent="310" name="PRIMARY">
+    <key id="449" parent="319" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="414" parent="311" name="id">
+    <column id="450" parent="320" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="415" parent="311" name="name">
+    <column id="451" parent="320" name="name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="416" parent="311" name="status">
+    <column id="452" parent="320" name="status">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>enum(&apos;active&apos;, &apos;inactive&apos;)|0e</StoredType>
     </column>
-    <index id="417" parent="311" name="PRIMARY">
+    <index id="453" parent="320" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="418" parent="311" name="PRIMARY">
+    <key id="454" parent="320" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="419" parent="312" name="id">
+    <column id="455" parent="321" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="420" parent="312" name="name">
+    <column id="456" parent="321" name="name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="421" parent="312" name="status">
+    <column id="457" parent="321" name="status">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>enum(&apos;active&apos;, &apos;inactive&apos;)|0e</StoredType>
     </column>
-    <index id="422" parent="312" name="PRIMARY">
+    <index id="458" parent="321" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="423" parent="312" name="PRIMARY">
+    <key id="459" parent="321" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="424" parent="313" name="id">
+    <column id="460" parent="322" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="425" parent="313" name="title">
+    <column id="461" parent="322" name="title">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="426" parent="313" name="description">
+    <column id="462" parent="322" name="description">
       <Position>3</Position>
       <StoredType>text|0s</StoredType>
     </column>
-    <column id="427" parent="313" name="status">
+    <column id="463" parent="322" name="status">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>enum(&apos;active&apos;, &apos;inactive&apos;)|0e</StoredType>
     </column>
-    <column id="428" parent="313" name="ref_attachment">
+    <column id="464" parent="322" name="ref_attachment">
       <Position>5</Position>
       <StoredType>varchar(500)|0s</StoredType>
     </column>
-    <index id="429" parent="313" name="PRIMARY">
+    <index id="465" parent="322" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="430" parent="313" name="PRIMARY">
+    <key id="466" parent="322" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="431" parent="314" name="id">
+    <column id="467" parent="323" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="432" parent="314" name="student_id">
+    <column id="468" parent="323" name="student_id">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="433" parent="314" name="classroom_id">
+    <column id="469" parent="323" name="classroom_id">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <foreign-key id="434" parent="314" name="progress_ibfk_1">
+    <foreign-key id="470" parent="323" name="progress_ibfk_1">
       <ColNames>student_id</ColNames>
       <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
       <RefTableName>student</RefTableName>
     </foreign-key>
-    <foreign-key id="435" parent="314" name="progress_ibfk_2">
+    <foreign-key id="471" parent="323" name="progress_ibfk_2">
       <ColNames>classroom_id</ColNames>
       <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
       <RefTableName>classroom</RefTableName>
     </foreign-key>
-    <index id="436" parent="314" name="PRIMARY">
+    <index id="472" parent="323" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="437" parent="314" name="student_id">
+    <index id="473" parent="323" name="student_id">
       <ColNames>student_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="438" parent="314" name="classroom_id">
+    <index id="474" parent="323" name="classroom_id">
       <ColNames>classroom_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="439" parent="314" name="PRIMARY">
+    <key id="475" parent="323" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <check id="440" parent="315" name="progress_assignment_chk_1">
+    <check id="476" parent="324" name="progress_assignment_chk_1">
       <NameSurrogate>1</NameSurrogate>
       <Predicate>(`score` &gt;= 0) and (`score` &lt;= 100)</Predicate>
     </check>
-    <column id="441" parent="315" name="progress_id">
+    <column id="477" parent="324" name="progress_id">
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="442" parent="315" name="assignment_id">
+    <column id="478" parent="324" name="assignment_id">
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="443" parent="315" name="score">
+    <column id="479" parent="324" name="score">
       <Position>3</Position>
       <StoredType>decimal(10)|0s</StoredType>
     </column>
-    <column id="444" parent="315" name="sub_attachment">
+    <column id="480" parent="324" name="sub_attachment">
       <Position>4</Position>
       <StoredType>varchar(500)|0s</StoredType>
     </column>
-    <column id="445" parent="315" name="status">
+    <column id="481" parent="324" name="status">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>enum(&apos;active&apos;, &apos;inactive&apos;)|0e</StoredType>
     </column>
-    <foreign-key id="446" parent="315" name="progress_assignment_ibfk_1">
+    <foreign-key id="482" parent="324" name="progress_assignment_ibfk_1">
       <ColNames>progress_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>progress</RefTableName>
     </foreign-key>
-    <foreign-key id="447" parent="315" name="progress_assignment_ibfk_2">
+    <foreign-key id="483" parent="324" name="progress_assignment_ibfk_2">
       <ColNames>assignment_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>assignment</RefTableName>
     </foreign-key>
-    <index id="448" parent="315" name="progress_id">
+    <index id="484" parent="324" name="progress_id">
       <ColNames>progress_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="449" parent="315" name="assignment_id">
+    <index id="485" parent="324" name="assignment_id">
       <ColNames>assignment_id</ColNames>
       <Type>btree</Type>
     </index>
-    <column id="450" parent="316" name="progress_id">
+    <column id="486" parent="325" name="progress_id">
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="451" parent="316" name="material_id">
+    <column id="487" parent="325" name="material_id">
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="452" parent="316" name="status">
+    <column id="488" parent="325" name="status">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>enum(&apos;active&apos;, &apos;inactive&apos;)|0e</StoredType>
     </column>
-    <foreign-key id="453" parent="316" name="progress_material_ibfk_1">
+    <foreign-key id="489" parent="325" name="progress_material_ibfk_1">
       <ColNames>progress_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>progress</RefTableName>
     </foreign-key>
-    <foreign-key id="454" parent="316" name="progress_material_ibfk_2">
+    <foreign-key id="490" parent="325" name="progress_material_ibfk_2">
       <ColNames>material_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>material</RefTableName>
     </foreign-key>
-    <index id="455" parent="316" name="progress_id">
+    <index id="491" parent="325" name="progress_id">
       <ColNames>progress_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="456" parent="316" name="material_id">
+    <index id="492" parent="325" name="material_id">
       <ColNames>material_id</ColNames>
       <Type>btree</Type>
     </index>
-    <check id="457" parent="317" name="progress_quiz_chk_1">
+    <check id="493" parent="326" name="progress_quiz_chk_1">
       <NameSurrogate>1</NameSurrogate>
       <Predicate>(`score` &gt;= 0) and (`score` &lt;= 100)</Predicate>
     </check>
-    <column id="458" parent="317" name="progress_id">
+    <column id="494" parent="326" name="progress_id">
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="459" parent="317" name="quiz_id">
+    <column id="495" parent="326" name="quiz_id">
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="460" parent="317" name="status">
+    <column id="496" parent="326" name="status">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>enum(&apos;active&apos;, &apos;inactive&apos;)|0e</StoredType>
     </column>
-    <column id="461" parent="317" name="score">
+    <column id="497" parent="326" name="score">
       <Position>4</Position>
       <StoredType>decimal(5,2 digit)|0s</StoredType>
     </column>
-    <foreign-key id="462" parent="317" name="progress_quiz_ibfk_1">
+    <foreign-key id="498" parent="326" name="progress_quiz_ibfk_1">
       <ColNames>progress_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>progress</RefTableName>
     </foreign-key>
-    <foreign-key id="463" parent="317" name="progress_quiz_ibfk_2">
+    <foreign-key id="499" parent="326" name="progress_quiz_ibfk_2">
       <ColNames>quiz_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>quiz</RefTableName>
     </foreign-key>
-    <index id="464" parent="317" name="progress_id">
+    <index id="500" parent="326" name="progress_id">
       <ColNames>progress_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="465" parent="317" name="quiz_id">
+    <index id="501" parent="326" name="quiz_id">
       <ColNames>quiz_id</ColNames>
       <Type>btree</Type>
     </index>
-    <column id="466" parent="318" name="id">
+    <column id="502" parent="327" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="467" parent="318" name="quiz_id">
+    <column id="503" parent="327" name="quiz_id">
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="468" parent="318" name="title">
+    <column id="504" parent="327" name="title">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <foreign-key id="469" parent="318" name="question_ibfk_1">
+    <foreign-key id="505" parent="327" name="question_ibfk_1">
       <ColNames>quiz_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>quiz</RefTableName>
     </foreign-key>
-    <index id="470" parent="318" name="PRIMARY">
+    <index id="506" parent="327" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="471" parent="318" name="quiz_id">
+    <index id="507" parent="327" name="quiz_id">
       <ColNames>quiz_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="472" parent="318" name="PRIMARY">
+    <key id="508" parent="327" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="473" parent="319" name="id">
+    <column id="509" parent="328" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="474" parent="319" name="title">
+    <column id="510" parent="328" name="title">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="475" parent="319" name="description">
+    <column id="511" parent="328" name="description">
       <Position>3</Position>
       <StoredType>text|0s</StoredType>
     </column>
-    <column id="476" parent="319" name="status">
+    <column id="512" parent="328" name="status">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>enum(&apos;active&apos;, &apos;inactive&apos;)|0e</StoredType>
     </column>
-    <index id="477" parent="319" name="PRIMARY">
+    <index id="513" parent="328" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="478" parent="319" name="PRIMARY">
+    <key id="514" parent="328" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="479" parent="320" name="id">
+    <column id="515" parent="329" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="480" parent="320" name="name">
+    <column id="516" parent="329" name="name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="481" parent="320" name="department_id">
+    <column id="517" parent="329" name="department_id">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="482" parent="320" name="status">
+    <column id="518" parent="329" name="status">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>enum(&apos;active&apos;, &apos;inactive&apos;)|0e</StoredType>
     </column>
-    <foreign-key id="483" parent="320" name="specialization_ibfk_1">
+    <foreign-key id="519" parent="329" name="specialization_ibfk_1">
       <ColNames>department_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>department</RefTableName>
     </foreign-key>
-    <index id="484" parent="320" name="PRIMARY">
+    <index id="520" parent="329" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="485" parent="320" name="department_id">
+    <index id="521" parent="329" name="department_id">
       <ColNames>department_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="486" parent="320" name="PRIMARY">
+    <key id="522" parent="329" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="487" parent="321" name="id">
+    <column id="523" parent="330" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="488" parent="321" name="first_name">
+    <column id="524" parent="330" name="first_name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="489" parent="321" name="last_name">
+    <column id="525" parent="330" name="last_name">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="490" parent="321" name="gender">
+    <column id="526" parent="330" name="gender">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="491" parent="321" name="dob">
+    <column id="527" parent="330" name="dob">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>date|0s</StoredType>
     </column>
-    <column id="492" parent="321" name="phone_number">
+    <column id="528" parent="330" name="phone_number">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>varchar(15)|0s</StoredType>
     </column>
-    <column id="493" parent="321" name="email">
+    <column id="529" parent="330" name="email">
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="494" parent="321" name="password">
+    <column id="530" parent="330" name="password">
       <NotNull>1</NotNull>
       <Position>8</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="495" parent="321" name="commune">
+    <column id="531" parent="330" name="commune">
       <NotNull>1</NotNull>
       <Position>9</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="496" parent="321" name="district">
+    <column id="532" parent="330" name="district">
       <NotNull>1</NotNull>
       <Position>10</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="497" parent="321" name="province">
+    <column id="533" parent="330" name="province">
       <NotNull>1</NotNull>
       <Position>11</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="498" parent="321" name="status">
+    <column id="534" parent="330" name="status">
       <NotNull>1</NotNull>
       <Position>12</Position>
       <StoredType>enum(&apos;active&apos;, &apos;inactive&apos;)|0e</StoredType>
     </column>
-    <column id="499" parent="321" name="created_at">
+    <column id="535" parent="330" name="created_at">
       <NotNull>1</NotNull>
       <Position>13</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <column id="500" parent="321" name="last_login">
+    <column id="536" parent="330" name="last_login">
       <Position>14</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <column id="501" parent="321" name="department_id">
+    <column id="537" parent="330" name="department_id">
       <NotNull>1</NotNull>
       <Position>15</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="502" parent="321" name="specialization_id">
+    <column id="538" parent="330" name="specialization_id">
       <NotNull>1</NotNull>
       <Position>16</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="503" parent="321" name="generation_id">
+    <column id="539" parent="330" name="generation_id">
       <NotNull>1</NotNull>
       <Position>17</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="504" parent="321" name="group_id">
+    <column id="540" parent="330" name="group_id">
       <Position>18</Position>
       <StoredType>varchar(20)|0s</StoredType>
     </column>
-    <column id="505" parent="321" name="guardian_first_name">
+    <column id="541" parent="330" name="guardian_first_name">
       <Position>19</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="506" parent="321" name="guardian_last_name">
+    <column id="542" parent="330" name="guardian_last_name">
       <Position>20</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="507" parent="321" name="guardian_phone_number">
+    <column id="543" parent="330" name="guardian_phone_number">
       <Position>21</Position>
       <StoredType>varchar(15)|0s</StoredType>
     </column>
-    <column id="508" parent="321" name="guardian_gender">
+    <column id="544" parent="330" name="guardian_gender">
       <Position>22</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <foreign-key id="509" parent="321" name="student_ibfk_2">
+    <foreign-key id="545" parent="330" name="student_ibfk_2">
       <ColNames>department_id</ColNames>
       <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
       <RefTableName>department</RefTableName>
     </foreign-key>
-    <foreign-key id="510" parent="321" name="student_ibfk_3">
+    <foreign-key id="546" parent="330" name="student_ibfk_3">
       <ColNames>specialization_id</ColNames>
       <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
       <RefTableName>specialization</RefTableName>
     </foreign-key>
-    <foreign-key id="511" parent="321" name="student_ibfk_4">
+    <foreign-key id="547" parent="330" name="student_ibfk_4">
       <ColNames>generation_id</ColNames>
       <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
       <RefTableName>generation</RefTableName>
     </foreign-key>
-    <foreign-key id="512" parent="321" name="student_ibfk_1">
+    <foreign-key id="548" parent="330" name="student_ibfk_1">
       <ColNames>group_id</ColNames>
       <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
       <RefTableName>student_group</RefTableName>
     </foreign-key>
-    <index id="513" parent="321" name="PRIMARY">
+    <index id="549" parent="330" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="514" parent="321" name="email">
+    <index id="550" parent="330" name="email">
       <ColNames>email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="515" parent="321" name="department_id">
+    <index id="551" parent="330" name="department_id">
       <ColNames>department_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="516" parent="321" name="specialization_id">
+    <index id="552" parent="330" name="specialization_id">
       <ColNames>specialization_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="517" parent="321" name="generation_id">
+    <index id="553" parent="330" name="generation_id">
       <ColNames>generation_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="518" parent="321" name="group_id">
+    <index id="554" parent="330" name="group_id">
       <ColNames>group_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="519" parent="321" name="PRIMARY">
+    <key id="555" parent="330" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="520" parent="321" name="email">
+    <key id="556" parent="330" name="email">
       <UnderlyingIndexName>email</UnderlyingIndexName>
     </key>
-    <column id="521" parent="322" name="id">
+    <column id="557" parent="331" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="522" parent="322" name="generation_id">
+    <column id="558" parent="331" name="generation_id">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="523" parent="322" name="specialization_id">
+    <column id="559" parent="331" name="specialization_id">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="524" parent="322" name="status">
+    <column id="560" parent="331" name="status">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>enum(&apos;active&apos;, &apos;inactive&apos;)|0e</StoredType>
     </column>
-    <foreign-key id="525" parent="322" name="student_group_ibfk_1">
+    <foreign-key id="561" parent="331" name="student_group_ibfk_1">
       <ColNames>generation_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>generation</RefTableName>
     </foreign-key>
-    <foreign-key id="526" parent="322" name="student_group_ibfk_2">
+    <foreign-key id="562" parent="331" name="student_group_ibfk_2">
       <ColNames>specialization_id</ColNames>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>id</RefColNames>
       <RefTableName>specialization</RefTableName>
     </foreign-key>
-    <index id="527" parent="322" name="PRIMARY">
+    <index id="563" parent="331" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="528" parent="322" name="generation_id">
+    <index id="564" parent="331" name="generation_id">
       <ColNames>generation_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="529" parent="322" name="specialization_id">
+    <index id="565" parent="331" name="specialization_id">
       <ColNames>specialization_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="530" parent="322" name="PRIMARY">
+    <key id="566" parent="331" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="531" parent="323" name="student_id">
+    <column id="567" parent="332" name="student_id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="532" parent="323" name="last_action">
+    <column id="568" parent="332" name="last_action">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>enum(&apos;login&apos;, &apos;logout&apos;)|0e</StoredType>
     </column>
-    <column id="533" parent="323" name="time">
+    <column id="569" parent="332" name="time">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <foreign-key id="534" parent="323" name="student_history_ibfk_1">
+    <foreign-key id="570" parent="332" name="student_history_ibfk_1">
       <ColNames>student_id</ColNames>
       <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
       <RefTableName>student</RefTableName>
     </foreign-key>
-    <index id="535" parent="323" name="student_id">
+    <index id="571" parent="332" name="student_id">
       <ColNames>student_id</ColNames>
       <Type>btree</Type>
     </index>
-    <column id="536" parent="324" name="id">
+    <column id="572" parent="333" name="id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="537" parent="324" name="first_name">
+    <column id="573" parent="333" name="first_name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="538" parent="324" name="last_name">
+    <column id="574" parent="333" name="last_name">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="539" parent="324" name="gender">
+    <column id="575" parent="333" name="gender">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="540" parent="324" name="dob">
+    <column id="576" parent="333" name="dob">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>date|0s</StoredType>
     </column>
-    <column id="541" parent="324" name="phone_number">
+    <column id="577" parent="333" name="phone_number">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>varchar(15)|0s</StoredType>
     </column>
-    <column id="542" parent="324" name="email">
+    <column id="578" parent="333" name="email">
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="543" parent="324" name="status">
+    <column id="579" parent="333" name="status">
       <NotNull>1</NotNull>
       <Position>8</Position>
       <StoredType>enum(&apos;active&apos;, &apos;inactive&apos;)|0e</StoredType>
     </column>
-    <column id="544" parent="324" name="created_at">
+    <column id="580" parent="333" name="created_at">
       <NotNull>1</NotNull>
       <Position>9</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <column id="545" parent="324" name="last_login">
+    <column id="581" parent="333" name="last_login">
       <Position>10</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <column id="546" parent="324" name="password">
+    <column id="582" parent="333" name="password">
       <NotNull>1</NotNull>
       <Position>11</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <index id="547" parent="324" name="PRIMARY">
+    <index id="583" parent="333" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="548" parent="324" name="email">
+    <index id="584" parent="333" name="email">
       <ColNames>email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="549" parent="324" name="PRIMARY">
+    <key id="585" parent="333" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="550" parent="324" name="email">
+    <key id="586" parent="333" name="email">
       <UnderlyingIndexName>email</UnderlyingIndexName>
     </key>
-    <column id="551" parent="325" name="teacher_id">
+    <column id="587" parent="334" name="teacher_id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>varchar(10)|0s</StoredType>
     </column>
-    <column id="552" parent="325" name="last_action">
+    <column id="588" parent="334" name="last_action">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>enum(&apos;login&apos;, &apos;logout&apos;)|0e</StoredType>
     </column>
-    <column id="553" parent="325" name="time">
+    <column id="589" parent="334" name="time">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>timestamp|0s</StoredType>
     </column>
-    <foreign-key id="554" parent="325" name="teacher_history_ibfk_1">
+    <foreign-key id="590" parent="334" name="teacher_history_ibfk_1">
       <ColNames>teacher_id</ColNames>
       <OnDelete>cascade</OnDelete>
       <RefColNames>id</RefColNames>
       <RefTableName>teacher</RefTableName>
     </foreign-key>
-    <index id="555" parent="325" name="teacher_id">
+    <index id="591" parent="334" name="teacher_id">
       <ColNames>teacher_id</ColNames>
       <Type>btree</Type>
     </index>
+    <column id="592" parent="335" name="assignment_id_name">
+      <Position>1</Position>
+      <StoredType>varchar(113)|0s</StoredType>
+    </column>
+    <column id="593" parent="335" name="class_id">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="594" parent="336" name="material_id_name">
+      <Position>1</Position>
+      <StoredType>varchar(113)|0s</StoredType>
+    </column>
+    <column id="595" parent="336" name="class_id">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="596" parent="337" name="quiz_id_name">
+      <Position>1</Position>
+      <StoredType>varchar(113)|0s</StoredType>
+    </column>
+    <column id="597" parent="337" name="class_id">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="598" parent="338" name="assignment_id_name">
+      <Position>1</Position>
+      <StoredType>varchar(113)|0s</StoredType>
+    </column>
+    <column id="599" parent="339" name="classroom_name">
+      <Position>1</Position>
+      <StoredType>varchar(308)|0s</StoredType>
+    </column>
+    <column id="600" parent="340" name="material_id_name">
+      <Position>1</Position>
+      <StoredType>varchar(113)|0s</StoredType>
+    </column>
+    <column id="601" parent="341" name="quiz_id_name">
+      <Position>1</Position>
+      <StoredType>varchar(113)|0s</StoredType>
+    </column>
+    <column id="602" parent="342" name="id">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>varchar(50)|0s</StoredType>
+    </column>
+    <column id="603" parent="343" name="assignment_id_name">
+      <Position>1</Position>
+      <StoredType>varchar(113)|0s</StoredType>
+    </column>
+    <column id="604" parent="344" name="material_id_name">
+      <Position>1</Position>
+      <StoredType>varchar(113)|0s</StoredType>
+    </column>
+    <column id="605" parent="345" name="quiz_id_name">
+      <Position>1</Position>
+      <StoredType>varchar(113)|0s</StoredType>
+    </column>
   </database-model>
 </dataSource>

@@ -102,7 +102,7 @@ public class EditTeacherManager extends EditEntityManager {
         return null;
     }
 
-    public String getOldPhone(){
+    public String getOldPhone() {
         String query = "SELECT phone_number FROM teacher WHERE id = ?";
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, idToEdit);
@@ -116,7 +116,7 @@ public class EditTeacherManager extends EditEntityManager {
         return null;
     }
 
-    public String getOldEmail(){
+    public String getOldEmail() {
         String query = "SELECT email FROM teacher WHERE id = ?";
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, idToEdit);
@@ -188,11 +188,13 @@ public class EditTeacherManager extends EditEntityManager {
 
     public boolean isOldPasswordMatched(String oldPassword) {
         String query = "SELECT password FROM teacher WHERE id = ?";
-        try(PreparedStatement statement = conn.prepareStatement(query)){
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, idToEdit);
             ResultSet rs = statement.executeQuery();
-            rs.next();
-            return rs.getString("password").equals(oldPassword);
-        }catch (SQLException e) {
+            if (rs.next()) {
+                return rs.getString("password").equals(oldPassword);
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;

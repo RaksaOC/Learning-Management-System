@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import lib.Hasher;
 import main.SceneManager;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditTeacherManager;
@@ -30,12 +31,13 @@ public class EditTeacherPasswordController extends MainFrameController {
             manager = new EditTeacherManager(extractId(idComboBox.getValue()));
             newTextField.setDisable(true);
             curTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-                if (manager.isOldPasswordMatched(newValue)) {
+                if (manager.isOldPasswordMatched(Hasher.hash(curTextField.getText()))) {
                     newTextField.setDisable(false);
                     editButton.setDisable(false);
                     curTextField.setStyle("-fx-border-color: green");
                 }
                 else{
+                    newTextField.setDisable(true);
                     editButton.setDisable(true);
                     curTextField.setStyle("-fx-border-color: red");
                 }

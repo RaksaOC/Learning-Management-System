@@ -3,6 +3,7 @@ package main.java.com.lmsAdmin.controllers.layer3.studentEditControllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import lib.Hasher;
 import main.SceneManager;
 import main.java.com.lmsAdmin.controllers.layer0.MainFrameController;
 import main.java.com.lmsAdmin.managers.layer3.edit_entity_manager.EditStudentManager;
@@ -25,15 +26,16 @@ public class EditStudentPasswordController extends MainFrameController {
         editButton.setDisable(true);
         idComboBox.getItems().addAll(idLoader.loadIdsAndName());
         idComboBox.setOnAction(event -> {
-            manager = new EditStudentManager(extractId(extractId(idComboBox.getItems().getFirst())));
+            manager = new EditStudentManager(extractId(idComboBox.getItems().getFirst()));
             newTextField.setDisable(true);
             curTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-                if (manager.isOldPasswordMatched(newValue)) {
+                if (manager.isOldPasswordMatched(Hasher.hash(curTextField.getText()))) {
                     newTextField.setDisable(false);
                     editButton.setDisable(false);
                     curTextField.setStyle("-fx-border-color: green");
                 }
                 else{
+                    newTextField.setDisable(true);
                     editButton.setDisable(true);
                     curTextField.setStyle("-fx-border-color: red");
                 }

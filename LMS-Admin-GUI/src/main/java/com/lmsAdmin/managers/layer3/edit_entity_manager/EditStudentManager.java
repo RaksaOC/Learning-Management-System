@@ -214,7 +214,7 @@ public class EditStudentManager extends EditEntityManager {
         return null;
     }
 
-    public String getOldPhone(){
+    public String getOldPhone() {
         String query = "SELECT phone_number FROM student WHERE id = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, idToEdit);
@@ -228,7 +228,7 @@ public class EditStudentManager extends EditEntityManager {
         return null;
     }
 
-    public String getOldEmail(){
+    public String getOldEmail() {
         String query = "SELECT email FROM student WHERE id = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, idToEdit);
@@ -346,14 +346,14 @@ public class EditStudentManager extends EditEntityManager {
     public ArrayList<String> loadIdsAndName() {
         ArrayList<String> ids = new ArrayList<>();
         String query = "SELECT id, CONCAT(first_name, ' ', last_name) as name FROM student";
-        try(PreparedStatement statement = conn.prepareStatement(query)){
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.execute();
             ResultSet rs = statement.getResultSet();
             while (rs.next()) {
                 ids.add(rs.getString("id") + " - " + rs.getString("name"));
             }
             return ids;
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return ids;
@@ -380,11 +380,13 @@ public class EditStudentManager extends EditEntityManager {
 
     public boolean isOldPasswordMatched(String oldPassword) {
         String query = "SELECT password FROM student WHERE id = ?";
-        try(PreparedStatement statement = conn.prepareStatement(query)){
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, idToEdit);
             ResultSet rs = statement.executeQuery();
-            rs.next();
-            return rs.getString("password").equals(oldPassword);
-        }catch (SQLException e) {
+            if (rs.next()) {
+                return rs.getString("password").equals(oldPassword);
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;

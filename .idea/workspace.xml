@@ -5,18 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="816c4d4f-796b-4ab7-98a7-72a49b87cc0e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-Function.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-Index.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-Procedure.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-Trigger.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-View.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/9b992d67-3e9f-4a53-a143-9a8c30a44f17.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9b992d67-3e9f-4a53-a143-9a8c30a44f17.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-Admin-DML.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-DDL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-DDL.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-DQL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-DQL.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/controllers/layer3/adminEditControllers/EditAdminPasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/controllers/layer3/adminEditControllers/EditAdminPasswordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/controllers/layer3/studentEditControllers/EditStudentPasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/controllers/layer3/studentEditControllers/EditStudentPasswordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/controllers/layer3/teacherEditControllers/EditTeacherPasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/controllers/layer3/teacherEditControllers/EditTeacherPasswordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer3/edit_entity_manager/EditAdminManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer3/edit_entity_manager/EditAdminManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer3/edit_entity_manager/EditStudentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer3/edit_entity_manager/EditStudentManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer3/edit_entity_manager/EditTeacherManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer3/edit_entity_manager/EditTeacherManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

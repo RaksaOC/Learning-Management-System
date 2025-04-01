@@ -83,7 +83,7 @@ public class EditAdminManager extends EditEntityManager {
     public void manageEditPassword(String newPas) {
         String query = "UPDATE admin SET password=? WHERE id=?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setString(1, Hasher.hash(newPas)); // Hashing the password before updating
+            statement.setString(1, Hasher.hash(newPas));
             statement.setString(2, idToEdit);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -216,11 +216,13 @@ public class EditAdminManager extends EditEntityManager {
 
     public boolean isOldPasswordMatched(String oldPassword) {
         String query = "SELECT password FROM admin WHERE id = ?";
-        try(PreparedStatement statement = conn.prepareStatement(query)){
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, idToEdit);
             ResultSet rs = statement.executeQuery();
-            rs.next();
-            return rs.getString("password").equals(oldPassword);
-        }catch (SQLException e) {
+            if (rs.next()) {
+                return rs.getString("password").equals(oldPassword);
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;

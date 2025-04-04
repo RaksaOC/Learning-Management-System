@@ -5,35 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="816c4d4f-796b-4ab7-98a7-72a49b87cc0e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/main/LMS-Scope1-Procedure-Pt1.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/main/LMS-Scope1-Procedure-Pt2.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/main/LMS-Scope2-Procedure.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9b992d67-3e9f-4a53-a143-9a8c30a44f17.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9b992d67-3e9f-4a53-a143-9a8c30a44f17.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9b992d67-3e9f-4a53-a143-9a8c30a44f17/storage_v2/_src_/schema/LMS2.gLcjAA.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9b992d67-3e9f-4a53-a143-9a8c30a44f17/storage_v2/_src_/schema/LMS2.gLcjAA.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/LMS-Admin-GUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/LMS-Admin-GUI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer1/DashboardManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer1/DashboardManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer2/manage_entity_manager/ManageClassroomManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer2/manage_entity_manager/ManageClassroomManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer2/manage_entity_manager/ManageCourseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer2/manage_entity_manager/ManageCourseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer2/manage_entity_manager/ManageGenerationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer2/manage_entity_manager/ManageGenerationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer2/manage_entity_manager/ManageGroupManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer2/manage_entity_manager/ManageGroupManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer2/manage_entity_manager/ManageSpecializationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer2/manage_entity_manager/ManageSpecializationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer2/manage_entity_manager/ManageStudentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer2/manage_entity_manager/ManageStudentManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer2/manage_entity_manager/ManageTeacherManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer2/manage_entity_manager/ManageTeacherManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer3/edit_entity_manager/EditCourseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer3/edit_entity_manager/EditCourseManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer3/edit_entity_manager/EditDepartmentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer3/edit_entity_manager/EditDepartmentManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer3/edit_entity_manager/EditGenerationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer3/edit_entity_manager/EditGenerationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer3/edit_entity_manager/EditGroupManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer3/edit_entity_manager/EditGroupManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer3/edit_entity_manager/EditTeacherManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/LMS-Admin-GUI/src/main/java/com/lmsAdmin/managers/layer3/edit_entity_manager/EditTeacherManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-DDL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/main/LMS-DDL.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-DML.sql" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/main/LMS-DML.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-DQL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/main/LMS-DQL.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-Function.sql" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/main/LMS-Function.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-Index.sql" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/main/LMS-Index.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-Procedure.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-Trigger.sql" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/main/LMS-Trigger.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/data/Sql-scripts/LMS-View.sql" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/main/LMS-View.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/data/Sql-scripts/main/LMS-Trigger.sql" beforeDir="false" afterPath="$PROJECT_DIR$/shared/data/Sql-scripts/main/LMS-Trigger.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +170,7 @@
       <workItem from="1742964869902" duration="64151000" />
       <workItem from="1743165244338" duration="19883000" />
       <workItem from="1743258901585" duration="2994000" />
-      <workItem from="1743732844200" duration="17630000" />
+      <workItem from="1743732844200" duration="20724000" />
     </task>
     <servers />
   </component>

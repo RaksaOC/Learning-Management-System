@@ -3,8 +3,6 @@ package main.java.com.lmsAdmin.managers.layer1;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import main.DatabaseConnection;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;

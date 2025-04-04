@@ -1,7 +1,5 @@
 package main.java.com.lmsAdmin.managers.layer3.edit_entity_manager;
 
-import org.json.JSONObject;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;

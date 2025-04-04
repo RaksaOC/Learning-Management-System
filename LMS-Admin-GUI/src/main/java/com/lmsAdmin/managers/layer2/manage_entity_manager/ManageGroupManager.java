@@ -3,8 +3,6 @@ package main.java.com.lmsAdmin.managers.layer2.manage_entity_manager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import main.DatabaseConnection;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.FileWriter;
 import java.io.IOException;

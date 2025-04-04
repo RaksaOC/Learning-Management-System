@@ -1,10 +1,5 @@
 package main.java.com.lmsAdmin.managers.layer3.edit_entity_manager;
 
-import main.DatabaseConnection;
-import org.json.JSONObject;
-
-import javax.xml.crypto.Data;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

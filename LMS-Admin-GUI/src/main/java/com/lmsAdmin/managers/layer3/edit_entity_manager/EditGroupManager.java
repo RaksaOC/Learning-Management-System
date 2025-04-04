@@ -1,7 +1,5 @@
 package main.java.com.lmsAdmin.managers.layer3.edit_entity_manager;
 
-import org.json.JSONArray;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

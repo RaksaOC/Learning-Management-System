@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ManageSpecializationManager extends ManageEntityManager {
-    private JSONArray specializations;
 
     public ManageSpecializationManager() {
         super();
